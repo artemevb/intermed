@@ -1,7 +1,7 @@
 "use client";
 import { useState } from 'react';
 import Image from "next/image";
-import newsPhoto from "@/public/images/events/EventsSignUp.png";
+import newsPhoto from "@/public/images/events/eventsSignUp.png";
 import Timetable from "@/app/_components/Modal/Timetable";
 import SignUpForEvent from "@/app/_components/Modal/SignUpForEvent";
 
