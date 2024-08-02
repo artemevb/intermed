@@ -1,9 +1,22 @@
+"use client"
 import Image from "next/image";
+import { useState } from "react";
 import VerticalCarousel from "./ProductCarousel";
 import mindray from "@/public/images/aboutUs/partners/image41.png";
 import heartIcon from "@/public/svg/tools/heart-icon.svg";
+import SignUpForEvent from '@/app/_components/Modal/SendKp'; 
 
 export default function ProductPreview() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="w-full flex flex-col lg:flex-row">
       <div className="flex-1 w-full">
@@ -34,7 +47,10 @@ export default function ProductPreview() {
           />
         </div>
         <div className="flex gap-4">
-          <button className="py-4 px-[60px] text-sm font-semibold text-white bg-[#E94B50] lg:px-[80px] 2xl:px-[90px]">
+          <button
+            className="py-4 px-[60px] text-sm font-semibold text-white bg-[#E94B50] lg:px-[80px] 2xl:px-[90px]"
+            onClick={handleOpenModal}
+          >
             Отправить КП
           </button>
           <button className="px-3 py-3 border flex items-center justify-center">
@@ -48,6 +64,7 @@ export default function ProductPreview() {
           </button>
         </div>
       </div>
+      {isModalOpen && <SignUpForEvent closeModal={handleCloseModal} />}
     </div>
   );
 }
