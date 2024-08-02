@@ -26,8 +26,8 @@ export default function WhatWeDo() {
                         <div class="hidden uppercase text-[25px] tracking-wide text-[#252324] font-semibold mdx:text-[35px] xl:block">Что мы делаем для<br /> наших клиентов?</div>
                         <div className="p-3  divide-y divide-gray-200 my-4 ">
                             {services.map((service, index) => (
-                                <div >
-                                    <p key={index} className="my-4 text-[#252324] text-[16px] mdx:text-[20px] mdx:mr-[10%] 2xl:mr-[21%]">
+                                <div key={index}>
+                                    <p  className="my-4 text-[#252324] text-[16px] mdx:text-[20px] mdx:mr-[10%] 2xl:mr-[21%]">
                                         {service}
                                     </p>
                                 </div>

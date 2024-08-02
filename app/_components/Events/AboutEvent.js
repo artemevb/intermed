@@ -14,7 +14,7 @@ export default function AboutEvent() {
                             <strong className="text-[#BABABA] font-normal mdx:text-[20px]">Время</strong> 17:00 - 20:00
                         </p>
                         <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]">
-                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">Адрес</strong> Узбекистан, г. Ташкент, НВК "Узэкспоцентр"
+                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">Адрес</strong> Узбекистан, г. Ташкент, НВК &quot;Узэкспоцентр&quot;
                         </p>
                     </div>
                     <button className="mt-4 w-full mdx:max-w-[296px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white xl:max-w-[100%]">
@@ -23,7 +23,7 @@ export default function AboutEvent() {
                 </div>
                 <div className="mb-[100px] mdx:mb-[150px] xl:mb-[180px] xl:w-3/4">
                     <p className="text-[15px] mdx:text-[18px] mdl:text-[20px] mt-[30px]">
-                        Мы рады пригласить вас на одно из самых значимых событий в области медицины этого года – Презентация Новейших Технологий в Медицине, которая пройдет в Ташкенте 17 июля 2024 года. Мероприятие соберет ведущих специалистов и экспертов из различных медицинских дисциплин, чтобы обсудить и продемонстрировать последние достижения и инновации в сфере здравоохранения.
+                        Мы рады пригласить вас на одно из самых значимых событий в области медицины этого года &ndash; Презентация Новейших Технологий в Медицине, которая пройдет в Ташкенте 17 июля 2024 года. Мероприятие соберет ведущих специалистов и экспертов из различных медицинских дисциплин, чтобы обсудить и продемонстрировать последние достижения и инновации в сфере здравоохранения.
                     </p>
                     <h3 className="text-[20px] mdx:text-[27px] font-semibold mb-[16px] text-[#252324] mt-[30px]">Основные темы мероприятия</h3>
                     <ol className="list-disc pl-4 mdx:pl-5">
