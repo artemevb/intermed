@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply font-lato;
+  @apply font-sans;
 }
 
 .carousel-container {
@@ -109,7 +109,8 @@ body {
   background: red;
 }
 
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next,
+.swiper-button-prev {
   color: black !important;
   width: 30px;
   /* Adjust the width as needed */
@@ -117,7 +118,8 @@ body {
   /* Adjust the height as needed */
 }
 
-.swiper-button-next::after, .swiper-button-prev::after {
+.swiper-button-next::after,
+.swiper-button-prev::after {
   font-size: 20px;
   font-weight: bolder;
   /* Adjust the font size as needed */

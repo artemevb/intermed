@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+// /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -36,7 +36,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        lato: ['Lato', 'sans-serif'],
+        sans: ['Lato', 'sans-serif'],
       },
       boxShadow: {
         'custom-light': '0 0px 40px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)',

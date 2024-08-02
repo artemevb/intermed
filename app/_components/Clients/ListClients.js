@@ -1,3 +1,5 @@
+"use client"
+import { useState } from 'react';
 import Link from "next/link";
 import Image from 'next/image';
 import partnerPhoto1 from "@/public/images/clients/image1.png";
@@ -46,15 +48,62 @@ const partners = [
         description: "Lingen Precision Medical Products Co., Ltd. is a custom manufacturer specializing in medical products",
         link: "lingen"
     },
-
+    {
+        id: 7,
+        imageSrc: partnerPhoto1,
+        title: "Partner 7",
+        description: "Description for partner 7",
+        link: "partner7"
+    },
+    {
+        id: 8,
+        imageSrc: partnerPhoto1,
+        title: "Partner 8",
+        description: "Description for partner 8",
+        link: "partner8"
+    },
+    {
+        id: 9,
+        imageSrc: partnerPhoto1,
+        title: "Partner 9",
+        description: "Description for partner 9",
+        link: "partner9"
+    },
+    {
+        id: 10,
+        imageSrc: partnerPhoto1,
+        title: "Partner 10",
+        description: "Description for partner 10",
+        link: "partner10"
+    },
+    {
+        id: 11,
+        imageSrc: partnerPhoto1,
+        title: "Partner 11",
+        description: "Description for partner 11",
+        link: "partner11"
+    },
+    {
+        id: 12,
+        imageSrc: partnerPhoto1,
+        title: "Partner 12",
+        description: "Description for partner 12",
+        link: "partner12"
+    },
 ];
 
 export default function ListPartners() {
+    const [visibleCount, setVisibleCount] = useState(6);
+
+    const showMorePartners = () => {
+        setVisibleCount(partners.length);
+    };
+
     return (
         <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 mb-[110px] mdx:mb-[130px] xl:mb-[180px]">
             <h1 className="font-semibold text-[25px] mdx:text-[30px] lg:text-[35px] xl:text-[40px] uppercase mt-[60px]">Кейсы</h1>
             <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-                {partners.map(card => (
+                {partners.slice(0, visibleCount).map(card => (
                     <div key={card.id} className="bg-white p-4 w-full border-[1px] border-gray-200 mdx:p-0 mdl:p-5 slg:h-auto">
                         <div className="mdx:flex mdx:flex-row items-center justify-between ">
                             <div className="mdx:w-[50%] h-[70px] relative mt-3">
@@ -73,11 +122,15 @@ export default function ListPartners() {
                     </div>
                 ))}
             </div>
-            <div className="flex justify-center items-center">
-                <button className="bg-[#E94B50] text-[#fff] text-[14px] mdx:text-[16px] py-3 px-[60px]">
-                    Загрузить все
-                </button>
-            </div>
+            {visibleCount < partners.length && (
+                <div className="flex justify-center items-center">
+                    <button 
+                        onClick={showMorePartners} 
+                        className="bg-[#E94B50] text-[#fff] text-[14px] mdx:text-[16px] py-3 px-[60px]">
+                        Загрузить все
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
