@@ -55,7 +55,7 @@ export default function Sertificates() {
       <div>
         <Slider {...settings} className="h-auto flex">
           {sertificates.map((item, index) => (
-            <div key={index} className="p-4"> {/* Adjust margin or padding here */}
+            <div key={index} className="p-4"> 
               <div className="p-8 border">
                 <Image
                   src={item}
@@ -73,7 +73,7 @@ export default function Sertificates() {
       <div className="w-full justify-center flex">
         <Link
           href="/licenses"
-          className="border border-neutral-300 px-12 py-3 transition-all duration-200"
+          className="border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff]"
         >
           Смотреть все
         </Link>

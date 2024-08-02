@@ -38,7 +38,7 @@ export default function Contacts() {
         </div>
         <hr />
         <div>
-          <button className="px-24 max-mdx:px-12 py-3 w-auto bg-redMain text-white">
+          <button className="px-24 max-mdx:px-12 py-3 w-auto bg-contactBg text-white hover:bg-[#EE787C]">
             Обратный звонок
           </button>
         </div>

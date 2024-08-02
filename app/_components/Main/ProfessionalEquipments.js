@@ -218,7 +218,7 @@ const EquipmentCarousel = () => {
         </div>
       </div>
       <div className="flex w-full justify-center">
-        <Link href="/categories" className="border px-12 py-3">
+        <Link href="/categories" className="border px-12 py-3 hover:bg-[#E94B50] hover:text-[#fff]">
           Все товары
         </Link>
       </div>
