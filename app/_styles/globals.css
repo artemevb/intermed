@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-lato;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  /* Adjust as needed */
+  padding-top: 20px;
+  /* Add padding if needed */
+}
+
+
+/* Пример для Tailwind CSS */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE и Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.shadow-contact {
+  box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.10);
+}
+
+#map-container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%);
+}
+
+#dollar-logo {
+  border-bottom: 2px solid #e5e7eb;
+  /* TailwindCSS grey-200 */
+}
+
+
+.main-carousel .carousel .slide img {
+  object-fit: contain;
+  height: 400px;
+  width: auto;
+}
+
+.thumbnail-carousel .carousel .thumb img {
+  height: 80px;
+  width: auto;
+}
+
+.thumbnail-carousel .carousel .thumb {
+  border: none;
+  padding: 2px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.container {
+  background: linear-gradient(to right, #F5F8FF 50%);
+
+
+}
+
+.semicircle {
+  position: absolute;
+  z-index: 3;
+  background: var(--Green-Green-10, #E6F2EB);
+}
+
+.invisible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.shadow-contactPages {
+  box-shadow: 0px -4px 40px rgba(0, 0, 0, 0.10);
+  /* Тень сверху */
+}
+
+.swiper-pagination-bullet {
+  background: rgb(175, 172, 172);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: red;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: black !important;
+  width: 30px;
+  /* Adjust the width as needed */
+  height: 30px;
+  /* Adjust the height as needed */
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+  font-size: 20px;
+  font-weight: bolder;
+  /* Adjust the font size as needed */
+}
+
+@media (max-width: 1000px) {
+  /* .relative {
+    height: 0;
+    padding-bottom: 100%; 
+  } */
+
+  .relative iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
