@@ -20,8 +20,8 @@ export default function Tools({ navOptions }) {
   };
 
   return (
-    <div className="h-full items-center flex gap-5">
-      <button className="rounded-full max-mdx:px-3 max-mdx:py-3">
+    <div className="h-full items-center flex mdx:gap-5 ">
+      <button className="rounded-full  max-mdx:px-3 max-mdx:py-3">
         <Image
           src={searchIcon}
           height={100}
@@ -50,7 +50,7 @@ export default function Tools({ navOptions }) {
           className="w-6 h-6 max-mdx:w-3 max-mdx:h-3"
         />
       </a>
-      <div class="relative  flex items-center text-left">
+      <div class="mdx:relative  xl:flex xl:items-center xl:text-left hidden">
         <button id="dropdownButton" class="inline-flex items-center text-[18px] font-medium  bg-white   focus:outline-none ml-3">
           RU
           <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
