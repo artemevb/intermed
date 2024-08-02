@@ -23,7 +23,7 @@ export default function Timetable({ closeModal }) {
                 <div >
                     <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">Дата</strong> 17 Июля - 25 Июля</p>
                     <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">Время</strong> 17:00 - 20:00</p>
-                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 xl:w-[80%] mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">Адрес</strong> Узбекистан, г. Ташкент, НВК "Узэкспоцентр"</p>
+                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 xl:w-[80%] mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">Адрес</strong> Узбекистан, г. Ташкент, НВК &quot;Узэкспоцентр&quot;</p>
                 </div>
                 <button className="mt-4 w-full bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white">
                     Записаться
