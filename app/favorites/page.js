@@ -8,7 +8,6 @@ export default function page() {
     <div className="w-full bg-white gap-48 pt-12 flex flex-col">
         <FavoriteList />
         <Application />
-        <Map />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import Map from "@/app/_components/Contacts/Map";
-import ContAddress from "@/app/_components/Contacts/ContAddress";
+import Application from "@/app/_components/Main/Application";
 import Representatives from "@/app/_components/Contacts/Representatives";
 
 export default function page() {
@@ -7,7 +7,7 @@ export default function page() {
         <div className="w-full bg-white flex flex-col gap-23 ">
             <Map />
             <Representatives />
-            <ContAddress />
+            <Application />
         </div>
     );
 }
