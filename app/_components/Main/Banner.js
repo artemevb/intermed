@@ -64,7 +64,6 @@ const BannerCarousel = () => {
             />
           </div>
         </SwiperSlide>
-        {/* Add more slides as needed */}
       </Swiper>
     </div>
   );

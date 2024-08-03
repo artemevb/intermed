@@ -16,24 +16,26 @@ export default function Contacts() {
       <div id="contact-details" className="flex-1 flex flex-col gap-5">
         <h2 className="text-3xl font-semibold">КОНТАКТЫ</h2>
         <div className="flex flex-col gap-1">
-          <p className="text-lg">
-            г. Ташкент, Юнусабадский р-он, ул. Чинобод 10А
-          </p>
+          <div >
+            <a href="https://yandex.uz/maps/10335/tashkent/?from=mapframe&ll=69.288713%2C41.350869&mode=usermaps&source=mapframe&um=constructor%3A91d36eeb34d790da6904a560f5fd9b0e0072a93a42f95bc0fe3dd8ae45fdaf0c&utm_source=mapframe&z=14" target="_blank" rel="noopener noreferrer" className="block text-black text-lg mdl:text-xl">
+              г. Ташкент, Юнусабадский р-он, ул. Чинобод 10А
+            </a>
+          </div>
           <p className="text-neutral-400 text-sm">Адрес</p>
         </div>
         <hr />
         <div className="flex flex-col gap-1">
-          <p className="text-lg">Ежедневно 09:00 - 18:00</p>
+          <p className="text-lg mdl:text-xl">Ежедневно 09:00 - 18:00</p>
           <p className="text-neutral-400 text-sm">График работы</p>
         </div>
         <hr />
         <div className="flex flex-col gap-1">
-          <p className="text-lg">+998 78 150-47-47</p>
+          <a href="tel:+971543980707" className="hover:underline text-black text-lg mdl:text-xl">+998 78 150-47-47</a>
           <p className="text-neutral-400 text-sm">Номер телефона</p>
         </div>
         <hr />
         <div className="flex flex-col gap-1">
-          <p className="text-lg">info@imed.uz</p>
+          <a href="mailto:info@mrjtrade.ae" className="text-black text-lg mdl:text-xl">info@imed.uz</a>
           <p className="text-neutral-400 text-sm">E-mail</p>
         </div>
         <hr />

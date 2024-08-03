@@ -10,13 +10,13 @@ export default function Map() {
                 </div>
                 <div className=" mx-[14px] 3xl:mx-auto">
                     <div className="mt-4 max-w-[1440px] xl:mx-5">
-                        <form className="flex flex-col space-y-4 xl:grid xl:gap-8">
+                        <form className="flex flex-col xl:grid xl:gap-8">
                             <div className='xl:pb-[30px] border-b-2 border-contactBorder flex flex-col items-start gap-1 pb-3'>
                                 <div>
                                     <p className="text-[14px] mdx:text-[18px] xl:text-[20px] text-[#BABABA]">Адрес</p>
                                 </div>
                                 <div>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=Deira,+Baniyas+road,+Twin+Towers,+20+floor+office+number+10" target="_blank" rel="noopener noreferrer" className="block text-black text-[20px] mdx:text-[28px] xl:text-[30px] mdx:w-[470px]">
+                                    <a href="https://yandex.uz/maps/10335/tashkent/?from=mapframe&ll=69.288713%2C41.350869&mode=usermaps&source=mapframe&um=constructor%3A91d36eeb34d790da6904a560f5fd9b0e0072a93a42f95bc0fe3dd8ae45fdaf0c&utm_source=mapframe&z=14" target="_blank" rel="noopener noreferrer" className="block text-black text-[20px] mdx:text-[28px] xl:text-[30px] mdx:w-[470px]">
                                         г. Ташкент, Юнусабадский р-он, ул. Чинобод 10А
                                     </a>
                                 </div>
