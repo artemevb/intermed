@@ -11,7 +11,7 @@ export default function FullEquipments() {
                     <div className="mdx:px-3">
                         <h2 className="text-[#252324] mt-[20px] uppercase text-[30px] mdx:text-[29px] mdl:text-[31px] xl:text-[45px] font-semibold"><span className="text-redMain">Комплексное<br /></span>оснащение клиник</h2>
                         <p className="text-[15px] mdx:text-[18px] xl:text-[20px] text-[#808080] mt-3 mb-5 lg:mb-7">Полное решение для оснащения<br /> медицинских учреждений</p>
-                        <Link href={'/'}>
+                        <Link href={'/equipment'}>
                             <button className="text-white text-[14px] mdx:text-[16px] mt-[10px] bg-contactBg px-[70px] py-[11px] max-w-[224px] mdl:max-w-[164px] flex items-center justify-center xl:max-w-[224px] xl:py-[15px] hover:bg-[#EE787C] ">
                                 Подробнее
                             </button>

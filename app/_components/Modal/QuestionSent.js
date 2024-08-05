@@ -18,7 +18,7 @@ export default function QuestionSent({ closeModal }) {
                 <p className="text-[14px] text-gray-500 mb-6 w-full mdx:text-[16px] mdl:text-[17px] xl:text-[18px] flex justify-center">Ваш вопрос был успешно отправлен!<br /> В ближайшее время мы свяжемся с вами</p>
                 <button
                     type="button"
-                    className="w-full mdx:max-w-[224px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white font-semibold"
+                    className="w-full mdx:max-w-[224px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white font-semibold mb-3"
                     onClick={closeModal}>
                     Ок
                 </button>

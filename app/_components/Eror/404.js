@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import logo from "@/public/images/mrj-logo.png"; // Убедитесь, что путь к логотипу правильный
-import notfound from "@/public/images/Error404.png"; // Убедитесь, что путь к изображению правильный
+import logo from "@/public/images/intermed-logo.png";
+import notfound from "@/public/images/Error404.png";
 
 function Custom404() {
     return (
@@ -18,24 +18,27 @@ function Custom404() {
                 </div>
             </div>
             <div className="flex flex-col items-center mt-8 mb-[11%] xl:flex-row">
-                <div>
-                    <Image
-                        src={notfound}
-                        width={500}
-                        height={500}
-                        alt="Not Found Image"
-                        className="h-full w-auto"
-                    />
-                </div>
                 <div className="flex flex-col items-center">
-                    <h2 className="text-[70px] font-bold text-greentxt mt-4 mdx:text-[90px]">404</h2>
-                    <h3 className="text-[30px] uppercase font-bold text-greentxt mdx:text-[40px]">Error Oops!</h3>
+                    <div className="flex flex-row items-end ">
+                    <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] mr-3">4</p>
+                    <div>
+                        <Image
+                            src={notfound}
+                            width={500}
+                            height={500}
+                            alt="Not Found Image"
+                            className="h-full w-auto max-h-[216px] mdx:max-h-[299px]"
+                        />
+                    </div>
+                    <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] ml-3">4</p>
+                    </div>
+                    <h3 className="text-[30px] font-bold text-[#E31E24] mdx:text-[40px]">Страница не найдена</h3>
                     <p className="max-w-[480px] w-full mx-auto text-neutral-400 text-center mt-4 mdx:text-[20px]">
-                        The page you are on was not found. But you can find a large number of medical equipment on our website
+                        Страница, на которой вы находитесь, не найдена. Но вы можете найти большое количество медицинского оборудования на нашем сайте
                     </p>
                     <Link href="/">
-                        <button className="px-[76px] py-4 rounded-2xl bg-greentxt text-white font-semibold mt-8">
-                            Home page
+                        <button className="px-[76px] py-4 bg-[#E94B50] text-white font-semibold mt-8 hover:bg-[#EE787C]">
+                            На главную
                         </button>
                     </Link>
                 </div>
