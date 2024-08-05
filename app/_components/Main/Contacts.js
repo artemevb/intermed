@@ -1,8 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import AskaQuestion from "@/app/_components/Modal/AskaQuestion";
 
 export default function Contacts() {
   const [contactHeight, setContactHeight] = useState(0);
+  const [isAskaQuestionModalOpen, setIsAskaQuestionModalOpen] = useState(false);
+
+  const openAskaQuestionModal = () => setIsAskaQuestionModalOpen(true);
+  const closeAskaQuestionModal = () => setIsAskaQuestionModalOpen(false);
 
   useEffect(() => {
     const contactDiv = document.getElementById("contact-details");
@@ -40,7 +45,8 @@ export default function Contacts() {
         </div>
         <hr />
         <div>
-          <button className="px-24 max-mdx:px-12 py-3 w-auto bg-contactBg text-white hover:bg-[#EE787C]">
+          <button className="px-24 max-mdx:px-12 py-3 w-auto bg-contactBg text-white hover:bg-[#EE787C]"
+            onClick={openAskaQuestionModal}>
             Обратный звонок
           </button>
         </div>
@@ -55,6 +61,7 @@ export default function Contacts() {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+      {isAskaQuestionModalOpen && <AskaQuestion closeModal={closeAskaQuestionModal} />}
     </div>
   );
 }

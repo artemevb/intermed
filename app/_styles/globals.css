@@ -2,8 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  @apply font-sans;
+@layer base {
+  body {
+    font-family: 'Lato', sans-serif;
+  }
 }
 
 .carousel-container {
