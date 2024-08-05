@@ -1,40 +1,37 @@
-// import Image from "next/image";
-// import close from "@/public/svg/close.svg";
-// import { useState } from "react";
-// import licenses1 from "@/public/images/licenses/image1.png";
+import Image from "next/image";
+import close from "@/public/svg/close.svg";
 
-// const licenses = [
-//     {
-//         id: 1,
-//         imageSrc: licenses1,
-//         alt: "VITAMED MEDICAL",
-//     },
-// ];
+const Modal = ({ selectedLicense, closeModal }) => {
+    if (!selectedLicense) return null;
 
-// export default function LicensesItem({ closeModal }) {
-//     return (
-//         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-//             <div className="bg-white p-8 rounded-lg shadow-lg relative max-w-lg w-full">
-//                 <button
-//                     className="absolute top-2 right-2"
-//                     onClick={closeModal}
-//                 >
-//                     <Image src={close} alt="close" width={20} height={20} />
-//                 </button>
-//                 <div className="text-center">
-//                     <Image src={licenses[0].imageSrc} alt={licenses[0].alt} width={100} height={150} />
-//                     <h2 className="text-xl font-bold mt-4">17TH TASHKENT INTERNATIONAL HEALTHCARE EXHIBITION</h2>
-//                     <p className="mt-4 text-left">
-//                         С радостью сообщаем, что многопрофильный медицинский центр IMED стал победителем 17-й Ташкентской международной выставки здравоохранения, прошедшей с 20 по 23 июля 2024 года.
-//                     </p>
-//                     <p className="mt-4 text-left">
-//                         Это престижное событие собрало лидеров медицинской индустрии со всего мира, представив новейшие достижения в области здравоохранения и медицины. IMED продемонстрировал высококачественное медицинское обслуживание, инновационные технологии и передовые методики лечения, что позволило центру завоевать признание жюри и участников выставки.
-//                     </p>
-//                     <p className="mt-4 text-left">
-//                         Поздравляем команду IMED с этой заслуженной победой и желаем дальнейших успехов в развитии и совершенствовании медицинского обслуживания в Узбекистане!
-//                     </p>
-//                 </div>
-//             </div>
-//         </div>
-//     );
-// }
+    return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto">
+            <div className="bg-white max-w-[950px] w-full relative mx-4 my-4 flex flex-col overflow-y-auto max-h-full mdl:mx-[19%] no-scrollbar">
+                <div className="bg-white xl:flex xl:flex-row">
+                    <button onClick={closeModal} className="absolute top-2 right-2 xl:top-4 xl:right-3">
+                        <Image src={close} alt="close" width={24} height={24} />
+                    </button>
+                    <div className="flex flex-col items-center py-[45px] px-[50px] border mx-5 my-9 mdx:py-[35px] mdx:px-[30px] mdx:w-[50%] mdx:mx-[30px] xl:w-[70%] justify-center xl:my-[30px] ">
+                        <Image
+                            src={selectedLicense.imageSrc}
+                            alt={selectedLicense.alt}
+                            layout="responsive"
+                            objectFit="contain"
+                            className='w-full h-full'
+                        />
+                    </div>
+                    <div className="px-[16px] mdx:px-[30px] xl:w-[100%] xl:px-0 xl:my-[30px] xl:mr-[30px]">
+                        <h3 className="font-bold mt-4 text-[18px] mdx:text-[28px] uppercase xl:mt-0">
+                            {selectedLicense.alt}
+                        </h3>
+                        <p className="mt-4 text-[15px] mdx:text-[20px] text-left">
+                            {selectedLicense.description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Modal;
