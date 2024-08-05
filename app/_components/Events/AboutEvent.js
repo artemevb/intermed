@@ -1,6 +1,13 @@
+"use client";
+import { useState } from 'react';
 import Image from "next/image";
+import SignUpForEvent from "@/app/_components/Modal/SignUpForEvent";
 
 export default function AboutEvent() {
+    const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+
+    const openSignUpModal = () => setIsSignUpModalOpen(true);
+    const closeSignUpModal = () => setIsSignUpModalOpen(false);
     return (
         <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2">
             <h2 className="text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase">О мероприятии</h2>
@@ -17,7 +24,8 @@ export default function AboutEvent() {
                             <strong className="text-[#BABABA] font-normal mdx:text-[20px]">Адрес</strong> Узбекистан, г. Ташкент, НВК &quot;Узэкспоцентр&quot;
                         </p>
                     </div>
-                    <button className="mt-4 w-full mdx:max-w-[296px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white xl:max-w-[100%]">
+                    <button className="mt-4 w-full mdx:max-w-[296px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white xl:max-w-[100%]"
+                    onClick={openSignUpModal}>
                         Записаться
                     </button>
                 </div>
@@ -44,6 +52,7 @@ export default function AboutEvent() {
                     </p>
                 </div>
             </div>
+            {isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} />}
         </div>
     );
 }
