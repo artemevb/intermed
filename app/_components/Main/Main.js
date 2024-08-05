@@ -7,7 +7,6 @@ import AboutUs from "@/app/_components/Main/AboutUs";
 import Application from "./Application";
 import Partners from "../About/Partners";
 import News from "./News";
-import Map from "../About/Map";
 import Sertificates from "./Sertificates";
 import Contacts from "./Contacts";
 
@@ -18,8 +17,8 @@ export default function Main() {
       <ProfessionalEquipments />
       <Equipments />
       <AboutUs />
-      <FullEquipment />
       <Scheme />
+      <FullEquipment />
       <Sertificates />
       <Partners />
       <News />
