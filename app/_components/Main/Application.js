@@ -40,11 +40,11 @@ export default function ContAddress() {
         return { isValid: true, message: "" };
     };
     return (
-        <div className="bg-contactBg p-4 mdx:px-[40px] lg:py-[40px] xl:px-[80px] 2xl:px-[120px]">
+        <div className="bg-contactBg p-4 pb-9 mdx:px-[40px] lg:py-[40px] xl:px-[80px] 2xl:px-[120px] xl:py-[80px]">
             <div className="lg:flex lg:flex-row lg:justify-between max-w-[1440px] mx-auto">
-                <h3 className="text-[25px]  text-[#fff] mdx:font-semibold mdx:text-[32px] mdl:ext-[40px] uppercase  pt-[20px] pb-[17px] mdx:pt-[30px] mdx:pb-[30px]">Остались вопросы?<br />
+                <h3 className="text-[25px]  text-[#fff] mdx:font-semibold mdx:text-[32px] mdl:text-[40px] uppercase  pt-[20px] pb-[17px] mdx:pt-[30px] mdx:pb-[30px] 3xl:text-[45px] xl:pt-0 leading-[1.05]">Остались вопросы?<br />
                     Свяжитесь с нами!</h3>
-                <form className="flex flex-col gap-6 w-full max-lg:max-w-full max-w-[350px]">
+                <form className="flex flex-col gap-9 w-full max-lg:max-w-full max-w-[350px] 3xl:mr-[121px]">
                     {["fullName", "phoneNumber", "email", "question"].map((field) => (
                         <div className="relative" key={field}>
                             <input
@@ -54,11 +54,11 @@ export default function ContAddress() {
                                 onChange={handleInputChange}
                                 onFocus={() => setFocusedInput(field)}
                                 onBlur={() => setFocusedInput(null)}
-                                className={`block w-full px-3 py-3 bg-contactBg placeholder-transparent focus:outline-none border-b-2 ${focusedInput === field
+                                className={`block w-full px-3 py-2 bg-contactBg placeholder-transparent focus:outline-none border-b-2 ${focusedInput === field
                                     ? validateInput(field, values[field]).isValid
-                                        ? "border-white"
-                                        : "border-white"
-                                    : "border-white"
+                                        ? "border-[#E1E1E1]"
+                                        : "border-[#E1E1E1]"
+                                    : "border-[#E1E1E1]"
                                     }`}
                                 placeholder={
                                     field === "fullName"
@@ -72,7 +72,7 @@ export default function ContAddress() {
                             />
                             <label
                                 htmlFor={field}
-                                className={`absolute left-3 transition-all ${focusedInput === field || values[field]
+                                className={`absolute transition-all text-[16px] mdx:text-[19px] ${focusedInput === field || values[field]
                                     ? "-top-4 text-xs"
                                     : "top-3 text-sm"
                                     } ${focusedInput === field
@@ -106,7 +106,7 @@ export default function ContAddress() {
                     <div>
                         <button
                             type="submit"
-                            className="py-3 w-full mdx:w-auto mdx:px-12 text-xs text-contactBg bg-white font-semibold hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white xl:w-[200px] xl:text-[15px] xl:py-4"
+                            className="py-3 w-full mdx:w-auto mdx:px-12 text-[14px] text-contactBg bg-white font-semibold hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white xl:w-[200px] xl:text-[15px] xl:py-4"
                         >
                             Отправить
                         </button>
