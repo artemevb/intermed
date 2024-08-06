@@ -1,6 +1,7 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
+import Slider from "react-slick";
 import banner1 from "@/public/images/banners/banner.png";
 import banner2 from "@/public/images/banners/banner.png";
 import banner3 from "@/public/images/banners/banner.png";
@@ -11,90 +12,69 @@ import right from "@/public/svg/arrowrightbanners.svg";
 const banners = [banner1, banner2, banner3];
 
 export default function BannerCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideInterval = useRef(null);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
+  const sliderRef = useRef(null);
 
-  useEffect(() => {
-    slideInterval.current = setInterval(() => {
-      setCurrentSlide((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
-    }, 7000);
-    return () => clearInterval(slideInterval.current);
-  }, []);
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 7000,
+    dots: false, // Disable built-in dots navigation
+    arrows: false, // Disable built-in arrows
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
+  };
+
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === banners.length - 1 ? 0 : prev + 1));
+    sliderRef.current.slickNext();
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? banners.length - 1 : prev - 1));
+    sliderRef.current.slickPrev();
   };
 
   const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
-
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchMove = (e) => {
-    touchEndX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current - touchEndX.current > 50) {
-      nextSlide();
-    }
-    if (touchStartX.current - touchEndX.current < -50) {
-      prevSlide();
-    }
+    sliderRef.current.slickGoTo(index);
   };
 
   return (
-    <div 
-      className="relative w-full max-w-[1440px] mx-auto overflow-hidden"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <div
-        className="relative flex transition-transform duration-700"
-        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-      >
+    <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden px-4">
+      <Slider ref={sliderRef} {...settings}>
         {banners.map((banner, index) => (
-          <div key={index} className="min-w-full flex justify-center">
+          <div key={index} className="min-w-full flex justify-center px-2"> {/* Added px-2 for spacing */}
             <Image
               src={banner}
               alt={`Banner ${index + 1}`}
               width={1440}
               height={500}
-              className="w-full h-auto object-cover rounded-2xl xl:max-w-[92%]"
+              className="w-full h-auto object-cover rounded-2xl"
             />
           </div>
         ))}
-      </div>
+      </Slider>
       <button
         onClick={prevSlide}
-        className="hidden xl:block absolute top-1/2 left-2 transform -translate-y-1/2  p-2 opacity-70 hover:opacity-100 z-10"
+        className="absolute top-1/2 left-8 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block"
       >
         <Image
           src={left}
-          width={1440}
-          height={500}
-          className="w-full h-auto "
+          width={50}
+          height={50}
+          className="w-full h-auto"
         />
       </button>
       <button
         onClick={nextSlide}
-        className="hidden xl:block absolute top-1/2 right-2 transform -translate-y-1/2  p-2 opacity-70 hover:opacity-100 z-10"
+        className="absolute top-1/2 right-8 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block"
       >
         <Image
           src={right}
-          width={1440}
-          height={500}
-          className="w-full h-auto "
+          width={50}
+          height={50}
+          className="w-full h-auto"
         />
       </button>
       <div className="flex justify-center mt-4">
@@ -102,8 +82,7 @@ export default function BannerCarousel() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full ${currentSlide === index ? "bg-red-500" : "bg-gray-300"
-              } mx-1`}
+            className={`w-3 h-3 rounded-full ${currentSlide === index ? "bg-red-500" : "bg-gray-300"} mx-1`}
           ></button>
         ))}
       </div>

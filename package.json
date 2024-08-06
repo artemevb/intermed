@@ -19,7 +19,6 @@
     "react-dom": "^18",
     "react-responsive-carousel": "^3.2.23",
     "react-slick": "^0.30.2",
-    "react-spring-carousel": "^2.0.19",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.5"
   },

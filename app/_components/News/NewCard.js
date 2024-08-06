@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 import GreenArrow from "../Buttons/GreenArrow"
 
 export default function NewCard({ key, title, date, imageSrc }) {
@@ -16,9 +15,8 @@ export default function NewCard({ key, title, date, imageSrc }) {
         <h3 className="text-xl max-mdx:text-lg font-semibold">
           {title}
         </h3>
-        <Link href={`/news/`}>
+        
           <GreenArrow title={"Подробнее"} />
-        </Link>
       </div>
     </div>
   )
