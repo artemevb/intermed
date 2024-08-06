@@ -15,7 +15,6 @@ export default function NewCard({ key, title, date, imageSrc }) {
         <h3 className="text-xl max-mdx:text-lg font-semibold">
           {title}
         </h3>
-        
           <GreenArrow title={"Подробнее"} />
       </div>
     </div>

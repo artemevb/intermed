@@ -40,6 +40,21 @@ export default function BannerCarousel() {
     sliderRef.current.slickGoTo(index);
   };
 
+  const slides = banners.map((banner, index) => ({
+    id: index,
+    renderItem: (
+      <div key={index} className="min-w-full flex justify-center">
+        <Image
+          src={banner}
+          alt={`Banner ${index + 1}`}
+          width={1440}
+          height={500}
+          className="w-full h-auto object-cover rounded-2xl xl:max-w-[92%]"
+        />
+      </div>
+    ),
+  }));
+
   return (
     <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden px-2 lg:px-12">
       <Slider ref={sliderRef} {...settings}>
