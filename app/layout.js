@@ -1,14 +1,9 @@
-import { Lato } from 'next/font/google';
+
 import dynamic from 'next/dynamic';
 import "@/app/_styles/globals.css";
 import Footer from "@/app/_components/Footer/Footer";
 
 const Header = dynamic(() => import('@/app/_components/Header/Header'), { ssr: true });
-
-const lato = Lato({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-});
 
 export const metadata = {
   title: {
@@ -20,10 +15,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={lato.className}>
-      <head>
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
-      </head>
+    <html lang="en">
       <body>
         <Header />
         <main className="w-full bg-white relative">{children}</main>
