@@ -27,7 +27,7 @@ export default function Footer() {
               </Link>
             </div>
             <div className="flex gap-3">
-              <a href="/" target="_blank">
+              <a href="https://t.me/intermedtrade" target="_blank">
                 <Image
                   src={telegram}
                   width={100}
@@ -36,7 +36,7 @@ export default function Footer() {
                   className="w-10 h-10"
                 />
               </a>
-              <a href="/" target="_blank">
+              <a href="https://www.facebook.com/intermed.mindray" target="_blank">
                 <Image
                   src={facebook}
                   width={100}
@@ -45,7 +45,7 @@ export default function Footer() {
                   className="w-10 h-10"
                 />
               </a>
-              <a href="/" target="_blank">
+              <a href="https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
                 <Image
                   src={instagram}
                   width={100}
@@ -54,7 +54,7 @@ export default function Footer() {
                   className="w-10 h-10"
                 />
               </a>
-              <a href="/" target="_blank">
+              <a href="https://www.youtube.com/@intermedinnovation9644" target="_blank">
                 <Image
                   src={youtube}
                   width={100}
@@ -68,15 +68,15 @@ export default function Footer() {
           <div className="lg:w-1/2 w-full flex max-mdx:gap-5">
             <div className="flex-1 flex flex-col text-sm gap-4 text-[#808080] lg:pr-7">
               <h2 className="text-lg font-semibold text-[#252324] uppercase">Каталог</h2>
-              <a href="/category">УЗД оборудование</a>
-              <a href="/category">Жизнеобеспечение и <brd/>мониторинг паицента</a>
-              <a href="/category">Лабораторное оборудование</a>
-              <a href="/category">Реагенты и расходные материалы</a>
+              <a href="/categories/catalog/">УЗД оборудование</a>
+              <a href="/categories/catalog/">Жизнеобеспечение и <brd/>мониторинг паицента</a>
+              <a href="/categories/catalog/">Лабораторное оборудование</a>
+              <a href="/categories/catalog/">Реагенты и расходные материалы</a>
               <a
-                href="/category"
+                href="/categories"
                 className="flex gap-2 hover:gap-4 items-center transition-all duration-200"
               >
-                <p className="text-redMain ">Все категории</p>
+                <p className="text-redMain font-semibold text-lg">Все категории</p>
                 <Image
                   src={arrowRight}
                   width={100}

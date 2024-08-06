@@ -48,7 +48,7 @@ export default function Sertificates() {
   };
 
   return (
-    <div className="w-full max-w-[1440px] flex flex-col gap-5 mx-auto">
+    <div className="w-full max-w-[1440px] flex flex-col gap-5 mx-auto px-2">
       <h2 className="text-3xl font-semibold max-mdl:text-2xl">
         НАГРАДЫ И СЕРТИФИКАТЫ
       </h2>

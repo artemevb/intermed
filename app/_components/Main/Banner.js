@@ -41,7 +41,7 @@ export default function BannerCarousel() {
   };
 
   return (
-    <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden px-4">
+    <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden px-2 lg:px-12">
       <Slider ref={sliderRef} {...settings}>
         {banners.map((banner, index) => (
           <div key={index} className="min-w-full flex justify-center px-2"> {/* Added px-2 for spacing */}
@@ -57,7 +57,7 @@ export default function BannerCarousel() {
       </Slider>
       <button
         onClick={prevSlide}
-        className="absolute top-1/2 left-8 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block"
+        className="absolute top-1/2 -left-0 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block"
       >
         <Image
           src={left}
@@ -68,7 +68,7 @@ export default function BannerCarousel() {
       </button>
       <button
         onClick={nextSlide}
-        className="absolute top-1/2 right-8 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block"
+        className="absolute top-1/2 -right-0 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block"
       >
         <Image
           src={right}
@@ -82,7 +82,7 @@ export default function BannerCarousel() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full ${currentSlide === index ? "bg-red-500" : "bg-gray-300"} mx-1`}
+            className={`w-2 h-2 rounded-full ${currentSlide === index ? "bg-red-500" : "bg-gray-300"} mx-1`}
           ></button>
         ))}
       </div>
