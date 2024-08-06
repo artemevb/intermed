@@ -44,8 +44,8 @@ export default function BannerEquipmentSlider() {
 
     return (
         <div className="w-full max-w-[1440px] mx-auto">
-            <div className="bg-white overflow-hidden">
-                <div>
+            <div className="bg-white overflow-hidden xl:flex xl:justify-center xl:items-center">
+                <div className="xl:w-[50%]">
                     <div className="p-4 text-white flex flex-col justify-start">
                         <h1 className="text-[25px] mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">
                             КОМПЛЕКСНОЕ <br />
@@ -59,7 +59,7 @@ export default function BannerEquipmentSlider() {
                         </button>
                     </div>
                 </div>
-                <div>
+                <div className="xl:w-[50%]">
                     <div
                         className="relative flex transition-transform duration-700"
                         style={{ transform: `translateX(-${currentSlide * 100}%)` }}

@@ -3,14 +3,18 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import banner1 from "@/public/images/banners/banner.png";
 import banner2 from "@/public/images/banners/banner.png";
+import banner3 from "@/public/images/banners/banner.png";
+
 import left from "@/public/svg/arrowleftbanners.svg";
 import right from "@/public/svg/arrowrightbanners.svg";
 
-const banners = [banner1, banner2];
+const banners = [banner1, banner2, banner3];
 
 export default function BannerCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideInterval = useRef(null);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   useEffect(() => {
     slideInterval.current = setInterval(() => {
@@ -31,8 +35,30 @@ export default function BannerCarousel() {
     setCurrentSlide(index);
   };
 
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current - touchEndX.current > 50) {
+      nextSlide();
+    }
+    if (touchStartX.current - touchEndX.current < -50) {
+      prevSlide();
+    }
+  };
+
   return (
-    <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden">
+    <div 
+      className="relative w-full max-w-[1440px] mx-auto overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div
         className="relative flex transition-transform duration-700"
         style={{ transform: `translateX(-${currentSlide * 100}%)` }}

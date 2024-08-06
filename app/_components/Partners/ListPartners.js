@@ -1,8 +1,8 @@
-
 "use client"
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from 'next/image';
+import MainPartners from "@/app/_components/Partners/MainPartners";
 import partnerPhoto from "@/public/images/aboutUs/partners/image3.png";
 
 const partners = [
@@ -18,26 +18,28 @@ const partners = [
         imageSrc: partnerPhoto,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "lingen"
+        link: "cvxcv"
     },
     {
         id: 3,
         imageSrc: partnerPhoto,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "lingen"
+        link: "rafsd"
     },
     {
         id: 4,
         imageSrc: partnerPhoto,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "lingen"
+        link: "Kat"
     },
+    
 ];
 
 export default function ListPartners() {
     const [showAll, setShowAll] = useState(false);
+    const [selectedPartner, setSelectedPartner] = useState(null);
 
     useEffect(() => {
         const handleResize = () => {
@@ -70,11 +72,12 @@ export default function ListPartners() {
                             <div className='mdx:mb-4 mdx:p-3 '>
                                 <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.title}</h2>
                                 <p className="mb-4 text-gray-600 xl:text-[18px] ">{card.description}</p>
-                                <Link href={`/partners/${card.link}`}>
-                                    <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px]">
-                                        Подробнее →
-                                    </span>
-                                </Link>
+                                <button
+                                    onClick={() => setSelectedPartner(card)}
+                                    className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px]"
+                                >
+                                    Подробнее →
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -88,6 +91,8 @@ export default function ListPartners() {
                     {showAll ? 'Скрыть' : 'Показать все'}
                 </button>
             </div>
+            {selectedPartner && <MainPartners partner={selectedPartner} />}
         </div>
     );
 }
+
