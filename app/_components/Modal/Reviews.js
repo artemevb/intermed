@@ -34,7 +34,13 @@ const Modal = ({ selectedReviews, closeModal }) => {
           <div className="p-4">
             <div className="flex justify-start items-center gap-4 xl:gap-1 xl:items-start mb-4">
               <div className="h-[60px] w-[60px] mdx:h-[70px] mdx:w-[70px] xl:h-[80px] xl:w-[80px] relative xl:mr-4">
-                <Image src={selectedReviews.imageSrc} alt={selectedReviews.title} layout="fill" objectFit="contain" className="w-full h-auto" />
+                <Image src={selectedReviews.imageSrc}                       
+                width={1500}
+                height={1500} 
+                alt={selectedReviews.title} 
+                objectFit="contain" 
+                className="w-full h-auto" 
+                />
               </div>
               <div>
                 <h2 className="text-[18px] font-semibold right mt-3 mdx:text-[20px]">{selectedReviews.title}</h2>

@@ -12,7 +12,7 @@ import PopularReviews from "@/app/_components/Equipment/PopularReviews";
 
 export default function Equipment() {
     return (
-        <div className="w-full bg-white pt-[30px] flex flex-col gap-32">
+        <div className="w-full bg-white flex flex-col gap-32">
             <Banner/>
             <Title />
             <Advantages />

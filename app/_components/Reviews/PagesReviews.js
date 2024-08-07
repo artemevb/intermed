@@ -63,14 +63,19 @@ export default function Reviews() {
                 <div className="mdx:p-8 xl:p-0">
                   <div className="flex justify-start items-center  gap-4 xl:gap-1 xl:items-start mb-4">
                     <div className="h-[60px] w-[60px] mdx:h-[70px] mdx:w-[70px] xl:h-[80px] xl:w-[80px] relative xl:mr-4">
-                      <Image src={item.imageSrc} alt={item.title} layout="fill" objectFit="contain" className="w-full h-auto" />
+                      <Image 
+                      src={item.imageSrc}
+                      width={1500}
+                      height={1500}
+                      alt={item.title} 
+                      objectFit="contain" className="w-full h-auto" />
                     </div>
                     <div>
                       <h2 className="text-[18px] font-semibold right mt-3 mdx:text-[20px]">{item.title}</h2>
                       <p className="text-gray-400 text-[14px] mdx:text-[18px]">{item.date}</p>
                     </div>
                   </div>
-                  <p className="mb-4 mdx:text-[18px]">{item.description}</p>
+                  <p className="mb-4 mdx:text-[18px] xl:mt-5">{item.description}</p>
                 </div>
                 <button onClick={() => openModal(item)}>
                   <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px] flex justify-end mdx:pb-5 pr-5 xl:pb-0 xl:pr-0">

@@ -35,12 +35,11 @@ const reviews = [
         ],
         conclusion: 'Resona R9 – это современный УЗИ-аппарат, который предоставляет широкий спектр диагностических возможностей и высокое качество изображения. Несмотря на высокую стоимость и необходимость обучения, этот аппарат является отличным выбором для медицинских учреждений.'
     }
-    // Add more reviews as needed
 ];
 
 export default function Reviews() {
     const [showAll, setShowAll] = useState(false);
-    const visibleReviews = showAll ? reviews : reviews.slice(0, 2);
+    const visibleReviews = showAll ? reviews : reviews.slice(0, 1);
 
     return (
         <div className="max-w-[1440px] mx-auto p-4">

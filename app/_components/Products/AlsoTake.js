@@ -8,10 +8,9 @@ import mindraySV300 from "@/public/images/equipments/equip-uzi.png"; // Прим
 import cl900i from "@/public/images/equipments/equip-lab.png"; // Пример изображения, замените на ваши изображения
 import mindrayUniBase from "@/public/images/equipments/equip-uzi.png"; // Пример изображения, замените на ваши изображения
 import Link from "next/link";
-import GreenArrow from "@/app/_components/Buttons/GreenArrow";
 import Catalogitem from "../Catalog/Catalogitem";
 
-export default function Similar() {
+export default function AlsoTake() {
   const equipmentData = [
     {
       title: "MINDRAY DC 60 X-insight",
@@ -88,7 +87,7 @@ export default function Similar() {
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-8 px-2">
       <h2 className="text-3xl max-mdx:text-2xl font-bold">
-        ПОХОЖИЕ ПРОДУКТЫ
+        С ЭТИМ ТОВАРОМ ПОКУПАЮТ
       </h2>
       <div className="w-full">
         <div className="w-full px-4">
