@@ -17,6 +17,8 @@ export default function Title() {
                         <Image
                             src={innovationMedical}
                             alt={"Main photo"}
+                            width={1000}
+                            height={1000}
                             objectFit="contain"
                             className='w-full h-auto' />
                     </div>

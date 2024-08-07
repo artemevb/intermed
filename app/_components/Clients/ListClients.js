@@ -5,7 +5,7 @@ import Image from 'next/image';
 import partnerPhoto1 from "@/public/images/clients/image1.png";
 import GreenArrow from "../Buttons/GreenArrow";
 
-const partners = [
+const clients = [
     {
         id: 1,
         imageSrc: partnerPhoto1,
@@ -92,18 +92,18 @@ const partners = [
     },
 ];
 
-export default function ListPartners() {
+export default function ListClients() {
     const [visibleCount, setVisibleCount] = useState(6);
 
-    const showMorePartners = () => {
-        setVisibleCount(partners.length);
+    const showMoreClients = () => {
+        setVisibleCount(clients.length);
     };
 
     return (
         <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 mb-[110px] mdx:mb-[130px] xl:mb-[180px]">
             <h1 className="font-semibold text-[25px] mdx:text-[30px] lg:text-[35px] xl:text-[40px] uppercase mt-[60px]">Кейсы</h1>
             <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-                {partners.slice(0, visibleCount).map(card => (
+                {clients.slice(0, visibleCount).map(card => (
                     <div key={card.id} className="bg-white p-4 w-full border-[1px] border-gray-200 mdx:p-0 mdl:p-5 slg:h-auto">
                         <div className="mdx:flex mdx:flex-row items-center justify-between ">
                             <div className="mdx:w-[50%] h-[70px] relative mt-3">
@@ -122,10 +122,10 @@ export default function ListPartners() {
                     </div>
                 ))}
             </div>
-            {visibleCount < partners.length && (
+            {visibleCount < clients.length && (
                 <div className="flex justify-center items-center">
                     <button 
-                        onClick={showMorePartners} 
+                        onClick={showMoreClients} 
                         className="bg-[#E94B50] text-[#fff] text-[14px] mdx:text-[16px] py-3 px-[60px]">
                         Загрузить все
                     </button>

@@ -2,9 +2,9 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from 'next/image';
-import MainPartners from "@/app/_components/Partners/MainPartners";
 import partnerPhoto from "@/public/images/aboutUs/partners/image3.png";
 import partnerPhoto1 from "@/public/images/aboutUs/partners/image58.png";
+import GreenArrow from "../Buttons/GreenArrow";
 
 const partners = [
     {
@@ -12,35 +12,34 @@ const partners = [
         imageSrc: partnerPhoto,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "lingen"
+        link: "browiner"
     },
     {
         id: 2,
         imageSrc: partnerPhoto1,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "cvxcv"
+        link: "browiner"
     },
     {
         id: 3,
         imageSrc: partnerPhoto1,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "rafsd"
+        link: "browiner"
     },
     {
         id: 4,
         imageSrc: partnerPhoto,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "Kat"
+        link: "browiner"
     },
     
 ];
 
 export default function ListPartners() {
     const [showAll, setShowAll] = useState(false);
-    const [selectedPartner, setSelectedPartner] = useState(null);
 
     useEffect(() => {
         const handleResize = () => {
@@ -73,12 +72,11 @@ export default function ListPartners() {
                             <div className='mdx:mb-4 mdx:p-3 '>
                                 <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.title}</h2>
                                 <p className="mb-4 text-gray-600 xl:text-[18px] ">{card.description}</p>
-                                <button
-                                    onClick={() => setSelectedPartner(card)}
-                                    className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px]"
-                                >
-                                    Подробнее →
-                                </button>
+                                <Link href={`/partners/${card.link}`}>
+                                    <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
+                                        <GreenArrow title={"Подробнее"} />
+                                    </span>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -92,7 +90,6 @@ export default function ListPartners() {
                     {showAll ? 'Скрыть' : 'Показать все'}
                 </button>
             </div>
-            {selectedPartner && <MainPartners partner={selectedPartner} />}
         </div>
     );
 }

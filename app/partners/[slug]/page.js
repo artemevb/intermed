@@ -1,11 +1,11 @@
 import MainPartners from "@/app/_components/Partners/MainPartners";
-import Map from "@/app/_components/About/Map";
+import Application from "@/app/_components/Main/Application";
 
 export default function PartnerPage() {
     return (
         <div>
             <MainPartners />
-            <Map />
+            <Application />
         </div>
     );
 }
