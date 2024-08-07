@@ -43,7 +43,7 @@ const Arrow = ({ isOpen }) => (
     height="35"
     viewBox="0 0 35 35"
     fill="none"
-    className={`transition-transform duration-700 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
+    className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`}
   >
     <path d="M9.41406 13.9165L17.2891 22.6665L25.1641 13.9165" stroke="#E31E24" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
   </svg>

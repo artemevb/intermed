@@ -6,7 +6,7 @@ import Advantages from "@/app/_components/Equipment/Advantages";
 import EquipmentScheme from "@/app/_components/Equipment/EquipmentScheme";
 import Category from "@/app/_components/Equipment/Category";
 import CasesSlider from "@/app/_components/Equipment/CasesSlider";
-import ReviewsSlider from "@/app/_components/Equipment/Reviews";
+import ReviewsSlider from "@/app/_components/Equipment/ReviewsSlider";
 import PopularReviews from "@/app/_components/Equipment/PopularReviews";
 
 

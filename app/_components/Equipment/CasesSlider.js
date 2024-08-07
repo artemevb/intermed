@@ -7,9 +7,9 @@ import Image from 'next/image';
 import partnerPhoto1 from "@/public/images/clients/image1.png";
 import partnerPhoto2 from "@/public/images/clients/image1.png";
 import partnerPhoto3 from "@/public/images/clients/image1.png";
-import partnerPhoto4 from "@/public/images/clients/image1.png";
-import partnerPhoto5 from "@/public/images/clients/image1.png";
-import partnerPhoto6 from "@/public/images/clients/image1.png";
+import partnerPhoto4 from "@/public/images/clients/image2.png";
+import partnerPhoto5 from "@/public/images/clients/image2.png";
+import partnerPhoto6 from "@/public/images/clients/image2.png";
 
 
 export default function CasesSlider() {

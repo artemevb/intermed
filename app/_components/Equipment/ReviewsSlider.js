@@ -8,7 +8,7 @@ import partnerPhoto1 from "@/public/svg/reviews/Ellipse1.svg";
 import partnerPhoto2 from "@/public/svg/reviews/Ellipse2.svg";
 import partnerPhoto3 from "@/public/svg/reviews/Ellipse3.svg";
 
-export default function CasesSlider() {
+export default function ReviewsSlider() {
     const partnersSlider = [
         {
             id: 1,

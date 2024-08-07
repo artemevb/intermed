@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from 'next/image';
 import MainPartners from "@/app/_components/Partners/MainPartners";
 import partnerPhoto from "@/public/images/aboutUs/partners/image3.png";
+import partnerPhoto1 from "@/public/images/aboutUs/partners/image58.png";
 
 const partners = [
     {
@@ -15,14 +16,14 @@ const partners = [
     },
     {
         id: 2,
-        imageSrc: partnerPhoto,
+        imageSrc: partnerPhoto1,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
         link: "cvxcv"
     },
     {
         id: 3,
-        imageSrc: partnerPhoto,
+        imageSrc: partnerPhoto1,
         title: "Lingen",
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
         link: "rafsd"
