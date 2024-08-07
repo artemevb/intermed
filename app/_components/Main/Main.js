@@ -16,7 +16,6 @@ export default function Main() {
       <div className="flex w-full flex-col gap-12 lg:gap-36">
       <Banner />
       <ProfessionalEquipments />
-
       </div>
       <Equipments />
       <AboutUs />
