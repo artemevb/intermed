@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('/fonts/fonts.css');
+@import url('/intermed/public/fonts/fonts.css');
 
 body {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .carousel-container {

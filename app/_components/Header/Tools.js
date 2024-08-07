@@ -20,14 +20,14 @@ export default function Tools({ navOptions }) {
   };
 
   return (
-    <div className="h-full items-center flex mdx:gap-5 ">
-      <button className="rounded-full  max-mdx:px-2 max-mdx:py-2">
+    <div className="h-full items-center flex mdx:gap-5 px-1">
+      <button className="rounded-full max-mdx:px-2 max-mdx:py-2">
         <Image
           src={searchIcon}
           height={100}
           width={100}
           alt={`Tools Item SearchIcon`}
-          className="w-6 h-6 max-mdx:w-4 max-mdx:h-4"
+          className="w-[29px] h-[29px] max-mdx:w-[24px] max-mdx:h-[24px]"
         />
       </button>
       <Link href={'/favorites'} className="flex items-center justify-center">
@@ -37,7 +37,7 @@ export default function Tools({ navOptions }) {
             height={100}
             width={100}
             alt={`Tools Item HeartIcon : Favorites`}
-            className="w-6 h-6 max-mdx:w-4 max-mdx:h-4"
+            className="w-[29px] h-[29px] max-mdx:w-[24px] max-mdx:h-[24px]"
           />
         </button>
       </Link>
@@ -47,7 +47,7 @@ export default function Tools({ navOptions }) {
           height={100}
           width={100}
           alt={`Tools Item HeartIcon : Favorites`}
-          className="w-6 h-6 max-mdx:w-4 max-mdx:h-4"
+          className="w-[29px] h-[29px] max-mdx:w-[24px] max-mdx:h-[24px]"
         />
       </a>
       <div class="mdx:relative  xl:flex xl:items-center xl:text-left hidden">
@@ -60,14 +60,14 @@ export default function Tools({ navOptions }) {
       </div>
       <button
         onClick={handleOpenMenu}
-        className="2xl:hidden"
+        className="2xl:hidden max-mdx:px-1"
       >
         <Image
           src={burgerMenu}
           height={100}
           width={100}
           alt={`Tools Item Burger Menu`}
-          className="w-6 h-6 max-mdx:w-4 max-mdx:h-4"
+          className="w-[29px] h-[29px] max-mdx:w-[24px] max-mdx:h-[24px]"
         />
       </button>
       {menu ? (

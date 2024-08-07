@@ -2,7 +2,7 @@ import uzi from "@/public/images/equipments/uzi.png";
 import lab from "@/public/images/equipments/lab-equip.png";
 import colba from "@/public/images/equipments/colba.png";
 import radio from "@/public/images/equipments/radio.png";
-import CategoryItem from "@/app/_components/Categories/CategoryItem";
+import CategoryItemEq from "@/app/_components/Equipment/CategoryItemEq";
 import Link from "next/link";
 import GreenArrow from "../Buttons/GreenArrow";
 
@@ -36,7 +36,7 @@ export default function Category() {
             </h2>
             <div className="w-full grid grid-cols-1 mdl:grid-cols-2 xl:grid-cols-3 gap-4">
                 {data.map((item, i) => (
-                    <CategoryItem key={i} title={item.title} imageSrc={item.imageSrc} slug={item.slug} />
+                    <CategoryItemEq key={i} title={item.title} imageSrc={item.imageSrc} slug={item.slug} />
                 ))}
             </div>
         </div>

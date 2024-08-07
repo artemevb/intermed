@@ -5,6 +5,10 @@ import Title from "@/app/_components/Equipment/Title";
 import Advantages from "@/app/_components/Equipment/Advantages";
 import EquipmentScheme from "@/app/_components/Equipment/EquipmentScheme";
 import Category from "@/app/_components/Equipment/Category";
+import CasesSlider from "@/app/_components/Equipment/CasesSlider";
+import ReviewsSlider from "@/app/_components/Equipment/Reviews";
+import PopularReviews from "@/app/_components/Equipment/PopularReviews";
+
 
 export default function Equipment() {
     return (
@@ -14,6 +18,9 @@ export default function Equipment() {
             <Advantages />
             <EquipmentScheme />
             <Category />
+            <CasesSlider />
+            <ReviewsSlider />
+            <PopularReviews />
             <Contacts />
             <Application />
         </div>

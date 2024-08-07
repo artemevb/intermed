@@ -11,7 +11,7 @@ export default function Title() {
     return (
         <div className="w-full max-w-[1440px] mx-auto">
             <div className='mx-[15px]'>
-                <h1 className="text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] mb-4 uppercase xl:hidden">Инновации и комфорт — залог вашего здоровья!</h1>
+                <h1 className="text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] mb-4 uppercase xl:hidden font-semibold">Инновации и комфорт — залог вашего здоровья!</h1>
                 <div className='xl:flex xl:flex-row'>
                     <div className=" w-[100%] h-auto mb-4 xl:w-[43%] px-[20px] xl:px-0">
                         <Image

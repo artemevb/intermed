@@ -6,7 +6,7 @@ import logo from "@/public/images/intermed-logo.png";
 
 function Logo() {
   return (
-    <Link href="/" className="h-[60%] items-center flex">
+    <Link href="/" className="h-[66%] mdx:h-[60%] items-center flex">
         <Image
           src={logo}
           width={300}
