@@ -42,7 +42,7 @@ export default function ContAddress() {
     return (
         <div className="bg-contactBg p-4 pb-9 mdx:px-[40px] lg:py-[40px] xl:px-[80px] 2xl:px-[120px] xl:py-[80px]">
             <div className="lg:flex lg:flex-row lg:justify-between max-w-[1440px] mx-auto">
-                <h3 className="text-[25px]  text-[#fff] mdx:font-semibold mdx:text-[32px] mdl:text-[40px] uppercase  pt-[20px] pb-[17px] mdx:pt-[30px] mdx:pb-[30px] 3xl:text-[45px] xl:pt-0 leading-[1.05]">Остались вопросы?<br />
+                <h3 className="text-[25px]  text-[#fff] mdx:font-semibold mdx:text-[32px] mdl:text-[40px] uppercase  pt-[20px] pb-[17px] mdx:pt-[30px] mdx:pb-[30px] 3xl:text-[45px] xl:pt-0 lg:leading-[55px]">Остались вопросы?<br />
                     Свяжитесь с нами!</h3>
                 <form className="flex flex-col gap-9 w-full max-lg:max-w-full max-w-[350px] 3xl:mr-[121px]">
                     {["fullName", "phoneNumber", "email", "question"].map((field) => (
@@ -88,12 +88,12 @@ export default function ContAddress() {
                                 ) : field === "fullName" ? (
                                     <p>
                                         ФИО
-                                        <span className="text-red-600 ml-2">*</span>
+                                        <span className="ml-2">*</span>
                                     </p>
                                 ) : field === "phoneNumber" ? (
                                     <p>
                                         Номер телефона
-                                        <span className="text-red-600 ml-2">*</span>
+                                        <span className="ml-2">*</span>
                                     </p>
                                 ) : field === "email" ? (
                                     "E-mail"

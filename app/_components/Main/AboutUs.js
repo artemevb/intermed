@@ -5,9 +5,9 @@ import Imed from "@/public/images/main/intermed-about.png";
 export default function AboutUs() {
   return (
     <div className="w-full h-auto max-w-[1440px] px-2 flex max-xl:flex-col gap-12 max-lg:gap-8 mx-auto xl:h-[600px]">
-      <h2 className="text-2xl font-semibold w-full xl:hidden">
+      <h2 className="text-2xl font-medium w-full xl:hidden">
         <span className="text-redMain">«INTERMED INNOVATION» </span>
-        НАДЕЖНЫЙ ПОСТАВЩИК МЕДЕЦИНСКОГО ОБОРУДОВАНИЯ ОТ ВЕДУЩИХ ПРОИЗВОДИТЕЛЕЙ
+        НАДЕЖНЫЙ ПОСТАВЩИК МЕДИЦИНСКОГО ОБОРУДОВАНИЯ ОТ ВЕДУЩИХ ПРОИЗВОДИТЕЛЕЙ
       </h2>
       <Image
         src={Imed}
@@ -17,7 +17,7 @@ export default function AboutUs() {
         className="w-full xl:w-[450px] 2xl:w-[500px] object-cover xl:h-full"
       />
       <div className="h-full xl:w-2/3 flex flex-col justify-between gap-8">
-        <h2 className="text-4xl font-semibold w-full max-xl:hidden 2xl:max-w-[650px]">
+        <h2 className="text-4xl font-medium w-full max-xl:hidden 2xl:max-w-[650px]">
           <span className="text-redMain">«INTERMED INNOVATION» </span>
           НАДЕЖНЫЙ ПОСТАВЩИК МЕДЕЦИНСКОГО ОБОРУДОВАНИЯ ОТ ВЕДУЩИХ ПРОИЗВОДИТЕЛЕЙ
         </h2>

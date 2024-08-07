@@ -62,7 +62,7 @@ export default function Partners() {
   };
 
   return (
-    <div className="w-full max-w-[1440px] flex flex-col gap-10 mx-auto">
+    <div className="w-full max-w-[1440px] flex flex-col gap-10 mx-auto px-2">
       <h2 className="text-3xl font-semibold max-mdl:text-2xl">
         НАШИ ПАРТНЕРЫ
       </h2>

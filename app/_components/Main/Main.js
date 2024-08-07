@@ -12,9 +12,12 @@ import Contacts from "./Contacts";
 
 export default function Main() {
   return (
-    <div className="w-full bg-white pt-12 flex flex-col gap-32">
+    <div className="w-full bg-white pt-12 flex flex-col gap-36">
+      <div className="flex w-full flex-col gap-12 lg:gap-36">
       <Banner />
       <ProfessionalEquipments />
+
+      </div>
       <Equipments />
       <AboutUs />
       <Scheme />
