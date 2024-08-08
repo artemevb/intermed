@@ -22,7 +22,7 @@ export default function Contacts() {
       <div className="flex flex-col-reverse xl:flex-row xl:gap-[100px]">
 
         <div id="contact-details" className="flex-1 flex flex-col gap-5">
-        <h2 className="text-3xl font-semibold hidden xl:block">КОНТАКТЫ</h2>
+          <h2 className="text-3xl font-semibold hidden xl:block">КОНТАКТЫ</h2>
           <div className="flex flex-col gap-1">
             <div>
               <a
@@ -72,8 +72,7 @@ export default function Contacts() {
           </div>
         </div>
         <div className="block xl:flex-1 relative max-xl:mb-[20px]" style={{ height: contactHeight }}>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40291.89075676112!2d69.28260298538349!3d41.35859804677947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef38ea0afd075%3A0x7a532e34ecb44932!2sIntermed%20Innovation%20trade!5e0!3m2!1sru!2s!4v1723037442656!5m2!1sru!2s"
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11980.576319452191!2d69.28673930863411!3d41.34922195465565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef35418406693%3A0xf91e0631f842852c!2sINTERMED%20Innovation!5e0!3m2!1sru!2s!4v1723049950593!5m2!1sru!2s"
             style={{ border: 0 }}
             allowFullScreen=""
             loading="lazy"
