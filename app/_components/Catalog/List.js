@@ -218,7 +218,7 @@ export default function List() {
           </div>
           {!displayAll && (
             <div className="flex justify-center mt-[50px] mdx:mt-[70px]">
-              <button className="border p-3 text-[14px] mdx:text-[16px] px-[50px] hover:bg-[#F9D2D3]" onClick={handleLoadMore}>
+              <button className="border p-3 text-[14px] mdx:text-[16px] px-[50px] hover:bg-[#F9D2D3] font-bold" onClick={handleLoadMore}>
                 Загрузить еще
               </button>
             </div>

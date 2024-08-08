@@ -64,7 +64,7 @@ export default function Contacts() {
           <hr />
           <div>
             <button
-              className="px-24 max-mdx:px-12 py-3 w-auto bg-contactBg text-white hover:bg-[#EE787C]"
+              className="px-24 max-mdx:px-12 py-3 w-auto bg-contactBg text-white hover:bg-[#EE787C] font-bold"
               onClick={openAskaQuestionModal}
             >
               Обратный звонок

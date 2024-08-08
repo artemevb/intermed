@@ -50,7 +50,7 @@ export default function News() {
         })}
       </div>
       <div className="flex w-full justify-center">
-      <Link href={'/news'} className=" border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff]">
+      <Link href={'/news'} className=" border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold">
             Все новости
         </Link>
       </div>

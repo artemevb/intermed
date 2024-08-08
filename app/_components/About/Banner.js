@@ -10,14 +10,14 @@ export default function Banner() {
     { value: '2000+', description: 'довольных клиентов' },
   ];
   return (
-    <div className="w-full max-w-[1440px] flex flex-col 2xl:flex-row mx-auto h-auto items-center">
-      <div className="flex-1 h-full flex justify-center px-2 mr-[40px]">
-        <div className="w-full flex flex-col gap-8 uppercase">
-          <div className="2xl:mt-9 text-black text-[24px] mdx:text-[35px] xl:text-[40px]  font-medium mdx 2xl:w-[700px] uppercase ">
-            <h1 className="text-redMain text-[24px] font-bold mdx:text-[35px] xl:text-[40px]  uppercase tracking-tight">
+    <div className="w-full max-w-[1440px] flex flex-col 2xl:flex-row mx-auto h-auto items-center xl:h-[812px]">
+      <div className="flex-1 h-full flex justify-center px-2 xl:mr-[40px]">
+        <div className="w-full flex flex-col gap-8 ">
+          <div className="2xl:mt-9 mt-6 lh text-black text-[24px] mdx:text-[35px] xl:text-[40px] font-medium  2xl:w-[650px]">
+            <h1 className="text-redMain text-[24px] font-semibold mdx:text-[35px] xl:text-[40px]  uppercase tracking-tight">
               «INTERMED INNOVATION»
             </h1>
-            <span className="">
+            <span className="font-semibold">
               надежный поставщик медицинского оборудования от ведущих производителей
             </span>
             <div className="text-[24px] mt-[14px] text-blacklighttxt mdx:text-[18px] xl:text-[20px] 2xl:text-[22px] normal-case">
@@ -38,19 +38,19 @@ export default function Banner() {
           </div>
         </div>
       </div>
-      <div className="w-full h-full flex relative pt-[25px]">
+      <div className="w-full h-full flex relative ">
         <div className="w-full flex justify-center">
-          <div className="w-full h-full bottom-0 left-0">
+          <div className="w-full h-full bottom-0 left-0 py-[25px] mdx:py-[35px] 2xl:py-[0px]">
             <Image
               src={imed}
               alt="Medical Equipment"
-              objectFit="contain"
-              className="min-w-full min-h-full"
+              objectFit="cover"
+              className="min-w-full min-h-full 2xl:w-[800px]"
             />
           </div>
         </div>
       </div>
-      <div className="w-full  2xl:hidden mt-[25%] xl:mt-[5%]">
+      <div className="w-full  2xl:hidden xl:mt-[5%]">
         <div className="grid gap-4 grid-cols-2  w-full">
           {metrics.map((metric, index) => (
             <div key={index} className="flex flex-col justify-center items-center mdx:items-start  p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">

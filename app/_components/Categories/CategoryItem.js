@@ -6,19 +6,23 @@ export default function CategoryItem({ key, title, imageSrc, slug }) {
   return (
     <div
       key={key}
-      className="w-full border  overflow-hidden px-6 py-6 max-mdx:px-4 max-mdx:py-4 transition-all duration-200 relative pb-72 max-mdx:h-[300px] flex flex-col items-center gap-5"
+      className="w-full border overflow-hidden transition-all duration-200 relative mdl:pb-72 max-mdl:h-[180px] flex flex-row items-center gap-5 mdl:flex-col h-[300px] px-2 mdl:px-6 mdl:py-6 max-mdl:pt-[20px] max-mdl:pl-[15px]"
     >
-      <h2 className="text-2xl max-mdx:text-2xl font-semibold text-center z-10">{title}</h2>
-      <Link href={`/categories/catalog/${slug}`}>
-        <GreenArrow title={"Перейти"} />
-      </Link>
-      <Image
-        src={imageSrc}
-        width={500}
-        height={500}
-        alt={`${title} Photo`}
-        className="absolute w-1/2 h-[80%] z-0 object-contain -bottom-16"
-      />
+      <div className="mdl:flex flex-col mdl:items-center max-mdl:max-w-[167px] flex items-start h-full ">
+        <h2 className="text-2xl max-mdx:text-2xl font-semibold xl:text-center z-10 mx-auto max-mdl:mb-[5px]">{title}</h2>
+        <Link href={`/categories/catalog/${slug}`}>
+          <GreenArrow title={"Перейти"} />
+        </Link>
+      </div>
+      <div className="mdl:flex mdl:flex-col mdl:items-center flex-1 max-mdl:flex max-mdl:justify-end">
+        <Image
+          src={imageSrc}
+          width={500}
+          height={500}
+          alt={`${title} Photo`}
+          className="absolute h-full z-0 object-contain -bottom-10 mdl:-bottom-16 mdl:w-1/2 mdl:h-[80%] max-mdl:w-auto max-mdl:h-full max-mdl:right-0"
+        />
+      </div>
     </div>
   );
 }

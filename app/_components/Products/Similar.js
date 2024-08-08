@@ -111,7 +111,7 @@ export default function Similar() {
       <div className="flex w-full justify-center">
         <Link
           href="/categories"
-          className="border border-greenView px-12 py-3 hover:bg-[#E94B50] transition-all duration-200 hover:text-[#FFF]"
+          className="border border-greenView px-12 py-3 hover:bg-[#E94B50] transition-all duration-200 hover:text-[#FFF] font-bold"
         >
           Все товары
         </Link>

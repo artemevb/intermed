@@ -56,7 +56,7 @@ export default function Dropdown({ handleFilter }) {
             </div>
             <div className="flex flex-col space-y-4 divide-y ">
               <button
-                className={`pt-3 text-[18px] mdx:text-[18px] flex items-center ${selectedFilter === 'all' ? 'text-red-600' : 'text-gray-900'}`}
+                className={`pt-3 text-[18px] mdx:text-[18px] font-bold flex items-center ${selectedFilter === 'all' ? 'text-red-600' : 'text-gray-900'}`}
                 onClick={() => handleFilterChange('all')}
               >
                 {selectedFilter === 'all' ? <span className="mr-2">                <Image

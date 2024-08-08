@@ -73,7 +73,7 @@ export default function Sertificates() {
       <div className="w-full justify-center flex">
         <Link
           href="/licenses"
-          className="border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff]"
+          className="border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold"
         >
           Смотреть все
         </Link>

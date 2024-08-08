@@ -27,7 +27,7 @@ export default function WhatWeDo() {
     return (
         <>
             <div className="max-w-[1440px] mx-auto px-3">
-            <div className="text-[25px] mdx:text-[36px] xl:text-[40px] px-2 mb-4">ПОЧЕМУ ВЫБИРАЮТ НАС ?</div>
+            <div className="text-[25px] mdx:text-[36px] xl:text-[40px] px-2 mb-4 font-semibold">ПОЧЕМУ ВЫБИРАЮТ НАС ?</div>
             <div className="grid gap-4 mdl:grid-cols-2 2xl:grid-cols-4">
                 {services.map((service, index) => (
                     <div
@@ -45,7 +45,7 @@ export default function WhatWeDo() {
                                 ))}
                             </div>
                         )}
-                        <div className="text-[18px] mdx:text-[21px] mdl:text-[22px] xl:text-[24px]">{service.description}</div>
+                        <div className="text-[19px] mdx:text-[21px] mdl:text-[22px] xl:text-[24px]">{service.description}</div>
                     </div>
                 ))}
             </div>

@@ -8,7 +8,7 @@ export default function Scheme() {
         <h2 className="text-3xl max-mdx:text-2xl font-bold">
             СХЕМА РАБОТЫ
         </h2>
-        <p className="w-full max-w-[400px] text-neutral-400">Мы предлагаем удобный и простой процесс покупки медицинской техники</p>
+        <p className="w-full max-w-[400px] text-[#808080]">Мы предлагаем удобный и простой процесс покупки медицинской техники</p>
 
         </div>
         <div className="grid w-full h-auto grid-cols-1 xl:grid-cols-4 grid-rows-4 xl:grid-rows-1 max-xl:pl-4">

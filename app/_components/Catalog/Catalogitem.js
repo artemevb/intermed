@@ -62,7 +62,7 @@ export default function Catalogitem({ new: isNew, sale, image, title, descriptio
           />
         </div>
         <h3 className="text-md font-semibold mt-3">{title}</h3>
-        <p className="text-xs text-neutral-300 mt-1">{description}</p>
+        <p className="text-xs text-[#BABABA] mt-1">{description}</p>
         <div className="flex w-full justify-between items-center flex-wrap mt-3">
           <Link href={`/product/${slug}`}>
             <GreenArrow title={"Подробнее"} />

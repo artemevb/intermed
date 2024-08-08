@@ -183,7 +183,7 @@ const EquipmentCarousel = () => {
       </h2>
       <div className="w-full items-start flex flex-col gap-2">
         <div className="flex flex-col relative">
-          <div className="overflow-x-scroll flex gap-4 lg:gap-6 scrollbar-hide touch-auto">
+          <div className="overflow-x-scroll flex gap-4 lg:gap-6 scrollbar-hide font-semibold touch-auto">
             {categories.map((item, index) => (
               <button
                 onClick={() => handleFilter(item.slug)}
@@ -218,7 +218,7 @@ const EquipmentCarousel = () => {
         </div>
       </div>
       <div className="flex w-full justify-center">
-        <Link href="/categories" className="border px-12 py-3 hover:bg-[#E94B50] hover:text-[#fff]">
+        <Link href="/categories" className="border px-12 py-3 hover:bg-[#E94B50] hover:text-[#fff] font-bold">
           Все товары
         </Link>
       </div>

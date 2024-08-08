@@ -7,7 +7,7 @@ export default function FullEquipments() {
     <div className="w-full max-w-[1440px] mx-auto px-2 bg-[#F6F8F9]">
       <div className="flex max-mdl:flex-col justify-between items-center lg:px-12 relative">
         <div className="mdx:px-3 max-lg:py-8">
-          <h2 className="text-[#252324] uppercase text-[30px] mdx:text-[29px] xl:text-[45px] font-semibold leading-8 lg:leading-[55px]">
+          <h2 className="text-[#252324] uppercase text-[30px] mdx:text-[29px] xl:text-[45px] font-bold leading-8 lg:leading-[55px]">
             <span className="text-redMain">
               Комплексное
               <br />
@@ -19,7 +19,7 @@ export default function FullEquipments() {
             <br /> медицинских учреждений
           </p>
           <Link href={"/equipment"}>
-            <button className="text-white text-[14px] mdx:text-[16px] mt-[10px] bg-contactBg px-[70px] py-[11px] max-w-[224px] mdl:max-w-[164px] flex items-center justify-center xl:max-w-[224px] xl:py-[15px] hover:bg-[#EE787C] ">
+            <button className="text-white text-[14px] mdx:text-[16px] mt-[10px] bg-contactBg px-[70px] py-[11px] max-w-[224px] mdl:max-w-[164px] flex items-center justify-center xl:max-w-[224px] xl:py-[15px] hover:bg-[#EE787C] font-bold">
               Подробнее
             </button>
           </Link>
