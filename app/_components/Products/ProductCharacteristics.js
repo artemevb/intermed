@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import mindray from "@/public/images/aboutUs/partners/image58.png";
 import arrowred from "@/public/svg/arrow-right-red.svg";
+import Modal from "@/app/_components/Modal/AttachedFiles";
 
 export default function ProductCharacteristics() {
   const data = [
@@ -24,40 +25,6 @@ export default function ProductCharacteristics() {
             '13.3" tilting gesture control touch screen'
           ]
         },
-        {
-          title: 'Control Panel',
-          data: [
-            '6-directional floating control panel'
-          ]
-        },
-        {
-          title: 'Transducer Ports',
-          data: [
-            'Five pinless transducer ports with light indicators'
-          ]
-        },
-        {
-          title: 'Heating and Handling',
-          data: [
-            'Temperature-controlled gel warmer'
-          ]
-        },
-        {
-          title: 'Locking Mechanism',
-          data: [
-            'Central and swivel lock'
-          ]
-        },
-        {
-          title: 'Technology',
-          data: [
-            'iClear+ for higher signal-to-noise ratio and reduced speckle noise',
-            'UWN Contrast Imaging for improved contrast visualization',
-            'Plane-Wave-Based CEUS for high frame rate contrast-enhanced ultrasound',
-            'Micro Flow Enhancement for detailed blood flow imaging',
-            'High Frame Rate CEUS (HiFR CEUS) for dynamic contrast studies',
-          ]
-        },
       ]
     },
     {
@@ -70,52 +37,64 @@ export default function ProductCharacteristics() {
           description: 'VITAMED - это современный, уникальный, многопрофильный медицинский центр с широким спектр...',
           logo: mindray,
         },
-        {
-          name: 'Akfa Medline',
-          description: 'AKFA Medline University Hospital (AMUH) - это медицинское учреждение с высококвалифицированными специали...',
-          logo: mindray,
-        },
-        {
-          name: 'ZARMED PRATIKSHA',
-          description: 'ZARMED PRATIKSHA Bogi’shamol - первая клиника в Самарканде, которая является образцом высокоэтичной стациона...',
-          logo: mindray,
-        },
-        {
-          name: 'Fergana Premium Medical',
-          description: 'Многопрофильный медицинский центр Fergana Premium Medical оказывает качественные лечеб...',
-          logo: mindray,
-        }
+        // Другие клиенты...
       ]
     },
+    {
+      files: [
+        {
+          id: 7,
+          name: "7-Zoncare%2",
+          size: "6.30 Mb",
+          downloadLink: "http://213.230.91.55:8130/v1/product/file/7-Zoncare%20Catalog%20--2024.pdf"
+        },
+        {
+          id: 8,
+          name: "8-Quotation%2",
+          size: "0.27 Mb",
+          downloadLink: "http://213.230.91.55:8130/v1/product/file/8-Quotation%20for%20Browiner%20X-ray.pdf"
+        },
+        {
+          id: 9,
+          name: "9-Perla%20Denta",
+          size: "0.18 Mb",
+          downloadLink: "http://213.230.91.55:8130/v1/product/file/9-Perla%20Dental%20Unit%20Product%20List.pdf"
+        }
+      ]
+    }
   ];
 
   const [active, setActive] = useState(data[0].category);
   const [filtered, setFiltered] = useState(data[0]);
+  const [selectedAttachedFiles, setSelectedAttachedFiles] = useState(null);
 
-  const handleFilter = (catname) => {
-    setActive(catname);
-    const filteredArr = data.find((item) => item.category === catname);
-    setFiltered(filteredArr);
+  const openModal = (files) => {
+    setSelectedAttachedFiles(files);
+  };
+
+  const closeModal = () => {
+    setSelectedAttachedFiles(null);
   };
 
   return (
     <div className="w-full flex flex-col gap-5">
       <div className="w-full flex flex-col relative">
         <div className="w-full overflow-x-scroll flex gap-8 lg:gap-12 scrollbar-hide touch-auto">
-          {data.map((item, index) => {
-            return (
-              <button
-                onClick={() => handleFilter(item.category)}
-                key={index}
-                className={`z-10 w-auto text-lg transition-text font-medium ${active == item.category
-                  ? "text-[#E31E24] border-b-2 border-b-[#E31E24]"
-                  : "text-neutral-400"
-                  }`}
-              >
-                <h3 className="my-2 whitespace-nowrap">{item.title}</h3>
-              </button>
-            );
-          })}
+          {data.slice(0, 3).map((item, index) => (
+            <button
+              onClick={() => {
+                setActive(item.category);
+                setFiltered(item);
+              }}
+              key={index}
+              className={`z-10 w-auto text-lg transition-text font-medium ${active == item.category
+                ? "text-[#E31E24] border-b-2 border-b-[#E31E24]"
+                : "text-neutral-400"
+                }`}
+            >
+              <h3 className="my-2 whitespace-nowrap">{item.title}</h3>
+            </button>
+          ))}
         </div>
         <hr className="w-full border-t-2 absolute bottom-0 border-slate-300" />
       </div>
@@ -124,7 +103,7 @@ export default function ProductCharacteristics() {
           <p className="text-lg leading-5">{filtered.data}</p>
         ) : (
           <div className="flex flex-col gap-6 w-full">
-            {filtered.category === 'characteristics' ? (
+            {filtered.category === 'characteristics' && (
               filtered.data.map((item, i) => (
                 <div key={i} className="w-full flex gap-3">
                   <p className="w-full text-neutral-400 max-w-[100px] md:max-w-[150px] mdx:max-w-[200px] lg:max-w-[400px]">
@@ -137,7 +116,9 @@ export default function ProductCharacteristics() {
                   </div>
                 </div>
               ))
-            ) : (
+            )}
+
+            {filtered.category === 'client' && (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 {filtered.data.map((client, index) => (
                   <div key={index} className="border  p-4 ">
@@ -151,7 +132,7 @@ export default function ProductCharacteristics() {
                           src={arrowred}
                           width={100}
                           height={100}
-                          alt="Heart Icon"
+                          alt="Arrow Icon"
                           className="w-5 h-5"
                         /></button>
                       </div>
@@ -163,6 +144,17 @@ export default function ProductCharacteristics() {
           </div>
         )}
       </div>
+
+      <div className="flex justify-start mt-2">
+        <button
+          className="bg-[#FCE8E9] text-[#E31E24] py-4 px-[30px] font-bold hover:text-[#EE787C]"
+          onClick={() => openModal(data[3].files)}
+        >
+          Прикрепленные файлы
+        </button>
+      </div>
+      <Modal selectedAttachedFiles={selectedAttachedFiles} closeModal={closeModal} />
     </div>
   );
 }
+

@@ -35,9 +35,11 @@ export default function ProductPreview() {
         </p>
         <hr />
         <div className="w-full flex justify-between items-center">
-          <p className="w-full max-w-[220px] leading-4">
-            {`Гарантия от производителя Техническая поддержка`}
-          </p>
+          <buttonon className="w-full max-w-[220px] leading-4 cursor-pointer" 
+          onClick={handleOpenModal}
+          >
+            Гарантия от производителя Техническая поддержка
+          </buttonon>
           <Image
             src={mindray}
             width={300}

@@ -82,7 +82,7 @@ export default function ListPartners() {
                     </div>
                 ))}
             </div>
-            <div className="flex justify-center mdx:hidden mb-[120px]">
+            <div className="flex justify-center mb-[120px]">
                 <button
                     onClick={() => setShowAll(!showAll)}
                     className="bg-white border text-[#252324] py-3 px-[55px] "
