@@ -166,7 +166,7 @@ const EquipmentCarousel = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 500,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -177,7 +177,7 @@ const EquipmentCarousel = () => {
   };
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-8 px-2">
+    <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-2 mdx:gap-6 px-2">
       <h2 className="text-4xl max-mdx:text-2xl font-semibold">
         ПОПУЛЯРНЫЕ ТОВАРЫ
       </h2>
@@ -217,7 +217,7 @@ const EquipmentCarousel = () => {
           </Slider>
         </div>
       </div>
-      <div className="flex w-full justify-center">
+      <div className="flex w-full justify-center max-mdx:mt-[20px]">
         <Link href="/categories" className="border px-12 py-3 hover:bg-[#E94B50] hover:text-[#fff] font-bold">
           Все товары
         </Link>
