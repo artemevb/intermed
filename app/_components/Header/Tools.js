@@ -20,8 +20,8 @@ export default function Tools({ navOptions }) {
   };
 
   return (
-    <div className="h-full items-center flex mdx:gap-5 px-1">
-      <button className="rounded-full max-mdx:px-2 max-mdx:py-2">
+    <div className="h-full items-center flex mdx:gap-5 px-1 py-4">
+      <button className="rounded-full max-mdx:px-1 max-mdx:py-1">
         <Image
           src={searchIcon}
           height={100}
@@ -31,7 +31,7 @@ export default function Tools({ navOptions }) {
         />
       </button>
       <Link href={'/favorites'} className="flex items-center justify-center">
-        <button className="rounded-full max-mdx:px-2 max-mdx:py-2">
+        <button className="rounded-full max-mdx:px-1 max-mdx:py-1">
           <Image
             src={heartIcon}
             height={100}
@@ -41,7 +41,7 @@ export default function Tools({ navOptions }) {
           />
         </button>
       </Link>
-      <a href="tel:+998990909095" className="rounded-full max-mdx:px-2 max-mdx:py-2">
+      <a href="tel:+998990909095" className="rounded-full max-mdx:px-1 max-mdx:py-1">
         <Image
           src={phoneIcon}
           height={100}
@@ -67,7 +67,7 @@ export default function Tools({ navOptions }) {
           height={100}
           width={100}
           alt={`Tools Item Burger Menu`}
-          className="w-[29px] h-[29px] max-mdx:w-[24px] max-mdx:h-[24px]"
+          className="w-[29px] h-[29px] max-mdx:w-[24px] max-mdx:h-[24px] max-mdx:ml-1"
         />
       </button>
       {menu ? (

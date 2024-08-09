@@ -3,7 +3,7 @@ import Link from "next/link"
 export default function Navigation({navOptions}) {
 
   return (
-    <nav className="h-full flex gap-10 items-center max-2xl:hidden">
+    <nav className="h-full flex gap-10 items-center max-2xl:hidden ">
         {navOptions.map((item, i) => {
             return (
                 <Link href={`/${item.slug}`} key={i}>
