@@ -2,9 +2,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import VerticalCarousel from "./ProductCarousel";
+import Link from "next/link";
 import mindray from "@/public/images/aboutUs/partners/image41.png";
 import heartIcon from "@/public/svg/tools/heart-icon.svg";
-import SignUpForEvent from '@/app/_components/Modal/SendKp'; 
+import SignUpForEvent from '@/app/_components/Modal/SendKp';
 
 export default function ProductPreview() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,11 +36,17 @@ export default function ProductPreview() {
         </p>
         <hr />
         <div className="w-full flex justify-between items-center">
-          <buttonon className="w-full max-w-[220px] leading-4 cursor-pointer" 
-          onClick={handleOpenModal}
-          >
-            Гарантия от производителя Техническая поддержка
-          </buttonon>
+          {/* <Link href={`/partners/${card.link}`}>
+            <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
+              <GreenArrow title={"Подробнее"} />
+            </span>
+          </Link> */}
+          <Link href={`/technical-support/xojik`}>
+          <button className="w-full max-w-[220px] leading-5 cursor-pointer text-left"
+            >
+            Гарантия от производителя <span className="relative after:absolute after:w-full after:h-[1px] after:bg-black after:left-0 after:bottom-[-2px]">Техническая поддержка</span>
+          </button>
+          </Link>
           <Image
             src={mindray}
             width={300}
