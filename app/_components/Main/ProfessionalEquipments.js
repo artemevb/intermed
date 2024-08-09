@@ -202,7 +202,7 @@ const EquipmentCarousel = () => {
         <div className="w-full px-4">
           <Slider {...settings} className="h-auto flex">
             {filteredData.map((item, index) => (
-              <div key={index} className="p-2">
+              <div key={index} className="p-1 xl:p-2">
                 <Catalogitem
                   new={item.new}
                   sale={item.sale}

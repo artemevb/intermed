@@ -29,8 +29,8 @@ export default function Catalogitem({ new: isNew, sale, image, title, descriptio
   };
 
   return (
-    <div className="h-[280px] mdx:h-[450px] w-full">
-      <div className="rounded-2xl  mdx:pt-8 flex flex-col h-full relative">
+    <div className="h-[290px] mdx:h-[440px] w-full ">
+      <div className="rounded-2xl  mdx:pt-8 flex flex-col justify-between mdx:p-2 mdl:p-4 h-full relative">
         <div onClick={handleFavoriteToggle} className="absolute top-4 right-4 z-10">
           <Image
             src={isFavorite ? favFilled : fav}
