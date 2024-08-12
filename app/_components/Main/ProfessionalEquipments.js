@@ -168,7 +168,7 @@ const EquipmentCarousel = () => {
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
         },
@@ -199,7 +199,7 @@ const EquipmentCarousel = () => {
           </div>
           <hr className="w-full border-t-2 absolute bottom-0 border-slate-300" />
         </div>
-        <div className="w-full px-4">
+        <div className="w-full px-2">
           <Slider {...settings} className="h-auto flex">
             {filteredData.map((item, index) => (
               <div key={index} className="p-1 xl:p-2">

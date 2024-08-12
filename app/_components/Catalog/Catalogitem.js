@@ -7,8 +7,21 @@ import fav from "@/public/svg/main/fav.svg"
 import favFilled from "@/public/svg/main/fav-filled.svg"
 
 export default function Catalogitem({ new: isNew, sale, image, title, description, price, slug }) {
-
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isMdx, setIsMdx] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMdx(window.innerWidth >= 460); // mdx breakpoint is 768px in Tailwind
+    };
+
+    handleResize(); // Check initially
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -41,14 +54,14 @@ export default function Catalogitem({ new: isNew, sale, image, title, descriptio
           />
         </div>
         <div className="w-full h-[300px] flex items-center justify-center relative overflow-hidden">
-        <div className="absolute bottom-2 left-2 flex gap-1">
+        <div className="absolute bottom-2 left-2 flex gap-1 " >
           {isNew && (
-            <div className="py-1 px-3 rounded-full text-md font-bold text-red-500 bg-red-100">
+            <div className="py-1 px-3 rounded-full text-[12px]  mdx:text-sm font-bold text-red-500 bg-red-100 ">
               Новинка
             </div>
           )}
           {sale && (
-            <div className="py-1 px-3 rounded-full text-md font-bold text-red-500 bg-red-100">
+            <div className="py-1 px-3 rounded-full text-[12px] mdx:text-sm font-bold text-red-500 bg-red-100 ">
               {sale}
             </div>
           )}
@@ -61,17 +74,19 @@ export default function Catalogitem({ new: isNew, sale, image, title, descriptio
             className="object-contain w-full h-full"
           />
         </div>
-        <h3 className="text-md font-semibold mt-3">{title}</h3>
+        <h3 className="text-md font-semibold">
+          {isMdx ? title : (title.length > 12 ? `${title.substring(0, 12)}...` : title)}
+        </h3>
         <p className="text-xs text-[#BABABA] mt-1">{description}</p>
         <div className="flex w-full justify-between items-center flex-wrap mt-3">
           <Link href={`/product/${slug}`}>
             <GreenArrow title={"Подробнее"} />
           </Link>
-          {price && (
+          {/* {price && (
             <div className="py-1 px-2 font-semibold rounded-full text-greenView">
               {price}
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

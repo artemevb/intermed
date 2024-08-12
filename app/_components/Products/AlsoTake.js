@@ -50,6 +50,7 @@ export default function AlsoTake() {
   ];
 
   const settings = {
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -76,7 +77,7 @@ export default function AlsoTake() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
         },
@@ -90,7 +91,7 @@ export default function AlsoTake() {
         С ЭТИМ ТОВАРОМ ПОКУПАЮТ
       </h2>
       <div className="w-full">
-        <div className="w-full px-4">
+        <div className="w-full mdx:px-2 xl:px-4">
           <Slider {...settings} className="h-auto flex">
             {equipmentData.map((item, index) => (
               <div key={index} className="p-2">

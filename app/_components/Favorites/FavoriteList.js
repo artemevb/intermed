@@ -32,7 +32,7 @@ export default function FavoriteList() {
           Отправить КП
         </button>
       </div>
-      <div className="grid grid-cols-1 mdl:grid-cols-2 2xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 2xl:grid-cols-4 gap-4">
         {favorites.map((item, index) => (
           <Catalogitem
             key={index}

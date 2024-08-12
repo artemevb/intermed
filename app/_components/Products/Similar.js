@@ -51,6 +51,7 @@ export default function Similar() {
   ];
 
   const settings = {
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -77,8 +78,8 @@ export default function Similar() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           infinite: true,
         },
       },
@@ -91,7 +92,7 @@ export default function Similar() {
         ПОХОЖИЕ ПРОДУКТЫ
       </h2>
       <div className="w-full">
-        <div className="w-full px-4">
+        <div className="w-full mdx:px-2 xl:px-4">
           <Slider {...settings} className="h-auto flex">
             {equipmentData.map((item, index) => (
               <div key={index} className="p-2">
