@@ -1,5 +1,6 @@
 
 import dynamic from 'next/dynamic';
+import Head from 'next/head';
 import "@/app/_styles/globals.css";
 import Footer from "@/app/_components/Footer/Footer";
 
@@ -16,6 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" >
+      <Head>
+        <link rel="manifest" href="@/public/manifest.json" />
+      </Head>
       <body>
         <Header />
         <main className="w-full bg-white relative">{children}</main>
