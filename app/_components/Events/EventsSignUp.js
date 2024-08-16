@@ -19,7 +19,7 @@ export default function EventSignUp() {
         <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2 mb-[100px] mdl:mb-[150px] xl:mb-[200px] ">
             <div className="xl:flex xl:flex-row xl:gap-9 items-center">
                 <div>
-                    <h2 className="uppercase text-[30px] font-semibold mdx:text-[38px] mdl:text-[44px] 2xl:text-[48px] mt-[52px]">
+                    <h2 className="uppercase text-[30px] font-semibold mdx:text-[38px] mdl:text-[44px] 2xl:text-[48px] mt-[52px] lh ">
                         Презентация Новейших Технологий в Медицине: Ташкент 2024
                     </h2>
                     <div className="flex flex-row justify-between mt-[20px] mdx:justify-normal mdx:gap-2 xl:gap-4">

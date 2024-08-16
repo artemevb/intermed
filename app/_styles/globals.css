@@ -147,3 +147,30 @@ body {
 .shdwcustom {
   box-shadow: 0px 4px 70px 0px rgba(64, 81, 96, 0.08);
 }
+
+/* Remove focus outline for all clickable elements within the slick slider */
+.slick-slide:focus,
+.slick-slide *:focus,
+.slick-slide:active,
+.slick-slide *:active {
+  outline: none;
+  box-shadow: none; /* Remove any default shadow as well */
+}
+
+/* Optional: Remove text selection */
+.slick-slide::selection,
+.slick-slide *::selection {
+  background: none;
+}
+.slick-slide:focus,
+.slick-slide *:focus,
+.slick-slide:active,
+.slick-slide *:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.slick-slide::selection,
+.slick-slide *::selection {
+  background: none;
+}

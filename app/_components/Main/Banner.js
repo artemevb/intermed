@@ -2,14 +2,21 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import banner1 from "@/public/images/banners/banner.png";
-import banner2 from "@/public/images/banners/banner.png";
-import banner3 from "@/public/images/banners/banner.png";
+import banner1 from "@/public/images/banners/Banner01.jpg";
+import banner2 from "@/public/images/banners/Banner02.jpg";
+import banner3 from "@/public/images/banners/Banner03.jpg";
+import banner4 from "@/public/images/banners/Banner04.jpg";
+import banner5 from "@/public/images/banners/Banner05.jpg";
+import banner6 from "@/public/images/banners/Banner06.jpg";
+import banner7 from "@/public/images/banners/Banner07.jpg";
+import banner8 from "@/public/images/banners/Banner08.jpg";
+import banner9 from "@/public/images/banners/Banner09.jpg";
+import banner10 from "@/public/images/banners/Banner10.jpg";
 
 import left from "@/public/svg/arrowleftbanners.svg";
 import right from "@/public/svg/arrowrightbanners.svg";
 
-const banners = [banner1, banner2, banner3];
+const banners = [banner1, banner2, banner3, banner4, banner5, banner6, banner7, banner8, banner9, banner10];
 
 export default function BannerCarousel() {
   const sliderRef = useRef(null);
@@ -49,7 +56,7 @@ export default function BannerCarousel() {
           alt={`Banner ${index + 1}`}
           width={1440}
           height={500}
-          className="w-full h-auto object-cover rounded-2xl xl:max-w-[92%]"
+          className="w-full h-auto object-cover rounded-2xl xl:max-w-[92%] max-h-[604px]"
         />
       </div>
     ),
@@ -59,13 +66,13 @@ export default function BannerCarousel() {
     <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden px-2 lg:px-12">
       <Slider ref={sliderRef} {...settings}>
         {banners.map((banner, index) => (
-          <div key={index} className="min-w-full flex justify-center px-2"> {/* Added px-2 for spacing */}
+          <div key={index} className="min-w-full flex justify-center px-2">
             <Image
               src={banner}
               alt={`Banner ${index + 1}`}
               width={1440}
               height={500}
-              className="w-full h-auto object-cover rounded-2xl"
+              className="w-full h-auto object-cover rounded-2xl "
             />
           </div>
         ))}

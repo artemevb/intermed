@@ -4,7 +4,7 @@ import imed from "@/public/images/main/intermed-about.png";
 
 export default function Banner() {
   const metrics = [
-    { value: '13+ лет', description: 'на рынке' },
+    { value: '14 лет', description: 'на рынке' },
     { value: '12 000', description: 'удачных продаж' },
     { value: '20+', description: 'поставщиков' },
     { value: '2000+', description: 'довольных клиентов' },
