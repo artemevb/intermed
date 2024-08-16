@@ -177,7 +177,7 @@ const EquipmentCarousel = () => {
   };
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-2 mdx:gap-6 px-2">
+    <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-2 mdx:gap-6 px-2 mt-6 mdx:mt-9">
       <h2 className="text-4xl max-mdx:text-2xl font-semibold">
         ПОПУЛЯРНЫЕ ТОВАРЫ
       </h2>
