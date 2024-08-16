@@ -68,7 +68,8 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => changeLanguage("UZ")}
                   >
-                    O'zbekcha
+                    <p>O&apos;zbekcha</p>
+
                   </li>
                 </ul>
               </div>
