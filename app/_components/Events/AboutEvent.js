@@ -48,8 +48,9 @@ export default function AboutEvent() {
                     </p>
                     <h3 className="text-[20px] mdx:text-[27px] font-semibold mb-[16px] text-[#252324] mt-[30px]">Контакты</h3>
                     <p className="text-[15px] mdx:text-[18px] mdl:text-[20px] mt-[10px]">
-                        Для получения дополнительной информации и вопросов о мероприятии, пожалуйста, свяжитесь с организационным комитетом по телефону +998 78 150-47-47 или электронной почте <span className="text-[#E31E24] underline">info@imed.uz</span>
+                        Для получения дополнительной информации и вопросов о мероприятии, пожалуйста, свяжитесь с организационным комитетом по телефону +998 78 150-47-47 или электронной почте <a href="mailto:info@mrjtrade.ae" className="text-[#E31E24] underline cursor-pointer">info@imed.uz</a>
                     </p>
+
                 </div>
             </div>
             {isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} />}

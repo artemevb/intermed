@@ -78,7 +78,7 @@ export default function Tools({ navOptions }) {
           className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
         />
       </a>
-      <div ref={menuRef} className="mdx:relative xl:flex xl:items-center xl:text-left hidden z-[999]">
+      <div ref={menuRef} className="mdx:relative xl:flex xl:items-center xl:text-left hidden z-40">
         <button
           id="dropdownButton"
           className="inline-flex items-center text-[19px] font-medium bg-white focus:outline-none ml-3"

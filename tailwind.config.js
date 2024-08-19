@@ -32,6 +32,7 @@ module.exports = {
 
       '3xl': '1440px',
       // => @media (min-width: 1440px) { ... }
+      '4xl': '1600px',
     },
     extend: {
       fontFamily: {
