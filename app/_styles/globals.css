@@ -28,9 +28,7 @@ body {
 
 .no-scrollbar {
   -ms-overflow-style: none;
-  /* IE и Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .shadow-contact {
