@@ -21,7 +21,6 @@ body {
   line-height: normal;
 }
 
-/* Пример для Tailwind CSS */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -75,9 +74,7 @@ body {
 
 .scrollbar-hide {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .container {
@@ -114,9 +111,7 @@ body {
 .swiper-button-prev {
   color: black !important;
   width: 30px;
-  /* Adjust the width as needed */
   height: 30px;
-  /* Adjust the height as needed */
 }
 
 .swiper-button-next::after,
@@ -149,7 +144,6 @@ body {
   box-shadow: none; 
 }
 
-/* Optional: Remove text selection */
 .slick-slide::selection,
 .slick-slide *::selection {
   background: none;
