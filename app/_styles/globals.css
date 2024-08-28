@@ -21,16 +21,13 @@ body {
   line-height: normal;
 }
 
-/* Пример для Tailwind CSS */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
 .no-scrollbar {
   -ms-overflow-style: none;
-  /* IE и Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .shadow-contact {
@@ -51,7 +48,6 @@ body {
 
 #dollar-logo {
   border-bottom: 2px solid #e5e7eb;
-  /* TailwindCSS grey-200 */
 }
 
 
@@ -77,9 +73,7 @@ body {
 
 .scrollbar-hide {
   -ms-overflow-style: none;
-  /* IE and Edge */
   scrollbar-width: none;
-  /* Firefox */
 }
 
 .container {
@@ -101,7 +95,6 @@ body {
 
 .shadow-contactPages {
   box-shadow: 0px -4px 40px rgba(0, 0, 0, 0.10);
-  /* Тень сверху */
 }
 
 .swiper-pagination-bullet {
@@ -117,23 +110,17 @@ body {
 .swiper-button-prev {
   color: black !important;
   width: 30px;
-  /* Adjust the width as needed */
   height: 30px;
-  /* Adjust the height as needed */
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
   font-size: 20px;
   font-weight: bolder;
-  /* Adjust the font size as needed */
 }
 
 @media (max-width: 1000px) {
-  /* .relative {
-    height: 0;
-    padding-bottom: 100%; 
-  } */
+
 
   .relative iframe {
     position: absolute;
@@ -148,16 +135,14 @@ body {
   box-shadow: 0px 4px 70px 0px rgba(64, 81, 96, 0.08);
 }
 
-/* Remove focus outline for all clickable elements within the slick slider */
 .slick-slide:focus,
 .slick-slide *:focus,
 .slick-slide:active,
 .slick-slide *:active {
   outline: none;
-  box-shadow: none; /* Remove any default shadow as well */
+  box-shadow: none; 
 }
 
-/* Optional: Remove text selection */
 .slick-slide::selection,
 .slick-slide *::selection {
   background: none;
