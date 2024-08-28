@@ -12,9 +12,9 @@ export default function GreenArrow({ title }) {
         <path
           d="M8.46875 1.375L14.0937 7L8.46875 12.625M13.3125 7L1.90625 7"
           stroke="#E31E24"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
       </svg>
     </button>

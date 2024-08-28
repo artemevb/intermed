@@ -6,10 +6,9 @@ import GreenArrow from "../Buttons/GreenArrow";
 import fav from "@/public/svg/main/fav.svg"
 import favFilled from "@/public/svg/main/fav-filled.svg"
 
-export default function Catalogitem({ new: isNew, sale, image, title, description, price, slug }) {
+export default function Catalogitem({ new: isNew, sale, image, title, description, price, slug  , discount}) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [isMdx, setIsMdx] = useState(false);
-
   useEffect(() => {
     const handleResize = () => {
       setIsMdx(window.innerWidth >= 460); // mdx breakpoint is 768px in Tailwind
@@ -22,7 +21,6 @@ export default function Catalogitem({ new: isNew, sale, image, title, descriptio
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     setIsFavorite(favorites.some(item => item.slug === slug));
@@ -60,11 +58,11 @@ export default function Catalogitem({ new: isNew, sale, image, title, descriptio
               Новинка
             </div>
           )}
-          {sale && (
-            <div className="py-1 px-3 rounded-full text-[12px] mdx:text-sm font-bold text-red-500 bg-red-100 ">
-              {sale}
-            </div>
-          )}
+          {sale && discount > 0 && (
+        <div className="py-1 px-3 rounded-full text-[12px] mdx:text-sm font-bold text-red-500 bg-red-100">
+          {`-${discount}%`}
+        </div>
+      )}
         </div>
           <Image
             src={image}
@@ -72,12 +70,13 @@ export default function Catalogitem({ new: isNew, sale, image, title, descriptio
             width={200}
             height={200}
             className="object-contain w-full h-full"
+            quality={100}
           />
         </div>
-        <h3 className="text-md font-semibold">
-          {isMdx ? title : (title.length > 12 ? `${title.substring(0, 12)}...` : title)}
+        <h3 className="text-md font-semibold ">
+          {isMdx ? title : (title?.length > 12 ? `${title.substring(0, 12)}...` : title)}
         </h3>
-        <p className="text-xs text-[#BABABA] mt-1">{description}</p>
+        <p className="text-xs text-[#BABABA] mt-1 line-clamp-3">{description}</p>
         <div className="flex w-full justify-between items-center flex-wrap mt-3">
           <Link href={`/product/${slug}`}>
             <GreenArrow title={"Подробнее"} />

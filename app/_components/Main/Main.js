@@ -9,15 +9,19 @@ import Partners from "../About/Partners";
 import News from "./News";
 import Sertificates from "./Sertificates";
 import Contacts from "./Contacts";
+import { getAllProducts , getAllCotegories } from '@/app/lib/api';
 
-export default function Main() {
+export default async function Main() {
+  const products = await getAllProducts();
+  const data = await getAllCotegories();
+  
   return (
     <div className="w-full bg-white pt-12 flex flex-col gap-28 xl:gap-36">
       <div className="flex w-full flex-col gap-12 lg:gap-36">
       <Banner />
-      <ProfessionalEquipments />
+      <ProfessionalEquipments  products={products}/>
       </div>
-      <Equipments />
+      <Equipments data={data} />
       <AboutUs />
       <Scheme />
       <FullEquipment />

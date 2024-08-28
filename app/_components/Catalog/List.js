@@ -1,168 +1,74 @@
 "use client";
-import { useState } from 'react';
-import CatalogList from './CatalogBar';
-import mindrayDC60 from '@/public/images/equipments/equip-lab.png'; 
-import mindraySV300 from '@/public/images/equipments/equip-uzi.png'; 
-import cl900i from '@/public/images/equipments/equip-lab.png'; 
-import mindrayUniBase from '@/public/images/equipments/equip-uzi.png'; 
-import mindrayBeneHeart from '@/public/images/equipments/equip-lab.png'; 
-import Catalogitem from './Catalogitem';
-import Dropdown from './DropDown';
-import tableCatalog from '@/public/svg/table-catalog.svg';
-import Image from 'next/image';
-import Category from '../Modal/Category';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { useState, useEffect, useCallback } from "react";
+import CatalogList from "./CatalogBar";
+import CatalogItem from "./Catalogitem";
+import Dropdown from "./DropDown";
+import Category from "../Modal/Category";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-const categories = [
-  {
-    title: 'Все товары',
-    slug: 'all',
-  },
-  {
-    title: 'Новинки',
-    slug: 'new',
-  },
-  {
-    title: 'Акции',
-    slug: 'promotions',
-  },
-];
-
-const data = [
-  {
-    category: '1-ultrasound-diagnostic-systems',
-    catalogList: [
-      {
-        catalog: '4-portable',
-        data: [
-          {
-            title: 'MINDRAY DC 60 X-insight',
-            description: 'A high-end ultrasound scanner that allows for high-quality diagnostics',
-            image: mindrayDC60,
-            new: false,
-            promotions: true,
-            price: '2500000 y.e',
-            sale: '-35%',
-            slug: '1-mindray',
-          },
-          {
-            title: 'MINDRAY SV300',
-            description: 'Advanced solution for mechanical ventilation in clinical settings',
-            image: mindraySV300,
-            new: true,
-            promotions: false,
-            slug: '2-mindray',
-          },
-          {
-            title: 'CL-900i',
-            description: 'One of the smallest fully automated chemiluminescent immunoassay analyzers',
-            image: cl900i,
-            new: true,
-            promotions: false,
-            sale: '-5%',
-            slug: '1-cl',
-          },
-          {
-            title: 'MINDRAY UniBase 30',
-            description: 'Reliable and durable operating table at an affordable price',
-            image: mindrayUniBase,
-            new: true,
-            promotions: false,
-            slug: '2-mindray',
-          },
-          {
-            title: 'MINDRAY BeneHeart',
-            description: 'Mindray’s new solution for non-invasive electrocardiography',
-            image: mindrayBeneHeart,
-            new: false,
-            promotions: true,
-            price: '2500 y.e',
-            sale: '-5%',
-            slug: '4-mindray',
-          },
-          {
-            title: 'MINDRAY DC 60 X-insight',
-            description: 'A high-end ultrasound scanner that allows for high-quality diagnostics',
-            image: mindrayDC60,
-            new: false,
-            promotions: true,
-            price: '2500 y.e',
-            sale: '-55%',
-            slug: '5-mindray',
-          },
-          {
-            title: 'MINDRAY SV300',
-            description: 'Advanced solution for mechanical ventilation in clinical settings',
-            image: mindraySV300,
-            new: true,
-            promotions: false,
-            slug: '6-mindray',
-          },
-          {
-            title: 'CL-900i',
-            description: 'One of the smallest fully automated chemiluminescent immunoassay analyzers',
-            image: cl900i,
-            new: true,
-            promotions: false,
-            slug: '2-cl',
-          },
-          {
-            title: 'MINDRAY UniBase 30',
-            description: 'Reliable and durable operating table at an affordable price',
-            image: mindrayUniBase,
-            new: true,
-            promotions: false,
-            slug: '7-mindray',
-          },
-          {
-            title: 'MINDRAY BeneHeart',
-            description: 'Mindray’s new solution for non-invasive electrocardiography',
-            image: mindrayBeneHeart,
-            new: false,
-            promotions: true,
-            price: '2500 y.e',
-            sale: '-25%',
-            slug: '8-mindray',
-          },
-        ],
-      },
-    ],
-  },
-];
-
-export default function List() {
+const List = ({ data, allCotegories, productWithCatalogID, productWithCategoryId }) => {
   const [categoryModal, setCategoryModal] = useState(false);
   const [displayAll, setDisplayAll] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [adminModal, setAdminModal] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("Все товары");
+  const [filteredData, setFilteredData] = useState([]);
 
-  const handleFilter = (category) => {
-    setSelectedCategory(category);
-    setDisplayAll(false); // Reset display state when changing filter
-  };
-
-  const handleClose = () => {
-    setCategoryModal(false);
-  };
-
-  const handleLoadMore = () => {
-    setDisplayAll(true);
-  };
-
-  const getFilteredData = () => {
-    let items = data[0].catalogList[0].data;
-
-    if (selectedCategory === 'new') {
-      items = items.filter((item) => item.new);
-    } else if (selectedCategory === 'promotions') {
-      items = items.filter((item) => item.promotions);
+  // Ma'lumotlar o'zgarishi bilan komponentni qayta render qilish
+  useEffect(() => {
+    // Initially load data based on the presence of productWithCatalogID or productWithCategoryId
+    if (productWithCatalogID?.data && !productWithCategoryId?.data) {
+      setFilteredData(productWithCatalogID.data);
+    } else if (!productWithCatalogID?.data && productWithCategoryId?.data) {
+      setFilteredData(productWithCategoryId.data);
+    } else if (productWithCatalogID?.data && productWithCategoryId?.data) {
+      setFilteredData(productWithCatalogID.data); // Prioritize CatalogID data if both are present
+    } else {
+      setFilteredData([]);
     }
+  }, [productWithCatalogID, productWithCategoryId]);
 
-    return displayAll ? items : items.slice(0, 10);
-  };
+  // Handle filter changes
+  const handleFilter = useCallback((category) => {
+    setSelectedCategory(category);
+  
+    let items = productWithCatalogID?.data || productWithCategoryId?.data || [];
+  
+    switch (category) {
+      case "Новинки":
+        setFilteredData(items.filter((item) => item.new));
+        break;
+      case "Акции":
+        setFilteredData(items.filter((item) => item.sale));
+        break;
+      case "Все товары":
+      default:
+        setFilteredData(items);
+        break;
+    }
+    setDisplayAll(false);
+  }, [productWithCatalogID, productWithCategoryId]);
+
+  // Clear productWithCategoryId data and use productWithCatalogID data
+  const handleCatalogOpen = useCallback((id) => {
+    if (productWithCatalogID?.data && id === productWithCatalogID.catalogId) {
+      setFilteredData(productWithCatalogID.data);
+    } else if (productWithCategoryId?.data && id === productWithCategoryId.categoryId) {
+      setFilteredData(productWithCategoryId.data);
+    } else {
+      setFilteredData([]); // Clear data if no matching ID
+    }
+  }, [productWithCatalogID, productWithCategoryId]);
+
+  const handleClose = () => setCategoryModal(false);
+  const handleLoadMore = () => setDisplayAll(true);
+
+  // Get filtered data for rendering
+  const getFilteredData = () => displayAll ? filteredData : filteredData.slice(0, 10);
 
   return (
     <div className="w-full max-w-[1440px] mx-auto flex flex-col lg:gap-20 gap-5 px-2 py-24">
-      {categoryModal && <Category handleClose={handleClose} />}
+      {categoryModal && <Category handleClose={handleClose} allCotegories={allCotegories} />}
+      
       <div className="w-full flex flex-col lg:flex-row lg:justify-between gap-5">
         <h1 className="text-3xl max-mdx:text2xl font-semibold">КАТАЛОГ</h1>
         <div className="z-[999] flex items-center justify-between">
@@ -174,19 +80,21 @@ export default function List() {
             <ChevronDownIcon className="w-5 h-5 ml-2 -mr-1" aria-hidden="true" />
           </button>
           <Dropdown handleFilter={handleFilter} />
-          <div className="w-full items-start  flex-col gap-2 hidden lg:flex">
-            <div className="hidden lg:flex flex-col relative items-end ">
-              <div className="overflow-x-scroll gap-4 lg:gap-6 scrollbar-hide touch-auto  hidden lg:flex ">
-                {categories.map((item, index) => (
+
+          <div className="w-full flex-col gap-2 hidden lg:flex">
+            <div className="hidden lg:flex flex-col relative items-end">
+              <div className="overflow-x-scroll gap-4 lg:gap-6 scrollbar-hide touch-auto hidden lg:flex">
+                {["Все товары", "Новинки", "Акции"].map((category) => (
                   <button
-                    onClick={() => handleFilter(item.slug)}
-                    key={index}
-                    className={`z-10 w-auto text-lg transition-text font-semibold ${selectedCategory == item.slug
-                      ? 'text-redMain border-b-2 border-b-redMain'
-                      : 'text-neutral-400'
-                      }`}
+                    onClick={() => handleFilter(category)}
+                    key={category}
+                    className={`z-10 w-auto text-lg transition-text font-semibold ${
+                      selectedCategory === category
+                        ? "text-redMain border-b-2 border-b-redMain"
+                        : "text-neutral-400"
+                    }`}
                   >
-                    <h3 className="my-2 whitespace-nowrap">{item.title}</h3>
+                    <h3 className="my-2 whitespace-nowrap">{category}</h3>
                   </button>
                 ))}
               </div>
@@ -197,28 +105,41 @@ export default function List() {
       </div>
 
       <div className="w-full flex gap-10">
-        <div className="w-full max-w-[350px] max-2xl:max-w-[280px]  max-lg:hidden">
-          <CatalogList />
+        <div className="w-full max-w-[350px] max-2xl:max-w-[280px] max-lg:hidden">
+          <CatalogList
+            data={data}
+            allCotegories={allCotegories}
+            onCatalogOpen={handleCatalogOpen}
+          />
         </div>
         <div>
           <div className="w-full grid grid-cols-1 mdl:grid-cols-2 3xl:grid-cols-3 gap-4">
-            {getFilteredData().map((item, index) => (
-              <div key={index}>
-                <Catalogitem
-                  new={item.new}
-                  sale={item.sale}
-                  image={item.image}
-                  title={item.title}
-                  description={item.description}
-                  price={item.price}
-                  slug={item.slug}
-                />
-              </div>
-            ))}
+            {getFilteredData().length > 0 ? (
+              getFilteredData().map((item, index) => (
+                <div key={item.id || index}>
+                  <CatalogItem
+                    new={item.new}
+                    sale={item.sale}
+                    image={item.gallery[0]?.url}
+                    title={item.name}
+                    description={item.shortDescription}
+                    price={item.originalPrice}
+                    slug={item.slug}
+                    discount={item.discount}
+                  />
+                </div>
+              ))
+            ) : (
+              null
+            )}
+         
           </div>
-          {!displayAll && (
+          {!displayAll && filteredData.length > 10 && (
             <div className="flex justify-center mt-[50px] mdx:mt-[70px]">
-              <button className="border p-3 text-[14px] mdx:text-[16px] px-[50px] hover:bg-[#F9D2D3] font-bold" onClick={handleLoadMore}>
+              <button
+                className="border p-3 text-[14px] mdx:text-[16px] px-[50px] hover:bg-[#F9D2D3] font-bold"
+                onClick={handleLoadMore}
+              >
                 Загрузить еще
               </button>
             </div>
@@ -227,4 +148,6 @@ export default function List() {
       </div>
     </div>
   );
-}
+};
+
+export default List;
