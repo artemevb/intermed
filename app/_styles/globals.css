@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('../../public/fonts/fonts.css');
+@import url('@/public/fonts/fonts.css');
 
 body {
   font-family: 'Lato', sans-serif;
