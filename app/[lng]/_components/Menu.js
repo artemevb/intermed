@@ -7,11 +7,16 @@ import phoneIcon from "@/public/svg/tools/phone-icon.svg";
 import heartIcon from "@/public/svg/tools/heart-icon.svg";
 import close from "@/public/svg/close.svg";
 import { useLanguage } from '../../i18n/locales/LanguageContext';
+import { languages, cookieName } from '../../i18n/settings';
+import { useCookies } from 'react-cookie';
+import { useTranslation } from '../../i18n/client';
 
 const Menu = ({ menu, closeMenu, navOptions }) => {
   const lng = useLanguage();
-  const [selectedLanguage, setSelectedLanguage] = useState("RU");
+  const { i18n } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(lng.toUpperCase());
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
+  const [cookies, setCookie] = useCookies([cookieName]);
 
   const menuRef = useRef(null);
 
@@ -20,9 +25,22 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
   };
 
   const changeLanguage = (lang) => {
+    const newLng = lang.toLowerCase();
     setSelectedLanguage(lang);
     setLanguageMenuOpen(false);
-    // Здесь можно добавить логику для смены языка приложения
+
+    // Обновляем cookie и URL при смене языка
+    setCookie(cookieName, newLng, { path: '/' });
+    const currentPath = window.location.pathname;
+    const pathArray = currentPath.split('/');
+    if (pathArray[1] === i18n.language) {
+      pathArray[1] = newLng;
+    } else {
+      pathArray.unshift(newLng);
+    }
+    const newPath = pathArray.join('/');
+    i18n.changeLanguage(newLng);
+    window.location.href = newPath;
   };
 
   // Закрытие меню при клике за его пределами
@@ -71,14 +89,19 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
                     onClick={() => changeLanguage("UZ")}
                   >
                     <p>O&apos;zbekcha</p>
-
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => changeLanguage("EN")}
+                  >
+                    English
                   </li>
                 </ul>
               </div>
             )}
           </div>
           <div className="flex justify-between items-center gap-4">
-            <Link href={'/favorites'}>
+            <a href={`/${lng}/favorites`}>
               <button className="flex items-center justify-center">
                 <Image
                   src={heartIcon}
@@ -88,7 +111,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
                   className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
                 />
               </button>
-            </Link>
+            </a>
             <a href="tel:+998990909095" className="flex items-center justify-center">
               <Image
                 src={phoneIcon}
@@ -112,7 +135,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
       </div>
       <nav className="flex flex-col font-semibold mt-2">
         {navOptions.map((item, index) => (
-          <Link
+          <a
             onClick={closeMenu}
             href={`/${lng}/${item.slug}`}
             key={index}
@@ -122,7 +145,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
               <p>{item.title}</p>
               <RightIcon />
             </div>
-          </Link>
+          </a>
         ))}
       </nav>
     </div>

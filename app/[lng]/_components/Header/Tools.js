@@ -42,8 +42,16 @@ export default function Tools({ navOptions }) {
 
   const handleLanguageChange = (newLng) => {
     setCookie(cookieName, newLng, { path: '/' });
+    const currentPath = window.location.pathname;
+    const pathArray = currentPath.split('/');
+    if (pathArray[1] === i18n.language) {
+      pathArray[1] = newLng;
+    } else {
+      pathArray.unshift(newLng);
+    }
+    const newPath = pathArray.join('/');
     i18n.changeLanguage(newLng);
-    window.location.href = `/${newLng}${window.location.pathname.replace(`/${i18n.language}`, '')}`;
+    window.location.href = newPath;
   };
 
   useEffect(() => {
@@ -74,7 +82,7 @@ export default function Tools({ navOptions }) {
           className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
         />
       </button>
-      <Link href={`/${i18n.language}/favorites`} className="flex items-center justify-center">
+      <a href={`/${i18n.language}/favorites`} className="flex items-center justify-center">
         <button className="rounded-full max-mdx:px-1 max-mdx:py-1">
           <Image
             src={heartIcon}
@@ -84,7 +92,7 @@ export default function Tools({ navOptions }) {
             className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
           />
         </button>
-      </Link>
+      </a>
       <a href="tel:+998990909095" className="rounded-full max-mdx:px-1 max-mdx:py-1">
         <Image
           src={phoneIcon}

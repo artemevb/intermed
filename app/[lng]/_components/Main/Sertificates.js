@@ -82,12 +82,12 @@ export default function Sertificates() {
           </div>
 
           <div className="w-full justify-center flex">
-            <Link
+            <a
               href={`/${lng}/licenses`}
               className="border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold"
             >
               {t('see-more')}
-            </Link>
+            </a>
           </div>
         </div>
       }
