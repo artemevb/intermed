@@ -1,7 +1,11 @@
 "use client"
-import { useState } from 'react';
+import { useTranslation } from '../../../i18n/client'
+import { useState } from "react";
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function VideoReview() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'video-review')
     const [showAll, setShowAll] = useState(false);
     const videos = [
         {
@@ -23,8 +27,8 @@ export default function VideoReview() {
 
     return (
         <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-8 px-2">
-            <h2 className="text-3xl max-mdx:text-2xl font-bold">
-                ВИДЕООБЗОРЫ
+            <h2 className="text-3xl max-mdx:text-2xl font-bold uppercase">
+                {t('video-review')}
             </h2>
             <div className="grid grid-cols-1 gap-4 mdx:grid-cols-2 xl:grid-cols-3">
                 {visibleVideos.map((video, index) => (
@@ -47,7 +51,7 @@ export default function VideoReview() {
                     onClick={() => setShowAll(!showAll)}
                     className=" border text-[#252324] py-3 px-[55px] text-[14px] mdx:text-[16px] font-bold hover:text-[#fff] hover:bg-[#E94B50]"
                 >
-                    {showAll ? 'Скрыть' : 'Загрузить всё'}
+                    {showAll ? t('hide') : t('download')}
                 </button>
             </div>
         </section>

@@ -1,5 +1,8 @@
 "use client"
-import { useState } from 'react';
+import { useTranslation } from '../../../i18n/client'
+import { useState, useEffect } from "react";
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
+
 import { Menu } from '@headlessui/react';
 import { Fragment } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
@@ -9,6 +12,10 @@ import EllipseButton from '@/public/svg/EllipseButton.svg';
 import Image from "next/image";
 
 export default function Dropdown({ handleFilter }) {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'dropdown')
+  const [isMounted, setIsMounted] = useState(false);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFilter, setSelectedFilter] = useState('all');
 
@@ -34,7 +41,8 @@ export default function Dropdown({ handleFilter }) {
             className="inline-flex justify-center items-center w-full px-4 py-3 font-medium text-black bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent"
             onClick={openModal}
           >
-            {selectedFilter === 'all' ? 'Все товары' : selectedFilter === 'new' ? 'Новинки' : 'Акции'}
+            {selectedFilter === 'all' ? t('allProducts') : selectedFilter === 'new' ? t('newProducts') : t('promotions')}
+
             <ChevronDownIcon className="w-5 h-5 ml-2 -mr-1" aria-hidden="true" />
           </Menu.Button>
         </div>
@@ -44,7 +52,7 @@ export default function Dropdown({ handleFilter }) {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 w-80 mdx:w-[90%]">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-[22px] mdx:text-[27px]  font-semibold ">Сортировать</h2>
+              <h2 className="text-[22px] mdx:text-[27px]  font-semibold ">{t('sort')}</h2>
               <button onClick={closeModal} className="text-gray-500 hover:text-gray-700">
                 <Image
                   src={Close}
@@ -72,7 +80,7 @@ export default function Dropdown({ handleFilter }) {
                   alt={`Close`}
                   className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
                 /></span>}
-                Все товары
+                {t('allProducts')}
               </button>
               <button
                 className={`pt-3 text-[18px] mdx:text-[18px] flex items-center ${selectedFilter === 'promotions' ? 'text-red-600' : 'text-gray-900'}`}
@@ -91,7 +99,7 @@ export default function Dropdown({ handleFilter }) {
                   alt={`Close`}
                   className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
                 /></span>}
-                Акции
+                {t('promotions')}
               </button>
               <button
                 className={`pt-3 text-[18px] mdx:text-[18px] flex items-center ${selectedFilter === 'new' ? 'text-red-600' : 'text-gray-900'}`}
@@ -110,7 +118,7 @@ export default function Dropdown({ handleFilter }) {
                   alt={`Close`}
                   className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
                 /></span>}
-                Новинки
+                {t('newProducts')}
               </button>
             </div>
           </div>

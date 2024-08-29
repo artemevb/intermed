@@ -32,11 +32,11 @@ export default function FullEquipments() {
                 {t('subtitle-1')}
                 <br />{t('subtitle-2')}
               </p>
-              <Link href={`/${lng}/equipment`}>
+              <a href={`/${lng}/equipment`}>
                 <button className="text-white text-[14px] mdx:text-[16px] mt-[10px] bg-contactBg  py-[11px] min-w-[224px] mdl:max-w-[164px] flex items-center justify-center xl:max-w-[224px] xl:py-[15px] hover:bg-[#EE787C] font-bold">
                   {t('more-button')}
                 </button>
-              </Link>
+              </a>
             </div>
             <div className="w-full lg:w-[50%] h-full flex ">
               <div className="w-full flex justify-center mdl:justify-end">

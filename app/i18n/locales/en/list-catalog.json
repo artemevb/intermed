@@ -1,5 +1,8 @@
 {
     "title-list":"catalog",
     "kategories":"Сategories",
-    "load":"Load more"
+    "load":"Load more",
+    "allProducts": "All Products",
+    "newProducts": "New Arrivals",
+    "promotions": "Promotions"
 }

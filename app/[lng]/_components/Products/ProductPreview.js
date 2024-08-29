@@ -1,13 +1,18 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+import { useTranslation } from '../../../i18n/client'
+import { useState, useEffect } from "react";
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 import VerticalCarousel from "./ProductCarousel";
 import Link from "next/link";
 import mindray from "@/public/images/aboutUs/partners/image41.png";
 import heartIcon from "@/public/svg/tools/heart-icon.svg";
-import SignUpForEvent from '@/app/_components/Modal/SendKp';
+import SignUpForEvent from '../../_components/Modal/SendKp';
 
 export default function ProductPreview() {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'product-main')
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -27,7 +32,7 @@ export default function ProductPreview() {
         <div className="flex gap-4 max-lg:hidden">
           <h1 className="text-3xl font-semibold">RESONA R9</h1>
           <div className="py-2 px-5 font-bold rounded-full text-[#E31E24] bg-[#FCE8E9]">
-            Новинка
+          {t('new')}
           </div>
         </div>
         <p className="text-neutral-500 leading-5">
@@ -41,12 +46,12 @@ export default function ProductPreview() {
               <GreenArrow title={"Подробнее"} />
             </span>
           </Link> */}
-          <Link href={`/technical-support/xojik`}>
-          <button className="w-full max-w-[220px] leading-5 cursor-pointer text-left"
+          <a href={`/technical-support/xojik`}>
+            <button className="w-full max-w-[220px] leading-5 cursor-pointer text-left"
             >
-            Гарантия от производителя <span className="relative after:absolute after:w-full after:h-[1px] after:bg-black after:left-0 after:bottom-[-2px]">Техническая поддержка</span>
-          </button>
-          </Link>
+              {t('support')} <span className="relative after:absolute after:w-full after:h-[1px] after:bg-black after:left-0 after:bottom-[-2px]">{t('technical-support')}</span>
+            </button>
+          </a>
           <Image
             src={mindray}
             width={300}
@@ -60,7 +65,7 @@ export default function ProductPreview() {
             className="py-4 px-[60px] text-sm font-semibold text-white bg-[#E94B50] lg:px-[80px] 2xl:px-[90px]"
             onClick={handleOpenModal}
           >
-            Отправить КП
+            {t('kp')}
           </button>
           <button className="px-3 py-3 border flex items-center justify-center">
             <Image

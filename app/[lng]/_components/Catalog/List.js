@@ -15,20 +15,7 @@ import { useTranslation } from '../../../i18n/client'
 import { useState, useEffect } from "react";
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-const categories = [
-  {
-    title: 'Все товары',
-    slug: 'all',
-  },
-  {
-    title: 'Новинки',
-    slug: 'new',
-  },
-  {
-    title: 'Акции',
-    slug: 'promotions',
-  },
-];
+
 
 const data = [
   {
@@ -135,7 +122,6 @@ const data = [
 export default function List() {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'list-catalog')
-  const [isMounted, setIsMounted] = useState(false);
 
   const [categoryModal, setCategoryModal] = useState(false);
   const [displayAll, setDisplayAll] = useState(false);
@@ -143,7 +129,7 @@ export default function List() {
 
   const handleFilter = (category) => {
     setSelectedCategory(category);
-    setDisplayAll(false); // Reset display state when changing filter
+    setDisplayAll(false);
   };
 
   const handleClose = () => {
@@ -165,6 +151,23 @@ export default function List() {
 
     return displayAll ? items : items.slice(0, 10);
   };
+
+  const categories = [
+    {
+      title: t('allProducts'),
+      slug: 'all',
+    },
+    {
+      title: t('newProducts'),
+      slug: 'new',
+    },
+    {
+      title: t('promotions'),
+      slug: 'promotions',
+    },
+  ];
+  
+
 
   return (
     <div className="w-full max-w-[1440px] mx-auto flex flex-col lg:gap-20 gap-5 px-2 py-24">
@@ -225,7 +228,7 @@ export default function List() {
           {!displayAll && (
             <div className="flex justify-center mt-[50px] mdx:mt-[70px]">
               <button className="border p-3 text-[14px] mdx:text-[16px] px-[50px] hover:bg-[#F9D2D3] font-bold" onClick={handleLoadMore}>
-              {t('load')}
+                {t('load')}
               </button>
             </div>
           )}

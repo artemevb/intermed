@@ -8,8 +8,10 @@ import mindraySV300 from "@/public/images/equipments/equip-uzi.png"; // Прим
 import cl900i from "@/public/images/equipments/equip-lab.png"; // Пример изображения, замените на ваши изображения
 import mindrayUniBase from "@/public/images/equipments/equip-uzi.png"; // Пример изображения, замените на ваши изображения
 import Link from "next/link";
-import GreenArrow from "@/app/_components/Buttons/GreenArrow";
+import GreenArrow from "../Buttons/GreenArrow";
 import Catalogitem from "../Catalog/Catalogitem";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function Similar() {
   const equipmentData = [
@@ -86,10 +88,13 @@ export default function Similar() {
     ],
   };
 
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'similar')
+
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-8 px-2">
-      <h2 className="text-3xl max-mdx:text-2xl font-bold">
-        ПОХОЖИЕ ПРОДУКТЫ
+      <h2 className="text-3xl max-mdx:text-2xl font-bold uppercase">
+        {t('similar-products')}
       </h2>
       <div className="w-full">
         <div className="w-full mdx:px-2 xl:px-4">
@@ -110,12 +115,12 @@ export default function Similar() {
         </div>
       </div>
       <div className="flex w-full justify-center">
-        <Link
+        <a
           href="/categories"
           className="border border-greenView px-12 py-3 hover:bg-[#E94B50] transition-all duration-200 hover:text-[#FFF] font-bold"
         >
-          Все товары
-        </Link>
+          {t('all-products')}
+        </a>
       </div>
     </section>
   );

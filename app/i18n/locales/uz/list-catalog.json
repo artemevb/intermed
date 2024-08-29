@@ -1,5 +1,8 @@
 {
     "title-list":"KATALOG",
     "kategories":"Kategoriyalar",
-    "load":"Ko'proq yuklash"
+    "load":"Ko'proq yuklash",
+    "allProducts": "Barcha mahsulotlar",
+    "newProducts": "Yangi mahsulotlar",
+    "promotions": "Aksiya"
 }

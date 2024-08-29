@@ -1,8 +1,11 @@
 "use client"
-import { useState } from 'react';
+import { useTranslation } from '../../../i18n/client'
+import { useState, useEffect } from "react";
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import mindrayDC60 from '@/public/images/Face.png';
+
 
 const reviews = [
     {
@@ -38,12 +41,15 @@ const reviews = [
 ];
 
 export default function Reviews() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'recenzii')
+
     const [showAll, setShowAll] = useState(false);
     const visibleReviews = showAll ? reviews : reviews.slice(0, 1);
 
     return (
         <div className="max-w-[1440px] mx-auto p-4">
-            <h2 className='uppercase text-[25px] font-semibold mdx:text-[25px]'>Рецензии от врачей</h2>
+            <h2 className='uppercase text-[25px] font-semibold mdx:text-[25px]'>{t('recenzii')}</h2>
             {visibleReviews.map((review, index) => (
                 <div key={index} className="bg-white p-6 mb-6">
                     <div className="flex items-center mb-4">
@@ -54,7 +60,8 @@ export default function Reviews() {
                         </div>
                     </div>
                     <p className="mb-4">{review.summary}</p>
-                    <h4 className="text-lg font-semibold mb-2">Основные преимущества</h4>
+                    <h4 className="text-lg font-semibold mb-2">Основные преимущества
+                    </h4>
                     <ul className="list-disc pl-5 mb-4">
                         {review.advantages.map((advantage, index) => (
                             <li key={index}>{advantage}</li>
@@ -73,9 +80,9 @@ export default function Reviews() {
             <div className="flex justify-center">
                 <button
                     onClick={() => setShowAll(!showAll)}
-                    className="bg-[#E94B50] text-white py-3 px-[35px] mdx:px-[50px]"
+                    className="border text-[#252324] py-3 px-[35px] mdx:px-[50px] font-bold hover:text-[#fff] hover:bg-[#E94B50]"
                 >
-                    {showAll ? 'Скрыть' : 'Показать все'}
+                    {showAll ? t('hide') : t('see-all')}
                 </button>
             </div>
         </div>
