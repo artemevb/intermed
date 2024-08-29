@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('@/public/fonts/fonts.css');
+@import url('../../public/fonts/fonts.css');
 
 body {
   font-family: 'Lato', sans-serif;
@@ -158,4 +158,18 @@ body {
 .slick-slide::selection,
 .slick-slide *::selection {
   background: none;
+}
+
+.overflow-x-scroll {
+  overflow-x: auto;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.no-scroll {
+  overflow: hidden;
 }
