@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import GreenArrow from "@/app/_components/Buttons/GreenArrow";
+import GreenArrow from "../../_components/Buttons/GreenArrow";
 
 export default function CategoryItem({ key, title, imageSrc, slug }) {
   return (

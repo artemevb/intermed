@@ -9,11 +9,16 @@ import banner3 from "@/public/images/equipment/EQ.png";
 import Left from "@/public/svg/arrowLeftWhite.svg";
 import Right from "@/public/svg/arrowRightWhite.svg";
 
-import AskaQuestion from "@/app/_components/Modal/AskaQuestion";
+import AskaQuestion from "../../_components/Modal/AskaQuestion";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 const banners = [banner1, banner2, banner3];
 
 export default function BannerCarousel() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'banner-equipment')
+
     const sliderRef = useRef(null);
 
     const settings = {
@@ -52,16 +57,16 @@ export default function BannerCarousel() {
         <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden">
             <div className="flex flex-col xl:flex-row bg-white overflow-hidden">
                 <div className="xl:w-[50%] flex flex-col justify-center p-4 text-white ">
-                    <h1 className="text-[25px] mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">
-                        КОМПЛЕКСНОЕ <br />
-                        <span className="text-black">ОСНАЩЕНИЕ КЛИНИК</span>
+                    <h1 className="text-[25px] uppercase mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">
+                         {t('title-1')}<br />
+                        <span className="text-black uppercase"> {t('title-2')}</span>
                     </h1>
                     <p className="mt-2 text-[#808080] text-[15px] mdx:text-[20px]">
-                        Полное решение для оснащения <br />медицинских учреждений
+                         {t('subtitle-1')}<br /> {t('subtitle-2')}
                     </p>
                     <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px] font-semibold py-[14px] mdx:py-[15.5px] px-4 w-[224px] mb-[25px]"
-                    onClick={openAskaQuestionModal}>
-                        Заказать установку
+                        onClick={openAskaQuestionModal}>
+                         {t('button-1')}
                     </button>
                 </div>
                 <div className="xl:w-[50%] relative">

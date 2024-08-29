@@ -1,0 +1,15 @@
+{
+    "clinic_equipment_stages": "Klinikani jihozlash bosqichlari",
+    "step_by_step": "Tibbiy xizmatni mukammallashtirish sari qadam",
+    "order_installation": "O'rnatishni buyurtma qilish",
+    "consultation": "Konsultatsiya",
+    "meeting_with_client": "Mijoz bilan uchrashuv, ehtiyojlarni baholash",
+    "design_planning": "Loyihalashtirish va rejalashtirish",
+    "equipment_plan_development": "Jihozlash rejasini ishlab chiqish",
+    "equipment_supply": "Jihozlarni yetkazib berish",
+    "purchase_delivery": "Jihozlarni sotib olish va yetkazib berish.",
+    "installation_training": "O'rnatish va o'qitish",
+    "equipment_installation": "Jihozlarni o'rnatish va xodimlarni o'qitish",
+    "maintenance_support": "Texnik xizmat ko'rsatish va qo'llab-quvvatlash",
+    "technical_support": "Texnik xizmat ko'rsatish va qo'llab-quvvatlash"
+}
