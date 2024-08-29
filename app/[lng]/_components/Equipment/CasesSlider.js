@@ -17,6 +17,14 @@ import { useLanguage } from '../../../i18n/locales/LanguageContext';
 export default function CasesSlider() {
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'equipment-cases')
+
+    const truncateDescription = (description) => {
+        if (description.length > 89) {
+            return description.substring(0, 94) + '...';
+        }
+        return description;
+    };
+
     const partnersSlider = [
         {
             id: 1,
@@ -98,7 +106,7 @@ export default function CasesSlider() {
 
     return (
         <div className="w-full max-w-[1440px] flex flex-col mx-auto">
-            <h2 className="mx-[10px] text-[25px] mb-[20px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-bold uppercase">
+            <h2 className="mx-[10px] text-3xl max-mdx:text-2xl font-semibold uppercase mb-[20px] ">
                 {t('cases')}
             </h2>
             <div className="block">
@@ -115,7 +123,7 @@ export default function CasesSlider() {
                                         </div>
                                         <div className="mdx:mb-4">
                                             <h2 className="text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-3">{card.title}</h2>
-                                            <p className="mb-4 text-gray-600 xl:text-[18px]">{card.description}</p>
+                                            <p className="mb-4 text-gray-600 xl:text-[18px]">{truncateDescription(card.description)}</p>
                                             <a href={`/${lng}/partners/${card.link}`}>
                                                 <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px]">
                                                     {t('more-info')} →

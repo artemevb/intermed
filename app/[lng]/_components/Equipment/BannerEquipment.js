@@ -58,15 +58,15 @@ export default function BannerCarousel() {
             <div className="flex flex-col xl:flex-row bg-white overflow-hidden">
                 <div className="xl:w-[50%] flex flex-col justify-center p-4 text-white ">
                     <h1 className="text-[25px] uppercase mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">
-                         {t('title-1')}<br />
+                        {t('title-1')}<br />
                         <span className="text-black uppercase"> {t('title-2')}</span>
                     </h1>
                     <p className="mt-2 text-[#808080] text-[15px] mdx:text-[20px]">
-                         {t('subtitle-1')}<br /> {t('subtitle-2')}
+                        {t('subtitle-1')}<br /> {t('subtitle-2')}
                     </p>
-                    <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px] font-semibold py-[14px] mdx:py-[15.5px] px-4 w-[224px] mb-[25px]"
+                    <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px] font-semibold py-[14px] mdx:py-[15.5px] px-4 max-w-[244px] mb-[25px]"
                         onClick={openAskaQuestionModal}>
-                         {t('button-1')}
+                        {t('button-1')}
                     </button>
                 </div>
                 <div className="xl:w-[50%] relative">

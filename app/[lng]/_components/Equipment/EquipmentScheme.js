@@ -24,7 +24,7 @@ export default function Scheme() {
                         <p className="w-full max-w-[400px] text-[#808080] text-[16px] mdx:text-[18px]">
                             {t('step_by_step')}
                         </p>
-                        <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px]  font-semibold py-[14px] mdx:py-[15.5px] px-4 w-[224px] mb-[25px] hover:bg-[#EE787C] hover:color-[#fff ]"
+                        <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px]  font-semibold py-[14px] mdx:py-[15.5px] px-4 max-w-[244px] mb-[25px] hover:bg-[#EE787C] hover:color-[#fff ]"
                             onClick={openAskaQuestionModal}>
                             {t('order_installation')}
                         </button>

@@ -8,7 +8,20 @@ import partnerPhoto1 from "@/public/svg/reviews/Ellipse1.svg";
 import partnerPhoto2 from "@/public/svg/reviews/Ellipse2.svg";
 import partnerPhoto3 from "@/public/svg/reviews/Ellipse3.svg";
 
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
+
 export default function ReviewsSlider() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'equipment-reviews');
+
+    const truncateDescription = (description) => {
+        if (description.length > 327) {
+            return description.substring(0, 327) + '...';
+        }
+        return description;
+    };
+
     const partnersSlider = [
         {
             id: 1,
@@ -72,8 +85,8 @@ export default function ReviewsSlider() {
 
     return (
         <div className="w-full max-w-[1440px] flex flex-col mx-auto">
-            <h2 className="mx-[10px] text-[25px] mb-[20px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold uppercase">
-                Отзывы
+            <h2 className="mx-[10px] text-3xl max-mdx:text-2xl font-semibold uppercase mb-[20px]">
+                {t('title')}
             </h2>
             <div className="block">
                 <Slider {...settings}>
@@ -84,20 +97,20 @@ export default function ReviewsSlider() {
                                     <div className="mdx:p-8 xl:p-0">
                                         <div className="flex justify-start items-center gap-3 xl:items-start mb-4">
                                             <div className="h-[60px] w-[60px] mdx:h-[80px] mdx:w-[80px] relative xl:mr-4">
-                                                <Image src={card.imageSrc} alt={card.title} layout="fill" objectFit="contain" className="w-full h-auto" />
+                                                <Image src={card.imageSrc} alt={card.title} quality={100} layout="fill" objectFit="contain" className="w-full h-auto" />
                                             </div>
                                             <div>
                                                 <h2 className="text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-1">{card.title}</h2>
                                                 <p className="text-gray-400">{card.date}</p>
                                             </div>
                                         </div>
-                                        <p className="mb-4 mdx:text-[18px]">{card.description}</p>
+                                        <p className="mb-4 mdx:text-[18px]">{truncateDescription(card.description)}</p>
                                     </div>
-                                    <Link href={`/reviews/${card.link}`}>
+                                    <a href={`/${lng}/reviews/${card.link}`}>
                                         <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end">
-                                            Читать полностью
+                                            {t('read-more')}
                                         </span>
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -105,12 +118,12 @@ export default function ReviewsSlider() {
                 </Slider>
             </div>
             <div className="mt-[60px] flex items-center justify-center">
-                <Link
-                    href="/reviews"
+                <a
+                    href={`/${lng}/reviews`}
                     className="px-12 py-3 transition-all text-[#fff] duration-200 bg-[#E94B50] hover:bg-[#EE787C] hover:text-[#ffffff]"
                 >
-                    Смотреть все
-                </Link>
+                    {t('see-more')}
+                </a>
             </div>
         </div>
     );

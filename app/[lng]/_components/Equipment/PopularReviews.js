@@ -1,38 +1,40 @@
 "use client";
 import { useState } from 'react';
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 const faqData = [
   {
-    question: "Какие виды медицинского оборудования вы предлагаете для оснащения клиник?",
-    answer: "Мы предлагаем широкий ассортимент медицинского оборудования для оснащения клиник, включая диагностическое, терапевтическое и хирургическое оборудование. В наш каталог входят ультразвуковые аппараты, рентгеновские установки, эндоскопические системы, лабораторное оборудование, кардиомониторы, аппараты ИВЛ и многое другое. Мы также предоставляем консультации по выбору оборудования и его установке."
+    question: "faq_question_1",
+    answer: "faq_answer_1"
   },
   {
-    question: "Какие услуги вы предоставляете в рамках комплексного оснащения клиник?",
-    answer: "Add content here"
+    question: "faq_question_2",
+    answer: "faq_answer_2"
   },
   {
-    question: "Как проходит процесс установки и наладки оборудования?",
-    answer: "Add content here"
+    question: "faq_question_3",
+    answer: "faq_answer_3"
   },
   {
-    question: "Предоставляете ли вы гарантийное и постгарантийное обслуживание?",
-    answer: "Add content here"
+    question: "faq_question_4",
+    answer: "faq_answer_4"
   },
   {
-    question: "Каковы сроки поставки оборудования?",
-    answer: "Add content here"
+    question: "faq_question_5",
+    answer: "faq_answer_5"
   },
   {
-    question: "Есть ли возможность индивидуального подбора оборудования под нужды конкретной клиники?",
-    answer: "Add content here"
+    question: "faq_question_6",
+    answer: "faq_answer_6"
   },
   {
-    question: "Можно ли получить консультацию по выбору оборудования?",
-    answer: "Add content here"
+    question: "faq_question_7",
+    answer: "faq_answer_7"
   },
   {
-    question: "Предоставляете ли вы услуги по обучению персонала работе с новым оборудованием?",
-    answer: "Add content here"
+    question: "faq_question_8",
+    answer: "faq_answer_8"
   }
 ];
 
@@ -50,6 +52,9 @@ const Arrow = ({ isOpen }) => (
 );
 
 const FaqSection = () => {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'equipment-popular-reviews')
+
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggleFAQ = index => {
@@ -58,18 +63,18 @@ const FaqSection = () => {
 
   return (
     <div className="w-full max-w-[1440px] mx-auto px-2">
-      <h2 className="text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold mb-6 ml-3">ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ</h2>
+      <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase mb-6 ml-3">{t('faq_title')}</h2>
       {faqData.map((item, index) => (
         <div key={index} className="mb-4">
           <button
             className="w-full flex justify-between items-center text-left p-4  text-lg transition-all duration-700"
             onClick={() => toggleFAQ(index)}
           >
-            <span className={`text-[20px] mdx:text-[24px] xl:text-[28px] ${openIndex === index ? 'text-[#E94B50]' : 'text-black transition-all duration-1000'}`}>{item.question}</span>
+            <span className={`text-[20px] mdx:text-[24px] xl:text-[28px] ${openIndex === index ? 'text-[#E94B50]' : 'text-black transition-all duration-1000'}`}>{t(item.question)}</span>
             <span className="flex-shrink-0"><Arrow isOpen={openIndex === index} /></span>
           </button>
           <div className={`border-b border-[#E1E1E1] overflow-hidden transition-all duration-700 ${openIndex === index ? 'max-h-screen' : 'max-h-0'}`}>
-            <p className="p-4 text-[15px] mdx:text-[20px] ">{item.answer}</p>
+            <p className="p-4 text-[15px] mdx:text-[20px] ">{t(item.answer)}</p>
           </div>
         </div>
       ))}
