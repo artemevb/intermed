@@ -4,6 +4,9 @@ import Image from 'next/image';
 import partnerPhoto1 from "@/public/images/clients/gallery1.png";
 import partnerPhoto2 from "@/public/images/clients/gallery2.png";
 import partnerPhoto3 from "@/public/images/clients/gallery3.png";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
+
 
 const gallery = [
     {
@@ -59,15 +62,17 @@ const gallery = [
 ];
 
 const Gallery = () => {
-    const [visibleCount, setVisibleCount] = useState(6); // Initially show 6 photos
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'gallery')
+    const [visibleCount, setVisibleCount] = useState(6); 
 
     const showMorePartners = () => {
-        setVisibleCount(gallery.length); // Show all photos on button click
+        setVisibleCount(gallery.length);
     };
 
     return (
         <div className="w-full max-w-[1440px] mx-auto px-4 py-6 bg-white mb-[120px] mdl:mb-[150px]">
-            <h2 className="text-[20px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold mb-6 mt-[120px]">ГАЛЕРЕЯ</h2>
+            <h2 className="text-[20px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold mb-6 mt-[120px] uppercase">{t('gallery')}</h2>
             <div className="grid grid-cols-1 gap-6 mdl:grid-cols-2 mdl:gap-3 xl:grid-cols-3">
                 {gallery.slice(0, visibleCount).map((item) => (
                     <div key={item.id} className="w-full h-auto">
@@ -86,7 +91,7 @@ const Gallery = () => {
                     <button
                         onClick={showMorePartners}
                         className="bg-[#fff] text-[14px] mdx:text-[16px] py-3 px-[60px] border hover:bg-[#E94B50] hover:text-[#fff]">
-                        Загрузить все
+                        {t('download-all')}
                     </button>
                 </div>
             )}
