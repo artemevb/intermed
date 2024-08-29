@@ -82,19 +82,19 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => changeLanguage("RU")}
                   >
-                    Русский
+                    RU
                   </li>
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => changeLanguage("UZ")}
                   >
-                    <p>O&apos;zbekcha</p>
+                    <p>O&apos;Z</p>
                   </li>
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => changeLanguage("EN")}
                   >
-                    English
+                    EN
                   </li>
                 </ul>
               </div>
