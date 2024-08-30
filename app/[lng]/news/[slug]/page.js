@@ -6,7 +6,7 @@ import OtherNews from "../../_components/NewsPages/OtherNews";
 
 export default function page() {
     return (
-        <div >
+        <div>
             <NewPages />
             <Share />
             <OtherNews />

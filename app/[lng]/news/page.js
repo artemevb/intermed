@@ -3,7 +3,8 @@ import NewsComp from "../_components/News/NewsComp";
 import Application from "../_components/Main/Application";
 
 
-export default function News() {
+export default async function News() {
+ 
   return (
     <div>
       <Events />

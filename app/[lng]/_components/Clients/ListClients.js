@@ -1,108 +1,38 @@
 "use client"
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import Link from "next/link";
 import Image from 'next/image';
-import partnerPhoto1 from "@/public/images/clients/image1.png";
 import GreenArrow from "../Buttons/GreenArrow";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import axios from 'axios';
 
-const clients = [
-    {
-        id: 1,
-        imageSrc: partnerPhoto1,
-        title: "Browiner",
-        description: "Browiner is one of the leading suppliers of medical devices and solutions in the field of mobile digital radiography",
-        link: "browiner"
-    },
-    {
-        id: 2,
-        imageSrc: partnerPhoto1,
-        title: "United Imaging",
-        description: "United Imaging is a leading global developer and manufacturer of advanced medical imaging and radiotherapy equipment",
-        link: "imaging"
-    },
-    {
-        id: 3,
-        imageSrc: partnerPhoto1,
-        title: "Zoncare Global",
-        description: "Zoncare is a leading high-tech medical device manufacturer and supplier located in the Optical Valley of China",
-        link: "zoncare"
-    },
-    {
-        id: 4,
-        imageSrc: partnerPhoto1,
-        title: "Mindray",
-        description: "Mindray is a global leader in the development and manufacture of medical devices and solutions",
-        link: "mindray"
-    },
-    {
-        id: 5,
-        imageSrc: partnerPhoto1,
-        title: "Hefei Shendeng Medical Equipment Co.",
-        description: "Is a leading provider of medical equipment and solutions",
-        link: "Shendeng"
-    },
-    {
-        id: 6,
-        imageSrc: partnerPhoto1,
-        title: "lingen",
-        description: "Lingen Precision Medical Products Co., Ltd. is a custom manufacturer specializing in medical products",
-        link: "lingen"
-    },
-    {
-        id: 7,
-        imageSrc: partnerPhoto1,
-        title: "Partner 7",
-        description: "Description for partner 7",
-        link: "partner7"
-    },
-    {
-        id: 8,
-        imageSrc: partnerPhoto1,
-        title: "Partner 8",
-        description: "Description for partner 8",
-        link: "partner8"
-    },
-    {
-        id: 9,
-        imageSrc: partnerPhoto1,
-        title: "Partner 9",
-        description: "Description for partner 9",
-        link: "partner9"
-    },
-    {
-        id: 10,
-        imageSrc: partnerPhoto1,
-        title: "Partner 10",
-        description: "Description for partner 10",
-        link: "partner10"
-    },
-    {
-        id: 11,
-        imageSrc: partnerPhoto1,
-        title: "Partner 11",
-        description: "Description for partner 11",
-        link: "partner11"
-    },
-    {
-        id: 12,
-        imageSrc: partnerPhoto1,
-        title: "Partner 12",
-        description: "Description for partner 12",
-        link: "partner12"
-    },
-];
 
 export default function ListClients() {
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'list-clients')
+    const [clients , setClients] = useState([])
 
     const [visibleCount, setVisibleCount] = useState(6);
 
     const showMoreClients = () => {
         setVisibleCount(clients.length);
     };
+
+    useEffect(() => {
+        const fetchNews = async () => {
+          try {
+            const response = await axios.get(`http://213.230.91.55:8130/v1/partner/all`, {
+              headers: { 'Accept-Language': lng },
+            });
+            setClients(response.data.data);
+          } catch (error) {
+            console.error('Failed to fetch news:', error.message);
+          } 
+        };
+    
+        fetchNews();
+      }, [lng]);
 
     return (
         <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 mb-[110px] mdx:mb-[130px] xl:mb-[180px]">
@@ -112,15 +42,14 @@ export default function ListClients() {
                     <div key={card.id} className="bg-white p-4 w-full border-[1px] border-gray-200 mdx:p-0 mdl:p-5 slg:h-auto">
                         <div className="mdx:flex mdx:flex-row items-center justify-between ">
                             <div className="mdx:w-[50%] h-[70px] relative mt-3">
-                                <Image src={card.imageSrc} alt={card.title} layout="fill" objectFit="contain" />
+                                <Image src={card.logo.url} alt={card.title} layout="fill" objectFit="contain" />
                             </div>
                             <div className='mdx:mb-4 mdx:w-[50%]'>
-                                <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.title}</h2>
-                                <p className="mb-4 text-gray-600 xl:text-[18px]">{card.description}</p>
-                                <a href={`/${lng}/clients/${card.link}`}>
+                                <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.name}</h2>
+                                <p className="mb-4 text-gray-600 xl:text-[18px]">{card.note.length > 100 ? card.note.slice(0 ,100) + '...' : card.note }</p>
+                                <a href={`/${lng}/clients/${card.slug}`}>
                                     <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
                                         <GreenArrow title={t('more-details')} />
-
                                     </span>
                                 </a>
                             </div>

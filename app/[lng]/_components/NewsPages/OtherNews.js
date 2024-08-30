@@ -4,52 +4,46 @@ import NewCard from "../News/NewCard";
 import Link from "next/link";
 import GreenArrow from "../../_components/Buttons/GreenArrow";
 import { useTranslation } from '../../../i18n/client'
+import { useEffect  , useState} from 'react';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
-
+import axios from 'axios';
 export default function News() {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'news-pages-other-news')
-  const data = [
-    {
-      title: "The Future of Telemedicine and Remote Patient Monitoring",
-      date: "12 Июня",
-      imageSrc: newsPhoto,
-      slug: "telemedicine",
-    },
-    {
-      title:
-        "The Impact of Portable Medical Devices on Healthcare Accessibility",
-      date: "12 Июня",
-      imageSrc: newsPhoto,
-      slug: "medical-devices",
-    },
-    {
-      title: "The Future of Telemedicine and Remote Patient Monitoring",
-      date: "12 Июня",
-      imageSrc: newsPhoto,
-      slug: "telemedicine",
-    },
-    {
-      title:
-        "Children's health: Vaccination and prevention of infectious diseases",
-      date: "12 Июня",
-      imageSrc: newsPhoto,
-      slug: "children",
-    },
-  ];
+  const [news, setNews] = useState([]);
+  
+
+  // Fetch news whenever the language or current page changes
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const response = await axios.get(`http://213.230.91.55:8130/v1/new/get-all?page=1`, {
+          headers: { 'Accept-Language': lng },
+        });
+        setNews(response.data.data);
+      } catch (error) {
+        console.error('Failed to fetch news:', error.message);
+      }
+    };
+
+    fetchNews();
+  }, [lng]);
+
+
+  const slicedData = news.slice(0, 4);
 
   return (
     <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 mb-[150px] mt-[150px] mdx:mt-[190px] xl:mt-[230px]">
       <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase">Другие новости</h2>
       <div className="w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto">
-        {data.map((item, i) => {
+        {slicedData.map((item, i) => {
           return (
             <a key={i} href={`/${lng}/news/${item.slug}`}>
               <NewCard
                 key={i}
-                title={item.title}
-                date={item.date}
-                imageSrc={item.imageSrc}
+                title={item.head.heading}
+                date={item.head.text}
+                imageSrc={item.head.photo.url}
               />
             </a>
           );

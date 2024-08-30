@@ -25,7 +25,7 @@ export default function NewCard({ key, title, date, imageSrc }) {
         className="w-full h-auto object-cover"
       />
       <div className="w-full flex flex-col gap-6 pl-4 pb-4">
-        <h3 className="text-xl max-mdx:text-lg font-semibold">
+        <h3 className="text-xl max-mdx:text-lg font-semibold line-clamp-4">
           {title}
         </h3>
         {

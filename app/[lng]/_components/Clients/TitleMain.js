@@ -7,7 +7,7 @@ const partners = [
     {
         id: 1,
         imageSrc: partnerPhoto1,
-        title: "VITAMED MEDICAL",
+        title: "VITAMasdasdasdED asdMEDICALssdsdsd",
         description: "VITAMED - это современный, уникальный, многопрофильный медицинский центр с широким спектром амбулаторно-поликлинических услуг, реабилитационной стационарной помощью, высококвалифицированными специалистами, современным лабораторным, диагностическим и лечебным оборудованием на уровне международных стандартов",
         country: "Ташкент"
     },
@@ -17,6 +17,20 @@ const partners = [
 
 const TitleMain = () => {
     const partner = partners[0]; 
+    // useEffect(() => {
+    //     const fetchNews = async () => {
+    //       try {
+    //         const response = await axios.get(`http://213.230.91.55:8130/v1/partner/all`, {
+    //           headers: { 'Accept-Language': lng },
+    //         });
+    //         setClients(response.data.data);
+    //       } catch (error) {
+    //         console.error('Failed to fetch news:', error.message);
+    //       } 
+    //     };
+    
+    //     fetchNews();
+    //   }, [lng]);
 
     return (
         <div className="w-full max-w-[1440px] mx-auto px-4 py-6 bg-white">

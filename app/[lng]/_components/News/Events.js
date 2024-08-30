@@ -17,6 +17,10 @@ import { useLanguage } from '../../../i18n/locales/LanguageContext';
 export default function Events() {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'news-events')
+
+  
+
+
   const data = [
     {
       title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
