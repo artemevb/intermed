@@ -1,6 +1,5 @@
 "use client"
 import Image from 'next/image';
-import partnerPhoto1 from "@/public/images/clients/image1.png"; // Пример изображения партнера
 import location from "@/public/svg/clients/location.svg"; // Иконка местоположения
 
 
