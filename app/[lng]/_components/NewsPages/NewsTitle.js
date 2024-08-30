@@ -9,8 +9,8 @@ import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function NewsTitle() {
-    const lng = useLanguage(); // Хук вызывается корректно
-    const { t } = useTranslation(lng); // Перевод также вызывается корректно
+    const lng = useLanguage();
+    const { t } = useTranslation(lng); 
     const [news, setNews] = useState(null)
     const { slug } = useParams()
 
