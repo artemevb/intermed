@@ -3,9 +3,9 @@ import Image from 'next/image';
 import partnerPhoto1 from "@/public/svg/reviews/Ellipse1.svg";
 import partnerPhoto2 from "@/public/svg/reviews/Ellipse2.svg";
 import partnerPhoto3 from "@/public/svg/reviews/Ellipse3.svg";
-import Pagination from "@/app/_components/News/Pagination";
+import Pagination from "../News/Pagination";
 import { useState } from 'react';
-import Modal from "@/app/_components/Modal/Reviews";
+import Modal from "../Modal/Reviews";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
