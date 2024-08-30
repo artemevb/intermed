@@ -39,6 +39,7 @@ export default function PartnerPage() {
                             <Image
                                 src={partner.imageIcons}
                                 alt={partner.title}
+                                quality={100}
                                 objectFit="contain"
                                 className='mr-2'
                             />
@@ -48,6 +49,7 @@ export default function PartnerPage() {
                             <Image
                                 src={partner.imageSrc}
                                 alt={partner.title}
+                                quality={100}
                                 objectFit="contain"
                             />
                         </div>

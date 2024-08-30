@@ -37,6 +37,7 @@ const Modal = ({ selectedReviews, closeModal }) => {
                 <Image src={selectedReviews.imageSrc}                       
                 width={1500}
                 height={1500} 
+                quality={100}
                 alt={selectedReviews.title} 
                 objectFit="contain" 
                 className="w-full h-auto" 

@@ -1,15 +1,19 @@
 import CatalogList from '../Catalog/CatalogBar'
 import Image from 'next/image'
 import close from '@/public/svg/close-gray.svg'
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function Category({
 	handleClose,
 	allCategories,
 	setCategoryID,
 	setCatalogID,
-  handleCatalogOpen,
+	handleCatalogOpen,
 	lng,
 }) {
+	const { t } = useTranslation(lng, 'modal-category');
+
 	return (
 		<div className='fixed lg:hidden h-screen w-full inset-0 z-[9999] bg-modalBg flex justify-center items-center max-mdx:px-2 px-12 py-12'>
 			<div className='w-full h-full overflow-y-scroll no-scrollbar bg-white relative px-6 pt-8'>
@@ -27,7 +31,7 @@ export default function Category({
 					/>
 				</button>
 				<h2 className='mb-8 text-3xl max-mdx:text-2xl font-semibold'>
-					Категории
+					{t('category')}
 				</h2>
 				<CatalogList
 					allCategories={allCategories}

@@ -15,6 +15,7 @@ const Modal = ({ selectedLicense, closeModal }) => {
                         <Image
                             src={selectedLicense.imageSrc}
                             alt={selectedLicense.alt}
+                            quality={100}
                             layout="responsive"
                             objectFit="contain"
                             className='w-full h-full'
