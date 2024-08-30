@@ -17,6 +17,7 @@ export default function NewsTitle() {
                     src={newsPhoto}
                     width={500}
                     height={500}
+                    quality={100}
                     alt={`News Image`}
                     className="w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl"
                 />
@@ -45,6 +46,7 @@ export default function NewsTitle() {
                     <Image
                         src={newsPhoto}
                         width={500}
+                        quality={100}
                         height={500}
                         alt={`News Image`}
                         className="w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl"
@@ -59,6 +61,7 @@ export default function NewsTitle() {
                         src={newsPhoto}
                         width={500}
                         height={500}
+                        quality={100}
                         alt={`News Image`}
                         className="w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl"
                     />
@@ -73,6 +76,7 @@ export default function NewsTitle() {
                         width={500}
                         height={500}
                         alt={`News Image`}
+                        quality={100}
                         className="w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl"
                     />
                 </div>

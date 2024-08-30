@@ -1,9 +1,14 @@
+"use client"
 import newsPhoto from "@/public/images/news/news-photo.png";
 import NewCard from "../News/NewCard";
 import Link from "next/link";
-import GreenArrow from "@/app/_components/Buttons/GreenArrow";
+import GreenArrow from "../../_components/Buttons/GreenArrow";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function News() {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'news-pages-other-news')
   const data = [
     {
       title: "The Future of Telemedicine and Remote Patient Monitoring",
@@ -39,24 +44,24 @@ export default function News() {
       <div className="w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto">
         {data.map((item, i) => {
           return (
-            <Link key={i} href={`/news/${item.slug}`}>
+            <a key={i} href={`/${lng}/news/${item.slug}`}>
               <NewCard
                 key={i}
                 title={item.title}
                 date={item.date}
                 imageSrc={item.imageSrc}
               />
-            </Link>
+            </a>
           );
         })}
       </div>
       <div className="flex w-full justify-center">
-        <Link
-          href="/news"
+        <a
+          href={`/${lng}/news`}
           className="border-1 border py-3 px-12 hover:bg-[#E94B50] hover:text-[#FFF] transition-all duration-200 "
         >
           Все новости
-        </Link>
+        </a>
       </div>
     </div>
   );

@@ -1,12 +1,16 @@
 "use client"
 
 import newsPhoto from "@/public/images/news/news-photo.png";
-import NewCard from "@/app/_components/News/NewCard";
-import Pagination from "@/app/_components/News/Pagination";
+import NewCard from "../News/NewCard";
+import Pagination from "../News/Pagination";
 import Link from "next/link";
 import { useState } from 'react';
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function NewsComp() {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'news-comp')
   const data = [
     {
       title: "The Future of Telemedicine and Remote Patient Monitoring",
@@ -119,17 +123,17 @@ export default function NewsComp() {
 
   return (
     <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 my-[120px] mdx:my-[200px] 2xl:my-[250px]">
-      <h2 className="text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold">НОВОСТИ</h2>
+      <h2 className="text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold uppercase">{t('title')}</h2>
       <div className="w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto">
         {currentItems.map((item, i) => (
-          <Link key={i} href={`/news/${item.slug}`}>
+          <a key={i} href={`/${lng}/news/${item.slug}`}>
             <NewCard
               key={i}
               title={item.title}
               date={item.date}
               imageSrc={item.imageSrc}
             />
-          </Link>
+          </a>
         ))}
       </div>
       <div className="flex w-full justify-center">

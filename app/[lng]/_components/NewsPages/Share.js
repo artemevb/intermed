@@ -37,6 +37,7 @@ export default function NewsTitle() {
                             src={newsPhoto}
                             width={500}
                             height={500}
+                            quality={100}
                             alt="News Image"
                             className="w-full h-auto max-w-[340px] max-h-[340px] object-cover mdl:w-full mdl:max-h-[280px] mdl:max-w-[280px] mdl:mr-5 xl:max-h-[310px] xl:max-w-[310px]"
                         />
@@ -78,6 +79,7 @@ export default function NewsTitle() {
                                             src={icon.src}
                                             width={21}
                                             height={21}
+                                            quality={100}
                                             alt={icon.alt}
                                             className="w-[21px] h-[21px] object-cover slg:h-[24px] slg:w-[24px]"
                                         />

@@ -1,23 +1,30 @@
+"use client"
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
+
 export default function Advantages() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'equipment-advantages');
+    
     const services = [
         {
-            title: "Качество оборудования",
-            description: "Обеспечиваем только высококачественное оборудование",
+            title: t("quality_equipment"),
+            description: t("high_quality_equipment"),
             highlight: false,
         },
         {
-            title: "Комплексные решения",
-            description: "Установка и обучение с выездом на место",
+            title: t("comprehensive_solutions"),
+            description: t("installation_training"),
             highlight: false,
         },
         {
-            title: "Экономия времени и средств",
-            description: "Весь товар сертифицирован, услуги лицензированы",
+            title: t("time_cost_savings"),
+            description: t("certified_goods"),
             highlight: false,
         },
         {
             title: "",
-            description: "Нам доверяют более 2000 медицинских учреждений по всей Республике Узбекистан",
+            description: t("trusted_by"),
             highlight: true,
         },
     ];
@@ -26,7 +33,7 @@ export default function Advantages() {
         <>
             <div className="max-w-[1440px] mx-auto px-3">
                 <div className="text-[25px] font-semibold mdx:text-[36px] xl:text-[40px] px-2 mb-4 text-[#252324]">
-                    ПРЕИМУЩЕСТВА КОМПЛЕКСНОГО <br/>ОСНАЩЕНИЯ
+                {t("advantages_title-1")} <br/>{t("advantages_title-2")}
                 </div>
                 <div className="grid gap-4 mdl:grid-cols-2 2xl:grid-cols-4">
                     {services.map((service, index) => (

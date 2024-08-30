@@ -1,9 +1,14 @@
+"use client"
 import Image from "next/image";
 import intermed from "@/public/images/contacts/image48.png";
 import intermed2 from "@/public/images/contacts/image49.png";
 import alnair from "@/public/images/contacts/image50.png";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function ContAddress() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'map-representatives')
     const data = [
         {
             title: "Intermed Innovation",
@@ -37,7 +42,7 @@ export default function ContAddress() {
     return (
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 mb-[180px]">
             <div>
-                <h2 className="mt-[120px] text-3xl font-semibold uppercase mt-18 mdx:mt-[170px] mb-8">Международные представительства</h2>
+                <h2 className="mt-[120px] text-3xl font-semibold uppercase mt-18 mdx:mt-[170px] mb-8">{t('title')}</h2>
 
                 <div className="grid gap-6 slg:grid-cols-2 xl:grid-cols-3">
                     {data.map((item, i) => (

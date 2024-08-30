@@ -9,10 +9,14 @@ import eventImage2 from "@/public/images/news/events/2.png";
 import eventImage3 from "@/public/images/news/events/3.png";
 import eventImage4 from "@/public/images/news/events/4.png";
 
-import GreenArrow from "@/app/_components/Buttons/GreenArrow";
-import EventCard from "@/app/_components/Events/EventCard";
+import GreenArrow from "../Buttons/GreenArrow";
+import EventCard from "../Events/EventCard";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function Events() {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'news-events')
   const data = [
     {
       title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
@@ -70,12 +74,12 @@ export default function Events() {
 
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2">
-      <Link href={`/events/`}>
-      <h2 className="text-3xl max-mdx:text-2xl font-bold flex items-center mt-[40px] uppercase">
-        Мероприятия
-        <GreenArrow />
-      </h2>
-      </Link>
+      <a href={`/${lng}/events/`}>
+        <h2 className="text-3xl max-mdx:text-2xl font-bold flex items-center mt-[40px] uppercase">
+          {t('title')}
+          <GreenArrow />
+        </h2>
+      </a>
       <div className="w-full">
         <Slider {...settings}>
           {data.map((item, index) => (

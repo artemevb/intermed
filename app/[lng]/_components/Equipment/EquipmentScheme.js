@@ -1,8 +1,13 @@
 "use client"
 import React, { useState } from "react";
-import AskaQuestion from "@/app/_components/Modal/AskaQuestion";
+import AskaQuestion from "../../_components/Modal/AskaQuestion";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function Scheme() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'equipment-scheme')
+
     const [isAskaQuestionModalOpen, setIsAskaQuestionModalOpen] = useState(false);
 
     const openAskaQuestionModal = () => setIsAskaQuestionModalOpen(true);
@@ -14,12 +19,14 @@ export default function Scheme() {
                 <div className="flex flex-col gap-8 xl:flex-row  xl:justify-beetwen xl:gap-[23%]">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-[25px] mdx:text-[30px] mdl:text-[35px] mt-[30px] xl:text-[40px] font-semibold uppercase xl:w-[508px]">
-                            Этапы оснащения клиник
+                            {t('clinic_equipment_stages')}
                         </h2>
-                        <p className="w-full max-w-[400px] text-[#808080] text-[16px] mdx:text-[18px]">Шаг за шагом к совершенству медицинского обслуживания</p>
-                        <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px]  font-semibold py-[14px] mdx:py-[15.5px] px-4 w-[224px] mb-[25px] hover:bg-[#EE787C] hover:color-[#fff ]"
+                        <p className="w-full max-w-[400px] text-[#808080] text-[16px] mdx:text-[18px]">
+                            {t('step_by_step')}
+                        </p>
+                        <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px]  font-semibold py-[14px] mdx:py-[15.5px] px-4 max-w-[244px] mb-[25px] hover:bg-[#EE787C] hover:color-[#fff ]"
                             onClick={openAskaQuestionModal}>
-                            Заказать установку
+                            {t('order_installation')}
                         </button>
                     </div>
                     <div className="grid w-full h-auto grid-cols-1 grid-rows-5 pl-4">
@@ -29,10 +36,10 @@ export default function Scheme() {
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
                                 <h1 className="text-2xl text-redMain font-semibold">
-                                    Консультация
+                                    {t('consultation')}
                                 </h1>
                                 <p className="max-w-[600px]">
-                                    Встреча с клиентом, оценка потребностей
+                                    {t('meeting_with_client')}
                                 </p>
                             </div>
                         </div>
@@ -42,10 +49,10 @@ export default function Scheme() {
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
                                 <h1 className="text-2xl text-redMain font-semibold">
-                                    Проектирование и планирование
+                                    {t('design_planning')}
                                 </h1>
                                 <p className="max-w-[600px]">
-                                    Разработка плана оснащения
+                                    {t('equipment_plan_development')}
                                 </p>
                             </div>
                         </div>
@@ -55,10 +62,10 @@ export default function Scheme() {
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
                                 <h1 className="text-2xl text-redMain font-semibold">
-                                    Поставка оборудования
+                                    {t('equipment_supply')}
                                 </h1>
                                 <p className="max-w-[600px]">
-                                    Закупка и доставка оборудования.
+                                    {t('purchase_delivery')}
                                 </p>
                             </div>
                         </div>
@@ -68,10 +75,10 @@ export default function Scheme() {
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
                                 <h1 className="text-2xl text-redMain font-semibold">
-                                    Установка и обучение
+                                    {t('installation_training')}
                                 </h1>
                                 <p className="max-w-[600px]">
-                                    Монтаж оборудования и обучение персонала
+                                    {t('equipment_installation')}
                                 </p>
                             </div>
                         </div>
@@ -81,10 +88,10 @@ export default function Scheme() {
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
                                 <h1 className="text-2xl text-redMain font-semibold">
-                                    Обслуживание и поддержка
+                                    {t('maintenance_support')}
                                 </h1>
                                 <p className="max-w-[600px]">
-                                    Техническое обслуживание и поддержка
+                                    {t('technical_support')}
                                 </p>
                             </div>
                         </div>

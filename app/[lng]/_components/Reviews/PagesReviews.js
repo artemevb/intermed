@@ -67,6 +67,7 @@ export default function Reviews() {
                       src={item.imageSrc}
                       width={1500}
                       height={1500}
+                      quality={100}
                       alt={item.title} 
                       objectFit="contain" className="w-full h-auto" />
                     </div>

@@ -20,6 +20,7 @@ export default function NewCard({ key, title, date, imageSrc }) {
         src={imageSrc}
         width={500}
         height={500}
+        quality={100}
         alt={`News Image ${key}`}
         className="w-full h-auto object-cover"
       />

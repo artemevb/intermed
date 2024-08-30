@@ -2,10 +2,15 @@
 import { useState } from 'react';
 import Image from "next/image";
 import newsPhoto from "@/public/images/events/eventsSignUp.png";
-import Timetable from "@/app/_components/Modal/Timetable";
-import SignUpForEvent from "@/app/_components/Modal/SignUpForEvent";
+import Timetable from "../../_components/Modal/Timetable";
+import SignUpForEvent from "../../_components/Modal/SignUpForEvent";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function EventSignUp() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'events-events-sign-up')
+
     const [isTimetableModalOpen, setIsTimetableModalOpen] = useState(false);
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
@@ -25,13 +30,13 @@ export default function EventSignUp() {
                     <div className="flex flex-row justify-between mt-[20px] mdx:justify-normal mdx:gap-2 xl:gap-4">
                         <button className="w-[49%] bg-[#E94B50] hover:bg-[#EE787C] py-[15px] text-white font-semibold mdx:max-w-[220px]"
                             onClick={openSignUpModal}>
-                            Записаться
+                            {t('sign-up')}
                         </button>
                         <button
                             className="w-[49%] border-[1px] bg-[#fff] py-[15px] font-semibold mdx:max-w-[220px] hover:bg-[#E94B50] hover:text-[#ffffff]"
                             onClick={openTimetableModal}
                         >
-                            Расписание
+                            {t('schedule')}
                         </button>
                     </div>
                 </div>
@@ -39,6 +44,7 @@ export default function EventSignUp() {
                     <Image
                         src={newsPhoto}
                         alt={'title'}
+                        quality={100}
                         objectFit="cover"
                         className="object-cover w-full h-full "
                     />

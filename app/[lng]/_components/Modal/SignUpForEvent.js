@@ -1,8 +1,13 @@
 import Image from "next/image";
 import close from "@/public/svg/close.svg";
 import { useState } from "react";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function SignUpForEvent({ closeModal }) {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'sign-up-for-event')
+
     const [form, setForm] = useState({
         name: '',
         phone: '',
@@ -19,7 +24,6 @@ export default function SignUpForEvent({ closeModal }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add your form submission logic here
     };
 
     return (
@@ -37,8 +41,8 @@ export default function SignUpForEvent({ closeModal }) {
                         className="h-full w-full"
                     />
                 </button>
-                <h2 className="text-xl font-semibold mb-4 mdx:text-[22px] 2xl:text-[24px] xl:max-w-[213px]">Записаться на мероприятие</h2>
-                <p className="text-[14px] mdx:text-[15px] xl:text-[16px] text-gray-500 mb-6 max-w-[213px]">Менеджеры свяжутся с вами чтобы подтвердить запись</p>
+                <h2 className="text-xl font-semibold mb-4 mdx:text-[22px] 2xl:text-[24px] xl:max-w-[213px]">{t('sign-up-for-an-event')}</h2>
+                <p className="text-[14px] mdx:text-[15px] xl:text-[16px] text-gray-500 mb-6 max-w-[213px]">{t('connection')}</p>
                 <form onSubmit={handleSubmit}>
                     <div className="relative mb-6">
                         <input
@@ -48,7 +52,7 @@ export default function SignUpForEvent({ closeModal }) {
                             value={form.name}
                             onChange={handleChange}
                             className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] mdl:text-[20px]"
-                            placeholder="ФИО"
+                            placeholder={t('placeholder-name')}
                             required
                         />
                     </div>
@@ -60,7 +64,7 @@ export default function SignUpForEvent({ closeModal }) {
                             value={form.phone}
                             onChange={handleChange}
                             className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] mdl:text-[20px]"
-                            placeholder="Номер телефона"
+                            placeholder={t('placeholder-phone')}
                             required
                         />
                     </div>
@@ -79,7 +83,7 @@ export default function SignUpForEvent({ closeModal }) {
                         type="submit"
                         className="w-full bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white font-semibold"
                     >
-                        Записаться
+                        {t('sign-up')}
                     </button>
                 </form>
             </div>

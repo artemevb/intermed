@@ -9,9 +9,13 @@ import eventImage2 from "@/public/images/news/events/2.png";
 import eventImage3 from "@/public/images/news/events/3.png";
 import eventImage4 from "@/public/images/news/events/4.png";
 
-import EventCard from "@/app/_components/Events/EventCard";
+import EventCard from "../../_components/Events/EventCard";
 
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 export default function EventsSlider() {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'equipment-title')
   const data = [
     {
       title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
@@ -70,11 +74,11 @@ export default function EventsSlider() {
 
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2  mb-[100px] mdl:mb-[150px]">
-      <Link href={`/events/`}>
-      <h2 className="text-[25px] mdx:text-[33px] xl:text-[39px] font-semibold flex items-center mt-[40px] uppercase">
-        ПОХОЖИЕ Мероприятия
-      </h2>
-      </Link>
+      <a href={`/${lng}/events`}>
+        <h2 className="text-[25px] mdx:text-[33px] xl:text-[39px] font-semibold flex items-center mt-[40px] uppercase">
+          {t('similar')}
+        </h2>
+      </a>
       <div className="w-full">
         <Slider {...settings}>
           {data.map((item, index) => (
