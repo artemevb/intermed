@@ -30,16 +30,20 @@ export default function Catalogitem({
 
 	useEffect(() => {
 		const handleResize = () => {
-			setIsMdx(window.innerWidth >= 460) // mdx breakpoint is 768px in Tailwind
-		}
+			const isCurrentlyMdx = window.innerWidth >= 460;
+			if (isMdx !== isCurrentlyMdx) {
+				setIsMdx(isCurrentlyMdx);
+			}
+		};
 
-		handleResize() // Check initially
-		window.addEventListener('resize', handleResize)
+		handleResize(); // Первоначальная проверка
+		window.addEventListener('resize', handleResize);
 
 		return () => {
-			window.removeEventListener('resize', handleResize)
-		}
-	}, [])
+			window.removeEventListener('resize', handleResize);
+		};
+	}, [isMdx]);
+
 
 	useEffect(() => {
 		const favorites = JSON.parse(localStorage.getItem('favorites')) || []
@@ -78,7 +82,7 @@ export default function Catalogitem({
 					<div className='absolute bottom-2 left-2 flex gap-1 '>
 						{isNew && (
 							<div className='py-1 px-3 rounded-full text-[12px]  mdx:text-sm font-bold text-red-500 bg-red-100 '>
-								Новинка
+								{t('new')}
 							</div>
 						)}
 						{sale && (
@@ -92,6 +96,7 @@ export default function Catalogitem({
 						alt={title}
 						width={200}
 						height={200}
+						quality={100}
 						className='object-contain w-full h-full'
 					/>
 				</div>
@@ -99,8 +104,8 @@ export default function Catalogitem({
 					{isMdx
 						? title
 						: title && title.length > 12
-						? `${title.substring(0, 12)}...`
-						: title || 'No Title'}
+							? `${title.substring(0, 12)}...`
+							: title || 'No Title'}
 				</h3>
 				<p className='text-xs text-[#BABABA] mt-1 line-clamp-4'>
 					{description}

@@ -1,11 +1,16 @@
+"use client"
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function Title() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'partners-title')
 
     return (
-        <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 mt-7">
+        <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 mt-7 mdx:mt-[60px]">
             <div>
-                <h1 className="text-[25px] mdx:text-[35px] xl:text-[40px]  font-semibold uppercase">Партнеры</h1>
-                <p className="text-[14px] mdx:text-[20px] " >Компания Intermed Innovation сотрудничает с крупнейшими поставщиками медицинского оборудования. Мы работаем с ведущими производителями Китая, Европы и России, которые широко известны на мировом рынке и имеют безупречную репутацию. Оборудование наших партнеров активно используется в ведущих частных и государственных клиниках</p>
+                <h1 className="text-[25px] mdx:text-[35px] xl:text-[40px] mb-[5px] font-semibold uppercase">{t('partners')}</h1>
+                <p className="text-[14px] mdx:text-[20px]">{t('description')}</p>
             </div>
         </div>
     )
