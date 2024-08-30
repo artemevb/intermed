@@ -4,24 +4,9 @@ import React, { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Image from "next/image";
-import mindrayDC60 from "@/public/images/equipments/equip-lab.png"; // Пример изображения, замените на ваши изображения
-import mindraySV300 from "@/public/images/equipments/equip-uzi.png"; // Пример изображения, замените на ваши изображения
-import cl900i from "@/public/images/equipments/equip-lab.png"; // Пример изображения, замените на ваши изображения
-import mindrayBeneHeart from "@/public/images/equipments/equip-lab.png"; // Пример изображения, замените на ваши изображения
 
-const VerticalCarousel = () => {
+const VerticalCarousel = ({ data }) => {
   const [selectedImage, setSelectedImage] = useState(0);
-
-  const images = [
-    mindraySV300,
-    mindrayDC60,
-    mindrayBeneHeart,
-    cl900i,
-    mindraySV300,
-    mindrayDC60,
-    mindrayBeneHeart,
-    cl900i,
-  ];
 
   return (
     <div className="flex flex-col w-full max-w-[1440px] mx-auto px-2 mb-4">
@@ -43,12 +28,14 @@ const VerticalCarousel = () => {
           className="main-carousel"
           showArrows={false}
         >
-          {images.map((src, index) => (
+          {data.map((item, index) => (
             <div key={index}>
               <Image
-                src={src}
+                src={item.url} 
                 alt={`Slide ${index}`}
                 className="object-contain h-96 w-full"
+                width={1440}
+                height={960}
               />
             </div>
           ))}
@@ -70,7 +57,7 @@ const VerticalCarousel = () => {
           emulateTouch={true}
           showArrows={false}
         >
-          {images.map((src, index) => (
+          {data.map((item, index) => (
             <div
               key={index}
               onClick={() => setSelectedImage(index)}
@@ -79,9 +66,11 @@ const VerticalCarousel = () => {
               }`}
             >
               <Image
-                src={src}
+                src={item.url} // url ni olish
                 alt={`Thumbnail ${index}`}
                 className="object-contain h-full rounded-xl w-full"
+                width={100} // Add appropriate width and height
+                height={100}
               />
             </div>
           ))}

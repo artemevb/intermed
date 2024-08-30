@@ -9,8 +9,13 @@ import cl900i from "@/public/images/equipments/equip-lab.png"; // Пример �
 import mindrayUniBase from "@/public/images/equipments/equip-uzi.png"; // Пример изображения, замените на ваши изображения
 import Link from "next/link";
 import Catalogitem from "../Catalog/Catalogitem";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function AlsoTake() {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'also-take')
+
   const equipmentData = [
     {
       title: "MINDRAY DC 60 X-insight",
@@ -87,8 +92,8 @@ export default function AlsoTake() {
 
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-8 px-2">
-      <h2 className="text-3xl max-mdx:text-2xl font-bold">
-        С ЭТИМ ТОВАРОМ ПОКУПАЮТ
+      <h2 className="text-3xl max-mdx:text-2xl font-bold uppercase">
+        {t('also-take')}
       </h2>
       <div className="w-full">
         <div className="w-full mdx:px-2 xl:px-4">
@@ -109,12 +114,12 @@ export default function AlsoTake() {
         </div>
       </div>
       <div className="flex w-full justify-center">
-        <Link
-          href="/categories"
+        <a
+          href={`/${lng}/categories`}
           className="border border-greenView px-12 py-3 hover:bg-[#E94B50] transition-all font-bold duration-200 hover:text-[#FFF]"
         >
-          Все товары
-        </Link>
+          {t('all-products')}
+        </a>
       </div>
     </section>
   );

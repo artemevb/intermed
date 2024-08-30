@@ -18,6 +18,7 @@ const EquipmentCarousel = () => {
   const [products, setProducts] = useState([]);  
   const [isMounted, setIsMounted] = useState(false);
 
+  
   const getAllProducts = useCallback(async () => {
     try {
       const response = await axios.get('http://213.230.91.55:8130/v1/product', {
