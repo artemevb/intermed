@@ -7,42 +7,15 @@ import partnerPhoto1 from "@/public/images/aboutUs/partners/image58.png";
 import GreenArrow from "../Buttons/GreenArrow";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import axios from 'axios';
 
-const partners = [
-    {
-        id: 1,
-        imageSrc: partnerPhoto,
-        title: "Lingen",
-        description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "browiner"
-    },
-    {
-        id: 2,
-        imageSrc: partnerPhoto1,
-        title: "Lingen",
-        description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "browiner"
-    },
-    {
-        id: 3,
-        imageSrc: partnerPhoto1,
-        title: "Lingen",
-        description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "browiner"
-    },
-    {
-        id: 4,
-        imageSrc: partnerPhoto,
-        title: "Lingen",
-        description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
-        link: "browiner"
-    },
-    
-];
+
 
 export default function ListPartners() {
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'partners-list-partners')
+    const [partners , setPartners] = useState([])
+    console.log(partners)
 
     const [showAll, setShowAll] = useState(false);
 
@@ -55,6 +28,8 @@ export default function ListPartners() {
             }
         };
 
+        
+
         handleResize(); // Check the initial screen size
         window.addEventListener('resize', handleResize); // Add resize event listener
 
@@ -62,6 +37,24 @@ export default function ListPartners() {
             window.removeEventListener('resize', handleResize); // Clean up the event listener
         };
     }, []);
+
+    useEffect(() => {
+		const getAllPartners = async () => {
+			try {
+				const response = await axios.get(
+					`http://213.230.91.55:8130/v1/partner/all`,
+					{
+						headers: { 'Accept-Language': lng },
+					}
+				)
+				setPartners(response.data.data)
+			} catch (error) {
+				console.error('Failed to fetch news:', error.message)
+				setPartners(null) // Reset state if fetching fails
+			}
+		}
+		getAllPartners()
+	}, [lng])
 
     const visiblePartners = showAll ? partners : partners.slice(0, 14);
 
@@ -72,12 +65,14 @@ export default function ListPartners() {
                     <div key={card.id} className="bg-white p-4 border-[1px] border-gray-200 mdx:p-0 mdl:p-5 ">
                         <div className=" items-center justify-between divide-y  ">
                             <div className="w-full h-[70px] relative mt-3 mb-9">
-                                <Image src={card.imageSrc} alt={card.title} layout="fill" quality={100} objectFit="contain" />
+                                <Image src={card.logo.url} alt={card.title} layout="fill" quality={100} objectFit="contain" />
                             </div>
                             <div className='mdx:mb-4 mdx:p-3 '>
-                                <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.title}</h2>
-                                <p className="mb-4 text-gray-600 xl:text-[18px] ">{card.description}</p>
-                                <a href={`/${lng}/partners/${card.link}`}>
+                                <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.name}</h2>
+                                <p className="mb-4 text-gray-600 xl:text-[18px] ">
+                                {card.note.length > 100 ? `${card.note.slice(0, 90)}...` : card.note}
+                                </p>
+                                <a href={`/${lng}/partners/${card.slug}`}>
                                     <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
                                         <GreenArrow title= {t('more')} />
                                     </span>
