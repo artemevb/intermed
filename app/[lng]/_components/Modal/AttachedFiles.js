@@ -1,13 +1,15 @@
 import Image from "next/image";
 import close from "@/public/svg/close.svg";
 import fileIcon from "@/public/svg/filered.svg";
-import { useTranslation } from '../../../i18n/client'
+import { useTranslation } from '../../../i18n/client';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 const Modal = ({ selectedAttachedFiles, closeModal }) => {
-    if (!selectedAttachedFiles) return null;
     const lng = useLanguage();
-    const { t } = useTranslation(lng, 'modal-attached-files')
+    const { t } = useTranslation(lng, 'modal-attached-files');
+
+    // Проверка, что selectedAttachedFiles существует
+    if (!selectedAttachedFiles) return null;
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto" onClick={closeModal}>
@@ -17,7 +19,7 @@ const Modal = ({ selectedAttachedFiles, closeModal }) => {
                 </button>
                 <div className="px-4 mdx:px-6 my-[30px] xl:px-8 xl:my-6">
                     <h3 className="font-bold text-[22px] mdx:text-[24px] xl:text-[30px]">
-                        {t('attached-files')}
+                        {t ? t('attached-files') : 'Loading...'}
                     </h3>
                     <div className="mt-4 space-y-4">
                         {selectedAttachedFiles.map((file) => (
@@ -34,7 +36,7 @@ const Modal = ({ selectedAttachedFiles, closeModal }) => {
                                     className="absolute inset-0 w-full h-full"
                                     style={{ opacity: 0 }}
                                 >
-                                    {t('download')}
+                                    {t ? t('download') : 'Download'}
                                 </a>
                             </div>
                         ))}
