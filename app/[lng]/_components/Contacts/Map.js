@@ -6,7 +6,7 @@ import { useLanguage } from '../../../i18n/locales/LanguageContext';
 export default function Map() {
 
     const lng = useLanguage();
-    const { t } = useTranslation(lng, 'map')
+    const { t } = useTranslation(lng, 'map-map')
 
     return (
         <div className="mx-auto relative w-full">

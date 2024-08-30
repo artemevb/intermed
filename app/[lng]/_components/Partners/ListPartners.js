@@ -37,7 +37,7 @@ const partners = [
         description: "Lingen Precision Medical Products Co., Ltd. is a unique manufacturer specializing in medical products",
         link: "browiner"
     },
-    
+
 ];
 
 export default function ListPartners() {
@@ -55,11 +55,11 @@ export default function ListPartners() {
             }
         };
 
-        handleResize(); // Check the initial screen size
-        window.addEventListener('resize', handleResize); // Add resize event listener
+        handleResize();
+        window.addEventListener('resize', handleResize); 
 
         return () => {
-            window.removeEventListener('resize', handleResize); // Clean up the event listener
+            window.removeEventListener('resize', handleResize); 
         };
     }, []);
 
@@ -79,7 +79,7 @@ export default function ListPartners() {
                                 <p className="mb-4 text-gray-600 xl:text-[18px] ">{card.description}</p>
                                 <a href={`/${lng}/partners/${card.link}`}>
                                     <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
-                                        <GreenArrow title= {t('more')} />
+                                        <GreenArrow title={t('more')} />
                                     </span>
                                 </a>
                             </div>
