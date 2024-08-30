@@ -34,7 +34,7 @@ export default function ListPartners() {
         window.addEventListener('resize', handleResize); // Add resize event listener
 
         return () => {
-            window.removeEventListener('resize', handleResize); // Clean up the event listener
+            window.removeEventListener('resize', handleResize); 
         };
     }, []);
 
@@ -74,7 +74,7 @@ export default function ListPartners() {
                                 </p>
                                 <a href={`/${lng}/partners/${card.slug}`}>
                                     <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
-                                        <GreenArrow title= {t('more')} />
+                                        <GreenArrow title={t('more')} />
                                     </span>
                                 </a>
                             </div>
