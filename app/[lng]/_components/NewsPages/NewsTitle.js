@@ -1,12 +1,12 @@
 import Image from "next/image"
-import newsPhoto from "@/public/images/news/news-photo.png";
+import newsPhoto from "@/public/images/news/news-main.png";
 
 export default function NewsTitle() {
     return (
         <div className="w-full max-w-[832px] mx-auto flex flex-col  gap-1 px-4 ">
             <div className=" mt-4 ">
                 <p className="text-gray-400 text-[16px] mdx:text-[18px] xl:text-[20px]">12 June</p>
-                <h1 className="text-[25px] text-black mb-2 mdx:text-[34px] xl:text-[40px] leading-[1.10] uppercase">Мастер класс: актуальные вопросы ультразвуковой диагностики пренатальном периоде и в гинекологии</h1>
+                <h1 className="text-[25px] text-black mb-2 mdx:text-[34px] xl:text-[40px] leading-[1.10] uppercase font-semibold">Мастер класс: актуальные вопросы ультразвуковой диагностики пренатальном периоде и в гинекологии</h1>
 
             </div>
             <div >
@@ -15,8 +15,8 @@ export default function NewsTitle() {
             <div className="xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
                 <Image
                     src={newsPhoto}
-                    width={500}
-                    height={500}
+                    width={1000}
+                    height={1000}
                     quality={100}
                     alt={`News Image`}
                     className="w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl"
@@ -45,9 +45,9 @@ export default function NewsTitle() {
                 <div className="mt-[30px] mb-[10px] flex flex-row justify-center">
                     <Image
                         src={newsPhoto}
-                        width={500}
+                        width={1000}
                         quality={100}
-                        height={500}
+                        height={1000}
                         alt={`News Image`}
                         className="w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl"
                     />
@@ -73,11 +73,11 @@ export default function NewsTitle() {
                 <div className="mt-[30px] mb-[10px] flex flex-row justify-center">
                     <Image
                         src={newsPhoto}
-                        width={500}
-                        height={500}
+                        width={1000}
+                        height={1000}
                         alt={`News Image`}
                         quality={100}
-                        className="w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl"
+                        className="w-full h-auto max-w-[832px] max-h-[450px] object-contain rounded-xl"
                     />
                 </div>
             </div>

@@ -1,8 +1,15 @@
+"use client"
 import Image from "next/image";
 import close from "@/public/svg/close.svg";
 import { useState } from "react";
 
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
+
 export default function SignUpForEvent({ closeModal }) {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'modal-send-kp')
+
     const [form, setForm] = useState({
         name: '',
         phone: '',
@@ -38,8 +45,8 @@ export default function SignUpForEvent({ closeModal }) {
                         className="h-full w-full"
                     />
                 </button>
-                <h2 className="text-[22px] font-semibold mb-2 mdl:text-[26px] xl:text-[28px] xl:mb-4">Отправить КП</h2>
-                <p className="text-[14px] text-gray-500 mb-6 w-[290px] mdx:text-[16px] mdl:text-[17px] xl:text-[18px]">Менеджеры компании свяжутся с вами в ближайшее время</p>
+                <h2 className="text-[22px] font-semibold mb-2 mdl:text-[26px] xl:text-[28px] xl:mb-4">Отправить КП {t('send-cp')}</h2>
+                <p className="text-[14px] text-gray-500 mb-6 w-[290px] mdx:text-[16px] mdl:text-[17px] xl:text-[18px]">Менеджеры компании свяжутся с вами в ближайшее время {t('connection')}</p>
                 <form onSubmit={handleSubmit}>
                     <div className="relative mb-4">
                         <input
@@ -53,7 +60,7 @@ export default function SignUpForEvent({ closeModal }) {
                             required
                         />
                         <label htmlFor="name" className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.name ? 'hidden' : ''} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}>
-                            ФИО<span className="text-red-500">*</span>
+                            ФИО {t('fio')}<span className="text-red-500">*</span>
                         </label>
                     </div>
                     <div className="relative mb-4">
@@ -68,7 +75,7 @@ export default function SignUpForEvent({ closeModal }) {
                             required
                         />
                         <label htmlFor="phone" className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.phone ? 'hidden' : ''} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}>
-                            Номер телефона<span className="text-red-500">*</span>
+                            Номер телефона{t('phone-number')}<span className="text-red-500">*</span>
                         </label>
                     </div>
                     <div className="relative mb-4">
@@ -96,14 +103,14 @@ export default function SignUpForEvent({ closeModal }) {
                             placeholder=" "
                         />
                         <label htmlFor="proposal" className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.proposal ? 'hidden' : ''} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}>
-                            Ваше предложение
+                            Ваше предложение {t('your-proposal')}
                         </label>
                     </div>
                     <button
                         type="submit"
                         className="w-full bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white font-semibold"
                     >
-                        Отправить
+                        Отправить {t('send')}
                     </button>
                 </form>
             </div>
