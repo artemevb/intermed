@@ -14,6 +14,8 @@ import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function Similar() {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'similar')
   const equipmentData = [
     {
       title: "MINDRAY DC 60 X-insight",
@@ -87,9 +89,6 @@ export default function Similar() {
       },
     ],
   };
-
-  const lng = useLanguage();
-  const { t } = useTranslation(lng, 'similar')
 
   return (
     <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-8 px-2">

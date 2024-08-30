@@ -13,7 +13,7 @@ export default function News() {
   const [news, setNews] = useState([]);
   
 
-  // Fetch news whenever the language or current page changes
+
   useEffect(() => {
     const fetchNews = async () => {
       try {
