@@ -22,7 +22,7 @@ export default function ListClients() {
     useEffect(() => {
         const fetchNews = async () => {
           try {
-            const response = await axios.get(`http://213.230.91.55:8130/v1/partner/all`, {
+            const response = await axios.get(`https://imed.uz/api/v1/client/all`, {
               headers: { 'Accept-Language': lng },
             });
             setClients(response.data.data);
@@ -46,7 +46,7 @@ export default function ListClients() {
                             </div>
                             <div className='mdx:mb-4 mdx:w-[50%]'>
                                 <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.name}</h2>
-                                <p className="mb-4 text-gray-600 xl:text-[18px]">{card.note.length > 100 ? card.note.slice(0 ,100) + '...' : card.note }</p>
+                                <p className="mb-4 text-gray-600 xl:text-[18px]">{card.description.length > 100 ? card.description.slice(0 ,100) + '...' : card.description }</p>
                                 <a href={`/${lng}/clients/${card.slug}`}>
                                     <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
                                         <GreenArrow title={t('more-details')} />
