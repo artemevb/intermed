@@ -10,7 +10,7 @@ import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function NewsTitle() {
     const lng = useLanguage();
-    const { t } = useTranslation(lng); 
+    const { t } = useTranslation(lng);
     const [news, setNews] = useState(null)
     const { slug } = useParams()
 
@@ -54,11 +54,11 @@ export default function NewsTitle() {
             <div className='xl:mt-7 xl:mb-[80px] flex flex-row justify-center'>
                 <Image
                     src={news.head.photo?.url || newsPhoto} // Use fallback if no image URL
-                    width={500}
-                    height={500}
+                    width={1500}
+                    height={1500}
                     quality={100}
                     alt={`News Image`}
-                    className='w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl'
+                    className='w-full h-auto object-cover rounded-xl'
                 />
             </div>
 
@@ -78,9 +78,9 @@ export default function NewsTitle() {
                     {item.photo?.url && (
                         <div className='mt-[30px] mb-[10px] flex flex-row justify-center'>
                             <Image
-                                src={item.photo.url} // Use item photo if available
-                                width={500}
-                                height={500}
+                                src={item.photo.url} 
+                                width={1500}
+                                height={1500}
                                 quality={100}
                                 alt={`News Image`}
                                 className='w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl'

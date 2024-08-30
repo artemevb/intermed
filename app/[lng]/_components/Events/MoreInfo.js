@@ -1,28 +1,53 @@
+"use client"
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext'
+
 export default function MoreInfo() {
-    const infoData = [
-        { label: "Организатор", value: "Intermed Innovation" },
-        { label: "Страна проведения", value: "Узбекистан" },
-        { label: "Дата", value: "17 июля - 25 июля" },
-        { label: "Время", value: "17:00 - 20:00" },
-        { label: "Адрес", value: "Узбекистан, г. Ташкент, НВК \"Узэкспоцентр\"" },
-        { label: "Стоимость участия", value: "Бесплатно" },
-        { label: "Контактный телефон", value: "+998 78 150-47-47" },
-        { label: "Контактный E-mail", value: "info@imed.uz" }
-    ];
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'events-more-info');
+
+    const infoData = {
+        organizer: "Intermed Innovation",
+        country: "Узбекистан",
+        date: "17 июля - 25 июля",
+        time: "17:00 - 20:00",
+        address: "Узбекистан, г. Ташкент, НВК \"Узэкспоцентр\"",
+        price: "Бесплатно",
+        phone: "+998 78 150-47-47",
+        email: "info@imed.uz"
+    };
+
 
     return (
         <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-4 px-2">
             <div className="xl:flex xl:flex-row xl:gap-2 xl:justify-between">
                 <div>
-                    <h2 className="text-[25px] mdx:text-[33px] xl:text-[39px] font-semibold xl:w-[467px]">ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ</h2>
+                    <h2 className="text-[25px] uppercase mdx:text-[33px] xl:text-[39px] font-semibold xl:w-[467px]">{t('info')}</h2>
                 </div>
                 <div className="grid grid-cols-2 mt-[30px] gap-x-5 gap-y-5">
-                    {infoData.map((item, index) => (
-                        <>
-                            <div key={`label-${index}`} className="text-[#808080]">{item.label}</div>
-                            <div key={`value-${index}`}>{item.value}</div>
-                        </>
-                    ))}
+                    <div className="text-[#808080]">{t('organizer')}</div>
+                    <div>{infoData.organizer}</div>
+
+                    <div className="text-[#808080]">{t('country')}</div>
+                    <div>{infoData.country}</div>
+
+                    <div className="text-[#808080]">{t('date')}</div>
+                    <div>{infoData.date}</div>
+
+                    <div className="text-[#808080]">{t('time')}</div>
+                    <div>{infoData.time}</div>
+
+                    <div className="text-[#808080]">{t('adress')}</div>
+                    <div>{infoData.address}</div>
+
+                    <div className="text-[#808080]">{t('price')}</div>
+                    <div>{infoData.price}</div>
+
+                    <div className="text-[#808080]">{t('number')}</div>
+                    <div>{infoData.phone}</div>
+
+                    <div className="text-[#808080]">{t('email')}</div>
+                    <div>{infoData.email}</div>
                 </div>
             </div>
         </div>
