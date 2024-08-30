@@ -1,32 +1,37 @@
 "use client";
 import { useState } from 'react';
 import Image from "next/image";
-import SignUpForEvent from "@/app/_components/Modal/SignUpForEvent";
+import SignUpForEvent from "../../_components/Modal/SignUpForEvent";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function AboutEvent() {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'event-about')
+
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
     const openSignUpModal = () => setIsSignUpModalOpen(true);
     const closeSignUpModal = () => setIsSignUpModalOpen(false);
     return (
         <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2">
-            <h2 className="text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase">О мероприятии</h2>
+            <h2 className="text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase">{t('title')}</h2>
             <div className="xl:flex xl:flex-row-reverse overflow-visible relative mb-[100px] mdx:mb-[150px] xl:mb-[180px]">
                 <div className="bg-[#F4F7FE] p-6 w-full xl:sticky top-0 self-start xl:w-1/4 xl:ml-5 xl:flex xl:flex-col xl:justify-between">
                     <div>
                         <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]">
-                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">Дата</strong> 17 Июля - 25 Июля
+                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">{t('date')}</strong> 17 Июля - 25 Июля
                         </p>
                         <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]">
-                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">Время</strong> 17:00 - 20:00
+                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">{t('time')}</strong> 17:00 - 20:00
                         </p>
                         <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]">
-                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">Адрес</strong> Узбекистан, г. Ташкент, НВК &quot;Узэкспоцентр&quot;
+                            <strong className="text-[#BABABA] font-normal mdx:text-[20px]">{t('adress')}</strong> Узбекистан, г. Ташкент, НВК &quot;Узэкспоцентр&quot;
                         </p>
                     </div>
                     <button className="mt-4 w-full mdx:max-w-[296px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white xl:max-w-[100%]"
                         onClick={openSignUpModal}>
-                        Записаться
+                        {t('sign-up')}
                     </button>
                 </div>
                 <div className="xl:w-3/4">

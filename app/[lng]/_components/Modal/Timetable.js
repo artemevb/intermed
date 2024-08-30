@@ -2,10 +2,14 @@
 import { useState } from 'react';
 import Image from "next/image";
 import close from "@/public/svg/close.svg"
-import SignUpForEvent from "@/app/_components/Modal/SignUpForEvent";
+import SignUpForEvent from "../../_components/Modal/SignUpForEvent";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 
 export default function Timetable({ closeModal }) {
+    const lng = useLanguage();
+    const { t } = useTranslation(lng, 'modal-timetable')
     const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
     const openSignUpModal = () => setIsSignUpModalOpen(true);
@@ -21,19 +25,20 @@ export default function Timetable({ closeModal }) {
                         src={close}
                         width={100}
                         height={100}
+                        quality={100}
                         alt="Icon"
                         className="h-full w-full"
                     />
                 </button>
-                <h2 className="text-xl font-semibold mb-4 xl:text-[28px] xl:mb-[30px]">Расписание</h2>
+                <h2 className="text-xl font-semibold mb-4 xl:text-[28px] xl:mb-[30px]">{t('schedule')}</h2>
                 <div >
-                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">Дата</strong> 17 Июля - 25 Июля</p>
-                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">Время</strong> 17:00 - 20:00</p>
-                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 xl:w-[80%] mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">Адрес</strong> Узбекистан, г. Ташкент, НВК &quot;Узэкспоцентр&quot;</p>
+                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">{t('date')}</strong> 17 Июля - 25 Июля</p>
+                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">{t('time')}</strong> 17:00 - 20:00</p>
+                    <p className="flex flex-col font-semibold border-b-[1px] mb-4 pb-2 xl:w-[80%] mdx:text-[22px] xl:text-[24px]"><strong className="text-[#BABABA] font-normal mdx:text-[20px]">{t('adress')}</strong> Узбекистан, г. Ташкент, НВК &quot;Узэкспоцентр&quot;</p>
                 </div>
                 <button className="mt-4 w-full bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white"
                 onClick={openSignUpModal}>
-                    Записаться
+                    {t('sign-up')}
                 </button>
             </div>
             {isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} />}

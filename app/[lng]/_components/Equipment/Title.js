@@ -21,6 +21,7 @@ export default function Title() {
                             alt={t('main_photo')}
                             width={1000}
                             height={1000}
+                            quality={100}
                             objectFit="contain"
                             className='w-full h-auto' />
                     </div>
