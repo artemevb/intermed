@@ -105,7 +105,7 @@ export default function CasesSlider() {
     };
 
     return (
-        <div className="w-full max-w-[1440px] flex flex-col mx-auto">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex flex-col mx-auto">
             <h2 className="mx-[10px] text-3xl max-mdx:text-2xl font-semibold uppercase mb-[20px] ">
                 {t('cases')}
             </h2>

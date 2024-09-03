@@ -15,7 +15,7 @@ export default function WhatWeDo() {
 
 
     return (
-        <div className="max-w-[1440px] mx-auto px-3">
+        <div className="max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-3">
             {
                 isMounted && <div>
                     <div className="text-[25px] mdx:text-[36px] xl:text-[40px] px-2 mb-4 font-semibold">{t('why_choose_us')}</div>

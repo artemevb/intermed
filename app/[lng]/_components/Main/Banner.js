@@ -58,7 +58,7 @@ export default function BannerCarousel() {
 	}
 
 	return (
-		<div className='relative w-full max-w-[1440px] mx-auto overflow-hidden px-2 lg:px-12'>
+		<div className='relative w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto overflow-hidden px-2 lg:px-12'>
 			<Slider ref={sliderRef} {...settings}>
 				{banner.sliders?.map((banner, index) => (
 					<div

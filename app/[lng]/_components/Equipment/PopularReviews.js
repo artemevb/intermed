@@ -62,7 +62,7 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-2">
+    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2">
       <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase mb-6 ml-3">{t('faq_title')}</h2>
       {faqData.map((item, index) => (
         <div key={index} className="mb-4">

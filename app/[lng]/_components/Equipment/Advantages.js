@@ -31,7 +31,7 @@ export default function Advantages() {
 
     return (
         <>
-            <div className="max-w-[1440px] mx-auto px-3">
+            <div className="max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-3">
                 <div className="text-[25px] font-semibold mdx:text-[36px] xl:text-[40px] px-2 mb-4 text-[#252324]">
                 {t("advantages_title-1")} <br/>{t("advantages_title-2")}
                 </div>

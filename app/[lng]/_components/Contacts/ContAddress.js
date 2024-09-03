@@ -40,7 +40,7 @@ export default function ContAddress() {
         return { isValid: true, message: "" };
     };
     return (
-        <div className="max-w-[1440px] mx-auto w-full ">
+        <div className="max-w-[1440px] 5xl:max-w-[2000px] mx-auto w-full ">
             <div className="top-0 xl:hidden left-0 xl:relative w-full h-[32rem] xl:h-[32rem] flex items-center xl:bg-inherit" style={{ pointerEvents: 'none' }}>
                 <div className="bg-white relative mx-auto w-full xl:mx-0 bottom-0 xl:bottom-[70px] xl:rounded-2xl">
                     <div style={{ pointerEvents: 'auto' }} className="p-4 mdl:px-8 mdl:py-6 shadow-contactPages xl:py-8">
@@ -110,7 +110,7 @@ export default function ContAddress() {
                     </div>
                 </div>
             </div>
-            <div className="w-full max-w-[1440px] max-auto px-2 mx-auto hidden xl:block mb-[250px]">
+            <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] max-auto px-2 mx-auto hidden xl:block mb-[250px]">
                 <div className="w-full rounded-3xl flex flex-col max-lg:gap-8 lg:flex-row bg-snowy px-4 py-8 lg:px-12 lg:py-12 relative overflow-hidden">
                     <div className="flex-1 w-full flex flex-col gap-5 z-10">
                         <h2 className="text-4xl max-mdx:text-2xl text-greenView font-semibold">

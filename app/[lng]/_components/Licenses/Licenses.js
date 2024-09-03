@@ -41,7 +41,7 @@ const Licenses = () => {
 	}
 
 	return (
-		<div className='w-full max-w-[1440px] mx-auto px-4 py-6 bg-white mb-[120px] mdl:mb-[150px]'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 py-6 bg-white mb-[120px] mdl:mb-[150px]'>
 			<h2 className='text-[20px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold mb-6 mt-[40px] mdx:mt-[60px] xl:mt-[80px] uppercase lh'>
 				{t('awards-and-certificates')}
 			</h2>

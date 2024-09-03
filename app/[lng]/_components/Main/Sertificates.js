@@ -77,7 +77,7 @@ export default function Sertificates() {
 	}
 
 	return (
-		<div className='w-full max-w-[1440px]  mx-auto px-2'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2'>
 			{isMounted && (
 				<div className='flex flex-col gap-5'>
 					<h2 className='text-3xl font-semibold max-mdl:text-2xl uppercase'>

@@ -73,7 +73,7 @@ export default function EventsSlider() {
   };
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2  mb-[100px] mdl:mb-[150px]">
+    <section className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-1 px-2  mb-[100px] mdl:mb-[150px]">
       <a href={`/${lng}/events`}>
         <h2 className="text-[25px] mdx:text-[33px] xl:text-[39px] font-semibold flex items-center mt-[40px] uppercase">
           {t('similar')}

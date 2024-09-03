@@ -16,7 +16,7 @@ export default function FullEquipments() {
 
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-2 bg-[#F6F8F9]">
+    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 bg-[#F6F8F9]">
       {
         isMounted && <div>
           <div className="flex max-mdl:flex-col justify-between items-center lg:px-12 relative">

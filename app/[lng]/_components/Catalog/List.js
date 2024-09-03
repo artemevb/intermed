@@ -147,7 +147,7 @@ export default function List({ data, allCategories }) {
 	]
 
 	return (
-		<div className='w-full max-w-[1440px] mx-auto flex flex-col lg:gap-20 gap-5 px-2 py-24'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col lg:gap-20 gap-5 px-2 py-24'>
 			{categoryModal && (
 				<Category
 					handleClose={handleClose}

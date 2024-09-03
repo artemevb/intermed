@@ -36,7 +36,7 @@ export default function Header({ lng }) {
 
   return (
     <header className="w-full bg-white px-2 h-[90px] max-mdx:h-[70px] shadow-2xl border-b">
-      <div className="w-full max-w-[1440px] flex items-center justify-between gap-2 h-full mx-auto ">
+      <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex items-center justify-between gap-2 h-full mx-auto ">
         <Logo lng={lng}/>
         <Navigation  navOptions={data} />
         <Tools lng={lng} navOptions={data} />

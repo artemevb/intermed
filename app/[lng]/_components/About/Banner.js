@@ -22,7 +22,7 @@ export default function Banner({ lng }) {
   return (
     <div>
       {isMounted && (
-        <div className="w-full max-w-[1440px] flex flex-col 2xl:flex-row mx-auto h-auto items-center xl:h-[812px]">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex flex-col 2xl:flex-row mx-auto h-auto items-center xl:h-[812px]">
           <div className="flex-1 h-full flex justify-center px-2 xl:mr-[40px]">
             <div className="w-full flex flex-col gap-8">
               <div className="2xl:mt-9 mt-6 lh text-black text-[24px] mdx:text-[35px] xl:text-[40px] font-medium 2xl:w-[650px]">

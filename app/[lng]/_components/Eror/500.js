@@ -6,7 +6,7 @@ import notfound from "@/public/images/Error500.png";
 function Custom500() {
     return (
         <main className="h-screen w-full bg-white">
-            <div className="h-[70px] mx-auto flex justify-center w-full max-w-[1440px] items-center px-2 ">
+            <div className="h-[70px] mx-auto flex justify-center w-full max-w-[1440px] 5xl:max-w-[2000px] items-center px-2 ">
                 <div className="h-auto w-[243px]">
                 <Image
                         src={logo}
@@ -17,7 +17,7 @@ function Custom500() {
                     />
                 </div>
             </div>
-            <div className="w-full max-w-[1440px] h-full flex justify-center items-center mx-auto px-2">
+            <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] h-full flex justify-center items-center mx-auto px-2">
                 <div className="flex flex-col mdx:gap-8 gap-5 items-center">
                     <Image
                         src={notfound}
