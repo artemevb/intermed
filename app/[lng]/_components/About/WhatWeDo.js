@@ -23,7 +23,7 @@ export default function WhatWeDo() {
                             {t("What we do for our clients?")}
                         </div>
                         <div className="my-[25px] xl:flex xl:flex-row">
-                            <div className="xl:block xl:pr-[40px] 2xl:pr-[60px] w-full xl:max-w-[720px]">
+                            <div className="xl:block xl:pr-[40px] 2xl:pr-[60px] w-full xl:max-w-[720px] 5xl:max-w-[900px]">
                                 <Image
                                     src={imed}
                                     alt="Medical Equipment"

@@ -30,7 +30,7 @@ export default function PartnerPage() {
 	if (!partner) return <p>Loading...</p> // Add a loading state
 
 	return (
-		<div className='w-full max-w-[1440px] mx-auto px-4 py-10'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 py-10'>
 			<div key={partner.id} className='mb-[60px] mdl:mb-[75px] xl:mb-[95px]'>
 				<div className='border-b pb-[25px]'>
 					<h1 className='text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold mb-2'>

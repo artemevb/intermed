@@ -9,15 +9,16 @@ export default function MoreInfo({Data}) {
 
     
     const infoData = [
-        { label: organizer, value: Data?.organizer },
-        { label: country, value: Data?.country },
-        { label: date, value: `${Data?.dateFrom} - ${Data?.dateTo}` },
-        { label: time, value:  `${Data?.timeFrom} - ${Data?.timeTo}`},
-        { label: address, value: Data?.address },
-        { label: price, value: "Бесплатно" },
-        { label: phone, value: Data?.phoneNum },
-        { label: email, value: Data?.email }
+        { label: "Organizer", value: Data?.organizer },
+        { label: "Country", value: Data?.country },
+        { label: "Date", value: `${Data?.dateFrom} - ${Data?.dateTo}` },
+        { label: "Time", value: `${Data?.timeFrom} - ${Data?.timeTo}` },
+        { label: "Address", value: Data?.address },
+        { label: "Price", value: "Бесплатно" },
+        { label: "Contact Phone", value: Data?.phoneNum },
+        { label: "Contact E-mail", value: Data?.email }
     ];
+    
 
     return (
         <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-4 px-2">
