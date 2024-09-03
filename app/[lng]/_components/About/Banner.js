@@ -11,7 +11,14 @@ export default function Banner({ lng }) {
   useEffect(() => {
     setIsMounted(true); // Устанавливаем состояние после монтирования компонента
   }, []);
+  // const metrics = [
+  //   { value: '14 лет', description: 'на рынке' },
+  //   { value: '12 000', description: 'удачных продаж' },
+  //   { value: '20+', description: 'поставщиков' },
+  //   { value: '2000+', description: 'довольных клиентов' },
+  // ];
 
+  
   return (
     <div>
       {isMounted && (

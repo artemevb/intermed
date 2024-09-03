@@ -8,86 +8,13 @@ import { useState, useRef, useEffect } from 'react';
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-export default function EventsPages() {
+export default function EventsPages({Data}) {
+    console.log(Data)
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'events-pages')
     const [isMounted, setIsMounted] = useState(false);
     const cities = ["Все", "Ташкент", "Самарканд", "Фергана", "Хорезм", "Бухара", "Андижан", "Навои", "Джизак", "Кашкадарья", "Наманган", "Сурхандарья", "Сырдарья"];
-    const data = [
-        {
-            title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
-            imageSrc: newsPhoto,
-            city: "Ташкент",
-            slug: "telemedicine",
-        },
-        {
-            title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
-            imageSrc: newsPhoto,
-            city: "Фергана",
-            slug: "telemedicine",
-        },
-        {
-            title: "The Impact of Portable Medical Devices on Healthcare Accessibility",
-            imageSrc: newsPhoto,
-            city: "Самарканд",
-            slug: "medical-devices",
-        },
-        {
-            title: "The Future of Telemedicine and Remote Patient Monitoring",
-            imageSrc: newsPhoto,
-            city: "Хорезм",
-            slug: "telemedicine",
-        },
-        {
-            title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
-            imageSrc: newsPhoto,
-            city: "Ташкент",
-            slug: "telemedicine",
-        },
-        {
-            title: "The Impact of Portable Medical Devices on Healthcare Accessibility",
-            imageSrc: newsPhoto,
-            city: "Самарканд",
-            slug: "medical-devices",
-        },
-        {
-            title: "The Future of Telemedicine and Remote Patient Monitoring",
-            imageSrc: newsPhoto,
-            city: "Хорезм",
-            slug: "telemedicine",
-        },
-        {
-            title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
-            imageSrc: newsPhoto,
-            city: "Ташкент",
-            slug: "telemedicine",
-        },
-        {
-            title: "The Impact of Portable Medical Devices on Healthcare Accessibility",
-            imageSrc: newsPhoto,
-            city: "Самарканд",
-            slug: "medical-devices",
-        },
-        {
-            title: "The Future of Telemedicine and Remote Patient Monitoring",
-            imageSrc: newsPhoto,
-            city: "Хорезм",
-            slug: "telemedicine",
-        },
-        {
-            title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
-            imageSrc: newsPhoto,
-            city: "Ташкент",
-            slug: "telemedicine",
-        },
-        {
-            title: "The Impact of Portable Medical Devices on Healthcare Accessibility",
-            imageSrc: newsPhoto,
-            city: "Самарканд",
-            slug: "medical-devices",
-        },
-
-    ];
+   
 
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCity, setSelectedCity] = useState("Все");
@@ -120,7 +47,7 @@ export default function EventsPages() {
     }, [isMounted]);
 
     // Filter the events based on selected city
-    const filteredData = selectedCity === "Все" ? data : data.filter(item => item.city === selectedCity);
+    const filteredData = selectedCity === "Все" ? Data : Data.filter(item => item.address === selectedCity);
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -151,8 +78,8 @@ export default function EventsPages() {
                         {currentItems.map((item, i) => (
                             <a key={i} href={`/${lng}/events/${item.slug}`} className="mb-5">
                                 <EventCard
-                                    title={item.title}
-                                    imageSrc={item.imageSrc}
+                                    title={item.name}
+                                    imageSrc={item.photo.url}
                                     slug={item.slug}
                                 />
                             </a>

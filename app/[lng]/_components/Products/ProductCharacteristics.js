@@ -94,7 +94,7 @@ export default function ProductCharacteristics({ data }) {
 				{active === 'clients' && filtered.length > 0 && (
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
 						{filtered.map((client, index) => (
-							<div key={index} className='border p-4'>
+							<a href={`/${lng}/clients/${client.slug}`} key={index} className='border p-4'>
 								<div className='flex flex-col items-center mdx:flex-row'>
 									<Image
 										src={client.logo.url}
@@ -125,7 +125,7 @@ export default function ProductCharacteristics({ data }) {
 										</button>
 									</div>
 								</div>
-							</div>
+							</a>
 						))}
 					</div>
 				)}

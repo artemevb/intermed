@@ -1,76 +1,70 @@
-"use client";
+'use client'
 
-import newsPhoto from "@/public/images/news/news-photo.png";
-import NewCard from "../News/NewCard";
-import { useTranslation } from '../../../i18n/client';
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext'
+import NewCard from '../News/NewCard'
 
 export default function News() {
-  const lng = useLanguage(); 
-  const { t } = useTranslation(lng, 'news');
-  const [isMounted, setIsMounted] = useState(false);
+	const lng = useLanguage()
+	const { t } = useTranslation(lng, 'news')
+	const [isMounted, setIsMounted] = useState(false)
+	const [data, setData] = useState([])
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
+	useEffect(() => {
+		const fetchCategories = async () => {
+			try {
+				const response = await axios.get(
+					'https://imed.uz/api/v1/new/get-all?page=1',
+					{
+						headers: {
+							'Accept-Language': lng,
+						},
+					}
+				)
+				setData(response.data.data || [])
+			} catch (error) {
+				console.error('Failed to fetch categories', error)
+				setData([])
+			}
+		}
 
-  const data = [
-    {
-      title: "Мастер класс: актуальные вопросы ультразвуковой диагностики пренатальном",
-      date: "12 June",
-      imageSrc: newsPhoto,
-      slug: "telemedicine",
-    },
-    {
-      title:
-        "Мастер класс: актуальные вопросы ультразвуковой диагностики пренатальном",
-      date: "12 June",
-      imageSrc: newsPhoto,
-      slug: "medical-devices",
-    },
-    {
-      title: "Мастер класс: актуальные вопросы ультразвуковой диагностики пренатальном",
-      date: "12 June",
-      imageSrc: newsPhoto,
-      slug: "telemedicine",
-    },
-    {
-      title:
-        "Мастер класс по УЗД. Абышева Мария Сергеевна",
-      date: "12 June",
-      imageSrc: newsPhoto,
-      slug: "children",
-    },
-  ];
+		fetchCategories()
+		setIsMounted(true)
+	}, [lng])
 
-  return (
-    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 ">
-      {
-        isMounted && <div className="flex flex-col gap-8">
-          <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase 5xl:text-4xl">{t('title')}</h2>
-          <div className="w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto">
-            {data.map((item, i) => {
-              return (
-                <a key={i} href={`/${lng}/news/${item.slug}`}>
-                  <NewCard
-                    key={i}
-                    title={item.title}
-                    date={item.date}
-                    imageSrc={item.imageSrc}
-                  />
-                </a>
-              );
-            })}
-          </div>
-          <div className="flex w-full justify-center">
-            <a href={`/${lng}/news`} className=" border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold">
-              {t('title-button')}
-            </a>
-          </div>
-        </div>
-      }
-    </div>
-  );
+	return (
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 '>
+			{isMounted && (
+				<div className='flex flex-col gap-8'>
+					<h2 className='text-3xl max-mdx:text-2xl font-semibold uppercase'>
+						{t('title')}
+					</h2>
+					<div className='w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto'>
+						{data.slice(0, 4).map((item, i) => {
+							return (
+								<a key={i} href={`/${lng}/news/${item.slug}`}>
+									<NewCard
+										key={i}
+										title={item.head.heading}
+										date={item.date}
+										imageSrc={item.head.photo.url}
+									/>
+								</a>
+							)
+						})}
+					</div>
+					<div className='flex w-full justify-center'>
+						<a
+							href={`/${lng}/news`}
+							className=' border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold'
+						>
+							{t('title-button')}
+						</a>
+					</div>
+				</div>
+			)}
+		</div>
+	)
 }

@@ -2,21 +2,22 @@
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 
-export default function MoreInfo() {
+export default function MoreInfo({Data}) {
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'events-more-info');
 
-    const infoData = {
-        organizer: "Intermed Innovation",
-        country: "Узбекистан",
-        date: "17 июля - 25 июля",
-        time: "17:00 - 20:00",
-        address: "Узбекистан, г. Ташкент, НВК \"Узэкспоцентр\"",
-        price: "Бесплатно",
-        phone: "+998 78 150-47-47",
-        email: "info@imed.uz"
-    };
 
+    
+    const infoData = [
+        { label: organizer, value: Data?.organizer },
+        { label: country, value: Data?.country },
+        { label: date, value: `${Data?.dateFrom} - ${Data?.dateTo}` },
+        { label: time, value:  `${Data?.timeFrom} - ${Data?.timeTo}`},
+        { label: address, value: Data?.address },
+        { label: price, value: "Бесплатно" },
+        { label: phone, value: Data?.phoneNum },
+        { label: email, value: Data?.email }
+    ];
 
     return (
         <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-4 px-2">
