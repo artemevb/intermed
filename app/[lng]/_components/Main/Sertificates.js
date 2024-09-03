@@ -90,8 +90,9 @@ export default function Sertificates() {
 									<div className='p-8 border'>
 										<Image
 											src={item.photo.url}
-											width={500}
-											height={500}
+											width={700}
+											height={700}
+											quality={100}
 											alt='Intermed Sertificate'
 											className='w-full h-full'
 										/>
