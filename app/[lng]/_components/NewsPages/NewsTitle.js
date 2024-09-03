@@ -35,7 +35,7 @@ export default function NewsTitle() {
     if (!news) return <div>Loading...</div> // Loading state or error handling
 
     return (
-        <div className='w-full max-w-[832px] mx-auto flex flex-col gap-1 px-4 '>
+        <div className='w-full max-w-[832px] 5xl:max-w-[1000px] mx-auto flex flex-col gap-1 px-4 '>
             <div className='mt-4'>
                 <p className='text-gray-400 text-[16px] mdx:text-[18px] xl:text-[20px]'>
                     {new Date(news.createdDate).toLocaleDateString(lng, {
@@ -83,7 +83,7 @@ export default function NewsTitle() {
                                 height={1500}
                                 quality={100}
                                 alt={`News Image`}
-                                className='w-full h-auto max-w-[832px] max-h-[450px] object-cover rounded-xl'
+                                className='w-full h-auto max-w-[832px] 5xl:max-w-[1000px] max-h-[450px] object-cover rounded-xl'
                             />
                         </div>
                     )}

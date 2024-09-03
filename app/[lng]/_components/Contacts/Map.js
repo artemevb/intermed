@@ -11,7 +11,7 @@ export default function Map() {
     return (
         <div className="mx-auto relative w-full">
             <div className="xl:flex xl:flex-row-reverse xl:justify-between xl:items-center">
-                <div className="h-[350px] mdx:h-[450px] xl:h-[620px] w-full xl:max-w-[950px] xl:max-h-[750px]">
+                <div className="h-[350px] mdx:h-[450px] xl:h-[620px] w-full xl:max-w-[950px] xl:max-h-[750px] 5xl:max-w-[1400px]">
                     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A91d36eeb34d790da6904a560f5fd9b0e0072a93a42f95bc0fe3dd8ae45fdaf0c&amp;source=constructor" width="100%" height="400" className="relative top-0 left-0 w-full h-full border-none " frameborder="0"></iframe>
                 </div>
                 <div className=" mx-[14px] 3xl:mx-auto">

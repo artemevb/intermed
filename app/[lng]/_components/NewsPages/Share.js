@@ -67,7 +67,7 @@ export default function NewsTitle() {
 	return (
 		<div className='bg-slate-100'>
 			<ToastContainer />
-			<div className='max-w-[1440px] mdl:mx-auto'>
+			<div className='max-w-[1440px] 5xl:max-w-[2000px] mdl:mx-auto'>
 				<div className='mx-[15px] mdl:flex mdl:flex-row-reverse mdl:items-center mdl:justify-between xl:flex-row xl:justify-center relative  mdl:py-4'>
 					<div className='mdl:items-center mdl:flex  flex justify-center content-center'>
 						<Image

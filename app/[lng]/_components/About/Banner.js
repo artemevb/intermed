@@ -11,18 +11,13 @@ export default function Banner({ lng }) {
   useEffect(() => {
     setIsMounted(true); // Устанавливаем состояние после монтирования компонента
   }, []);
-  // const metrics = [
-  //   { value: '14 лет', description: 'на рынке' },
-  //   { value: '12 000', description: 'удачных продаж' },
-  //   { value: '20+', description: 'поставщиков' },
-  //   { value: '2000+', description: 'довольных клиентов' },
-  // ];
+
   return (
     <div>
       {isMounted && (
-        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex flex-col 2xl:flex-row mx-auto h-auto items-center xl:h-[812px]">
-          <div className="flex-1 h-full flex justify-center px-2 xl:mr-[40px]">
-            <div className="w-full flex flex-col gap-8">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex flex-col 2xl:flex-row mx-auto h-auto items-center xl:h-[812px] 5xl:h-auto">
+          <div className="flex-1 h-full flex justify-center px-2 xl:mr-[40px] 5xl:w-[65%]">
+            <div className="w-full flex flex-col gap-8 justify-between h-full">
               <div className="2xl:mt-9 mt-6 lh text-black text-[24px] mdx:text-[35px] xl:text-[40px] font-medium 2xl:w-[650px]">
                 <h1 className="text-redMain text-[24px] font-semibold mdx:text-[35px] xl:text-[40px] uppercase tracking-tight">
                   {t('intermed_innovation')}
@@ -68,14 +63,14 @@ export default function Banner({ lng }) {
               </div>
             </div>
           </div>
-          <div className="w-full h-full flex relative">
+          <div className="w-full h-full flex relative 5xl:w-[56%]">
             <div className="w-full flex justify-center">
               <div className="w-full h-full bottom-0 left-0 py-[25px] mdx:py-[35px] 2xl:py-[0px]">
                 <Image
                   src={imed}
                   alt="Medical Equipment"
                   objectFit="cover"
-                  className="min-w-full min-h-full 2xl:w-[800px]"
+                  className="min-w-full min-h-full 2xl:w-[800px] 5xl:min-w-0 5xl:w-[60%]"
                 />
               </div>
             </div>

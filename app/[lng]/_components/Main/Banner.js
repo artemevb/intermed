@@ -55,7 +55,7 @@ export default function BannerCarousel() {
           src={banner}
           alt={`Banner ${index + 1}`}
           width={2000}
-          height={2000}
+          height={500}
           className="w-full h-auto object-cover rounded-2xl xl:max-w-[92%] max-h-[604px]"
         />
       </div>
@@ -71,7 +71,7 @@ export default function BannerCarousel() {
               src={banner}
               alt={`Banner ${index + 1}`}
               width={2000}
-              height={2000}
+              height={500}
               className="w-full h-auto object-cover rounded-2xl "
             />
           </div>

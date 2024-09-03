@@ -7,7 +7,7 @@ export default function Search() {
   return (
     <div className="fixed h-screen w-full bg-modalBg ">
       <div className="w-full bg-white h-[80%]">
-        <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 pt-8">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 pt-8">
           <input
             type={field === "email" ? "email" : "text"}
             name={field}

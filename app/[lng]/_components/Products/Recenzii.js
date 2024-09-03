@@ -48,7 +48,7 @@ export default function Reviews() {
     const visibleReviews = showAll ? reviews : reviews.slice(0, 1);
 
     return (
-        <div className="max-w-[1440px] mx-auto p-4">
+        <div className="max-w-[1440px] 5xl:max-w-[2000px] mx-auto p-4">
             <h2 className='uppercase text-[25px] font-semibold mdx:text-[25px]'>{t('recenzii')}</h2>
             {visibleReviews.map((review, index) => (
                 <div key={index} className="bg-white p-6 mb-6">
