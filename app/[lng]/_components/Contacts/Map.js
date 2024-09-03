@@ -15,7 +15,7 @@ export default function Map() {
                     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A91d36eeb34d790da6904a560f5fd9b0e0072a93a42f95bc0fe3dd8ae45fdaf0c&amp;source=constructor" width="100%" height="400" className="relative top-0 left-0 w-full h-full border-none " frameborder="0"></iframe>
                 </div>
                 <div className=" mx-[14px] 3xl:mx-auto">
-                    <div className="mt-4 max-w-[1440px] xl:mx-5">
+                    <div className="mt-4 max-w-[1440px] 5xl:max-w-[2000px] xl:mx-5">
                         <form className="flex flex-col xl:grid xl:gap-8">
                             <div className='xl:pb-[30px] border-b-2 border-contactBorder flex flex-col items-start gap-1 pb-3'>
                                 <div>

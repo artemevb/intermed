@@ -57,7 +57,7 @@ export default function Sertificates() {
   };
 
   return (
-    <div className="w-full max-w-[1440px]  mx-auto px-2">
+    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2">
       {
         isMounted && <div className="flex flex-col gap-5">
           <h2 className="text-3xl font-semibold max-mdl:text-2xl uppercase">
@@ -84,7 +84,7 @@ export default function Sertificates() {
           <div className="w-full justify-center flex">
             <a
               href={`/${lng}/licenses`}
-              className="border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold"
+              className="border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold 5xl:px-[90px] 5xl:py-5 5xl:text-[20px]"
             >
               {t('see-more')}
             </a>

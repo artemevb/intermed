@@ -19,7 +19,7 @@ export default function MoreInfo() {
 
 
     return (
-        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-4 px-2">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-4 px-2">
             <div className="xl:flex xl:flex-row xl:gap-2 xl:justify-between">
                 <div>
                     <h2 className="text-[25px] uppercase mdx:text-[33px] xl:text-[39px] font-semibold xl:w-[467px]">{t('info')}</h2>

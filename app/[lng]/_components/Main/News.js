@@ -46,10 +46,10 @@ export default function News() {
   ];
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-2 ">
+    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 ">
       {
         isMounted && <div className="flex flex-col gap-8">
-          <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase">{t('title')}</h2>
+          <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase 5xl:text-4xl">{t('title')}</h2>
           <div className="w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto">
             {data.map((item, i) => {
               return (

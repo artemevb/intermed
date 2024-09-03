@@ -15,7 +15,7 @@ export default function Scheme() {
 
     return (
         <div className="bg-[#F6F8F9] xl:pt-[100px] xl:pb-[52px]">
-            <div className="w-full max-w-[1440px] mx-auto px-[20px] flex flex-col gap-10">
+            <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-[20px] flex flex-col gap-10">
                 <div className="flex flex-col gap-8 xl:flex-row  xl:justify-beetwen xl:gap-[23%]">
                     <div className="flex flex-col gap-2">
                         <h2 className="text-[25px] mdx:text-[30px] mdl:text-[35px] mt-[30px] xl:text-[40px] font-semibold uppercase xl:w-[508px]">

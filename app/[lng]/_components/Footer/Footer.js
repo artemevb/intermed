@@ -17,7 +17,7 @@ export default function Footer({ lng }) {
   const { t } = useTranslation(lng, 'footer-main')
   return (
     <div className="bg-snowy w-full px-2 pt-12">
-      <div className="w-full max-w-[1440px] flex flex-col gap-12 mx-auto">
+      <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex flex-col gap-12 mx-auto">
         <div className="w-full flex justify-between max-lg:flex-col gap-12">
           <div className="flex lg:flex-col max-lg:justify-between flex-col  gap-5">
             <div className="flex flex-col gap-5 ">

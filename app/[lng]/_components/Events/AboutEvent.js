@@ -14,7 +14,7 @@ export default function AboutEvent() {
     const openSignUpModal = () => setIsSignUpModalOpen(true);
     const closeSignUpModal = () => setIsSignUpModalOpen(false);
     return (
-        <div className="w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-1 px-2">
             <h2 className="text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase">{t('title')}</h2>
             <div className="xl:flex xl:flex-row-reverse overflow-visible relative mb-[100px] mdx:mb-[150px] xl:mb-[180px]">
                 <div className="bg-[#F4F7FE] p-6 w-full xl:sticky top-0 self-start xl:w-1/4 xl:ml-5 xl:flex xl:flex-col xl:justify-between">

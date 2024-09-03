@@ -15,10 +15,10 @@ export default function WhatWeDo() {
     }, []);
 
     return (
-        <div className="max-w-[1440px] px-2 mx-auto xl:mt-[700px] 2xl:mt-0">
+        <div className="max-w-[1440px] 5xl:max-w-[2000px] px-2 mx-auto xl:mt-[700px] 2xl:mt-0">
             {
                 isMounted && <div>
-                    <div className="max-w-md mx-auto bg-white md:max-w-[1440px]">
+                    <div className="max-w-md mx-auto bg-white md:max-w-[1440px] 5xl:max-w-[2000px]">
                         <div className="uppercase text-[25px] tracking-wide text-[#252324] font-semibold mdx:text-[35px] xl:hidden">
                             {t("What we do for our clients?")}
                         </div>

@@ -54,7 +54,7 @@ export default function BannerCarousel() {
     const closeAskaQuestionModal = () => setIsAskaQuestionModalOpen(false);
 
     return (
-        <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden">
+        <div className="relative w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto overflow-hidden">
             <div className="flex flex-col xl:flex-row bg-white overflow-hidden">
                 <div className="xl:w-[50%] flex flex-col justify-center p-4 text-white ">
                     <h1 className="text-[25px] uppercase mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">

@@ -9,7 +9,7 @@ export default function Title() {
     const { t } = useTranslation(lng, 'equipment-title')
 
     return (
-        <div className="w-full max-w-[1440px] mx-auto">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto">
             <div className='mx-[15px]'>
                 <h1 className="text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] mb-4 uppercase xl:hidden font-semibold">
                     {t('innovation_health')}

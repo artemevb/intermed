@@ -33,7 +33,7 @@ export default function List() {
   }, []);
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-2">
+    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2">
       {isMounted && (
         <div className="flex flex-col gap-8">
           <h1 className="text-3xl max-mdx:text-2xl font-semibold uppercase">

@@ -40,7 +40,7 @@ export default function ContAddress() {
     ];
 
     return (
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 mb-[180px]">
+        <div className="max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 sm:px-6 mb-[180px]">
             <div>
                 <h2 className="mt-[120px] text-3xl font-semibold uppercase mt-18 mdx:mt-[170px] mb-8">{t('title')}</h2>
 

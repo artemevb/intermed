@@ -54,8 +54,8 @@ export default function BannerCarousel() {
         <Image
           src={banner}
           alt={`Banner ${index + 1}`}
-          width={1440}
-          height={500}
+          width={2000}
+          height={2000}
           className="w-full h-auto object-cover rounded-2xl xl:max-w-[92%] max-h-[604px]"
         />
       </div>
@@ -63,15 +63,15 @@ export default function BannerCarousel() {
   }));
 
   return (
-    <div className="relative w-full max-w-[1440px] mx-auto overflow-hidden px-2 lg:px-12">
+    <div className="relative w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto overflow-hidden px-2 lg:px-12">
       <Slider ref={sliderRef} {...settings}>
         {banners.map((banner, index) => (
           <div key={index} className="min-w-full flex justify-center px-2">
             <Image
               src={banner}
               alt={`Banner ${index + 1}`}
-              width={1440}
-              height={500}
+              width={2000}
+              height={2000}
               className="w-full h-auto object-cover rounded-2xl "
             />
           </div>

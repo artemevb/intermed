@@ -25,7 +25,7 @@ export default function Contacts({ lng }) {
   }, []);
 
   return (
-    <div className="w-full max-w-[1440px] px-[15px] mx-auto ">
+    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] px-[15px] mx-auto ">
       {
         isMounted &&
         <>
