@@ -107,8 +107,8 @@ export default function Catalogitem({
 							? `${title.substring(0, 12)}...`
 							: title || 'No Title'}
 				</h3>
-				<p className='text-xs text-[#BABABA] mt-1 line-clamp-4'>
-					{description}
+				<p className='text-xs text-[#BABABA] mt-1 '>
+					{description.length > 200 ? description.slice(0, 150) : description}
 				</p>
 				<div className='flex w-full justify-between items-center flex-wrap mt-3'>
 					<a href={`/${lng}/product/${slug}`}>

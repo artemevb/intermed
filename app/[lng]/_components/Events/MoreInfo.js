@@ -1,13 +1,14 @@
-export default function MoreInfo() {
+export default function MoreInfo({Data}) {
+
     const infoData = [
-        { label: "Организатор", value: "Intermed Innovation" },
-        { label: "Страна проведения", value: "Узбекистан" },
-        { label: "Дата", value: "17 июля - 25 июля" },
-        { label: "Время", value: "17:00 - 20:00" },
-        { label: "Адрес", value: "Узбекистан, г. Ташкент, НВК \"Узэкспоцентр\"" },
+        { label: "Организатор", value: Data.organizer },
+        { label: "Страна проведения", value: Data.country },
+        { label: "Дата", value: `${Data.dateFrom} - ${Data.dateTo}` },
+        { label: "Время", value:  `${Data.timeFrom} - ${Data.timeTo}`},
+        { label: "Адрес", value: Data.address },
         { label: "Стоимость участия", value: "Бесплатно" },
-        { label: "Контактный телефон", value: "+998 78 150-47-47" },
-        { label: "Контактный E-mail", value: "info@imed.uz" }
+        { label: "Контактный телефон", value: Data.phoneNum },
+        { label: "Контактный E-mail", value: Data.email }
     ];
 
     return (

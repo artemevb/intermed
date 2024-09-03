@@ -9,15 +9,42 @@ import sert from "@/public/images/main/intermed-sertificate.png";
 import { useTranslation } from '../../../i18n/client';
 import { useState, useEffect } from "react";
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import axios from 'axios';
+import { useParams } from 'next/navigation'
 
 export default function Sertificates() {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'awards-certificates')
-  const sertificates = [sert, sert, sert, sert, sert, sert, sert];
+  const [data ,setData] = useState(null)
   const [isMounted, setIsMounted] = useState(false);
+  const params = useParams()
   useEffect(() => {
     setIsMounted(true);
   }, []);
+  console.log(data)
+
+
+  // http://213.230.91.55:8130/v1/certificate/get-all?onlyPhoto=true
+
+  useEffect(() => {
+		const getAllSertificates = async () => {
+			try {
+				const response = await axios.get(
+					`http://213.230.91.55:8130/v1/certificate/get-all?onlyPhoto=true`,
+					{
+						headers: { 'Accept-Language': params.lng },
+					}
+				)
+				setData(response.data.data)
+        console.log(response.data.data)
+			} catch (error) {
+				console.error('Failed to fetch news:', error.message)
+				setData(null) // Reset state if fetching fails
+			}
+		}
+		getAllSertificates()
+	}, [lng])
+
 
 
   const settings = {
@@ -65,11 +92,11 @@ export default function Sertificates() {
           </h2>
           <div>
             <Slider {...settings} className="h-auto flex">
-              {sertificates.map((item, index) => (
+              {data?.map((item, index) => (
                 <div key={index} className="p-4">
                   <div className="p-8 border">
                     <Image
-                      src={item}
+                      src={item.photo.url}
                       width={500}
                       height={500}
                       alt="Intermed Sertificate"

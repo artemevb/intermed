@@ -17,6 +17,8 @@ export default function Banner({ lng }) {
   //   { value: '20+', description: 'поставщиков' },
   //   { value: '2000+', description: 'довольных клиентов' },
   // ];
+
+  
   return (
     <div>
       {isMounted && (

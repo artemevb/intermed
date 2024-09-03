@@ -2,8 +2,6 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import Image from 'next/image';
-import partnerPhoto from "@/public/images/aboutUs/partners/image3.png";
-import partnerPhoto1 from "@/public/images/aboutUs/partners/image58.png";
 import GreenArrow from "../Buttons/GreenArrow";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
@@ -27,9 +25,6 @@ export default function ListPartners() {
                 setShowAll(false);
             }
         };
-
-        
-
         handleResize(); // Check the initial screen size
         window.addEventListener('resize', handleResize); // Add resize event listener
 

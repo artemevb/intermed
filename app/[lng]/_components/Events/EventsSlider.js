@@ -18,22 +18,22 @@ export default function EventsSlider() {
   const { t } = useTranslation(lng, 'equipment-title')
   const data = [
     {
-      title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
+      title: "sdfsdfsdfsdfПрезентация Новейших Технологий в Медицине: Ташкент 2024",
       imageSrc: eventImage1,
       link: "#",
     },
     {
-      title: "Семинар по Современным Медицинским Технологиям: От Теории к Практике",
+      title: "sdfsdfdsfdsfСеминар по Современным Медицинским Технологиям: От Теории к Практике",
       imageSrc: eventImage2,
       link: "#",
     },
     {
-      title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
+      title: "sdfsdfdfdfПрезентация Новейших Технологий в Медицине: Ташкент 2024",
       imageSrc: eventImage3,
       link: "#",
     },
     {
-      title: "Семинар по Современным Медицинским Технологиям: От Теории к Практике",
+      title: "sdfsdfsdfСеминар по Современным Медицинским Технологиям: От Теории к Практике",
       imageSrc: eventImage4,
       link: "#",
     },

@@ -1,48 +1,45 @@
 "use client";
 
+import { useState , useEffect } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Link from "next/link";
-import eventImage1 from "@/public/images/news/events/1.png";
-import eventImage2 from "@/public/images/news/events/2.png";
-import eventImage3 from "@/public/images/news/events/3.png";
-import eventImage4 from "@/public/images/news/events/4.png";
+
 
 import GreenArrow from "../Buttons/GreenArrow";
 import EventCard from "../Events/EventCard";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import axios from 'axios';
 
 export default function Events() {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'news-events')
+  const [events , setEvents] = useState([])
+
+  useEffect(() => {
+		const getAllEvents = async () => {
+			try {
+				const response = await axios.get(
+					`http://213.230.91.55:8130/v1/event/get-all`,
+					{
+						headers: { 'Accept-Language': lng },
+					}
+				)
+				setEvents(response.data.data)
+			} catch (error) {
+				console.error('Failed to fetch news:', error.message)
+				setEvents(null) // Reset state if fetching fails
+			}
+		}
+		getAllEvents()
+	}, [lng])
+
 
   
 
 
-  const data = [
-    {
-      title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
-      imageSrc: eventImage1,
-      link: "#",
-    },
-    {
-      title: "Семинар по Современным Медицинским Технологиям: От Теории к Практике",
-      imageSrc: eventImage2,
-      link: "#",
-    },
-    {
-      title: "Презентация Новейших Технологий в Медицине: Ташкент 2024",
-      imageSrc: eventImage3,
-      link: "#",
-    },
-    {
-      title: "Семинар по Современным Медицинским Технологиям: От Теории к Практике",
-      imageSrc: eventImage4,
-      link: "#",
-    },
-  ];
+  
 
   const settings = {
     infinite: true,
@@ -86,9 +83,9 @@ export default function Events() {
       </a>
       <div className="w-full">
         <Slider {...settings}>
-          {data.map((item, index) => (
+          {events?.map((item, index) => (
             <div key={index} className="p-2 mt-4">
-              <EventCard title={item.title} imageSrc={item.imageSrc} link={item.link} />
+              <EventCard title={item.name} imageSrc={item.photo.url} slug={item.slug} />
             </div>
           ))}
         </Slider>
