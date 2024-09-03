@@ -9,7 +9,7 @@ export default async function Page({ params, searchParams }) {
 
 	// Fetch all categories
 	const allCategories = await axios
-		.get('http://213.230.91.55:8130/v1/category', {
+		.get('https://imed.uz/api/v1/category', {
 			headers: {
 				'Accept-Language': lng,
 			},
@@ -19,7 +19,7 @@ export default async function Page({ params, searchParams }) {
 
 	// Fetch specific category by slug
 	const data = await axios
-		.get(`http://213.230.91.55:8130/v1/category/${slug}`, {
+		.get(`https://imed.uz/api/v1/category/${slug}`, {
 			headers: {
 				'Accept-Language': lng,
 			},

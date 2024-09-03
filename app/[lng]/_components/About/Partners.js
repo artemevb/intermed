@@ -1,14 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useTranslation } from '../../../i18n/client'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import Image from 'next/image'
-import Link from 'next/link'
 import axios from 'axios'
+import Image from 'next/image'
 import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
+import { useTranslation } from '../../../i18n/client'
 
 export default function Partners({ lng }) {
 	const { t } = useTranslation(lng, 'partners-main')
@@ -22,12 +21,9 @@ export default function Partners({ lng }) {
 	useEffect(() => {
 		const getAllPartners = async () => {
 			try {
-				const response = await axios.get(
-					`http://213.230.91.55:8130/v1/partner/all`,
-					{
-						headers: { 'Accept-Language': params.lng },
-					}
-				)
+				const response = await axios.get(`https://imed.uz/api/v1/partner/all`, {
+					headers: { 'Accept-Language': params.lng },
+				})
 				setlogo(response.data.data)
 			} catch (error) {
 				console.error('Failed to fetch news:', error.message)

@@ -1,14 +1,14 @@
 export default function MoreInfo({Data}) {
 
     const infoData = [
-        { label: "Организатор", value: Data.organizer },
-        { label: "Страна проведения", value: Data.country },
-        { label: "Дата", value: `${Data.dateFrom} - ${Data.dateTo}` },
-        { label: "Время", value:  `${Data.timeFrom} - ${Data.timeTo}`},
-        { label: "Адрес", value: Data.address },
+        { label: "Организатор", value: Data?.organizer },
+        { label: "Страна проведения", value: Data?.country },
+        { label: "Дата", value: `${Data?.dateFrom} - ${Data?.dateTo}` },
+        { label: "Время", value:  `${Data?.timeFrom} - ${Data?.timeTo}`},
+        { label: "Адрес", value: Data?.address },
         { label: "Стоимость участия", value: "Бесплатно" },
-        { label: "Контактный телефон", value: Data.phoneNum },
-        { label: "Контактный E-mail", value: Data.email }
+        { label: "Контактный телефон", value: Data?.phoneNum },
+        { label: "Контактный E-mail", value: Data?.email }
     ];
 
     return (
