@@ -27,11 +27,10 @@ const TitleMain = ({Data}) => {
                         alt={Data.title}
                         layout="fill"
                         quality={100}
-                        objectFit="contain"
-                        className="w-full h-full"
+                        objectFit="cover"
+                        className="w-full h-full "
                     />
                 </div>
-
             </div>
         </div>
     );
