@@ -91,14 +91,17 @@ export default function Catalogitem({
 							</div>
 						)}
 					</div>
-					<Image
-						src={image}
-						alt={title}
-						width={200}
-						height={200}
-						quality={100}
-						className='object-contain w-full h-full'
-					/>
+					<a href={`/${lng}/product/${slug}`}>
+						<Image
+							src={image}
+							alt={title}
+							width={200}
+							height={200}
+							quality={100}
+							className='object-contain w-full h-full'
+						/>
+					</a>
+
 				</div>
 				<h3 className='text-md font-semibold'>
 					{isMdx
