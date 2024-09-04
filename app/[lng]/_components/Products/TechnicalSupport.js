@@ -31,7 +31,7 @@ export default function TechnicalSupport() {
     const { t } = useTranslation(lng, 'popular-products-main');
 
     return (
-        <div className="w-full max-w-[1440px] mx-auto px-[10px] flex flex-col gap-2  mb-[100px] mt-[30px] mdx:mt-[40px] mdx:mb-[140px] xl:mt-[60px] xl:mb-[170px]">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-[10px] flex flex-col gap-2  mb-[100px] mt-[30px] mdx:mt-[40px] mdx:mb-[140px] xl:mt-[60px] xl:mb-[170px]">
             <h2 className='uppercase text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold'>{t('service')}</h2>
             {support.map(support => (
                 <div key={support.id} className="flex items-center gap-4 pb-[30px] ">

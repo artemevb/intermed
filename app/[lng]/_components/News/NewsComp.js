@@ -56,7 +56,7 @@ export default function NewsComp() {
 	if (error) return <div>{error}</div>
 
 	return (
-		<div className='w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 my-[120px] mdx:my-[200px] 2xl:my-[250px]'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 my-[120px] mdx:my-[200px] 2xl:my-[250px]'>
 			<h2 className='text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold uppercase'>
 				{t('title')}
 			</h2>

@@ -91,7 +91,7 @@ export default function Similar() {
   };
 
   return (
-    <section className="w-full max-w-[1440px] mx-auto flex flex-col gap-8 px-2">
+    <section className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-8 px-2">
       <h2 className="text-3xl max-mdx:text-2xl font-bold uppercase">
         {t('similar-products')}
       </h2>

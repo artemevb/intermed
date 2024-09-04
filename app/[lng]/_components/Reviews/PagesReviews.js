@@ -58,7 +58,7 @@ export default function Reviews() {
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto px-2 flex flex-col gap-8 ">
+    <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 ">
       <div className='mx-[10px] 3xl:mx-0'>
         <h2 className="text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold uppercase pb-[15px]">{t('reviews')}</h2>
         <div className="w-full grid gap-4 grid-cols-1 xl:grid-cols-2 h-auto">
