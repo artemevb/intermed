@@ -45,7 +45,7 @@ export default function PartnerPage() {
 					</p>
 				</div>
 				<div className='flex flex-row justify-between items-center h-auto mt-[20px]'>
-					<button className='bg-[#FCE8E9] py-[15px] px-[20px] mdx:py-[20px] xl:px-[20px] h-full rounded-md flex items-center text-[14px] mdx:text-[16px] mdl:text-[18px] xl:text-[20px] text-[#E31E24]'>
+					<a href={partner.website} target="_blank" className='bg-[#FCE8E9] py-[15px] px-[20px] mdx:py-[20px] xl:px-[20px] h-full rounded-md flex items-center text-[14px] mdx:text-[16px] mdl:text-[18px] xl:text-[20px] text-[#E31E24]'>
 						<Image
 							src={globus}
 							alt={partner.name}
@@ -54,7 +54,7 @@ export default function PartnerPage() {
 							className='mr-2'
 						/>
 						{partner.website}
-					</button>
+					</a>
 					<div className='w-auto h-auto relative max-w-[110px] mdx:max-w-[224px]'>
 						<Image
 							width={100}

@@ -13,31 +13,10 @@ import EventCard from "../../_components/Events/EventCard";
 
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
-export default function EventsSlider() {
+export default function EventsSlider({data}) {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'equipment-title')
-  const data = [
-    {
-      title: "sdfsdfsdfsdfПрезентация Новейших Технологий в Медицине: Ташкент 2024",
-      imageSrc: eventImage1,
-      link: "#",
-    },
-    {
-      title: "sdfsdfdsfdsfСеминар по Современным Медицинским Технологиям: От Теории к Практике",
-      imageSrc: eventImage2,
-      link: "#",
-    },
-    {
-      title: "sdfsdfdfdfПрезентация Новейших Технологий в Медицине: Ташкент 2024",
-      imageSrc: eventImage3,
-      link: "#",
-    },
-    {
-      title: "sdfsdfsdfСеминар по Современным Медицинским Технологиям: От Теории к Практике",
-      imageSrc: eventImage4,
-      link: "#",
-    },
-  ];
+ 
 
   const settings = {
     arrows: false,
@@ -83,7 +62,7 @@ export default function EventsSlider() {
         <Slider {...settings}>
           {data.map((item, index) => (
             <div key={index} className="p-2 mt-4">
-              <EventCard title={item.title} imageSrc={item.imageSrc} link={item.link} />
+              <EventCard title={item.name} imageSrc={item.photo.url} slug={item.slug} />
             </div>
           ))}
         </Slider>

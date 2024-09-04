@@ -6,7 +6,15 @@ import SignUpForEvent from '../../_components/Modal/SignUpForEvent'
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 
-export default function EventSignUp({ title, photo }) {
+export default function EventSignUp({
+	title,
+	photo,
+	dateFrom,
+	dateTo,
+	timeFrom,
+	timeTo,
+	address,
+}) {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'events-events-sign-up')
 
@@ -54,7 +62,16 @@ export default function EventSignUp({ title, photo }) {
 				</div>
 			</div>
 
-			{isTimetableModalOpen && <Timetable closeModal={closeTimetableModal} />}
+			{isTimetableModalOpen && (
+				<Timetable
+					closeModal={closeTimetableModal}
+					dateFrom={dateFrom}
+					dateTo={dateTo}
+					timeFrom={timeFrom}
+					timeTo={timeTo}
+					address={address}
+				/>
+			)}
 			{isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} />}
 		</div>
 	)

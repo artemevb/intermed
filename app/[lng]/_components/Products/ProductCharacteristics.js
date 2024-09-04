@@ -9,7 +9,6 @@ import { useLanguage } from '../../../i18n/locales/LanguageContext'
 export default function ProductCharacteristics({ data }) {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'product-characteristics')
-
 	// Define categories based on the data structure
 	const categories = [
 		{
@@ -30,6 +29,7 @@ export default function ProductCharacteristics({ data }) {
 	const [filtered, setFiltered] = useState(data[categories[0].dataKey] || [])
 	const [selectedAttachedFiles, setSelectedAttachedFiles] = useState(null)
 
+	console.log(filtered , "Filtered")
 	// Open modal with attached files
 	const openModal = files => {
 		setSelectedAttachedFiles(files)
@@ -81,7 +81,13 @@ export default function ProductCharacteristics({ data }) {
 				{active === 'descriptions' && filtered.length > 0 && (
 					<div className='text-lg leading-5'>
 						{filtered.map((item, i) => (
-							<p key={i}>{formatTextWithNewlines(item.value)}</p>
+							<div key={i}>
+								<p className='text-[18px] text-[#252324] mdx:text-[24px] lg:text-[20px] font-bold' >{formatTextWithNewlines(item.title)}</p>
+								<ul>
+  <li>{formatTextWithNewlines(item.value)}</li>
+</ul>
+								</div>
+							
 						))}
 					</div>
 				)}

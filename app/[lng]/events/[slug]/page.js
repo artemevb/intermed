@@ -26,12 +26,34 @@ export default async function page({ params }) {
 		console.error('Failed to fetch product data:', error)
 	}
 
+	let eventsDataCarousel = null
+
+	try {
+		const response = await axios.get(`https://imed.uz/api/v1/event/get-all`, {
+			headers: {
+				'Accept-Language': lng,
+			},
+		})
+
+		eventsDataCarousel = response.data.data
+	} catch (error) {
+		console.error('Failed to fetch product data:', error)
+	}
+
 	return (
 		<div>
-			<EventsSignUp title={eventData?.name} photo={eventData?.photo.url} />
+			<EventsSignUp
+				title={eventData?.name}
+				photo={eventData?.photo.url}
+				dateFrom={eventData?.dateFrom}
+				dateTo={eventData?.dateTo}
+				timeFrom={eventData?.timeFrom}
+				timeTo={eventData?.timeTo}
+				address={eventData?.address}
+			/>
 			<AboutEvent Data={eventData} />
 			<MoreInfo Data={eventData} />
-			<EventsSlider />
+			<EventsSlider data={eventsDataCarousel} />
 			<Application />
 		</div>
 	)

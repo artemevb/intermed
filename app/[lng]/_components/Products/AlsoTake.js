@@ -12,7 +12,6 @@ import { useLanguage } from '../../../i18n/locales/LanguageContext';
 export default function AlsoTake({data}) {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'also-take')
- console.log("Salom Also Take")
 
   const settings = {
     arrows: false,

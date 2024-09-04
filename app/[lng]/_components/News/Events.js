@@ -77,7 +77,7 @@ export default function Events() {
 				</h2>
 			</a>
 			<div className='w-full'>
-				{events.length > 1 ? (
+				{events.length > 2 ? (
 					<Slider {...settings}>
 						<div className='w-full border'>
 							{events?.map((item, index) => (
@@ -92,9 +92,9 @@ export default function Events() {
 						</div>
 					</Slider>
 				) : (
-					<div className='w-full max-w-[700px]'>
+					<div className='w-full max-w-[100%] flex flex-row gap-[20px] '>
 						{events?.map((item, index) => (
-							<div key={index} className='p-2 mt-4'>
+							<div key={index} className='p-2 mt-4 w-[50%]'>
 								<EventCard
 									title={item.name}
 									imageSrc={item.photo.url}

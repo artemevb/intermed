@@ -5,16 +5,14 @@ import EventCard from "../Events/EventCard";
 import Pagination from "../News/Pagination";
 import Link from "next/link";
 import { useState, useRef, useEffect } from 'react';
-import { useTranslation } from '../../../i18n/client'
+import { useTranslation } from '../../../i18n/client';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-export default function EventsPages({Data}) {
-   
+export default function EventsPages({ Data }) {
+
     const lng = useLanguage();
-    const { t } = useTranslation(lng, 'events-pages')
+    const { t } = useTranslation(lng, 'events-pages');
     const [isMounted, setIsMounted] = useState(false);
-    const cities = ["Все", "Ташкент", "Самарканд", "Фергана", "Хорезм", "Бухара", "Андижан", "Навои", "Джизак", "Кашкадарья", "Наманган", "Сурхандарья", "Сырдарья"];
-   
 
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCity, setSelectedCity] = useState("Все");
@@ -45,6 +43,9 @@ export default function EventsPages({Data}) {
             };
         }
     }, [isMounted]);
+
+    // Extract unique addresses from Data for filtering options
+    const cities = ["Все", ...Array.from(new Set(Data.map(item => item.address)))];
 
     // Filter the events based on selected city
     const filteredData = selectedCity === "Все" ? Data : Data.filter(item => item.address === selectedCity);
