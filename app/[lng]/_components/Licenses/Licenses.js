@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react' // Добавьте useEffect сюд
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 import Modal from '../Modal/LicensesItem'
-import { useEffect } from 'react'
 
 
 const Licenses = () => {
