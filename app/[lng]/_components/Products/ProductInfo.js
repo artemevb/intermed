@@ -1,27 +1,13 @@
-import { useTranslations } from 'next-intl';
-import { Link } from '../i18n/routing';
+'use client'
+import Application from '../Main/Application'
+import ProductCharacteristics from './ProductCharacteristics'
+import ProductPreview from './ProductPreview'
 
-export default function HomePage() {
-  const t = useTranslations('HomePage'); // Ensure the 'HomePage' namespace matches the locale structure
-
-  return (
-    <div>
-      <nav>
-        <ul>
-          <li>
-            <Link href="/services">{t('uslugi')}</Link>
-          </li>
-          <li>
-            <Link href="/cases">{t('keysi')}</Link>
-          </li>
-          <li>
-            <Link href="/blog">{t('blog')}</Link>
-          </li>
-          <li>
-            <Link href="/about-us">{t('about_us')}</Link>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  );
+export default function ProductInfo({ productData }) {
+	return (
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-16 px-2'>
+			<ProductPreview productData={productData} />
+			<ProductCharacteristics data={productData} />
+		</div>
+	)
 }
