@@ -5,16 +5,14 @@ import { useState, useEffect } from 'react' // Добавьте useEffect сюд
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 import Modal from '../Modal/LicensesItem'
-
+import axios from 'axios'
 
 const Licenses = () => {
     const lng = useLanguage()
     const { t } = useTranslation(lng, 'awards-and-certificates')
     const [licenses, setLicenses] = useState(null)
     const params = useParams()
-
     const [selectedLicense, setSelectedLicense] = useState(null)
-
     useEffect(() => {
         const getAllSertificates = async () => {
             try {
@@ -54,7 +52,9 @@ const Licenses = () => {
                         onClick={() => openModal(item)}
                     >
                         <Image
-                            src={item.imageSrc}
+                        width={400}
+                        height={400}
+                            src={item.photo.url}
                             alt={item.alt}
                             layout='responsive'
                             objectFit='contain'
