@@ -50,7 +50,7 @@ export default function AboutEvent({ Data }) {
 				<div className='xl:w-3/4'>
 					{Data?.abouts.map((item) => (
 						<React.Fragment key={item.id}>
-							<p className='text-[15px] mdx:text-[18px] mdl:text-[20px] mt-[30px]'>
+							<p className='text-[15px] mdx:text-[18px] mdl:text-[24px] mt-[30px] font-semibold'>
 								{item.title}
 							</p>
 							<p className='text-[15px] mdx:text-[18px] mdl:text-[20px] mt-[10px]'>

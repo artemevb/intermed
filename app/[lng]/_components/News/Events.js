@@ -66,6 +66,8 @@ export default function Events() {
 		],
 	}
 
+	console.log('Events', events)
+
 	return (
 		<section className='w-full max-w-[1440px] mx-auto flex flex-col gap-1 px-2'>
 			<a href={`/${lng}/events/`}>
@@ -75,17 +77,33 @@ export default function Events() {
 				</h2>
 			</a>
 			<div className='w-full'>
-				<Slider {...settings}>
-					{events?.map((item, index) => (
-						<div key={index} className='p-2 mt-4'>
-							<EventCard
-								title={item.name}
-								imageSrc={item.photo.url}
-								slug={item.slug}
-							/>
+				{events.length > 1 ? (
+					<Slider {...settings}>
+						<div className='w-full border'>
+							{events?.map((item, index) => (
+								<div key={index} className='p-2 mt-4'>
+									<EventCard
+										title={item.name}
+										imageSrc={item.photo.url}
+										slug={item.slug}
+									/>
+								</div>
+							))}
 						</div>
-					))}
-				</Slider>
+					</Slider>
+				) : (
+					<div className='w-full max-w-[700px]'>
+						{events?.map((item, index) => (
+							<div key={index} className='p-2 mt-4'>
+								<EventCard
+									title={item.name}
+									imageSrc={item.photo.url}
+									slug={item.slug}
+								/>
+							</div>
+						))}
+					</div>
+				)}
 			</div>
 		</section>
 	)

@@ -1,7 +1,7 @@
 'use client'
 import axios from 'axios'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
 
 import left from '@/public/svg/arrowleftbanners.svg'
@@ -9,16 +9,16 @@ import right from '@/public/svg/arrowrightbanners.svg'
 import { useParams } from 'next/navigation'
 
 export default function BannerCarousel() {
+	console.log('banner')
 	const sliderRef = useRef(null)
 	const [banner, setBanners] = useState([])
 	const params = useParams()
-	console.log(banner, 'Banner')
 	const settings = {
-		// infinite: true,
+		infinite: true,
 		speed: 500,
 		slidesToShow: 1,
 		slidesToScroll: 1,
-		// autoplay: true,
+		autoplay: true,
 		autoplaySpeed: 7000,
 		dots: false, // Disable built-in dots navigation
 		arrows: false, // Disable built-in arrows
@@ -58,32 +58,71 @@ export default function BannerCarousel() {
 	}
 
 	return (
-		<div className='relative w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto overflow-hidden px-2 lg:px-12'>
+		<div className='relative w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto overflow-hidden  lg:px-12  xl:px-2 mt-[-48px] xl:pt-12'>
 			<Slider ref={sliderRef} {...settings}>
 				{banner.sliders?.map((banner, index) => (
-					<div
-						key={index}
-						className='min-w-full flex flex-row justify-center px-2'
-					>
-						<div className='flex flex-row'>
-							<div className='text w-1/2 flex flex-col gap-[24px]'>
-								<p className='text-[#E31E24] text-[20px] font-medium'>
+					<div key={index} className='min-w-full xl:px-7'>
+						<div className='flex flex-col gap-[20px] xl:flex-row xl:flex xl:h-[600px]'>
+							{/* BANNER INFO */}
+							<div
+								className='text w-full pl-[16px] flex flex-col  gap-[8px]  justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] xl:rounded-l-[20px] '
+								style={{ backgroundColor: `${banner.backgroundColour}` }}
+							>
+								<p className='text-[#E31E24] text-[14px] md:text-[16px] font-medium xl:text-[20px]'>
 									{' '}
 									{banner.categoryName}
 								</p>
 
-								<h3 className='text-[#252324] text-[70px] '></h3>
-								<p className='text-[#252324] text-[20px]'></p>
-								<div></div>
+								<h3
+									className='text-[#252324] text-[28px] leading-[
+33.6px] mdx:text-[45px] mdx:leading-[54px] font-bold  xl:text-[70px] xl:leading-[84px] '
+								>
+									{banner.title}
+								</h3>
+								<p className='text-[#252324] text-[14px] opacity-50 md:text-[16px] xl:text-[20px]'>
+									{banner.subTitle}
+								</p>
+								<div className='text-[#E31E24] text-[14px] md:text-[16px] xl:text-[20px]'>
+									{banner.tagName.split(',').map((tag, index) => (
+										<React.Fragment key={index}>
+											{index > 0 && <span className='mx-2'>•</span>}
+											<span>{tag.trim()}</span>
+										</React.Fragment>
+									))}
+								</div>
 							</div>
-							<div className='text w-1/2'>
-								<Image
-									src={banner}
-									alt={`Banner ${index + 1}`}
-									width={1440}
-									height={500}
-									className='w-full h-auto object-cover rounded-2xl'
-								/>
+							{/* BACK BANNER */}
+							<div
+								className='text w-full relative  order-[-1] xl:w-[60%] xl:order-1  xl:rounded-r-[20px]'
+								style={{
+									backgroundImage: `url(${banner.productBackground?.url})`,
+									backgroundSize: 'cover',
+									backgroundPosition: 'center',
+								}}
+							>
+								{/* LOGO */}
+								<div className='w-[51px] absolute right-[10px] top-[10px] h-[15px]  z-[99999] xl:right-5 mdx:w-[127px] mdx:h-[32px] mdx:right-[20px] mdx:top-[30px] xl:top-5 xl:w-[120px] xl:h-[32px]'>
+									<Image
+										src={banner.logo?.url}
+										alt={`Banner ${index + 1}`}
+										width={150}
+										height={90}
+										quality={100}
+										className='w-full h-auto object-cover rounded-2xl'
+									/>
+								</div>
+
+								{/*  PRODUCT  PHOTO */}
+								<div className='w-full z-[9999] xl:absolute xl:bottom-0 xl:left-0'>
+									<Image
+										src={banner.photo?.url}
+										alt={`Banner ${index + 1}`}
+										width={500}
+										height={500}
+										quality={100}
+										className='w-full h-auto object-cover rounded-2xl'
+									/>
+								</div>
 							</div>
 						</div>
 					</div>

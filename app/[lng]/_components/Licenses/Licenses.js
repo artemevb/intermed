@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 import Modal from '../Modal/LicensesItem'
+import { useEffect } from 'react'
+
 
 const Licenses = () => {
 	const lng = useLanguage()
