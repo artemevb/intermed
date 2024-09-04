@@ -9,7 +9,7 @@ import right from '@/public/svg/arrowrightbanners.svg'
 import { useParams } from 'next/navigation'
 
 export default function BannerCarousel() {
-	console.log('banner')
+	
 	const sliderRef = useRef(null)
 	const [banner, setBanners] = useState([])
 	const params = useParams()

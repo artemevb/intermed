@@ -21,6 +21,15 @@ export default function ProductPreview({productData}) {
     setIsModalOpen(false);
   };
 
+  const formatTextWithNewlines = (text) => {
+		return text.split('\n').map((line, index) => (
+			<span key={index}>
+				{line}
+				<br />
+			</span>
+		))
+	}
+
   return (
     <div className="w-full flex flex-col lg:flex-row">
       <div className="flex-1 w-full">
@@ -34,7 +43,9 @@ export default function ProductPreview({productData}) {
           </div>
         </div>
         <p className="text-neutral-500 leading-5">
-         {productData.shortDescription}
+         {
+         formatTextWithNewlines(productData.shortDescription)
+         }
         </p>
         <hr />
         <div className="w-full flex justify-between items-center">

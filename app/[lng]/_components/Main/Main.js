@@ -16,7 +16,7 @@ export default function Main() {
     <div className="w-full bg-white pt-12 flex flex-col gap-28 xl:gap-36">
       <div className="flex w-full flex-col gap-12 lg:gap-36">
         <Banner />
-        {/* <ProfessionalEquipments /> */}
+        <ProfessionalEquipments />
       </div>
       <Equipments />
       <AboutUs />

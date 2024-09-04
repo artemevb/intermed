@@ -8,12 +8,18 @@ import { useState } from 'react';
 import Modal from "../Modal/Reviews";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import { useEffect } from 'react';
+import axios from 'axios';
+
 
 
 export default function Reviews() {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'reviews-pages-reviews')
+  const [currentPage, setCurrentPage] = useState(1);
+
   const [selectedReviews, setSelectedReviews] = useState(null);
+  const [reviews , setReviews] = useState([])
   const openModal = (Reviews) => {
     setSelectedReviews(Reviews);
   };
@@ -22,40 +28,42 @@ export default function Reviews() {
     setSelectedReviews(null);
   };
 
-  const data = [
-    {
-      id: 1,
-      imageSrc: partnerPhoto1,
-      title: "Fergana Premium Medical",
-      date: "24.07.2024",
-      description: "Уважаемая команда iMed! Клиника Fergana Premium Medical выражает искреннюю благодарность компании iMed за комплексное оснащение нашего медицинского учреждения. Благодаря вашему профессионализму и высококачественному оборудованию, наша клиника теперь обладает всем необходимым для предоставления первоклассных медицинских услуг."
-    },
-    {
-      id: 2,
-      imageSrc: partnerPhoto2,
-      title: "Grand Medical Center",
-      date: "15.06.2024",
-      description: "Уважаемая команда iMed! Клиника Fergana Premium Medical выражает искреннюю благодарность компании iMed за комплексное оснащение нашего медицинского учреждения. Благодаря вашему профессионализму и высококачественному оборудованию, наша клиника теперь обладает всем необходимым для предоставления первоклассных медицинских услуг."
-    },
-    {
-      id: 3,
-      imageSrc: partnerPhoto3,
-      title: "Novo Medics",
-      date: "10.05.2024",
-      description: "Уважаемая команда iMed! Клиника Fergana Premium Medical выражает искреннюю благодарность компании iMed за комплексное оснащение нашего медицинского учреждения. Благодаря вашему профессионализму и высококачественному оборудованию, наша клиника теперь обладает всем необходимым для предоставления первоклассных медицинских услуг."
-    },
-    // Add more reviews as needed
-  ];
+  useEffect(() => {
+    const fetchReviews = async () => {
+        try {
+            const response = await axios.get(`https://imed.uz/api/v1/review/get-all?page=${currentPage}`, {
+                headers: { 'Accept-Language': lng },
+            });
+            setReviews(response.data.data);
+        } catch (error) {
+            console.error('Failed to fetch reviews:', error.message);
+        }
+    };
 
-  const [currentPage, setCurrentPage] = useState(1);
+    fetchReviews();
+}, [lng]);
+
+
+
+// SANALATNI OLISH UCHUN 24.07.2024 kabi 
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth is zero-based
+  const year = date.getFullYear();
+  return `${day}.${month}.${year}`;
+};
+
+ 
+
   const itemsPerPage = 6; 
 
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = data.slice(startIndex, endIndex);
+  const currentItems = reviews.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(reviews.length / itemsPerPage);
 
   return (
     <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 ">
@@ -69,7 +77,7 @@ export default function Reviews() {
                   <div className="flex justify-start items-center  gap-4 xl:gap-1 xl:items-start mb-4">
                     <div className="h-[60px] w-[60px] mdx:h-[70px] mdx:w-[70px] xl:h-[80px] xl:w-[80px] relative xl:mr-4">
                       <Image
-                        src={item.imageSrc}
+                        src={item.logo.url}
                         width={1500}
                         height={1500}
                         quality={100}
@@ -77,11 +85,13 @@ export default function Reviews() {
                         objectFit="contain" className="w-full h-auto" />
                     </div>
                     <div>
-                      <h2 className="text-[18px] font-semibold right mt-3 mdx:text-[20px]">{item.title}</h2>
-                      <p className="text-gray-400 text-[14px] mdx:text-[18px]">{item.date}</p>
+                      <h2 className="text-[18px] font-semibold right mt-3 mdx:text-[20px]">{item.clientName}</h2>
+                      <p className="text-gray-400 text-[14px] mdx:text-[18px]">
+                      {formatDate(item.createdDate)}
+                      </p>
                     </div>
                   </div>
-                  <p className="mb-4 mdx:text-[18px] xl:mt-5">{item.description}</p>
+                  <p className="mb-4 mdx:text-[18px] xl:mt-5">{item.comment}</p>
                 </div>
                 <button onClick={() => openModal(item)}>
                   <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px] flex justify-end mdx:pb-5 pr-5 xl:pb-0 xl:pr-0">

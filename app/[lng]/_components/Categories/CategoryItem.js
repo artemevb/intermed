@@ -12,7 +12,7 @@ export default function CategoryItem({ key, title, imageSrc, slug }) {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  console.log('постоянный рендеринг');
+
   return (
     <a href={`/${lng}/categories/catalog/${slug}`}>
       <div

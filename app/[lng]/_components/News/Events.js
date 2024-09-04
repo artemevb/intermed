@@ -66,7 +66,7 @@ export default function Events() {
 		],
 	}
 
-	console.log('Events', events)
+	
 
 	return (
 		<section className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-1 px-2'>

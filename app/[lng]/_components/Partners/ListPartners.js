@@ -10,7 +10,7 @@ export default function ListPartners() {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'partners-list-partners')
 	const [partners, setPartners] = useState([])
-	console.log(partners)
+	
 
 	const [showAll, setShowAll] = useState(false)
 

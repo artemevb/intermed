@@ -20,7 +20,7 @@ export default async function page({ params }) {
 		console.error('Failed to fetch product data:', error)
 	}
 
-	console.log(eventData, 'Event data:')
+	
 
 	return (
 		<div>

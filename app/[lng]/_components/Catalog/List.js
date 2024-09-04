@@ -23,7 +23,6 @@ export default function List({ data, allCategories }) {
 	// Data for products
 	const [productWithCatalogID, setProductWithCatalogID] = useState([])
 	const [productWithCategoryId, setProductWithCategoryId] = useState([])
-	console.log(categoryID, catalogID)
 
 	// Fetch products based on catalog ID
 	useEffect(() => {

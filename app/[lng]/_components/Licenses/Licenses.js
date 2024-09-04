@@ -17,7 +17,7 @@ const Licenses = () => {
         const getAllSertificates = async () => {
             try {
                 const response = await axios.get(
-                    `https://imed.uz/api/v1/certificate/get-all?onlyPhoto=true`,
+                    `https://imed.uz/api/v1/certificate/get-all`,
                     {
                         headers: { 'Accept-Language': params.lng },
                     }

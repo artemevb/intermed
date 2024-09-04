@@ -4,6 +4,18 @@ import close from "@/public/svg/close.svg";
 import { useEffect } from "react";
 
 const Modal = ({ selectedReviews, closeModal }) => {
+
+
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth is zero-based
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
+  
+
     // Disable background scrolling when modal is open
     useEffect(() => {
       if (selectedReviews) {
@@ -34,7 +46,7 @@ const Modal = ({ selectedReviews, closeModal }) => {
           <div className="p-4">
             <div className="flex justify-start items-center gap-4 xl:gap-1 xl:items-start mb-4">
               <div className="h-[60px] w-[60px] mdx:h-[70px] mdx:w-[70px] xl:h-[80px] xl:w-[80px] relative xl:mr-4">
-                <Image src={selectedReviews.imageSrc}                       
+                <Image src={selectedReviews.logo.url}                       
                 width={1500}
                 height={1500} 
                 quality={100}
@@ -44,11 +56,14 @@ const Modal = ({ selectedReviews, closeModal }) => {
                 />
               </div>
               <div>
-                <h2 className="text-[18px] font-semibold right mt-3 mdx:text-[20px]">{selectedReviews.title}</h2>
-                <p className="text-gray-400 text-[14px] mdx:text-[18px]">{selectedReviews.date}</p>
+                <h2 className="text-[18px] font-semibold right mt-3 mdx:text-[20px]">{selectedReviews.clientName}</h2>
+                <p className="text-gray-400 text-[14px] mdx:text-[18px]">{}
+
+                {formatDate(selectedReviews.createdDate)}
+                </p>
               </div>
             </div>
-            <p className="mb-4 mdx:text-[18px]">{selectedReviews.description}</p>
+            <p className="mb-4 mdx:text-[18px]">{selectedReviews.comment}</p>
           </div>
         </div>
       </div>

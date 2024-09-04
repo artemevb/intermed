@@ -3,56 +3,16 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import mindrayDC60 from "@/public/images/equipments/equip-lab.png"; // Пример изображения, замените на ваши изображения
-import mindraySV300 from "@/public/images/equipments/equip-uzi.png"; // Пример изображения, замените на ваши изображения
-import cl900i from "@/public/images/equipments/equip-lab.png"; // Пример изображения, замените на ваши изображения
-import mindrayUniBase from "@/public/images/equipments/equip-uzi.png"; // Пример изображения, замените на ваши изображения
+
 import Link from "next/link";
 import GreenArrow from "../Buttons/GreenArrow";
 import Catalogitem from "../Catalog/Catalogitem";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-export default function Similar() {
+export default function Similar({data}) {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'similar')
-  const equipmentData = [
-    {
-      title: "MINDRAY DC 60 X-insight",
-      description:
-        "A high-end ultrasound scanner that allows for high-quality diagnostics",
-      image: mindrayDC60,
-      new: false,
-      promotions: true,
-      price: "2500000 y.e",
-      sale: "-35%",
-    },
-    {
-      title: "MINDRAY SV300",
-      description:
-        "Advanced solution for mechanical ventilation in clinical settings",
-      image: mindraySV300,
-      new: true,
-      promotions: false,
-    },
-    {
-      title: "CL-900i",
-      description:
-        "One of the smallest fully automated chemiluminescent immunoassay analyzers",
-      image: cl900i,
-      new: true,
-      promotions: false,
-      sale: "-5%",
-    },
-    {
-      title: "MINDRAY UniBase 30",
-      description:
-        "Reliable and durable operating table at an affordable price",
-      image: mindrayUniBase,
-      new: true,
-      promotions: false,
-    },
-  ];
 
   const settings = {
     arrows: false,
@@ -98,15 +58,17 @@ export default function Similar() {
       <div className="w-full">
         <div className="w-full mdx:px-2 xl:px-4">
           <Slider {...settings} className="h-auto flex">
-            {equipmentData.map((item, index) => (
+            {data.map((item, index) => (
               <div key={index} className="p-2">
                 <Catalogitem
-                  new={item.new}
-                  sale={item.sale}
-                  image={item.image}
-                  title={item.title}
-                  description={item.description}
-                  price={item.price}
+                   new={item.new}
+                   sale={item.sale}
+                   image={item.gallery[0]?.url}
+                   title={item.name}
+                   description={item.shortDescription}
+                   price={item.originalPrice}
+                   slug={item.slug}
+                   discount={item.discount}
                 />
               </div>
             ))}

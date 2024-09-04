@@ -9,7 +9,7 @@ import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
 export default function EventsPages({Data}) {
-    console.log(Data)
+   
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'events-pages')
     const [isMounted, setIsMounted] = useState(false);

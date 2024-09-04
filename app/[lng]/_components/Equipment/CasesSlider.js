@@ -4,72 +4,40 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from 'next/image';
-import partnerPhoto1 from "@/public/images/clients/image1.png";
-import partnerPhoto2 from "@/public/images/clients/image1.png";
-import partnerPhoto3 from "@/public/images/clients/image1.png";
-import partnerPhoto4 from "@/public/images/clients/image2.png";
-import partnerPhoto5 from "@/public/images/clients/image2.png";
-import partnerPhoto6 from "@/public/images/clients/image2.png";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import { useState } from 'react'
+import axios from 'axios';
+import { useEffect } from 'react';
+
 
 
 export default function CasesSlider() {
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'equipment-cases')
-
+    const [data , setData] = useState([])
+   
     const truncateDescription = (description) => {
         if (description.length > 89) {
             return description.substring(0, 94) + '...';
         }
         return description;
     };
-
-    const partnersSlider = [
-        {
-            id: 1,
-            imageSrc: partnerPhoto1,
-            title: "Browiner",
-            description: "Browiner is one of the leading suppliers of medical devices and solutions in the field of mobile digital radiography",
-            link: "browiner"
-        },
-        {
-            id: 2,
-            imageSrc: partnerPhoto2,
-            title: "United Imaging",
-            description: "United Imaging is a leading global developer and manufacturer of advanced medical imaging and radiotherapy equipment",
-            link: "imaging"
-        },
-        {
-            id: 3,
-            imageSrc: partnerPhoto3,
-            title: "Zoncare Global",
-            description: "Zoncare is a leading high-tech medical device manufacturer and supplier located in the Optical Valley of China",
-            link: "zoncare"
-        },
-        {
-            id: 4,
-            imageSrc: partnerPhoto4,
-            title: "Mindray",
-            description: "Mindray is a global leader in the development and manufacture of medical devices and solutions",
-            link: "mindray"
-        },
-        {
-            id: 5,
-            imageSrc: partnerPhoto5,
-            title: "Hefei Shendeng Medical Equipment Co.",
-            description: "development development development development development development development development   ",
-            link: "Shendeng"
-        },
-        {
-            id: 6,
-            imageSrc: partnerPhoto6,
-            title: "lingen",
-            description: "f f f f f f f f development development fdsgdsfg f fgdsgfd f f f f f f fsdgfdsgdf",
-            link: "lingen"
-        },
-    ];
-
+    useEffect(() => {
+        const fetchNews = async () => {
+          try {
+            const response = await axios.get(`https://imed.uz/api/v1/client/all`, {
+              headers: { 'Accept-Language': lng },
+            });
+            setData(response.data.data);
+          } catch (error) {
+            console.error('Failed to fetch news:', error.message);
+          } 
+        };
+    
+        fetchNews();
+      }, [lng]);
+ 
     const settings = {
         arrows: false,
         infinite: true,
@@ -113,18 +81,18 @@ export default function CasesSlider() {
                 <Slider
                     {...settings}
                 >
-                    {partnersSlider.map(card => (
+                    {data?.map(card => (
                         <div key={card.id} className="px-3">
                             <div className="max-h-[450px]">
                                 <div className="bg-white p-4 border-[1px] border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[270px] flex items-center">
                                     <div className="mdx:flex mdx:flex-row items-center justify-between w-full">
                                         <div className="w-full max-w-[40%] h-[95px] relative mt-3 xl:mr-4 mx-auto xl:max-w-[45%] xl:h-[125px]">
-                                            <Image src={card.imageSrc} alt={card.title} quality={100} layout="fill" objectFit="contain" />
+                                            <Image src={card.logo.url} alt={card.title} quality={100} layout="fill" objectFit="contain" />
                                         </div>
                                         <div className="mdx:mb-4">
-                                            <h2 className="text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-3">{card.title}</h2>
+                                            <h2 className="text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-3">{card.name}</h2>
                                             <p className="mb-4 text-gray-600 xl:text-[18px]">{truncateDescription(card.description)}</p>
-                                            <a href={`/${lng}/partners/${card.link}`}>
+                                            <a href={`/${lng}/clients/${card.slug}`}>
                                                 <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px]">
                                                     {t('more-info')} →
                                                 </span>

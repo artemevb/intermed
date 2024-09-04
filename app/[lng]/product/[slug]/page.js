@@ -24,6 +24,20 @@ export default async function Page({ params }) {
 	} catch (error) {
 		console.error('Failed to fetch product data:', error)
 	}
+	let productsData = null
+
+	// GET PRODUCT WITH SLUG
+	try {
+		const response = await axios.get(`https://imed.uz/api/v1/product`, {
+			headers: {
+				'Accept-Language': lng,
+			},
+		})
+
+		productsData = response.data.data
+	} catch (error) {
+		console.error('Failed to fetch product data:', error)
+	}
 
 	return (
 		<div className='w-full bg-white flex flex-col gap-56 pt-12 '>
@@ -36,8 +50,8 @@ export default async function Page({ params }) {
 			{productData && productData.data?.reviews?.length > 0 ? (
 				<Recenzii reviews={productData.data.reviews} />
 			) : null}
-			<AlsoTake />
-			<Similar />
+			<AlsoTake data={productsData} />
+			<Similar  data={productsData}/>
 			<Application />
 		</div>
 	)

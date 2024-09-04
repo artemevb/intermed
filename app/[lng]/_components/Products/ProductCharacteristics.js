@@ -46,6 +46,16 @@ export default function ProductCharacteristics({ data }) {
 		setFiltered(data[dataKey] || [])
 	}
 
+	// Helper function to handle newlines and replace them with <br />
+	const formatTextWithNewlines = (text) => {
+		return text.split('\n').map((line, index) => (
+			<span key={index}>
+				{line}
+				<br />
+			</span>
+		))
+	}
+
 	return (
 		<div className='w-full flex flex-col gap-5'>
 			<div className='w-full flex flex-col relative'>
@@ -71,7 +81,7 @@ export default function ProductCharacteristics({ data }) {
 				{active === 'descriptions' && filtered.length > 0 && (
 					<div className='text-lg leading-5'>
 						{filtered.map((item, i) => (
-							<p key={i}>{item.value}</p>
+							<p key={i}>{formatTextWithNewlines(item.value)}</p>
 						))}
 					</div>
 				)}
@@ -84,7 +94,7 @@ export default function ProductCharacteristics({ data }) {
 									{item.title}
 								</p>
 								<div className='flex w-full flex-col'>
-									<p>{item.value}</p>
+									<p>{formatTextWithNewlines(item.value)}</p>
 								</div>
 							</div>
 						))}

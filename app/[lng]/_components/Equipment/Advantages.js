@@ -41,6 +41,8 @@ export default function Advantages() {
                             key={index}
                             className={`flex ${service.highlight ? 'justify-center items-center' : 'flex-col'} h-[230px] slg:h-[265px] 2xl:h-[280px] p-6 mdl:p-6 slg:p-9 2xl:p-3 3xl:p-5 border ${service.highlight ? 'bg-red-500 text-white' : 'bg-white text-black'}`}
                         >
+                                       
+
                             {service.title && (
                                 <div className="text-[22px] mdx:text-[28px] font-bold text-red-500 mb-4 mdl:mb-2 slg:mb-4">
                                     {service.title.split(' ').map((word, i) => (
