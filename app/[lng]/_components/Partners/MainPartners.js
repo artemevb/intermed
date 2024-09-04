@@ -27,7 +27,7 @@ export default function PartnerPage() {
 		fetchPartnerInfo()
 	}, [slug, lng])
 
-	if (!partner) return <p>Loading...</p> // Add a loading state
+	if (!partner) return <p>Loading...</p> 
 
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 py-10'>
@@ -57,12 +57,13 @@ export default function PartnerPage() {
 					</button>
 					<div className='w-auto h-auto relative max-w-[110px] mdx:max-w-[224px]'>
 						<Image
-							width={100}
-							height={100}
+							width={300}
+							height={300}
 							src={partner.logo.url}
 							alt={partner.slug}
 							quality={100}
 							objectFit='contain'
+							className='w-full h-full'
 						/>
 					</div>
 				</div>

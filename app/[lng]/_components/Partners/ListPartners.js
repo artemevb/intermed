@@ -10,7 +10,7 @@ export default function ListPartners() {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'partners-list-partners')
 	const [partners, setPartners] = useState([])
-	
+
 
 	const [showAll, setShowAll] = useState(false)
 
@@ -57,14 +57,17 @@ export default function ListPartners() {
 						className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 mdl:p-5 '
 					>
 						<div className=' items-center justify-between divide-y  '>
-							<div className='w-full h-[70px] relative mt-3 mb-9'>
-								<Image
-									src={card.logo.url}
-									alt={card.title}
-									layout='fill'
-									quality={100}
-									objectFit='contain'
-								/>
+							<div className='w-full h-[150px] relative mt-3 mb-9 '>
+
+									<Image
+										src={card.logo.url}
+										alt={card.title}
+										layout='fill'
+										quality={100}
+										objectFit='contain'
+										className='p-4'
+									/>
+
 							</div>
 							<div className='mdx:mb-4 mdx:p-3 '>
 								<h2 className='text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]'>
