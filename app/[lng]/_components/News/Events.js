@@ -16,6 +16,9 @@ export default function Events() {
 	const { t } = useTranslation(lng, 'news-events')
 	const [events, setEvents] = useState([])
 
+	console.log(
+		events , "Eventlar"
+	)
 	useEffect(() => {
 		const getAllEvents = async () => {
 			try {
@@ -37,6 +40,7 @@ export default function Events() {
 	const settings = {
 		infinite: true,
 		speed: 500,
+		arrows: false,
 		slidesToShow: 2,
 		slidesToScroll: 1,
 		autoplay: true,
@@ -77,24 +81,10 @@ export default function Events() {
 				</h2>
 			</a>
 			<div className='w-full'>
-				{events.length > 2 ? (
+			{events && (
 					<Slider {...settings}>
-						<div className='w-full border'>
-							{events?.map((item, index) => (
-								<div key={index} className='p-2 mt-4'>
-									<EventCard
-										title={item.name}
-										imageSrc={item.photo.url}
-										slug={item.slug}
-									/>
-								</div>
-							))}
-						</div>
-					</Slider>
-				) : (
-					<div className='w-full max-w-[100%] flex flex-row gap-[20px] '>
-						{events?.map((item, index) => (
-							<div key={index} className='p-2 mt-4 w-[50%]'>
+						{events.map((item, index) => (
+							<div key={index} className='p-2 mt-4'>
 								<EventCard
 									title={item.name}
 									imageSrc={item.photo.url}
@@ -102,7 +92,7 @@ export default function Events() {
 								/>
 							</div>
 						))}
-					</div>
+					</Slider>
 				)}
 			</div>
 		</section>
