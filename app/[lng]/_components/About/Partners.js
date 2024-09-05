@@ -82,7 +82,7 @@ export default function Partners({ lng }) {
 								<div key={index}>
 									<div className='p-16 border h-[200px] flex justify-center items-center'>
 										<Image
-										quality={100}
+											quality={100}
 											src={item.logo.url}
 											width={500}
 											height={500}

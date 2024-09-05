@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image";
-import intermed from "@/public/images/contacts/image48.png";
 import intermed2 from "@/public/images/contacts/image49.png";
 import alnair from "@/public/images/contacts/image50.png";
 import { useTranslation } from '../../../i18n/client'
@@ -17,7 +16,7 @@ export default function ContAddress() {
             schedule: "09:00 - 18:00",
             email: "info@imed.uz",
             phones: ["+998781504747", "+998781504707"],
-            imageSrc: intermed,
+            imageSrc: intermed2,
         },
         {
             title: "Alnair Medical",
@@ -50,7 +49,7 @@ export default function ContAddress() {
                             <div className="">
                                 <div className="p-4 mx-auto flex items-center">
                                     <div className="w-full slg:max-w-[443px] h-[234px] bg-[#F4F7FE] rounded-2xl flex items-center justify-center 5xl:max-w-full">
-                                        <Image className="h-auto w-[80%] slg:w-full object-contain max-h-[50px] " src={item.imageSrc} alt={item.title} />
+                                        <Image className="h-auto w-[80%] slg:w-full object-contain max-h-[50px] " src={item.imageSrc} quality={100} width={300} height={300} alt={item.title} />
                                     </div>
                                 </div>
                                 <div className="p-8">

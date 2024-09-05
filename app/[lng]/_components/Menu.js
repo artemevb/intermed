@@ -88,7 +88,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
                 />
               </button>
             </Link>
-            <a href="tel:+998990909095" className="flex items-center justify-center">
+            <a href="tel:+998781504747" className="flex items-center justify-center">
               <Image
               quality={100}
                 src={phoneIcon}

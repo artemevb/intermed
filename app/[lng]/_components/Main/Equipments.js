@@ -36,10 +36,10 @@ export default function Equipments() {
 				<div className='flex flex-col gap-8'>
 					<h2 className='text-3xl max-mdl:text-2xl font-semibold uppercase'>
 						{t('title')}
-						
+
 					</h2>
 					<div className='w-full grid grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 gap-4'>
-						{data.map((item, i) => (
+						{data.slice(0, 4).map((item, i) => (
 							<CategoryItem
 								key={i}
 								title={item.name}

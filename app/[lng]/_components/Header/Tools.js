@@ -93,7 +93,7 @@ export default function Tools({ navOptions }) {
           />
         </button>
       </a>
-      <a href="tel:+998990909095" className="rounded-full max-mdx:px-1 max-mdx:py-1">
+      <a href="tel:+998781504747" className="rounded-full max-mdx:px-1 max-mdx:py-1">
         <Image
           src={phoneIcon}
           height={50}

@@ -234,7 +234,7 @@ export default function List({ data, allCategories }) {
 								className='border p-3 text-[14px] mdx:text-[16px] px-[50px] hover:bg-[#F9D2D3] font-bold'
 								onClick={handleLoadMore}
 							>
-								{t('loadMore')}
+								{t('load')}
 							</button>
 						</div>
 					)}

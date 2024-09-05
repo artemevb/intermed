@@ -42,7 +42,7 @@ export default function Contacts({ lng }) {
                     rel="noopener noreferrer"
                     className="block text-black text-lg mdl:text-xl"
                   >
-                    {t('work-schedule')}
+                    {t('adress')}
                   </a>
                 </div>
                 <p className="text-neutral-400 text-sm">{t('adress-name')}</p>

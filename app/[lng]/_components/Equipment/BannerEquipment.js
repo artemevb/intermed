@@ -1,24 +1,21 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
-import banner1 from "@/public/images/equipment/EQ.png";
-import banner2 from "@/public/images/equipment/EQ.png";
-import banner3 from "@/public/images/equipment/EQ.png";
+import axios from "axios";
 
 import Left from "@/public/svg/arrowLeftWhite.svg";
 import Right from "@/public/svg/arrowRightWhite.svg";
 
 import AskaQuestion from "../../_components/Modal/AskaQuestion";
-import { useTranslation } from '../../../i18n/client'
+import { useTranslation } from '../../../i18n/client';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
-
-const banners = [banner1, banner2, banner3];
 
 export default function BannerCarousel() {
     const lng = useLanguage();
-    const { t } = useTranslation(lng, 'banner-equipment')
-
+    const { t } = useTranslation(lng, 'banner-equipment');
+    const [equipment, setEquipment] = useState([]);
+    console.log('equipment:', equipment); // Store fetched data
     const sliderRef = useRef(null);
 
     const settings = {
@@ -28,12 +25,44 @@ export default function BannerCarousel() {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 7000,
-        dots: true, // Enable dots navigation
-        arrows: false, // Disable built-in arrows
+        dots: true,
+        arrows: false,
         beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
     };
 
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [isAskaQuestionModalOpen, setIsAskaQuestionModalOpen] = useState(false);
+
+    // Fetch data from API
+    // useEffect(() => {
+    //     axios("https://imed.uz/api/v1/complex-e", {
+    //         headers: {
+    //             "Accept-Language": lng,
+    //         },
+    //     }).then((response) => {
+    //         setEquipment(response.data.data); // Set equipment data from API
+    //     });
+    // }, [lng]);
+    useEffect(() => {
+        const fetchBannerEquipment = async () => {
+            try {
+                const response = await axios.get(
+                    `https://imed.uz/api/v1/complex-e`,
+                    {
+                        headers: { 'Accept-Language': lng },
+                    }
+                );
+                setEquipment(response.data.data); // Set equipment data from API
+                console.log('Fetched equipment:', response.data.data); // Log the fetched data
+            } catch (error) {
+                console.error('Failed to fetch partner:', error.message);
+            }
+        };
+
+        fetchBannerEquipment();
+    }, [lng]);
+
+
 
     const nextSlide = () => {
         sliderRef.current.slickNext();
@@ -43,20 +72,13 @@ export default function BannerCarousel() {
         sliderRef.current.slickPrev();
     };
 
-    const goToSlide = (index) => {
-        sliderRef.current.slickGoTo(index);
-    };
-
-
-    const [isAskaQuestionModalOpen, setIsAskaQuestionModalOpen] = useState(false);
-
     const openAskaQuestionModal = () => setIsAskaQuestionModalOpen(true);
     const closeAskaQuestionModal = () => setIsAskaQuestionModalOpen(false);
 
     return (
-        <div className="relative w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto overflow-hidden">
-            <div className="flex flex-col xl:flex-row bg-white overflow-hidden">
-                <div className="xl:w-[50%] flex flex-col justify-center p-4 text-white ">
+        <div className="relative w-full mx-auto overflow-hidden ">
+            <div key={equipment.id} className="flex flex-col xl:flex-row bg-white overflow-hidden">
+                <div className="xl:w-[50%] flex flex-col justify-center p-4 text-white 3xl:pl-[4%] 4xl:pl-[13%]">
                     <h1 className="text-[25px] uppercase mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">
                         {t('title-1')}<br />
                         <span className="text-black uppercase"> {t('title-2')}</span>
@@ -69,28 +91,36 @@ export default function BannerCarousel() {
                         {t('button-1')}
                     </button>
                 </div>
-                <div className="xl:w-[50%] relative">
+
+
+                <div className="xl:w-[50%] relative w-full h-auto">
                     <Slider ref={sliderRef} {...settings}>
-                        {banners.map((banner, index) => (
-                            <div key={index} className="min-w-full flex justify-center">
+                        {equipment.map((item, index) => (
+                            <div key={index} className="w-full flex justify-center items-center overflow-hidden">
                                 <Image
-                                    src={banner}
+                                    src={item.photo.url} // Динамическое изображение из API
                                     alt={`Banner ${index + 1}`}
-                                    width={1440}
-                                    height={500}
-                                    className="w-full h-auto object-cover "
+                                    width={2000}
+                                    height={1000}
+                                    quality={100} // Заменяем layout на fill для полного заполнения
+                                    layout="responsive"
+                                    className="w-full h-full min-h-[485px] mdx:min-h-[606px] object-cover" // Растягиваем по высоте и ширине
                                 />
                             </div>
+
                         ))}
                     </Slider>
-                    <div className="absolute bottom-0 flex flex-row items-center ml-[10px] mdx:ml-[30px] mb-[20px] xl:mb-[30px] ">
-                        <div className="text-[#fff] lh text-[20px] max-w-[160px] md:max-w-[200px] mdx:max-w-[250px] mdl:max-w-[320px] md:text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[30px] xl:max-w-[230px] 2xl:max-w-[270px] 3xl:max-w-[340px] 3xl:text-[40px] ">
-                            Оснащение Vitamed Medical
+
+                    <div className="absolute bottom-0 flex flex-row  ml-[10px] mdx:ml-[20px] mdl:ml-[30px] mb-[30px] xl:mb-[35px]">
+                        <div className="text-black lh text-[25px] max-w-[160px] md:max-w-[180px] mdx:max-w-[300px] mdl:max-w-[370px] md:text-[30px] mdx:text-[35px] mdl:text-[35px] xl:text-[30px] xl:max-w-[400px] 2xl:max-w-[400px] 3xl:text-[40px] break-words whitespace-normal">
+                            {equipment[currentSlide]?.name}
                         </div>
-                        <div className="flex flex-row translate-x-[35%] slg:ml-[150px] transition-all duration-500 lg:ml-[250px] xl:ml-0">
+                    </div>
+                    <div className="absolute bottom-0 flex flex-row items-center  right-[5%] mb-[30px] xl:mb-[35px]">
+                        <div className="flex flex-row ml-auto transition-all duration-500">
                             <button
                                 onClick={prevSlide}
-                                className=" left-2 transform  p-1 opacity-70 hover:opacity-100 z-10 w-[45px] md:w-[50px] mdx:w-[60px] mdl:w-[70px] 3xl:w-[80px]"
+                                className="right-2 transform p-1 opacity-70 hover:opacity-100 z-10 w-[45px] md:w-[50px] mdx:w-[60px] mdl:w-[70px] 3xl:w-[80px]"
                             >
                                 <Image
                                     src={Left}
@@ -101,7 +131,7 @@ export default function BannerCarousel() {
                             </button>
                             <button
                                 onClick={nextSlide}
-                                className=" right-2 transform  p-1 opacity-70 hover:opacity-100 z-10 w-[45px] md:w-[50px] mdx:w-[60px] mdl:w-[70px] 3xl:w-[80px]"
+                                className="right-2 transform p-1 opacity-70 hover:opacity-100 z-10 w-[45px] md:w-[50px] mdx:w-[60px] mdl:w-[70px] 3xl:w-[80px]"
                             >
                                 <Image
                                     src={Right}
@@ -112,7 +142,13 @@ export default function BannerCarousel() {
                             </button>
                         </div>
                     </div>
+
+
+
                 </div>
+
+
+
             </div>
             {isAskaQuestionModalOpen && <AskaQuestion closeModal={closeAskaQuestionModal} />}
         </div>

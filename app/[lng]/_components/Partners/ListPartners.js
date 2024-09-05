@@ -56,8 +56,9 @@ export default function ListPartners() {
 						key={card.id}
 						className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 mdl:p-5 '
 					>
-						<div className=' items-center justify-between divide-y  '>
-							<div className='w-full h-[150px] relative mt-3 mb-9 '>
+						<a href={`/${lng}/partners/${card.slug}`}>
+							<div className=' items-center justify-between divide-y  '>
+								<div className='w-full h-[150px] relative mt-3 mb-9 '>
 
 									<Image
 										src={card.logo.url}
@@ -68,23 +69,23 @@ export default function ListPartners() {
 										className='p-4'
 									/>
 
-							</div>
-							<div className='mdx:mb-4 mdx:p-3 '>
-								<h2 className='text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]'>
-									{card.name}
-								</h2>
-								<p className='mb-4 text-gray-600 xl:text-[18px] '>
-									{card.note.length > 100
-										? `${card.note.slice(0, 90)}...`
-										: card.note}
-								</p>
-								<a href={`/${lng}/partners/${card.slug}`}>
+								</div>
+								<div className='mdx:mb-4 mdx:p-3 '>
+									<h2 className='text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]'>
+										{card.name}
+									</h2>
+									<p className='mb-4 text-gray-600 xl:text-[18px] '>
+										{card.note.length > 100
+											? `${card.note.slice(0, 90)}...`
+											: card.note}
+									</p>
 									<span className='text-[#E31E24] font-semibold mdx:text-[18px]'>
 										<GreenArrow title={t('more')} />
 									</span>
-								</a>
+
+								</div>
 							</div>
-						</div>
+						</a>
 					</div>
 				))}
 			</div>

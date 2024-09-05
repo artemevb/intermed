@@ -1,10 +1,10 @@
 "use client"
 import Link from 'next/link'
 import logoBig from "@/public/images/intermed-logo.png";
-import telegram from "@/public/images/footer/telegram.png";
-import facebook from "@/public/images/footer/facebook.png";
-import instagram from "@/public/images/footer/instagram.png";
-import youtube from "@/public/images/footer/youtube.png";
+import telegram from "@/public/svg/tools/telegram.svg";
+import facebook from "@/public/svg/tools/facebook.svg";
+import instagram from "@/public/svg/tools/instagram.svg";
+import youtube from "@/public/svg/tools/youtube.svg";
 import arrowRight from "@/public/svg/arrow-right-red.svg";
 import resultLogo from "@/public/images/footer/result-logo.png";
 
@@ -24,8 +24,9 @@ export default function Footer({ lng }) {
               <a href={`/${lng}`}>
                 <Image
                   src={logoBig}
-                  width={500}
-                  height={500}
+                  width={1000}
+                  height={1000}
+                  quality={100}
                   alt="Mrj Logo Big"
                   className="w-48 "
                 />
@@ -35,8 +36,9 @@ export default function Footer({ lng }) {
               <a href="https://t.me/intermedtrade" target="_blank">
                 <Image
                   src={telegram}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
+                  quality={100}
                   alt="Telegram"
                   className="w-10 h-10"
                 />
@@ -44,8 +46,9 @@ export default function Footer({ lng }) {
               <a href="https://www.facebook.com/intermed.mindray" target="_blank">
                 <Image
                   src={facebook}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
+                  quality={100}
                   alt="Facebook"
                   className="w-10 h-10"
                 />
@@ -53,8 +56,9 @@ export default function Footer({ lng }) {
               <a href="https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
                 <Image
                   src={instagram}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
+                  quality={100}
                   alt="Instagram"
                   className="w-10 h-10"
                 />
@@ -62,8 +66,9 @@ export default function Footer({ lng }) {
               <a href="https://www.youtube.com/@intermedinnovation9644" target="_blank">
                 <Image
                   src={youtube}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
+                  quality={100}
                   alt="YouTube"
                   className="w-10 h-10"
                 />
@@ -87,8 +92,9 @@ export default function Footer({ lng }) {
                 <p className="text-redMain font-semibold text-lg">{t('all_categories')}</p>
                 <Image
                   src={arrowRight}
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
+                  quality={100}
                   alt="Arrow Right Icon Green"
                   className="w-4 h-4"
                 />
@@ -112,8 +118,9 @@ export default function Footer({ lng }) {
             <a href="https://result-me.uz" target="_blank">
               <Image
                 src={resultLogo}
-                width={500}
-                height={500}
+                width={1000}
+                height={1000}
+                quality={100}
                 alt="Result Logo"
                 className="h-8 w-auto"
               />

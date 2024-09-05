@@ -9,7 +9,7 @@ import right from '@/public/svg/arrowrightbanners.svg'
 import { useParams } from 'next/navigation'
 
 export default function BannerCarousel() {
-	
+
 	const sliderRef = useRef(null)
 	const [banner, setBanners] = useState([])
 	const params = useParams()
@@ -58,12 +58,11 @@ export default function BannerCarousel() {
 	}
 
 	return (
-		<div className='relative w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto overflow-hidden  lg:px-12  xl:px-2 mt-[-48px] xl:pt-12'>
+		<div className='relative w-full  mx-auto overflow-hidden mt-[-48px] xl:pt-12'>
 			<Slider ref={sliderRef} {...settings}>
 				{banner.sliders?.map((banner, index) => (
-					<div key={index} className='min-w-full xl:px-7'>
+					<div key={index} className='min-w-full '>
 						<div className='flex flex-col gap-[20px] xl:flex-row xl:flex xl:h-[600px]'>
-							{/* BANNER INFO */}
 							<div
 								className='text w-full pl-[16px] flex flex-col  gap-[8px]  justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] xl:rounded-l-[20px] '
 								style={{ backgroundColor: `${banner.backgroundColour}` }}
@@ -106,7 +105,7 @@ export default function BannerCarousel() {
 										src={banner.logo?.url}
 										alt={`Banner ${index + 1}`}
 										width={150}
-										height={90}
+										height={150}
 										quality={100}
 										className='w-full h-auto object-cover rounded-2xl'
 									/>
@@ -117,8 +116,8 @@ export default function BannerCarousel() {
 									<Image
 										src={banner.photo?.url}
 										alt={`Banner ${index + 1}`}
-										width={500}
-										height={500}
+										width={1000}
+										height={1000}
 										quality={100}
 										className='w-full h-auto object-cover rounded-2xl'
 									/>
@@ -128,26 +127,13 @@ export default function BannerCarousel() {
 					</div>
 				))}
 			</Slider>
-			<button
-				onClick={prevSlide}
-				className='absolute top-1/2 -left-0 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block'
-			>
-				<Image src={left} width={50} height={50} className='w-full h-auto' />
-			</button>
-			<button
-				onClick={nextSlide}
-				className='absolute top-1/2 -right-0 transform -translate-y-1/2 p-2 opacity-70 hover:opacity-100 z-10 hidden lg:block'
-			>
-				<Image src={right} width={50} height={50} className='w-full h-auto' />
-			</button>
 			<div className='flex justify-center mt-4'>
 				{banner.sliders?.map((_, index) => (
 					<button
 						key={index}
 						onClick={() => goToSlide(index)}
-						className={`w-2 h-2 rounded-full ${
-							currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
-						} mx-1`}
+						className={`w-2 h-2 rounded-full ${currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
+							} mx-1`}
 					></button>
 				))}
 			</div>
