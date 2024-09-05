@@ -79,6 +79,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
             <Link href={'/favorites'}>
               <button className="flex items-center justify-center">
                 <Image
+                  quality={100}
                   src={heartIcon}
                   height={100}
                   width={100}
@@ -89,6 +90,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
             </Link>
             <a href="tel:+998990909095" className="flex items-center justify-center">
               <Image
+              quality={100}
                 src={phoneIcon}
                 height={100}
                 width={100}
@@ -98,6 +100,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
             </a>
             <button onClick={closeMenu} className="flex items-center justify-center">
               <Image
+              quality={100}
                 src={close}
                 height={100}
                 width={100}

@@ -43,6 +43,9 @@ export default function FullEquipments() {
                 <div className="w-full h-full bottom-0 left-0 mdx:max-w-[330px] mdx:max-h-[330px] xl:max-w-[400px] xl:max-h-[400px]">
                   <Image
                     src={uzi}
+                    height={2000}
+                    width={2000}
+                    quality={100}
                     alt="Medical Equipment"
                     objectFit="contain"
                     className="min-w-full min-h-full "

@@ -71,6 +71,7 @@ export default function Catalogitem({
 					className='absolute top-4 right-4 z-10'
 				>
 					<Image
+					quality={100}
 						src={isFavorite ? favFilled : fav}
 						width={100}
 						height={100}
