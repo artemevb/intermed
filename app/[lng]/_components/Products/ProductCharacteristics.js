@@ -29,7 +29,7 @@ export default function ProductCharacteristics({ data }) {
 	const [filtered, setFiltered] = useState(data[categories[0].dataKey] || [])
 	const [selectedAttachedFiles, setSelectedAttachedFiles] = useState(null)
 
-	console.log(filtered , "Filtered")
+	console.log(filtered, "Filtered")
 	// Open modal with attached files
 	const openModal = files => {
 		setSelectedAttachedFiles(files)
@@ -64,17 +64,16 @@ export default function ProductCharacteristics({ data }) {
 						<button
 							key={index}
 							onClick={() => handleCategoryChange(item.category, item.dataKey)}
-							className={`z-10 w-auto text-lg transition-text font-medium ${
-								active === item.category
-									? 'text-[#E31E24] border-b-2 border-b-[#E31E24]'
-									: 'text-neutral-400'
-							}`}
+							className={`z-10 w-auto text-lg transition-text font-medium ${active === item.category
+								? 'text-[#E31E24] border-b-2 border-b-[#E31E24]'
+								: 'text-neutral-400'
+								}`}
 						>
 							<h3 className='my-2 whitespace-nowrap'>{item.title}</h3>
 						</button>
 					))}
 				</div>
-				<hr className='w-full border-t-2 absolute bottom-0 border-slate-300' />
+				<hr className='w-full border-t-2 absolute bottom-0 border-slate-[#eee] mdx:max-w-[334px] lg:max-w-[354px] xl:max-w-[364px]' />
 			</div>
 
 			<div>
@@ -84,10 +83,10 @@ export default function ProductCharacteristics({ data }) {
 							<div key={i}>
 								<p className='text-[18px] text-[#252324] mdx:text-[24px] lg:text-[20px] font-bold' >{formatTextWithNewlines(item.title)}</p>
 								<ul>
-  <li>{formatTextWithNewlines(item.value)}</li>
-</ul>
-								</div>
-							
+									<li>{formatTextWithNewlines(item.value)}</li>
+								</ul>
+							</div>
+
 						))}
 					</div>
 				)}
@@ -111,20 +110,18 @@ export default function ProductCharacteristics({ data }) {
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
 						{filtered.map((client, index) => (
 							<a href={`/${lng}/clients/${client.slug}`} key={index} className='border p-4'>
-								<div className='flex flex-col items-center mdx:flex-row'>
-									<Image
-										src={client.logo.url}
-										alt={client.name}
-										quality={100}
-										className='w-full max-w-[320px] h-auto mb-2 p-5 object-contain lg:max-w-[340px]'
-										width={340}
-										height={320}
-									/>
-									<div className='mt-2'>
-										<h3 className='font-bold text-lg mdx:text-2xl mdx:mb-2'>
+								<div className='mdx:flex mdx:flex-row items-center justify-between w-full'>
+									<div className='mdx:w-[50%] h-[230px] relative mt-3'>
+										<Image
+											src={client.logo.url}
+											alt={client.name}
+											layout="fill" quality={100} objectFit="cover" className='w-full h-full mdx:pr-3' />
+									</div>
+									<div className='mdx:mb-4 mdx:w-[50%]'>
+										<h3 className='text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]'>
 											{client.name}
 										</h3>
-										<p className='text-[#808080] mdx:mb-4'>
+										<p className='mb-4 text-gray-600 xl:text-[18px]'>
 											{client.description.length > 100
 												? `${client.description.slice(0, 100)}...`
 												: client.description}

@@ -13,7 +13,7 @@ import Contacts from "./Contacts";
 export default function Main() {
 
   return (
-    <div className="w-full bg-white pt-12 flex flex-col gap-28 xl:gap-36">
+    <div className="w-full bg-white flex flex-col gap-28 xl:gap-36">
       <div className="flex w-full flex-col gap-12 lg:gap-[130px]">
         <Banner />
         <ProfessionalEquipments />

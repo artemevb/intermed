@@ -37,19 +37,19 @@ export default function ListClients() {
                 {clients.map(card => (
                     <div key={card.id} className="bg-white p-4 w-full border-[1px] border-gray-200 mdx:p-0 mdl:p-5 slg:h-auto">
                         <a href={`/${lng}/clients/${card.slug}`}>
-                        <div className="mdx:flex mdx:flex-row items-center justify-between w-full">
-                            <div className="mdx:w-[50%] h-[230px] relative mt-3">
-                                <Image src={card.logo.url} alt={card.title} layout="fill" quality={100} objectFit="cover" className='w-full h-full mdx:pr-3' />
-                            </div>
+                            <div className="mdx:flex mdx:flex-row items-center justify-between w-full">
+                                <div className="mdx:w-[50%] h-[230px] relative mt-3">
+                                    <Image src={card.logo.url} alt={card.title} layout="fill" quality={100} objectFit="cover" className='w-full h-full mdx:pr-3' />
+                                </div>
 
-                            <div className='mdx:mb-4 mdx:w-[50%]'>
-                                <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.name}</h2>
-                                <p className="mb-4 text-gray-600 xl:text-[18px]">{card.description.length > 100 ? card.description.slice(0, 100) + '...' : card.description}</p>
+                                <div className='mdx:mb-4 mdx:w-[50%]'>
+                                    <h2 className="text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]">{card.name}</h2>
+                                    <p className="mb-4 text-gray-600 xl:text-[18px]">{card.description.length > 100 ? card.description.slice(0, 100) + '...' : card.description}</p>
                                     <span className="text-[#E31E24] font-semibold mdx:text-[18px]">
                                         <GreenArrow title={t('more-details')} />
                                     </span>
+                                </div>
                             </div>
-                        </div>
                         </a>
                     </div>
                 ))}

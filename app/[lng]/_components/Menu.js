@@ -6,45 +6,71 @@ import Link from "next/link";
 import phoneIcon from "@/public/svg/tools/phone-icon.svg";
 import heartIcon from "@/public/svg/tools/heart-icon.svg";
 import close from "@/public/svg/close.svg";
+import { useTranslation } from '../../i18n/client';
+import { useCookies } from 'react-cookie';
+import { languages, cookieName } from '../../i18n/settings';
 
 const Menu = ({ menu, closeMenu, navOptions }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState("RU");
+  const { i18n, t } = useTranslation(); // Translation hook
+  const [selectedLanguage, setSelectedLanguage] = useState(i18n.language.toUpperCase()); // Set current language
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-
-  const menuRef = useRef(null);
+  const [cookies, setCookie] = useCookies([cookieName]);
+  const menuRef = useRef(null); // Ref for menu element
 
   const toggleLanguageMenu = () => {
     setLanguageMenuOpen(!languageMenuOpen);
   };
 
   const changeLanguage = (lang) => {
+    const newLang = lang.toLowerCase();
     setSelectedLanguage(lang);
     setLanguageMenuOpen(false);
-    // Здесь можно добавить логику для смены языка приложения
+
+    // Set cookie for the selected language
+    setCookie(cookieName, newLang, { path: '/' });
+
+    // Change language in i18n
+    i18n.changeLanguage(newLang);
+
+    // Adjust URL to reflect the language change
+    const currentPath = window.location.pathname;
+    const pathArray = currentPath.split('/');
+    if (languages.includes(pathArray[1])) {
+      pathArray[1] = newLang;
+    } else {
+      pathArray.unshift(newLang);
+    }
+
+    const newPath = pathArray.join('/');
+    window.location.href = newPath;
   };
 
-  // Закрытие меню при клике за его пределами
+  // Close menu when clicking outside of it
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setLanguageMenuOpen(false);
+        closeMenu(); // Close the menu when clicking outside
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    if (menu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [menuRef]);
+  }, [menu]);
 
   return (
     <div
+      ref={menuRef} // Attach the ref to the div
       className={`fixed z-[9999] top-0 right-0 w-full max-w-[300px] bg-white h-full shadow-md ${menu ? "transform translate-x-0" : "transform translate-x-full"
         }`}
     >
       <div className="border-b py-4 flex">
         <div className="w-full flex justify-between mx-4">
-          <div ref={menuRef} className="relative flex items-center text-left">
+          <div className="relative flex items-center text-left">
             <button
               id="dropdownButton"
               className="inline-flex items-center text-[18px] mdx:text-[20px] font-medium bg-white focus:outline-none"
@@ -66,10 +92,15 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
                   </li>
                   <li
                     className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                    onClick={() => changeLanguage("EN")}
+                  >
+                    English
+                  </li>
+                  <li
+                    className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
                     onClick={() => changeLanguage("UZ")}
                   >
-                    <p>O&apos;zbekcha</p>
-
+                    O'zbekcha
                   </li>
                 </ul>
               </div>
@@ -77,7 +108,10 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
           </div>
           <div className="flex justify-between items-center gap-4">
             <Link href={'/favorites'}>
-              <button className="flex items-center justify-center">
+              <button
+                className="flex items-center justify-center"
+                onClick={closeMenu} // Close the menu when clicking the favorites button
+              >
                 <Image
                   quality={100}
                   src={heartIcon}
@@ -88,9 +122,10 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
                 />
               </button>
             </Link>
+
             <a href="tel:+998781504747" className="flex items-center justify-center">
               <Image
-              quality={100}
+                quality={100}
                 src={phoneIcon}
                 height={100}
                 width={100}
@@ -100,7 +135,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
             </a>
             <button onClick={closeMenu} className="flex items-center justify-center">
               <Image
-              quality={100}
+                quality={100}
                 src={close}
                 height={100}
                 width={100}
@@ -113,7 +148,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
       </div>
       <nav className="flex flex-col font-semibold mt-2">
         {navOptions.map((item, index) => (
-          <Link
+          <a
             onClick={closeMenu}
             href={`/${item.slug}`}
             key={index}
@@ -123,7 +158,7 @@ const Menu = ({ menu, closeMenu, navOptions }) => {
               <p>{item.title}</p>
               <RightIcon />
             </div>
-          </Link>
+          </a>
         ))}
       </nav>
     </div>

@@ -75,12 +75,12 @@ export default function AlsoTake({data}) {
         </div>
       </div>
       <div className="flex w-full justify-center">
-        <a
+        {/* <a
           href={`/${lng}/categories`}
           className="border border-greenView px-12 py-3 hover:bg-[#E94B50] transition-all font-bold duration-200 hover:text-[#FFF]"
         >
           {t('all-products')}
-        </a>
+        </a> */}
       </div>
     </section>
   );

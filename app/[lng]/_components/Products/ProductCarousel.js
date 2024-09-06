@@ -36,6 +36,7 @@ const VerticalCarousel = ({ data }) => {
                 className="object-contain h-96 w-full"
                 width={1440}
                 height={960}
+                quality={100}
               />
             </div>
           ))}
@@ -70,7 +71,8 @@ const VerticalCarousel = ({ data }) => {
                 alt={`Thumbnail ${index}`}
                 className="object-contain h-full rounded-xl w-full"
                 width={100} // Add appropriate width and height
-                height={100}
+                height={300}
+                quality={100}
               />
             </div>
           ))}

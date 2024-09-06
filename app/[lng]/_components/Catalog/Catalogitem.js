@@ -18,8 +18,6 @@ export default function Catalogitem({
 	slug,
 }) {
 	const [isFavorite, setIsFavorite] = useState(false)
-	const [isMdx, setIsMdx] = useState(false)
-
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'translation')
 	const [isMounted, setIsMounted] = useState(false)
@@ -27,23 +25,6 @@ export default function Catalogitem({
 	useEffect(() => {
 		setIsMounted(true)
 	}, [])
-
-	useEffect(() => {
-		const handleResize = () => {
-			const isCurrentlyMdx = window.innerWidth >= 460;
-			if (isMdx !== isCurrentlyMdx) {
-				setIsMdx(isCurrentlyMdx);
-			}
-		};
-
-		handleResize(); // Первоначальная проверка
-		window.addEventListener('resize', handleResize);
-
-		return () => {
-			window.removeEventListener('resize', handleResize);
-		};
-	}, [isMdx]);
-
 
 	useEffect(() => {
 		const favorites = JSON.parse(localStorage.getItem('favorites')) || []
@@ -71,7 +52,7 @@ export default function Catalogitem({
 					className='absolute top-4 right-4 z-10'
 				>
 					<Image
-					quality={100}
+						quality={100}
 						src={isFavorite ? favFilled : fav}
 						width={100}
 						height={100}
@@ -102,17 +83,12 @@ export default function Catalogitem({
 							className='object-contain w-full h-full'
 						/>
 					</a>
-
 				</div>
 				<h3 className='text-md font-semibold'>
-					{isMdx
-						? title
-						: title && title.length > 12
-							? `${title.substring(0, 12)}...`
-							: title || 'No Title'}
+					{title || 'No Title'}
 				</h3>
-				<p className='text-xs text-[#BABABA] mt-1 '>
-					{description?.length > 200 ? description?.slice(0, 150) : description}
+				<p className='text-xs text-[#BABABA] mt-1 line-clamp-3 mdx:line-clamp-2'>
+					{description}
 				</p>
 				<div className='flex w-full justify-between items-center flex-wrap mt-3'>
 					<a href={`/${lng}/product/${slug}`}>
@@ -122,11 +98,6 @@ export default function Catalogitem({
 							</div>
 						)}
 					</a>
-					{/* {price && (
-            <div className="py-1 px-2 font-semibold rounded-full text-greenView">
-              {price}
-            </div>
-          )} */}
 				</div>
 			</div>
 		</div>

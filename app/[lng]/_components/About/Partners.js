@@ -80,14 +80,14 @@ export default function Partners({ lng }) {
 						<Slider {...settings} className='h-auto flex'>
 							{logos.map((item, index) => (
 								<div key={index}>
-									<div className='p-16 border h-[200px] flex justify-center items-center'>
+									<div className='p-14 border h-[200px] flex justify-center items-center'>
 										<Image
 											quality={100}
 											src={item.logo.url}
 											width={500}
 											height={500}
 											alt='Intermed Sertificate'
-											className='w-full h-full object-contain'
+											className='w-full h-auto object-cover'
 										/>
 									</div>
 								</div>

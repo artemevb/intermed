@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Application from '../../_components/Main/Application'
-import AlsoTake from '../../_components/Products/AlsoTake'
+// import AlsoTake from '../../_components/Products/AlsoTake'
 import ProductInfo from '../../_components/Products/ProductInfo'
 import Recenzii from '../../_components/Products/Recenzii'
 import Similar from '../../_components/Products/Similar'
@@ -40,7 +40,7 @@ export default async function Page({ params }) {
 	}
 
 	return (
-		<div className='w-full bg-white flex flex-col gap-56 pt-12 '>
+		<div className='w-full bg-white flex flex-col gap-[120px] mdx:gap-[150px] mdl:gap-[180px] 2xl:gap-[200px] pt-12 '>
 			{productData && productData.data?.videos?.length > 0 ? (
 				<VideoReview videos={productData.data.videos} />
 			) : null}
@@ -50,7 +50,7 @@ export default async function Page({ params }) {
 			{productData && productData.data?.reviews?.length > 0 ? (
 				<Recenzii reviews={productData.data.reviews} />
 			) : null}
-			<AlsoTake data={productsData} />
+			{/* <AlsoTake data={productsData} /> */}
 			<Similar  data={productsData}/>
 			<Application />
 		</div>
