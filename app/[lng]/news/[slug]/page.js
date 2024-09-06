@@ -4,6 +4,7 @@ import Share from "../../_components/NewsPages/Share";
 import OtherNews from "../../_components/NewsPages/OtherNews";
 
 
+
 export default function page() {
     return (
         <div>

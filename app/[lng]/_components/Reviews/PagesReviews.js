@@ -91,7 +91,7 @@ const formatDate = (dateString) => {
                       </p>
                     </div>
                   </div>
-                  <p className="mb-4 mdx:text-[18px] xl:mt-5">{item.comment}</p>
+                  <p className="mb-4 mdx:text-[18px] xl:mt-5 line-clamp-6">{item.comment}</p>
                 </div>
                 <button onClick={() => openModal(item)}>
                   <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px] flex justify-end mdx:pb-5 pr-5 xl:pb-0 xl:pr-0">

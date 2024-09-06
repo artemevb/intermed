@@ -6,6 +6,7 @@
     "time": "Time",
     "address": "Address",
     "price": "Price",
+    "coast": "Free",
     "number": "Contact Phone",
     "email": "Contact E-mail"
 }

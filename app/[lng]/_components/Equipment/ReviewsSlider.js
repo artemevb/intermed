@@ -120,7 +120,7 @@ export default function ReviewsSlider() {
 											</p>
 										</div>
 										<Link href={`/${lng}/reviews/${card.id}`}>
-											<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end'>
+											<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end '>
 												{t('read-more')}
 											</span>
 										</Link>
@@ -152,7 +152,7 @@ export default function ReviewsSlider() {
 											<p className='text-gray-400'>{formatDate(reviews[0].createdDate)}</p>
 										</div>
 									</div>
-									<p className='mb-4 mdx:text-[18px]'>
+									<p className='mb-4 mdx:text-[18px] line-clamp-6'>
 										{truncateDescription(reviews[0].comment)}
 									</p>
 								</div>

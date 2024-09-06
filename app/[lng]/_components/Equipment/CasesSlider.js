@@ -15,8 +15,8 @@ import { useEffect } from 'react';
 export default function CasesSlider() {
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'equipment-cases')
-    const [data , setData] = useState([])
-   
+    const [data, setData] = useState([])
+
     const truncateDescription = (description) => {
         if (description.length > 89) {
             return description.substring(0, 94) + '...';
@@ -25,19 +25,19 @@ export default function CasesSlider() {
     };
     useEffect(() => {
         const fetchNews = async () => {
-          try {
-            const response = await axios.get(`https://imed.uz/api/v1/client/all`, {
-              headers: { 'Accept-Language': lng },
-            });
-            setData(response.data.data);
-          } catch (error) {
-            console.error('Failed to fetch news:', error.message);
-          } 
+            try {
+                const response = await axios.get(`https://imed.uz/api/v1/client/all`, {
+                    headers: { 'Accept-Language': lng },
+                });
+                setData(response.data.data);
+            } catch (error) {
+                console.error('Failed to fetch news:', error.message);
+            }
         };
-    
+
         fetchNews();
-      }, [lng]);
- 
+    }, [lng]);
+
     const settings = {
         arrows: false,
         infinite: true,
@@ -83,25 +83,34 @@ export default function CasesSlider() {
                 >
                     {data?.map(card => (
                         <div key={card.id} className="px-3">
-                            <div className="max-h-[450px]">
-                                <div className="bg-white p-4 border-[1px] border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[270px] flex items-center">
-                                    <div className="mdx:flex mdx:flex-row items-center justify-between w-full">
-                                        <div className="w-full max-w-[40%] h-[95px] relative mt-3 xl:mr-4 mx-auto xl:max-w-[45%] xl:h-[125px]">
-                                            <Image src={card.logo.url} alt={card.title} quality={100} layout="fill" objectFit="contain" />
-                                        </div>
-                                        <div className="mdx:mb-4">
-                                            <h2 className="text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-3">{card.name}</h2>
-                                            <p className="mb-4 text-gray-600 xl:text-[18px]">{truncateDescription(card.description)}</p>
-                                            <a href={`/${lng}/clients/${card.slug}`}>
+                            <a href={`/${lng}/clients/${card.slug}`}>
+                                <div className="max-h-[450px]">
+                                    <div className="bg-white p-4 border-[1px] border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[270px] flex items-center">
+                                        <div className="mdx:flex mdx:flex-row items-center justify-between w-full">
+                                            {/* Контейнер изображения с фиксированной шириной и высотой */}
+                                            <div className="w-full h-[200px] xl:max-h-[270px] relative mt-3 xl:mr-4 mx-auto xl:w-[40%]">
+                                                {/* Изображение с фиксированной шириной и высотой */}
+                                                <Image
+                                                    src={card.logo.url}
+                                                    alt={card.title}
+                                                    quality={100}
+                                                    layout="fill"
+                                                    className="object-cover w-full h-full"
+                                                />
+                                            </div>
+                                            <div className="mdx:mb-4 w-full xl:w-[60%]">
+                                                <h2 className="text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-3">{card.name}</h2>
+                                                <p className="mb-4 text-gray-600 xl:text-[18px]">{truncateDescription(card.description)}</p>
                                                 <span className="text-[#E31E24] font-semibold hover:underline mdx:text-[18px]">
                                                     {t('more-info')} →
                                                 </span>
-                                            </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
+
                     ))}
                 </Slider>
             </div>

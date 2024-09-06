@@ -13,7 +13,7 @@ export default function MoreInfo({ Data }) {
     { label: t('date'), value: `${Data?.dateFrom} - ${Data?.dateTo}` },
     { label: t('time'), value: `${Data?.timeFrom} - ${Data?.timeTo}` },
     { label: t('adress'), value: Data?.address },
-    { label: t('price'), value: "Бесплатно" }, // Assuming price is hardcoded as "Free"
+    { label: t('price'), value: t('coast') }, // Assuming price is hardcoded as "Free"
     { label: t('number'), value: Data?.phoneNum },
     { label: t('email'), value: Data?.email }
   ];

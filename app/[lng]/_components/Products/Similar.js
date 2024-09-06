@@ -10,7 +10,7 @@ import Catalogitem from "../Catalog/Catalogitem";
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-export default function Similar({data}) {
+export default function Similar({ data }) {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'similar')
 
@@ -61,14 +61,14 @@ export default function Similar({data}) {
             {data.map((item, index) => (
               <div key={index} className="p-2">
                 <Catalogitem
-                   new={item.new}
-                   sale={item.sale}
-                   image={item.gallery[0]?.url}
-                   title={item.name}
-                   description={item.shortDescription}
-                   price={item.originalPrice}
-                   slug={item.slug}
-                   discount={item.discount}
+                  new={item.new}
+                  sale={item.sale}
+                  image={item.gallery[0]?.url}
+                  title={item.name}
+                  description={item.shortDescription}
+                  price={item.originalPrice}
+                  slug={item.slug}
+                  discount={item.discount}
                 />
               </div>
             ))}

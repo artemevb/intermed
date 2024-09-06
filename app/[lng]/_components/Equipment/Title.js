@@ -19,11 +19,11 @@ export default function Title() {
                         <Image
                             src={innovationMedical}
                             alt={t('main_photo')}
-                            width={1000}
-                            height={1000}
+                            width={2000}
+                            height={2000}
                             quality={100}
-                            objectFit="contain"
-                            className='w-full h-auto' />
+                            
+                            className='w-full h-auto object-contain' />
                     </div>
                     <div className='xl:w-[50%] xl:ml-[62px] xl:mt-[20px]'>
                         <h1 className="font-semibold text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] mb-4 uppercase hidden xl:block text-[#252324]" >

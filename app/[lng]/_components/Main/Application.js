@@ -55,7 +55,7 @@ export default function ContAddress({ lng }) {
                             <br />
                             {t('contact')}
                         </h3>
-                        <form className="flex flex-col gap-9 w-full max-lg:max-w-full max-w-[350px]">
+                        <form className="flex flex-col gap-9 w-full max-lg:max-w-full max-w-[350px] 3xl:mr-[5%] 4xl:mr-[10%]">
                             {["fullName", "phoneNumber", "email", "question"].map((field) => (
                                 <div className="relative" key={field}>
                                     <input
@@ -65,47 +65,44 @@ export default function ContAddress({ lng }) {
                                         onChange={handleInputChange}
                                         onFocus={() => setFocusedInput(field)}
                                         onBlur={() => setFocusedInput(null)}
-                                        className={`block w-full px-3 py-2 bg-contactBg placeholder-transparent focus:outline-none border-b-2 ${
-                                            focusedInput === field
+                                        className={`block w-full px-3 py-2 bg-contactBg placeholder-transparent focus:outline-none border-b-2 ${focusedInput === field
                                                 ? validateInput(field, values[field]).isValid
                                                     ? "border-[#E1E1E1]"
                                                     : "border-[#E1E1E1]"
                                                 : "border-[#E1E1E1]"
-                                        }`}
+                                            }`}
                                         placeholder={t(
                                             field === "fullName"
                                                 ? "telephone-number"
                                                 : field === "phoneNumber"
-                                                ? "your-question"
-                                                : field === "email"
-                                                ? "E-mail"
-                                                : "your-question"
+                                                    ? "your-question"
+                                                    : field === "email"
+                                                        ? "E-mail"
+                                                        : "your-question"
                                         )}
                                     />
                                     <label
                                         htmlFor={field}
-                                        className={`absolute transition-all text-[16px] mdx:text-[19px] ${
-                                            focusedInput === field || values[field]
+                                        className={`absolute transition-all text-[16px] mdx:text-[19px] ${focusedInput === field || values[field]
                                                 ? "-top-4 text-xs"
                                                 : "top-3 text-sm"
-                                        } ${
-                                            focusedInput === field
+                                            } ${focusedInput === field
                                                 ? validateInput(field, values[field]).isValid
                                                     ? "text-white"
                                                     : "text-white"
                                                 : "text-white"
-                                        } cursor-text`}
+                                            } cursor-text`}
                                         onClick={() => document.getElementsByName(field)[0].focus()}
                                     >
                                         {focusedInput === field && values[field].length > 0
                                             ? validateInput(field, values[field]).message
                                             : field === "fullName"
-                                            ? t('info') + "*"
-                                            : field === "phoneNumber"
-                                            ? t('telephone-number') + "*"
-                                            : field === "email"
-                                            ? "E-mail"
-                                            : t('your-question')}
+                                                ? t('info') + "*"
+                                                : field === "phoneNumber"
+                                                    ? t('telephone-number') + "*"
+                                                    : field === "email"
+                                                        ? "E-mail"
+                                                        : t('your-question')}
                                     </label>
                                 </div>
                             ))}

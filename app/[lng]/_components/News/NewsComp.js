@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
-import NewCard from '../News/NewCard'
+import NewCardMain from '../News/NewCardMain'
 import Pagination from '../News/Pagination'
 
 export default function NewsComp() {
@@ -63,7 +63,7 @@ export default function NewsComp() {
 			<div className='w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto'>
 				{news.map((item, i) => (
 					<a key={i} href={`/${lng}/news/${item.slug}`}>
-						<NewCard
+						<NewCardMain
 							title={item.head.heading}
 							date={item.head.text}
 							imageSrc={item.head.photo.url || newsPhoto} // Fallback image
