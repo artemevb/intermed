@@ -4,5 +4,6 @@
     "load":"Ko'proq yuklash",
     "allProducts": "Barcha mahsulotlar",
     "newProducts": "Yangi mahsulotlar",
-    "promotions": "Aksiya"
+    "promotions": "Aksiyalar",
+    "noResults": "Hech narsa topilmadi"
 }

@@ -8,6 +8,9 @@ import Category from '../Modal/Category'
 import CatalogList from './CatalogBar'
 import CatalogItem from './Catalogitem'
 import Dropdown from './DropDown'
+import search_red from "@/public/svg/tools/search-icon-red.svg";
+import Image from 'next/image'
+import { DNA } from "react-loader-spinner";
 
 export default function List({ data, allCategories }) {
 	const lng = useLanguage()
@@ -181,11 +184,10 @@ export default function List({ data, allCategories }) {
 									<button
 										onClick={() => handleFilter(slug)}
 										key={slug}
-										className={`z-10 w-auto text-lg transition-text font-semibold ${
-											selectedCategory === slug
-												? 'text-redMain border-b-2 border-b-redMain'
-												: 'text-neutral-400'
-										}`}
+										className={`z-10 w-auto text-lg transition-text font-semibold ${selectedCategory === slug
+											? 'text-redMain border-b-2 border-b-redMain'
+											: 'text-neutral-400'
+											}`}
 									>
 										<h3 className='my-2 whitespace-nowrap'>{title}</h3>
 									</button>
@@ -225,7 +227,16 @@ export default function List({ data, allCategories }) {
 								</div>
 							))
 						) : (
-							<p>{t('noResults')}</p>
+							<div className='w-full flex flex-col items-center justify-center mb-[-300px] ml-[350%]'>
+								<DNA
+									visible={true}
+									height="120"
+									width="120"
+									ariaLabel="dna-loading"
+									wrapperStyle={{}}
+									wrapperClass="dna-wrapper"
+								/>
+							</div>
 						)}
 					</div>
 					{!displayAll && filteredData.length > 10 && (

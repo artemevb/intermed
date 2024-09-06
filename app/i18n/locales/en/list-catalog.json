@@ -4,5 +4,6 @@
     "load":"Load more",
     "allProducts": "All Products",
     "newProducts": "New Arrivals",
-    "promotions": "Promotions"
+    "promotions": "Stock",
+    "noResults": "Nothing found"
 }

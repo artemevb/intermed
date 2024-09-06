@@ -4,5 +4,6 @@
     "load":"Загрузить еще",
     "allProducts": "Все товары",
     "newProducts": "Новинки",
-    "promotions": "Акции"
+    "promotions": "Акции",
+    "noResults": "Ничего не найдено"
 }
