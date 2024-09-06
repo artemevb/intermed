@@ -122,7 +122,7 @@ export default function Footer({ lng }) {
                 height={1000}
                 quality={100}
                 alt="Result Logo"
-                className="h-8 w-auto"
+                className="h-auto w-[110px] xl:w-[130px]"
               />
             </a>
           </div>
