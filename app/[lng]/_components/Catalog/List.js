@@ -27,9 +27,25 @@ export default function List({ data, allCategories }) {
 	const [productWithCatalogID, setProductWithCatalogID] = useState([])
 	const [productWithCategoryId, setProductWithCategoryId] = useState([])
 
+	// Состояния для загрузки и проверки наличия данных
+	const [loading, setLoading] = useState(true)
+	const [noData, setNoData] = useState(false)
+
+	// Таймер на 3 секунды для проверки загрузки
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			if (loading) {
+				setNoData(true)
+			}
+		}, 3000)
+
+		return () => clearTimeout(timer)
+	}, [loading])
+
 	// Fetch products based on catalog ID
 	useEffect(() => {
 		const fetchProductWithCatalogID = async () => {
+			setLoading(true)
 			if (catalogID) {
 				try {
 					const response = await axios.get(
@@ -47,6 +63,7 @@ export default function List({ data, allCategories }) {
 					setProductWithCatalogID([])
 				}
 			}
+			setLoading(false)
 		}
 
 		fetchProductWithCatalogID()
@@ -55,6 +72,7 @@ export default function List({ data, allCategories }) {
 	// Fetch products based on category ID
 	useEffect(() => {
 		const fetchProductWithCategoryID = async () => {
+			setLoading(true)
 			if (categoryID) {
 				try {
 					const response = await axios.get(
@@ -72,6 +90,7 @@ export default function List({ data, allCategories }) {
 					setProductWithCategoryId([])
 				}
 			}
+			setLoading(false)
 		}
 
 		fetchProductWithCategoryID()
@@ -199,7 +218,7 @@ export default function List({ data, allCategories }) {
 				</div>
 			</div>
 
-			<div className='w-full flex gap-10'>
+			<div className='w-full flex gap-10 max-lg:justify-center'>
 				<div className='w-full max-w-[350px] max-2xl:max-w-[280px] max-lg:hidden'>
 					<CatalogList
 						data={data}
@@ -211,7 +230,31 @@ export default function List({ data, allCategories }) {
 				</div>
 				<div>
 					<div className='w-full grid grid-cols-1 mdl:grid-cols-2 3xl:grid-cols-3 gap-4'>
-						{getFilteredData().length > 0 ? (
+						{/* Проверяем статус загрузки */}
+						{loading ? (
+							<div className='w-full flex flex-col items-center justify-center lg:mb-[-300px] lg:ml-[350%]'>
+								<DNA
+									visible={true}
+									height="120"
+									width="120"
+									ariaLabel="dna-loading"
+									wrapperStyle={{}}
+									wrapperClass="dna-wrapper"
+								/>
+							</div>
+						) : noData || filteredData.length === 0 ? (
+							<div className="w-full flex flex-col items-center justify-center lg:mb-[-300px] lg:ml-[100%] 2xl:ml-[170%] lg:gap-[14px] gap-[7px] mt-[100px]">
+								<Image
+									src={search_red}
+									width={60}
+									height={60}
+									alt="The Wild Oasis logo"
+									quality={100}
+									className='w-[40px] h-[40px] lg:w-[60px] lg:h-[60px]'
+								/>
+								<h2 className='text-[18px] lg:text-[24px] font-semibold text-[#E31E24]'>{t('noResults')}</h2>
+							</div>
+						) : (
 							getFilteredData().map((item, index) => (
 								<div key={item.id || index}>
 									<CatalogItem
@@ -226,17 +269,6 @@ export default function List({ data, allCategories }) {
 									/>
 								</div>
 							))
-						) : (
-							<div className='w-full flex flex-col items-center justify-center mb-[-300px] ml-[350%]'>
-								<DNA
-									visible={true}
-									height="120"
-									width="120"
-									ariaLabel="dna-loading"
-									wrapperStyle={{}}
-									wrapperClass="dna-wrapper"
-								/>
-							</div>
 						)}
 					</div>
 					{!displayAll && filteredData.length > 10 && (
