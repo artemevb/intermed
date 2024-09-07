@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
-import NewCard from '../News/NewCard'
+import NewCardMain from '../News/NewCardMain'
 
 export default function News() {
 	const lng = useLanguage()
@@ -45,7 +45,7 @@ export default function News() {
 						{data.slice(0, 4).map((item, i) => {
 							return (
 								<a key={i} href={`/${lng}/news/${item.slug}`}>
-									<NewCard
+									<NewCardMain
 										key={i}
 										title={item.head.heading}
 										date={item.date}
