@@ -229,7 +229,7 @@ export default function List({ data, allCategories }) {
 					/>
 				</div>
 				<div>
-					<div className='w-full grid grid-cols-1 mdl:grid-cols-2 3xl:grid-cols-3 gap-4'>
+					<div className='w-full grid grid-cols-2 3xl:grid-cols-3 gap-3 mdx:gap-4'>
 						{/* Проверяем статус загрузки */}
 						{loading ? (
 							<div className='w-full flex flex-col items-center justify-center lg:mb-[-300px] lg:ml-[350%]'>
@@ -243,7 +243,7 @@ export default function List({ data, allCategories }) {
 								/>
 							</div>
 						) : noData || filteredData.length === 0 ? (
-							<div className="w-full flex flex-col items-center justify-center lg:mb-[-300px] lg:ml-[100%] 2xl:ml-[170%] lg:gap-[14px] gap-[7px] mt-[100px]">
+							<div className="w-full flex flex-col items-center justify-center ml-[55%] lg:mb-[-300px] lg:ml-[100%] 2xl:ml-[170%] lg:gap-[14px] gap-[7px] mt-[100px]">
 								<Image
 									src={search_red}
 									width={60}
@@ -252,7 +252,7 @@ export default function List({ data, allCategories }) {
 									quality={100}
 									className='w-[40px] h-[40px] lg:w-[60px] lg:h-[60px]'
 								/>
-								<h2 className='text-[18px] lg:text-[24px] font-semibold text-[#E31E24]'>{t('noResults')}</h2>
+								<h2 className='w-full text-[18px] lg:text-[24px] font-semibold text-[#E31E24] '>{t('noResults')}</h2>
 							</div>
 						) : (
 							getFilteredData().map((item, index) => (

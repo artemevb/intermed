@@ -1,6 +1,5 @@
 'use client'
 import Image from 'next/image'
-import Link from 'next/link'
 import GreenArrow from '../Buttons/GreenArrow'
 import fav from '@/public/svg/main/fav.svg'
 import favFilled from '@/public/svg/main/fav-filled.svg'
@@ -21,6 +20,7 @@ export default function Catalogitem({
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'translation')
 	const [isMounted, setIsMounted] = useState(false)
+	const [maxLength, setMaxLength] = useState(43) // начальное значение
 
 	useEffect(() => {
 		setIsMounted(true)
@@ -30,6 +30,28 @@ export default function Catalogitem({
 		const favorites = JSON.parse(localStorage.getItem('favorites')) || []
 		setIsFavorite(favorites.some(item => item.slug === slug))
 	}, [slug])
+
+	// Добавляем эффект для изменения длины текста в зависимости от ширины экрана
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth >= 655) { // Если экран xl и больше
+				setMaxLength(80)
+			} else { // Для экранов меньше xl
+				setMaxLength(43)
+			}
+		}
+
+		// Устанавливаем значение при монтировании компонента
+		handleResize()
+
+		// Добавляем обработчик события resize
+		window.addEventListener('resize', handleResize)
+
+		// Очищаем обработчик при размонтировании компонента
+		return () => {
+			window.removeEventListener('resize', handleResize)
+		}
+	}, [])
 
 	const handleFavoriteToggle = () => {
 		let favorites = JSON.parse(localStorage.getItem('favorites')) || []
@@ -44,9 +66,16 @@ export default function Catalogitem({
 		setIsFavorite(!isFavorite)
 	}
 
+	function truncateText(text, maxLength) {
+		if (text.length > maxLength) {
+			return text.substring(0, maxLength) + '...'
+		}
+		return text
+	}
+
 	return (
-		<div className='h-[290px] mdx:h-[440px] w-full '>
-			<div className='rounded-2xl  mdx:pt-8 flex flex-col justify-between mdx:p-2 mdl:p-4 h-full relative'>
+		<div className='h-[350px] mdx:h-[440px] w-full '>
+			<div className='rounded-2xl mdx:pt-8 flex flex-col justify-between mdx:p-2 mdl:p-4 h-full relative'>
 				<div
 					onClick={handleFavoriteToggle}
 					className='absolute top-4 right-4 z-10'
@@ -60,7 +89,7 @@ export default function Catalogitem({
 						className='w-6 h-6 max-mdx:w-5 max-mdx:h-45'
 					/>
 				</div>
-				<div className='w-full h-[300px] flex items-center justify-center relative overflow-hidden'>
+				<div className='w-full h-[240px] mdx:h-[300px] mdl: xl:h-[345px] flex items-center justify-center relative overflow-hidden'>
 					<div className='absolute bottom-2 left-2 flex gap-1 '>
 						{isNew && (
 							<div className='py-1 px-3 rounded-full text-[12px]  mdx:text-sm font-bold text-red-500 bg-red-100 '>
@@ -87,9 +116,10 @@ export default function Catalogitem({
 				<h3 className='text-md font-semibold'>
 					{title || 'No Title'}
 				</h3>
-				<p className='text-xs text-[#BABABA] mt-1 line-clamp-3 mdx:line-clamp-2'>
-					{description}
+				<p className='text-xs text-[#BABABA] mt-1 '>
+					{truncateText(description, maxLength)}
 				</p>
+
 				<div className='flex w-full justify-between items-center flex-wrap mt-3'>
 					<a href={`/${lng}/product/${slug}`}>
 						{isMounted && (
