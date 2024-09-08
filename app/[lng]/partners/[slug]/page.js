@@ -3,37 +3,34 @@ import Application from "../../_components/Main/Application";
 import PartnersSlider from "../../_components/Partners/PartnersSlider";
 import axios from 'axios';
 
-
 export default async function PartnerPage({ params }) {
-    const { slug, lng } = params
+    const { slug, lng } = params;
 
-    let productData = null
+    let productData = null;
+    let productsData = null;
 
-    // GET PRODUCT WITH SLUG
+    // Получаем информацию о продукте по slug
     try {
         const response = await axios.get(`https://imed.uz/api/v1/product/${slug}`, {
             headers: {
                 'Accept-Language': lng,
             },
-        })
-
-        productData = response.data
+        });
+        productData = response.data;
     } catch (error) {
-        console.error('Failed to fetch product data:', error)
+        console.error('Failed to fetch product data:', error);
     }
-    let productsData = null
 
-    // GET PRODUCT WITH SLUG
+    // Получаем оборудование по slug партнера
     try {
-        const response = await axios.get(`https://imed.uz/api/v1/product`, {
+        const response = await axios.get(`https://imed.uz/api/v1/product/all-by-partner-slug/${slug}`, {
             headers: {
                 'Accept-Language': lng,
             },
-        })
-
-        productsData = response.data.data
+        });
+        productsData = response.data.data; // Assuming 'data' is where products are stored
     } catch (error) {
-        console.error('Failed to fetch product data:', error)
+        console.error('Failed to fetch partner products:', error);
     }
 
     return (
@@ -44,5 +41,3 @@ export default async function PartnerPage({ params }) {
         </div>
     );
 }
-
-

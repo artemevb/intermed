@@ -3,16 +3,15 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 import Link from "next/link";
 import GreenArrow from "../Buttons/GreenArrow";
 import Catalogitem from "../Catalog/Catalogitem";
-import { useTranslation } from '../../../i18n/client'
+import { useTranslation } from '../../../i18n/client';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-export default function Similar({ data }) {
+export default function Similar({ similarProducts }) {
   const lng = useLanguage();
-  const { t } = useTranslation(lng, 'similar')
+  const { t } = useTranslation(lng, 'similar');
 
   const settings = {
     arrows: false,
@@ -58,7 +57,7 @@ export default function Similar({ data }) {
       <div className="w-full">
         <div className="w-full mdx:px-2 xl:px-4">
           <Slider {...settings} className="h-auto flex">
-            {data.map((item, index) => (
+            {similarProducts.map((item, index) => (
               <div key={index} className="p-2">
                 <Catalogitem
                   new={item.new}

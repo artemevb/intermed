@@ -113,7 +113,7 @@ const EquipmentCarousel = () => {
 	)
 
 	return (
-		<section className='w-full max-w-[1440px] mx-auto px-2 mt-6 mdx:mt-9'>
+		<section className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 mt-6 mdx:mt-9'>
 			{isMounted && (
 				<div className='flex flex-col gap-2 mdx:gap-6'>
 					<h2 className='text-4xl max-mdx:text-2xl font-semibold uppercase'>

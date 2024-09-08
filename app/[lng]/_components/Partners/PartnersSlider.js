@@ -7,12 +7,12 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import GreenArrow from "../Buttons/GreenArrow";
 import Catalogitem from "../Catalog/Catalogitem";
-import { useTranslation } from '../../../i18n/client'
+import { useTranslation } from '../../../i18n/client';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-export default function Similar({ data }) {
+export default function PartnersSlider({ data }) {
     const lng = useLanguage();
-    const { t } = useTranslation(lng, 'similar')
+    const { t } = useTranslation(lng, 'similar');
 
     const settings = {
         arrows: false,

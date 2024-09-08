@@ -12,9 +12,9 @@ export async function generateStaticParams() {
 export const metadata = {
     title: {
         template: "%s",
-        default: "Intermed Innovation"
+        default: "Медицинское оборудование в Ташкенте — Intermed Innovation"
     },
-    description: "Intermed Innovation in Uzbekistan",
+    description: "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
     icons: {
         icon: [
             '/favicon.ico'

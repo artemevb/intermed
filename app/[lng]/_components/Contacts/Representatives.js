@@ -39,11 +39,11 @@ export default function ContAddress() {
     ];
 
     return (
-        <div className="max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 sm:px-6 mb-[180px]">
-            <div>
+        <div className="max-w-[1440px] 5xl:max-w-[2000px] mx-auto w-full mb-[180px]">
+            <div className="mx-[10px]">
                 <h2 className="mt-[120px] text-3xl font-semibold uppercase mt-18 mdx:mt-[170px] mb-8">{t('title')}</h2>
 
-                <div className="grid gap-6 slg:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-6 slg:grid-cols-2 xl:grid-cols-3 w-full">
                     {data.map((item, i) => (
                         <div key={i} className="bg-white rounded-3xl shdwcustom overflow-hidden">
                             <div className="">

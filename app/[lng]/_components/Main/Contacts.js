@@ -37,7 +37,7 @@ export default function Contacts({ lng }) {
           <div className="flex flex-col gap-1">
             <div >
               <a
-                href="https://yandex.uz/maps/10335/tashkent/?from=mapframe&ll=69.288713%2C41.350869&mode=usermaps&source=mapframe&um=constructor%3A91d36eeb34d790da6904a560f5fd9b0e0072a93a42f95bc0fe3dd8ae45fdaf0c&utm_source=mapframe&z=14"
+                href="https://maps.app.goo.gl/woz2gPqNxyCKeoV18"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-black text-lg mdl:text-xl"
