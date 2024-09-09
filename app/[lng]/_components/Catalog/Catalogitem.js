@@ -96,11 +96,11 @@ export default function Catalogitem({
 								{t('new')}
 							</div>
 						)}
-						{sale && (
+						{/* {sale && (
 							<div className='py-1 px-3 rounded-full text-[12px] mdx:text-sm font-bold text-red-500 bg-red-100 '>
 								{sale}
 							</div>
-						)}
+						)} */}
 					</div>
 					<a href={`/${lng}/product/${slug}`}>
 						<Image

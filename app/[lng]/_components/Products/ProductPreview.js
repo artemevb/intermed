@@ -66,7 +66,7 @@ export default function ProductPreview({ productData }) {
       <div className="w-full flex-1 flex flex-col gap-5">
         <div className="flex gap-4 max-lg:hidden">
           <h1 className="text-3xl font-semibold">{productData.name}</h1>
-          <div className="py-2 px-5 font-bold rounded-full text-[#E31E24] bg-[#FCE8E9]">
+          <div className="py-2 px-5 font-bold rounded-full text-[#E31E24] bg-[#FCE8E9] max-h-[40px]">
             {t('new')}
           </div>
         </div>

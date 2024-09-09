@@ -12,15 +12,26 @@ import { useTranslation } from '../../../i18n/client';
 import { languages, cookieName } from '../../../i18n/settings';
 import { useCookies } from 'react-cookie';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import Search from "../Modal/Search";
 
 export default function Tools({ navOptions }) {
   const lng = useLanguage();
   const [menu, setMenu] = useState(false);
   const [languageMenu, setLanguageMenu] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [searchMenu, setSearchMenu] = useState(false);
 
   const { i18n, t } = useTranslation();
   const [cookies, setCookie] = useCookies([cookieName]);
+
+  useEffect(() => {
+    if (searchMenu) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [searchMenu]);
+
 
   useEffect(() => {
     setMounted(true);
@@ -73,14 +84,27 @@ export default function Tools({ navOptions }) {
 
   return (
     <div className="h-full items-center flex mdx:gap-[16px] px-1 py-4">
-      <button className="rounded-full max-mdx:px-1 max-mdx:py-1">
-        <Image
-          src={searchIcon}
-          height={50}
-          width={50}
-          alt={`Tools Item SearchIcon`}
-          className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
-        />
+      {searchMenu && <Search />}
+      <button
+        onClick={() => setSearchMenu((prev) => !prev)}
+        className="rounded-full px-2 py-1">
+        {searchMenu ? (
+          <Image
+            src={searchIcon}
+            height={30}
+            width={30}
+            alt="Search Icon"
+            className="w-8 h-8"
+          />
+        ) : (
+          <Image
+            src={searchIcon}
+            height={30}
+            width={30}
+            alt="Search Icon"
+            className="w-8 h-8"
+          />
+        )}
       </button>
       <a href={`/${i18n.language}/favorites`} className="flex items-center justify-center">
         <button className="rounded-full max-mdx:px-1 max-mdx:py-1">
@@ -102,7 +126,7 @@ export default function Tools({ navOptions }) {
           className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
         />
       </a>
-      <div ref={menuRef} className="mdx:relative xl:flex xl:items-center xl:text-left hidden z-40">
+      <div ref={menuRef} className="mdx:relative xl:flex xl:items-center xl:text-left hidden  z-[99]">
         <button
           id="dropdownButton"
           className="inline-flex items-center text-[19px] font-medium bg-white focus:outline-none ml-3"
@@ -123,7 +147,7 @@ export default function Tools({ navOptions }) {
           <div className="absolute top-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
             <ul className="py-1">
               {languages.map((lng) => (
-                <li key={lng} className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={() => handleLanguageChange(lng)}>
+                <li key={lng} className="px-4 py-2 hover:bg-gray-100 cursor-pointer z-[999]" onClick={() => handleLanguageChange(lng)}>
                   {lng.toUpperCase()}
                 </li>
               ))}
