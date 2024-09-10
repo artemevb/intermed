@@ -113,7 +113,7 @@ export default function Search() {
   return (
     <>
       {isOpen && (
-        <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[5]">
+        <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[9999]">
           <div className="h-[80%] w-full bg-white mdx:pt-2 ">
             <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8 ">
               <div className="flex items-center p-[20px] mdx:p-7  w-full border-b">
