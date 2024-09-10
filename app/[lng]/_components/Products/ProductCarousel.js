@@ -69,8 +69,8 @@ const VerticalCarousel = ({ data }) => {
               <Image
                 src={item.url} // url ni olish
                 alt={`Thumbnail ${index}`}
-                className="object-contain h-full rounded-xl w-full"
-                width={300} // Add appropriate width and height
+                className="object-contain h-full rounded-xl w-full max-h-[102px] max-w-[102px]"
+                width={302} // Add appropriate width and height
                 height={300}
                 quality={100}
               />

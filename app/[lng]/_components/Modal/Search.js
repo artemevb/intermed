@@ -104,6 +104,8 @@ export default function Search() {
     };
   }, [isOpen]);
 
+
+
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -141,7 +143,7 @@ export default function Search() {
                   />
                 </button>
               </div>
-              <div className="flex flex-col gap-[9px] xl:gap-4 overflow-y-scroll ml-[10px]">
+              <div className={`flex flex-col gap-[9px] xl:gap-4 ${results.length === 0 ? 'overflow-hidden' : 'overflow-y-scroll'} ml-[10px]`}>
                 {results.length === 0 && query.trim() && ( // Если результатов нет и запрос не пустой
                   <p className="text-gray-400 text-center mt-[12%]">
                     {t('no-results')} {/* Добавьте перевод для текста "Ничего не найдено" */}
@@ -201,6 +203,7 @@ export default function Search() {
                   </a>
                 ))}
               </div>
+
 
 
 

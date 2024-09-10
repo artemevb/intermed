@@ -106,10 +106,10 @@ export default function Catalogitem({
 						<Image
 							src={image}
 							alt={title}
-							width={700}
-							height={700}
+							width={1000}
+							height={1000}
 							quality={100}
-							className='object-contain w-full h-full'
+							className='object-contain w-full h-full max-w-[350px] max-h-[350px]'
 						/>
 					</a>
 				</div>
