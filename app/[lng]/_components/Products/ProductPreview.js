@@ -90,8 +90,8 @@ export default function ProductPreview({ productData }) {
           </a>
           <Image
             src={productData.brand.logo.url}
-            width={300}
-            height={300}
+            width={400}
+            height={400}
             alt="Mindray"
             quality={100}
             className="w-[150px]"

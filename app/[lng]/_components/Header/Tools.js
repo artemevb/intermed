@@ -94,7 +94,7 @@ export default function Tools({ navOptions }) {
             height={30}
             width={30}
             alt="Search Icon"
-            className="w-8 h-8"
+            className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
           />
         ) : (
           <Image
@@ -102,7 +102,7 @@ export default function Tools({ navOptions }) {
             height={30}
             width={30}
             alt="Search Icon"
-            className="w-8 h-8"
+            className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
           />
         )}
       </button>

@@ -59,21 +59,24 @@ export default function ProductCharacteristics({ data }) {
 	return (
 		<div className='w-full flex flex-col gap-5'>
 			<div className='w-full flex flex-col relative'>
-				<div className='w-full overflow-x-scroll flex gap-8 lg:gap-12 scrollbar-hide touch-auto'>
-					{categories.map((item, index) => (
-						<button
-							key={index}
-							onClick={() => handleCategoryChange(item.category, item.dataKey)}
-							className={`z-10 w-auto text-lg transition-text font-medium ${active === item.category
-								? 'text-[#E31E24] border-b-2 border-b-[#E31E24]'
-								: 'text-neutral-400'
-								}`}
-						>
-							<h3 className='my-2 whitespace-nowrap'>{item.title}</h3>
-						</button>
-					))}
+				<div className="text-container w-max">
+					<div className="w-full overflow-x-scroll flex gap-8 lg:gap-12 scrollbar-hide touch-auto">
+						{categories.map((item, index) => (
+							<button
+								key={index}
+								onClick={() => handleCategoryChange(item.category, item.dataKey)}
+								className={`z-10 w-auto text-lg transition-text font-medium ${active === item.category
+									? 'text-[#E31E24] border-b-2 border-b-[#E31E24]'
+									: 'text-neutral-400'
+									}`}
+							>
+								<h3 className='my-2 whitespace-nowrap'>{item.title}</h3>
+							</button>
+						))}
+					</div>
+					<hr className="w-full border-t-1 " />
 				</div>
-				<hr className='w-full border-t-2 absolute bottom-0 border-slate-[#eee] mdx:max-w-[334px] lg:max-w-[354px] xl:max-w-[364px]' />
+
 			</div>
 
 			<div>

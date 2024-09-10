@@ -19,8 +19,8 @@ export default function Title() {
                         <Image
                             src={innovationMedical}
                             alt={t('main_photo')}
-                            width={2000}
-                            height={2000}
+                            width={1500}
+                            height={1500}
                             quality={100}
                             
                             className='w-full h-auto object-contain' />
