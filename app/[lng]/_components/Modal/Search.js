@@ -25,13 +25,17 @@ export default function Search() {
       const { data } = await axios.get(`https://imed.uz/api/v1/search?query=${encodeURIComponent(trimmedQuery)}`, {
         headers: { 'Accept-Language': lng },
       });
-      setResults(data.data);
+
+      // Сортировка: сначала Product, затем все остальные
+      const products = data.data.filter(item => item.dtoName === 'Product');
+      const otherResults = data.data.filter(item => item.dtoName !== 'Product');
+      setResults(products.concat(otherResults)); // Продукты будут выше остальных
+
     } catch (error) {
       console.error('Error fetching search results:', error.message);
       setResults([]);
     }
   };
-
 
   const handleInputChange = (e) => {
     const newQuery = e.target.value;
@@ -40,7 +44,6 @@ export default function Search() {
     if (typingTimeout) {
       clearTimeout(typingTimeout);
     }
-
 
     setTypingTimeout(setTimeout(() => {
       if (newQuery.trim()) {
@@ -104,8 +107,6 @@ export default function Search() {
     };
   }, [isOpen]);
 
-
-
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -116,7 +117,7 @@ export default function Search() {
         <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[9999]">
           <div className="h-[80%] w-full bg-white mdx:pt-2 ">
             <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8">
-              <div className="flex items-center py-[20px] mdx:py-7  w-full border-b">
+              <div className="flex items-center px-2 py-[20px] mdx:py-7  w-full border-b">
                 <button onClick={closeModal}>
                   <Image
                     src={close}
@@ -131,7 +132,7 @@ export default function Search() {
                   placeholder={t('placeholder')}
                   className="bg-transparent outline-none flex-1 text-[#252324] placeholder-gray-400 text-[18px] mdx:text-[20px] xl:text-[24px]"
                   value={query}
-                  onChange={handleInputChange} // Изменяемый метод
+                  onChange={handleInputChange}
                 />
                 <button onClick={handleSearch}>
                   <Image
@@ -143,16 +144,16 @@ export default function Search() {
                   />
                 </button>
               </div>
-              <div className={`flex flex-col gap-[9px] xl:gap-4 ${results.length === 0 ? 'overflow-hidden' : 'overflow-y-scroll'} ml-[10px]`}>
-                {results.length === 0 && query.trim() && ( // Если результатов нет и запрос не пустой
+              <div className={`flex flex-col gap-[9px] xl:gap-4 ${results.length > 0 ? 'overflow-y-auto' : ''} ml-[10px]`}>
+                {results.length === 0 && query.trim() && (
                   <p className="text-gray-400 text-center mt-[12%]">
-                    {t('no-results')} {/* Добавьте перевод для текста "Ничего не найдено" */}
+                    {t('no-results')}
                   </p>
                 )}
                 {results.map((item) => (
                   <a
                     key={item.id}
-                    href={getLink(item, lng)} // Передаем lng в getLink
+                    href={getLink(item, lng)}
                     className="bg-white border-b border-[#E1E1E1] flex gap-4 w-full"
                   >
                     {item.photo && item.photo.url && (
@@ -164,7 +165,7 @@ export default function Search() {
                         className="w-[90px] h-[90px] object-cover mb-2 xl:mb-4"
                       />
                     )}
-                    <div className="flex justify-between items-center w-full mb-2 xl:mb-4 pb-[20px]">
+                    <div className="flex justify-between items-center w-full mb-2 pb-[20px]">
                       <div>
                         <h3 className="text-lg font-semibold">
                           {item['name' + lng.charAt(0).toUpperCase() + lng.slice(1)] || item.title}
@@ -184,19 +185,8 @@ export default function Search() {
                             </p>
                           )}
                         </div>
-
-                        {/* <div>
-                          <h1 className="text-2xl font-bold">
-                          {t('products')} {item.name}
-                          </h1>
-                          <p className="text-sm text-gray-400 mt-1">
-                            {t('partners')}
-                          </p>
-                        </div> */}
-
-
                       </div>
-                      <a href={getLink(item, lng)} className="self-center ml-auto"> {/* Также передаем lng здесь */}
+                      <a href={getLink(item, lng)} className="self-center ml-auto">
                         <button className="text-[#E31E24] px-4 py-2 font-extrabold flex items-center">
                           <span className="mdx:hidden">
                             <Image
@@ -213,7 +203,7 @@ export default function Search() {
                               src={arrow}
                               alt="Arrow"
                               width={24}
-                              height={24} // Те же размеры для стрелки рядом с текстом
+                              height={24}
                               className="ml-2 object-contain"
                             />
                           </span>
@@ -223,9 +213,6 @@ export default function Search() {
                   </a>
                 ))}
               </div>
-
-
-
 
             </div>
           </div>
