@@ -19,7 +19,7 @@ export default function CategoryItem({ key, title, imageSrc, slug }) {
         key={key}
         className="w-full border overflow-hidden transition-all duration-200 relative mdl:pb-72 max-mdl:h-[180px] flex flex-row items-center gap-5 mdl:flex-col h-[300px] px-2 mdl:px-6 mdl:py-6 max-mdl:pt-[20px] max-mdl:pl-[15px] "
       >
-        <div className="z-[9999] mdl:flex flex-col mdl:items-center max-mdl:max-w-[167px] flex h-full content-start wrap">
+        <div className="z-[4] mdl:flex flex-col mdl:items-center max-mdl:max-w-[167px] flex h-full content-start wrap">
           <h2 className=" max-mdx:text-[18px] lh text-2xl mb-2 font-semibold mdl:text-center z-10 mdl:mx-auto max-mdl:mb-[5px] ">{title}</h2>
 
           {

@@ -22,7 +22,7 @@ export default function Search() {
     if (!trimmedQuery) return; // Если запрос пустой или содержит только пробелы, не выполняем запрос
 
     try {
-      const { data } = await axios.get(`http://213.230.91.55:8130/v1/search?query=${encodeURIComponent(trimmedQuery)}`, {
+      const { data } = await axios.get(`https://imed.uz/api/v1/search?query=${encodeURIComponent(trimmedQuery)}`, {
         headers: { 'Accept-Language': lng },
       });
       setResults(data.data);
@@ -111,7 +111,7 @@ export default function Search() {
   return (
     <>
       {isOpen && (
-        <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[89px] z-[9999999]">
+        <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[5]">
           <div className="h-[80%] w-full bg-white mdx:pt-2 ">
             <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8 ">
               <div className="flex items-center p-[20px] mdx:p-7  w-full border-b">
