@@ -14,7 +14,7 @@ const formatTextWithNewlines = (text) => {
 const Modal = ({ selectedLicense, closeModal }) => {
     if (!selectedLicense) return null;
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999] overflow-y-auto" onClick={closeModal}>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[99999] overflow-y-auto" onClick={closeModal}>
             <div className="bg-white max-w-[950px] w-full relative mx-4 my-4 flex flex-col overflow-y-auto max-h-full mdl:mx-[19%] no-scrollbar h-[88%] xl:h-[86%]" onClick={(e) => e.stopPropagation()}>
                 <div className="bg-white xl:flex xl:flex-row">
                     <button onClick={closeModal} className="absolute top-2 right-2 xl:top-4 xl:right-3 ">

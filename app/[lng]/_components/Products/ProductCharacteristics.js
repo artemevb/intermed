@@ -129,7 +129,7 @@ export default function ProductCharacteristics({ data }) {
 												? `${client.description.slice(0, 100)}...`
 												: client.description}
 										</p>
-										<button className='text-[#E31E24] mt-2 flex items-center'>
+										<button className='text-[#E31E24] mt-2 flex items-center font-bold text-[16px] mdx:text-[18px]'>
 											{t('more')}
 											<Image
 												src={arrowred}
