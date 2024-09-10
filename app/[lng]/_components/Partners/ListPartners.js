@@ -11,20 +11,20 @@ export default function ListPartners() {
 	const { t } = useTranslation(lng, 'partners-list-partners')
 	const [partners, setPartners] = useState([])
 
-
+	// Set showAll to true by default, no button interaction needed
 	const [showAll, setShowAll] = useState(false)
 
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth >= 768) {
-				// Adjust the value to match your 'mdx' breakpoint
+				// Automatically show all partners on larger screens
 				setShowAll(true)
 			} else {
 				setShowAll(false)
 			}
 		}
-		handleResize() // Check the initial screen size
-		window.addEventListener('resize', handleResize) // Add resize event listener
+		handleResize()
+		window.addEventListener('resize', handleResize)
 
 		return () => {
 			window.removeEventListener('resize', handleResize)
@@ -39,14 +39,15 @@ export default function ListPartners() {
 				})
 				setPartners(response.data.data)
 			} catch (error) {
-				console.error('Failed to fetch news:', error.message)
+				console.error('Failed to fetch partners:', error.message)
 				setPartners(null) // Reset state if fetching fails
 			}
 		}
 		getAllPartners()
 	}, [lng])
 
-	const visiblePartners = showAll ? partners : partners.slice(0, 14)
+	// Always show all partners now
+	const visiblePartners = partners
 
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 mt-7'>
@@ -54,49 +55,39 @@ export default function ListPartners() {
 				{visiblePartners.map(card => (
 					<div
 						key={card.id}
-						className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 mdl:p-[10px] '
+						className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 mdl:p-[10px] flex flex-col justify-between'
 					>
-						<a href={`/${lng}/partners/${card.slug}`}>
-							<div className=' items-center justify-between divide-y  '>
-								<div className='w-full h-[150px] relative mt-3 mb-9 '>
-
-									<Image
-										src={card.logo.url}
-										alt={card.title}
-										layout='fill'
-										quality={100}
-										objectFit='contain'
-										className='p-4'
-									/>
-
-								</div>
-								<div className='mdx:mb-4 mdx:p-3 '>
-									<h2 className='text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]'>
-										{card.name}
-									</h2>
-									<p className='mb-4 text-gray-600 xl:text-[18px] '>
-										{card.note.length > 100
-											? `${card.note.slice(0, 90)}...`
-											: card.note}
-									</p>
-									<span className='text-[#E31E24] font-semibold mdx:text-[18px]'>
-										<GreenArrow title={t('more')} />
-									</span>
-
-								</div>
+						<a href={`/${lng}/partners/${card.slug}`} className='flex flex-col h-full justify-start'>
+							<div className='w-full h-[150px] relative mt-3 mb-9'>
+								<Image
+									src={card.logo.url}
+									alt={card.title}
+									layout='fill'
+									quality={100}
+									objectFit='contain'
+									className='p-4 w-full h-full'
+								/>
+							</div>
+							<div className='flex-grow  mdx:px-3 mdx:pt-3 border-t'>
+								<h2 className='text-xl font-bold right mt-4 mdx:mb-2 xl:text-[28px]'>
+									{card.name}
+								</h2>
+								<p className='mb-4 text-gray-600 xl:text-[18px]'>
+									{card.note.length > 100
+										? `${card.note.slice(0, 90)}...`
+										: card.note}
+								</p>
+							</div>
+							<div className='mdx:mb-3 mdx:ml-3 mt-auto'>
+								<span className='text-[#E31E24] font-bold mdx:text-[18px]'>
+									<GreenArrow title={t('more')} />
+								</span>
 							</div>
 						</a>
 					</div>
 				))}
 			</div>
-			<div className='flex justify-center mb-[120px]'>
-				<button
-					onClick={() => setShowAll(!showAll)}
-					className='bg-white border text-[#252324] py-3 px-[55px] hover:text-white hover:bg-[#E94B50]'
-				>
-					{showAll ? t('buttons.hide') : t('buttons.showAll')}
-				</button>
-			</div>
 		</div>
+
 	)
 }
