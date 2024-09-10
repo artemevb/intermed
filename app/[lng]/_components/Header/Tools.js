@@ -32,7 +32,6 @@ export default function Tools({ navOptions }) {
     }
   }, [searchMenu]);
 
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -84,27 +83,18 @@ export default function Tools({ navOptions }) {
 
   return (
     <div className="h-full items-center flex mdx:gap-[16px] px-1 py-4">
-      {searchMenu && <Search />}
+      {searchMenu && <Search setSearchMenu={setSearchMenu} />} {/* Передача функции setSearchMenu */}
       <button
         onClick={() => setSearchMenu((prev) => !prev)}
-        className="rounded-full px-2 py-1">
-        {searchMenu ? (
-          <Image
-            src={searchIcon}
-            height={30}
-            width={30}
-            alt="Search Icon"
-            className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
-          />
-        ) : (
-          <Image
-            src={searchIcon}
-            height={30}
-            width={30}
-            alt="Search Icon"
-            className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
-          />
-        )}
+        className="rounded-full px-2 py-1"
+      >
+        <Image
+          src={searchIcon}
+          height={30}
+          width={30}
+          alt="Search Icon"
+          className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
+        />
       </button>
       <a href={`/${i18n.language}/favorites`} className="flex items-center justify-center">
         <button className="rounded-full max-mdx:px-1 max-mdx:py-1">
@@ -126,7 +116,7 @@ export default function Tools({ navOptions }) {
           className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
         />
       </a>
-      <div ref={menuRef} className="mdx:relative xl:flex xl:items-center xl:text-left hidden  z-[9999]">
+      <div ref={menuRef} className="mdx:relative xl:flex xl:items-center xl:text-left hidden z-[9999]">
         <button
           id="dropdownButton"
           className="inline-flex items-center text-[19px] font-medium bg-white focus:outline-none ml-3"

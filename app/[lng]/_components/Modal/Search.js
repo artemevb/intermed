@@ -8,7 +8,7 @@ import searchIcon from "@/public/svg/tools/search-icon-red-for-search.svg";
 import close from "@/public/svg/close.svg";
 import arrow from "@/public/svg/tools/arrow-red-right.svg";
 
-export default function Search() {
+export default function Search({ setSearchMenu }) {
   const lng = useLanguage();
   const { t } = useTranslation(lng, 'search')
   const [query, setQuery] = useState('');
@@ -109,6 +109,7 @@ export default function Search() {
 
   const closeModal = () => {
     setIsOpen(false);
+    setSearchMenu(false); // Синхронизируем с состоянием родительского компонента
   };
 
   return (
@@ -116,8 +117,9 @@ export default function Search() {
       {isOpen && (
         <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[9999]">
           <div className="h-[80%] w-full bg-white mdx:pt-2 ">
-            <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8">
-              <div className="flex items-center px-2 py-[20px] mdx:py-7  w-full border-b">
+            <hr className=' absolute mt-[62px] mdx:mt-[90px] w-[150%] border-[#E1E1E1]' />
+            <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8 ">
+              <div className="flex items-center px-2 py-[20px] mdx:py-7  w-full relative">
                 <button onClick={closeModal}>
                   <Image
                     src={close}
