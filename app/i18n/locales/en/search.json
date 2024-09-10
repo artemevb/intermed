@@ -1,4 +1,6 @@
 {
     "placeholder":"Enter the name of the product, page, etc...",
+    "partner":"Partners",
+    "products":"Products",
     "no-results":"Nothing found. Try changing the search query"
 }

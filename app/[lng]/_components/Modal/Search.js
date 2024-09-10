@@ -115,8 +115,8 @@ export default function Search() {
       {isOpen && (
         <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[9999]">
           <div className="h-[80%] w-full bg-white mdx:pt-2 ">
-            <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8 ">
-              <div className="flex items-center p-[20px] mdx:p-7  w-full border-b">
+            <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8">
+              <div className="flex items-center py-[20px] mdx:py-7  w-full border-b">
                 <button onClick={closeModal}>
                   <Image
                     src={close}
@@ -164,7 +164,7 @@ export default function Search() {
                         className="w-[90px] h-[90px] object-cover mb-2 xl:mb-4"
                       />
                     )}
-                    <div className="flex justify-between items-center w-full mb-2 xl:mb-4">
+                    <div className="flex justify-between items-center w-full mb-2 xl:mb-4 pb-[20px]">
                       <div>
                         <h3 className="text-lg font-semibold">
                           {item['name' + lng.charAt(0).toUpperCase() + lng.slice(1)] || item.title}
@@ -174,7 +174,27 @@ export default function Search() {
                             Category: {item['categoryName' + lng.charAt(0).toUpperCase() + lng.slice(1)]}
                           </p>
                         )}
-                        <p className="text-sm text-gray-400">{getTypeLabel(item.dtoName)}</p>
+                        <div>
+                          <h1 className="text-2xl font-semibold">
+                            {item.dtoName === 'Partner' ? `${t('products')} ${item.name}` : item.name}
+                          </h1>
+                          {item.dtoName === 'Partner' && (
+                            <p className="text-sm text-gray-400 mt-1">
+                              {`${t('partner')} `}
+                            </p>
+                          )}
+                        </div>
+
+                        {/* <div>
+                          <h1 className="text-2xl font-bold">
+                          {t('products')} {item.name}
+                          </h1>
+                          <p className="text-sm text-gray-400 mt-1">
+                            {t('partners')}
+                          </p>
+                        </div> */}
+
+
                       </div>
                       <a href={getLink(item, lng)} className="self-center ml-auto"> {/* Также передаем lng здесь */}
                         <button className="text-[#E31E24] px-4 py-2 font-extrabold flex items-center">
