@@ -134,13 +134,13 @@ export default function Search() {
                   value={query}
                   onChange={handleInputChange}
                 />
-                <button onClick={handleSearch}>
+                <button onClick={handleSearch} >
                   <Image
                     src={searchIcon}
                     height={30}
                     width={30}
                     alt="Search Icon"
-                    className="w-[20px] h-[20px] mdx:w-[30px] mdx:h-[30px]"
+                    className="w-[20px] h-[20px] mdx:w-[30px] mdx:h-[30px] max-xl:ml-[12px]"
                   />
                 </button>
               </div>
