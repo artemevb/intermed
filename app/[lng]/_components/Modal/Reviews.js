@@ -33,7 +33,7 @@ const Modal = ({ selectedReviews, closeModal }) => {
   
     return (
       <div
-        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-y-auto py-[40px]"
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999] overflow-y-auto py-[40px]"
         onClick={closeModal}
       >
         <div

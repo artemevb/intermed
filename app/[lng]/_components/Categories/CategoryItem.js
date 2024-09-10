@@ -32,8 +32,8 @@ export default function CategoryItem({ key, title, imageSrc, slug }) {
         <div className="mdl:flex mdl:flex-col mdl:items-center flex-1 max-mdl:flex max-mdl:justify-end">
           <Image
             src={imageSrc}
-            width={500}
-            height={500}
+            width={700}
+            height={700}
             quality={100}
             alt={`${title} Photo`}
             className="absolute h-full max-mdx:max-w-[157px] z-0 object-contain -bottom-10 mdl:-bottom-14 mdl:w-[75%]  mdx:-bottom-6 mdl:h-[86%] max-mdl:w-auto max-mdl:h-full max-mdl:right-0"

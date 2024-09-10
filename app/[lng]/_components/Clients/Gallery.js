@@ -20,18 +20,19 @@ const Gallery = ({ Gallery }) => {
 			</h2>
 			<div className='grid grid-cols-1 gap-6 mdl:grid-cols-2 mdl:gap-3 xl:grid-cols-3'>
 				{Gallery.slice(0, visibleCount).map(item => (
-					<div key={item.id} className='w-full h-auto'>
+					<div key={item.id} className="w-full h-auto" style={{ aspectRatio: '16/9' }}>
 						<Image
-							width={467}
-							height={275}
+							width={600}
+							height={500}
 							quality={100}
 							src={item.url}
 							alt={item.alt}
-							layout='responsive'
-							objectFit='cover'
-							className='w-full h-full max-h-[200px] mdl:max-h-[275px]'
+							layout="responsive"
+							objectFit="cover"
+							className="w-full h-full max-h-[275px] max-w-[465px]"
 						/>
 					</div>
+
 				))}
 			</div>
 			{visibleCount < Gallery.length && (

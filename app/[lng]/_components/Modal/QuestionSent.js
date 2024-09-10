@@ -8,7 +8,7 @@ export default function QuestionSent({ closeModal }) {
     const { t } = useTranslation(lng, 'modal-question-sent')
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999]">
             <div className="bg-white p-6 shadow-md w-[90%] max-w-[466px] relative flex flex-col items-center justify-center">
                 <div className="w-full max-w-[90px] mdx:max-w-[90px] mb-[30px] mt-[15px]">
                     <Image

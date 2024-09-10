@@ -21,7 +21,7 @@ export default function Timetable({
 	const openSignUpModal = () => setIsSignUpModalOpen(true)
 	const closeSignUpModal = () => setIsSignUpModalOpen(false)
 	return (
-		<div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
+		<div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[9999]'>
 			<div className='bg-white p-6 shadow-md w-[90%] max-w-[500px] relative'>
 				<button
 					className='absolute w-[23px] top-4 right-3 xl:right-5 text-black'

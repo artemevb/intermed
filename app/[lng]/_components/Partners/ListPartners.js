@@ -50,11 +50,11 @@ export default function ListPartners() {
 
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 mt-7'>
-			<div className='grid grid-cols-1 gap-4 mdx:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mb-[40px] mdx:mb-[180px]'>
+			<div className='grid grid-cols-1 gap-4 mdx:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 mb-[40px] mdx:mb-[150px]'>
 				{visiblePartners.map(card => (
 					<div
 						key={card.id}
-						className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 mdl:p-5 '
+						className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 mdl:p-[10px] '
 					>
 						<a href={`/${lng}/partners/${card.slug}`}>
 							<div className=' items-center justify-between divide-y  '>

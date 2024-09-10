@@ -31,7 +31,7 @@ export default function SignUpForEvent({ closeModal }) {
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[999]">
             <div className="bg-white p-6 shadow-md w-[90%] max-w-[420px] relative">
                 <button
                     className="absolute w-[23px] xl:w-[25px] top-4 right-3 xl:right-6 text-black"
