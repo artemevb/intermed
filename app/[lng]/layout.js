@@ -49,9 +49,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <body>
                 {/* Google Tag Manager (noscript) */}
                 <noscript>
-                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ2PVRJC"
-height="0" width="0" style="display:none;visibility:hidden"></iframe>
+                    <iframe
+                        src="https://www.googletagmanager.com/ns.html?id=GTM-PJ2PVRJC"
+                        height="0"
+                        width="0"
+                        style={{ display: 'none', visibility: 'hidden' }}
+                    ></iframe>
                 </noscript>
+
                 {/* Main Content */}
                 <LanguageProvider lng={lng}>
                     <Header lng={lng} />
