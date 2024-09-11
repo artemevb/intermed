@@ -81,6 +81,28 @@ export default function Tools({ navOptions }) {
     return null;
   }
 
+
+  
+  const handleButtonClick = (buttonType) => {
+    fetch(`https://imed.uz/api/v1/counter/add?button=${buttonType}`, {
+      method: "POST",
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Server responded with status ${response.status}`);
+        }
+        console.log(`Button ${buttonType} clicked`);
+      })
+      .catch(e => {
+        console.error(`Error logging button click for ${buttonType}`, e);
+      });
+  };
+
+  const handleClick = () => {
+    handleButtonClick('call');
+  };
+
+
   return (
     <div className="h-full items-center flex mdx:gap-[16px] px-1 py-4">
       {searchMenu && <Search setSearchMenu={setSearchMenu} />} {/* Передача функции setSearchMenu */}
@@ -107,7 +129,7 @@ export default function Tools({ navOptions }) {
           />
         </button>
       </a>
-      <a href="tel:+998781504747" className="rounded-full max-mdx:px-1 max-mdx:py-1">
+      <a href="tel:+998781504747" className="rounded-full max-mdx:px-1 max-mdx:py-1" onClick={handleClick}>
         <Image
           src={phoneIcon}
           height={50}

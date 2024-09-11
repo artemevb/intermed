@@ -7,11 +7,23 @@ import instagram from "@/public/svg/tools/instagram.svg";
 import youtube from "@/public/svg/tools/youtube.svg";
 import arrowRight from "@/public/svg/arrow-right-red.svg";
 import resultLogo from "@/public/images/footer/result-logo.png";
-
 import { useTranslation } from '../../../i18n/client'
-
-
 import Image from "next/image";
+
+const handleButtonClick = (buttonType) => {
+  fetch(`https://imed.uz/api/v1/counter/add?button=${buttonType}`, {
+    method: "POST",
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Server responded with status ${response.status}`);
+    }
+    console.log(`Button ${buttonType} clicked`);
+  })
+  .catch(e => {
+    console.error(`Error logging button click for ${buttonType}`, e);
+  });
+};
 
 export default function Footer({ lng }) {
   const { t } = useTranslation(lng, 'footer-main')
@@ -33,7 +45,7 @@ export default function Footer({ lng }) {
               </a>
             </div>
             <div className="flex gap-3">
-              <a href="https://t.me/intermedtrade" target="_blank">
+              <a href="https://t.me/intermedtrade" target="_blank" onClick={() => handleButtonClick('telegram')}>
                 <Image
                   src={telegram}
                   width={200}
@@ -43,7 +55,7 @@ export default function Footer({ lng }) {
                   className="w-10 h-10"
                 />
               </a>
-              <a href="https://www.facebook.com/intermed.mindray" target="_blank">
+              <a href="https://www.facebook.com/intermed.mindray" target="_blank" onClick={() => handleButtonClick('facebook')}>
                 <Image
                   src={facebook}
                   width={200}
@@ -53,7 +65,7 @@ export default function Footer({ lng }) {
                   className="w-10 h-10"
                 />
               </a>
-              <a href="https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank">
+              <a href="https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank" onClick={() => handleButtonClick('instagram')}>
                 <Image
                   src={instagram}
                   width={200}
@@ -63,7 +75,7 @@ export default function Footer({ lng }) {
                   className="w-10 h-10"
                 />
               </a>
-              <a href="https://www.youtube.com/@intermedinnovation9644" target="_blank">
+              <a href="https://www.youtube.com/@intermedinnovation9644" target="_blank" onClick={() => handleButtonClick('youtube')}>
                 <Image
                   src={youtube}
                   width={200}
