@@ -1,119 +1,200 @@
-"use client"
+"use client";
 import Image from "next/image";
 import close from "@/public/svg/close.svg";
 import { useState } from "react";
+import { useTranslation } from "../../../i18n/client";
+import { useLanguage } from "../../../i18n/locales/LanguageContext";
+import QuestionSent from '@/app/[lng]/_components/Modal/QuestionSent';
 
-import { useTranslation } from '../../../i18n/client'
-import { useLanguage } from '../../../i18n/locales/LanguageContext';
-
-export default function SignUpForEvent({ closeModal }) {
+export default function SignUpForEvent({ product, closeModal }) {
     const lng = useLanguage();
-    const { t } = useTranslation(lng, 'modal-send-kp')
+    const { t } = useTranslation(lng, "modal-send-kp");
 
     const [form, setForm] = useState({
-        name: '',
-        phone: '',
-        email: '',
-        proposal: ''
+        name: "",
+        phone: "",
+        email: "",
+        proposal: "",
     });
+
+    const [isSubmitted, setIsSubmitted] = useState(false); // New state for submission tracking
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm({
             ...form,
-            [name]: value
+            [name]: value,
         });
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Add your form submission logic here
+    const prepareProductLinks = () => {
+        const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        return storedFavorites.map((item) => ({
+            name: item.title,
+            link: `https://imed.uz/api/v1/product/${item.slug}`,
+        }));
+    };
+
+    const handleSendClick = async (e) => {
+        e.preventDefault(); // Prevent form from reloading the page
+        const productLinks = prepareProductLinks();
+
+        const requestBody = !product
+            ? {
+                name: form.name,
+                phone: form.phone,
+                mail: form.email,
+                message: form.proposal,
+                productLink: productLinks,
+            }
+            : {
+                name: form.name,
+                phone: form.phone,
+                mail: form.email,
+                message: form.proposal,
+                productLink: [
+                    {
+                        name: product.name,
+                        link: `https://imed.uz/api/v1/product/${product.slug}`,
+                    },
+                ],
+            };
+
+        try {
+            const response = await fetch("https://imed.uz/api/v1/commercial-offer", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestBody),
+            });
+
+            if (response.ok) {
+                setForm({
+                    name: "",
+                    phone: "",
+                    email: "",
+                    proposal: "",
+                });
+                setIsSubmitted(true); // Show modal after successful submission
+            } else {
+                console.error("Error sending commercial offer");
+            }
+        } catch (error) {
+            console.error("Error sending commercial offer", error);
+        }
+    };
+
+    const closeQuestionSentModal = () => {
+        setIsSubmitted(false); // Function to close the QuestionSent modal
+        closeModal(false); // Close the parent modal
     };
 
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[99999]">
-            <div className="bg-white p-6 shadow-md w-[90%] max-w-[420px] relative">
-                <button
-                    className="absolute w-[23px] xl:w-[25px] top-4 right-3 xl:right-6 text-black"
-                    onClick={closeModal}
-                >
-                    <Image
-                        src={close}
-                        width={100}
-                        height={100}
-                        alt="Icon"
-                        className="h-full w-full"
-                    />
-                </button>
-                <h2 className="text-[22px] font-semibold mb-2 mdl:text-[26px] xl:text-[28px] xl:mb-4">{t('send-cp')}</h2>
-                <p className="text-[14px] text-gray-500 mb-6 w-[290px] mdx:text-[16px] mdl:text-[17px] xl:text-[18px]">{t('connection')}</p>
-                <form onSubmit={handleSubmit}>
-                    <div className="relative mb-4">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={form.name}
-                            onChange={handleChange}
-                            className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
-                            placeholder=" "
-                            required
-                        />
-                        <label htmlFor="name" className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.name ? 'hidden' : ''} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}>
-                            {t('fio')}<span className="text-red-500">*</span>
-                        </label>
-                    </div>
-                    <div className="relative mb-4">
-                        <input
-                            type="text"
-                            id="phone"
-                            name="phone"
-                            value={form.phone}
-                            onChange={handleChange}
-                            className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
-                            placeholder=" "
-                            required
-                        />
-                        <label htmlFor="phone" className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.phone ? 'hidden' : ''} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}>
-                            {t('phone-number')}<span className="text-red-500">*</span>
-                        </label>
-                    </div>
-                    <div className="relative mb-4">
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={form.email}
-                            onChange={handleChange}
-                            className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
-                            placeholder=" "
-                        />
-                        <label htmlFor="email" className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.email ? 'hidden' : ''} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}>
-                            E-mail
-                        </label>
-                    </div>
-                    <div className="relative mb-4">
-                        <input
-                            type="text"
-                            id="proposal"
-                            name="proposal"
-                            value={form.proposal}
-                            onChange={handleChange}
-                            className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
-                            placeholder=" "
-                        />
-                        <label htmlFor="proposal" className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.proposal ? 'hidden' : ''} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}>
-                            {t('your-proposal')}
-                        </label>
-                    </div>
+        <>
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[99999]">
+                <div className="bg-white p-6 shadow-md w-[90%] max-w-[420px] relative">
                     <button
-                        type="submit"
-                        className="w-full bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white font-semibold"
+                        className="absolute w-[23px] xl:w-[25px] top-4 right-3 xl:right-6 text-black"
+                        onClick={() => closeModal(false)}
                     >
-                        {t('send')}
+                        <Image
+                            src={close}
+                            width={100}
+                            height={100}
+                            alt="Icon"
+                            className="h-full w-full"
+                        />
                     </button>
-                </form>
+                    <h2 className="text-[22px] font-semibold mb-2 mdl:text-[26px] xl:text-[28px] xl:mb-4">
+                        {t("send-cp")}
+                    </h2>
+                    <p className="text-[14px] text-gray-500 mb-6 w-[290px] mdx:text-[16px] mdl:text-[17px] xl:text-[18px]">
+                        {t("connection")}
+                    </p>
+                    <form onSubmit={handleSendClick}>
+                        <div className="relative mb-4">
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={form.name}
+                                onChange={handleChange}
+                                className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
+                                placeholder=" "
+                                required
+                            />
+                            <label
+                                htmlFor="name"
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.name ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                            >
+                                {t("fio")}
+                                <span className="text-red-500">*</span>
+                            </label>
+                        </div>
+                        <div className="relative mb-4">
+                            <input
+                                type="text"
+                                id="phone"
+                                name="phone"
+                                value={form.phone}
+                                onChange={handleChange}
+                                className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
+                                placeholder=" "
+                                required
+                            />
+                            <label
+                                htmlFor="phone"
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.phone ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                            >
+                                {t("phone-number")}
+                                <span className="text-red-500">*</span>
+                            </label>
+                        </div>
+                        <div className="relative mb-4">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value={form.email}
+                                onChange={handleChange}
+                                className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
+                                placeholder=" "
+                            />
+                            <label
+                                htmlFor="email"
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.email ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                            >
+                                E-mail
+                            </label>
+                        </div>
+                        <div className="relative mb-4">
+                            <input
+                                type="text"
+                                id="proposal"
+                                name="proposal"
+                                value={form.proposal}
+                                onChange={handleChange}
+                                className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
+                                placeholder=" "
+                            />
+                            <label
+                                htmlFor="proposal"
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.proposal ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                            >
+                                {t("your-proposal")}
+                            </label>
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-full bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white font-semibold"
+                        >
+                            {t("send")}
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
+            {isSubmitted && <QuestionSent closeModal={closeQuestionSentModal} />}
+        </>
     );
 }

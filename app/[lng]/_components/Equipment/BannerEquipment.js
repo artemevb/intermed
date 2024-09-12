@@ -96,7 +96,7 @@ export default function BannerCarousel() {
                 <div className="xl:w-[50%] relative w-full h-auto">
                     <Slider ref={sliderRef} {...settings}>
                         {equipment.map((item, index) => (
-                            <div key={index} className="w-full flex justify-center items-center overflow-hidden">
+                            <div key={index} className="w-full flex justify-center items-center overflow-hidden ">
                                 <Image
                                     src={item.photo.url} // Динамическое изображение из API
                                     alt={`Banner ${index + 1}`}
@@ -104,7 +104,7 @@ export default function BannerCarousel() {
                                     height={1000}
                                     quality={100} // Заменяем layout на fill для полного заполнения
                                     layout="responsive"
-                                    className="w-full h-full min-h-[485px] mdx:min-h-[606px] object-cover" // Растягиваем по высоте и ширине
+                                    className="w-full h-full min-h-[485px] mdx:min-h-[606px] object-cover max-h-[640px] 4xl:max-h-[800px]" // Растягиваем по высоте и ширине
                                 />
                             </div>
 
@@ -112,7 +112,7 @@ export default function BannerCarousel() {
                     </Slider>
 
                     <div className="absolute bottom-0 flex flex-row  ml-[10px] mdx:ml-[20px] mdl:ml-[30px] mb-[30px] xl:mb-[35px]">
-                        <div className="text-black lh text-[25px] max-w-[160px] md:max-w-[180px] mdx:max-w-[300px] mdl:max-w-[370px] md:text-[30px] mdx:text-[35px] mdl:text-[35px] xl:text-[30px] xl:max-w-[400px] 2xl:max-w-[400px] 3xl:text-[40px] break-words whitespace-normal">
+                        <div className="text-[#ffff] lh text-[25px] max-w-[160px] md:max-w-[180px] mdx:max-w-[300px] mdl:max-w-[370px] md:text-[30px] mdx:text-[35px] mdl:text-[35px] xl:text-[30px] xl:max-w-[400px] 2xl:max-w-[400px] 3xl:text-[40px] break-words whitespace-normal">
                             {equipment[currentSlide]?.name}
                         </div>
                     </div>

@@ -10,7 +10,12 @@ import Partners from "../About/Partners";
 import News from "./News";
 import Sertificates from "./Sertificates";
 import Contacts from "./Contacts";
+
 export default function Main() {
+
+  const closeModal = () => {
+
+  };
 
   return (
     <div className="w-full bg-white flex flex-col gap-28 xl:gap-36">
@@ -26,7 +31,7 @@ export default function Main() {
       <Partners />
       <News />
       <Contacts />
-      <Application />
+      <Application closeModal={closeModal} />
     </div>
   );
 }

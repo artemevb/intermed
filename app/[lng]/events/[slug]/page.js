@@ -43,6 +43,7 @@ export default async function page({ params }) {
 	return (
 		<div>
 			<EventsSignUp
+				eventId={eventData?.id}
 				title={eventData?.name}
 				photo={eventData?.photo.url}
 				dateFrom={eventData?.dateFrom}
@@ -51,7 +52,7 @@ export default async function page({ params }) {
 				timeTo={eventData?.timeTo}
 				address={eventData?.address}
 			/>
-			<AboutEvent Data={eventData} />
+			<AboutEvent Data={eventData}/>
 			<MoreInfo Data={eventData} />
 			<EventsSlider data={eventsDataCarousel} />
 			<Application />

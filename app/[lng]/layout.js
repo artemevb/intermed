@@ -4,6 +4,7 @@ import Header from './_components/Header/Header';
 import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
+import Head from 'next/head'; // Подключаем next/head
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
@@ -31,19 +32,19 @@ export default function RootLayout({
 }) {
     return (
         <html lang={lng} dir={dir(lng)}>
-            <head>
+            <Head>
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
                             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MDWVM3M');
+                                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                            })(window,document,'script','dataLayer','GTM-MDWVM3M');
                         `,
                     }}
                 />
-            </head>
+            </Head>
             <body>
                 <noscript>
                     <iframe

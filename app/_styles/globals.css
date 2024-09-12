@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @import url('../../public/fonts/fonts.css');
 
 body {
@@ -176,5 +178,15 @@ body {
 
 .page-container {
   display: flex;
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+    -webkit-text-fill-color: inherit !important; /* Сохраняет цвет текста, который вы задали */
+    transition: background-color 5000s ease-in-out 0s;
 }
 

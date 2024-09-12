@@ -72,7 +72,8 @@ export default function AboutEvent({ Data }) {
 					</p>
 				</div>
 			</div>
-			{isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} />}
+			{/* Передаем eventId в модальное окно */}
+			{isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} eventId={Data?.id} />}
 		</div>
 	);
 }

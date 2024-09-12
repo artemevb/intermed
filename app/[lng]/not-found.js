@@ -1,11 +1,16 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/images/intermed-logo.png";
 import notfound from "@/public/images/Error404.png";
+import { useTranslation } from '../i18n/client'
+import { useLanguage } from '../i18n/locales/LanguageContext'
 
-function Custom404() {
+export default function NotFound() {
+    const lng = useLanguage()
+
     return (
-        <main className="h-screen w-full bg-white flex flex-col justify-between items-center">
+        <main className="w-full bg-white flex flex-col items-center">
             <div className="h-[30px] flex justify-center  w-full max-w-[1440px] items-center px-2 mdx:h-[61px]">
                 <div className="h-full flex items-center">
                     <Image
@@ -13,7 +18,7 @@ function Custom404() {
                         height={400}
                         width={400}
                         alt="Logo Image"
-                        className="h-full w-auto"
+                        className="h-auto w-full"
                     />
                 </div>
             </div>
@@ -24,7 +29,7 @@ function Custom404() {
                     <div>
                         <Image
                             src={notfound}
-                            width={500}
+                            width={1500}
                             height={500}
                             alt="Not Found Image"
                             className="h-full w-auto max-h-[216px] mdx:max-h-[299px]"
@@ -36,7 +41,7 @@ function Custom404() {
                     <p className="max-w-[480px] w-full mx-auto text-neutral-400 text-center mt-4 mdx:text-[20px]">
                         Страница, на которой вы находитесь, не найдена. Но вы можете найти большое количество медицинского оборудования на нашем сайте
                     </p>
-                    <Link href="/">
+                    <Link href={`/`}>
                         <button className="px-[76px] py-4 bg-[#E94B50] text-white font-semibold mt-8 hover:bg-[#EE787C]">
                             На главную
                         </button>
@@ -47,4 +52,4 @@ function Custom404() {
     );
 }
 
-export default Custom404;
+

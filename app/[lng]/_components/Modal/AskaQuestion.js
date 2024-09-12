@@ -5,6 +5,7 @@ import { useState } from "react";
 import QuestionSent from '@/app/[lng]/_components/Modal/QuestionSent';
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
+import axios from 'axios';
 
 export default function AskaQuestionModal({ closeModal }) {
     const lng = useLanguage();
@@ -26,10 +27,26 @@ export default function AskaQuestionModal({ closeModal }) {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add your form submission logic here
-        setIsSubmitted(true);
+        
+        try {
+            const response = await axios.post('https://imed.uz/api/v1/application', {
+                name: form.name,
+                phone: form.phone,
+                mail: form.email,
+                message: form.question,
+            });
+    
+            // If submission is successful, set the form as submitted
+            if (response.status === 200) {
+                setIsSubmitted(true);
+            } else {
+                console.error('Error:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error submitting the form:', error);
+        }
     };
 
     const closeQuestionSentModal = () => {

@@ -12,7 +12,8 @@ export default function Timetable({
 	dateTo,
 	timeFrom,
 	timeTo,
-	address,
+	address, 
+	eventId
 }) {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'modal-timetable')
@@ -66,7 +67,7 @@ export default function Timetable({
 					{t('sign-up')}
 				</button>
 			</div>
-			{isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} />}
+			{isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} eventId={eventId} />}
 		</div>
 	)
 }

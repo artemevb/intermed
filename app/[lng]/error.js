@@ -1,14 +1,19 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/images/intermed-logo.png";
 import notfound from "@/public/images/Error500.png";
+import { useTranslation } from '../i18n/client'
+import { useLanguage } from '../i18n/locales/LanguageContext'
 
 function Custom500() {
+    const lng = useLanguage()
+
     return (
         <main className="h-screen w-full bg-white">
             <div className="h-[70px] mx-auto flex justify-center w-full max-w-[1440px] 5xl:max-w-[2000px] items-center px-2 ">
                 <div className="h-auto w-[243px]">
-                <Image
+                    <Image
                         src={logo}
                         height={400}
                         width={400}
@@ -34,7 +39,7 @@ function Custom500() {
                             Похоже нашему серверу требуется обследование, наши специалисты уже занимаются этим
                         </p>
                     </div>
-                    <Link href="/">
+                    <Link href={`/`}>
                         <button className="px-[76px] py-4 bg-[#E94B50] text-white font-semibold hover:bg-[#EE787C]">
                             На главную
                         </button>

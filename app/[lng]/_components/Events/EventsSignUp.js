@@ -14,6 +14,7 @@ export default function EventSignUp({
 	timeFrom,
 	timeTo,
 	address,
+	eventId, // Assuming eventId is passed as a prop
 }) {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'events-events-sign-up')
@@ -54,7 +55,7 @@ export default function EventSignUp({
 						width={1000}
 						height={1000}
 						src={photo}
-						alt={'title'}
+						alt={title}
 						quality={100}
 						objectFit='cover'
 						className='object-cover w-full h-full '
@@ -70,9 +71,16 @@ export default function EventSignUp({
 					timeFrom={timeFrom}
 					timeTo={timeTo}
 					address={address}
+					eventId={eventId}
 				/>
 			)}
-			{isSignUpModalOpen && <SignUpForEvent closeModal={closeSignUpModal} />}
+
+			{isSignUpModalOpen && (
+				<SignUpForEvent
+					closeModal={closeSignUpModal}
+					eventId={eventId} // Passing eventId correctly here
+				/>
+			)}
 		</div>
 	)
 }
