@@ -95,13 +95,11 @@ export default function ProductCharacteristics({ data }) {
 												{formatTextWithNewlines(item.title)}
 											</p>
 										)}
-
 										{item.value && (
 											<ul>
 												<li>{formatTextWithNewlines(item.value)}</li>
 											</ul>
 										)}
-
 									</div>
 								))}
 							</div>
@@ -112,9 +110,9 @@ export default function ProductCharacteristics({ data }) {
 								{filtered.map((item, i) => (
 									<div key={i} className='w-full flex gap-3'>
 										<p className='w-full text-neutral-400 max-w-[100px] md:max-w-[150px] mdx:max-w-[200px] lg:max-w-[400px]'>
-											{item.title}
+										{formatTextWithNewlines(item.title)}
 										</p>
-										<div className='flex w-full flex-col '>
+										<div className='flex w-full flex-col'>
 											<p>{formatTextWithNewlines(item.value)}</p>
 										</div>
 									</div>

@@ -19,6 +19,7 @@ export default async function Page({ params }) {
       },
     });
 
+
     productData = response.data;
   } catch (error) {
     console.error('Не удалось получить данные о продукте:', error);

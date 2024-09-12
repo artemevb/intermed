@@ -76,9 +76,9 @@ export default function BannerCarousel() {
       <Slider ref={sliderRef} {...settings}>
         {banner.sliders?.map((banner, index) => (
           <div key={index} className='min-w-full '>
-            <div className='flex flex-col gap-[20px] xl:flex-row xl:flex xl:h-[600px]'>
+            <div className='flex flex-col xl:flex-row xl:flex xl:h-[600px]'>
               <div
-                className='text w-full pl-[16px] flex flex-col  gap-[8px]  justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] '
+                className='text w-full pl-[16px] flex flex-col  gap-[8px]  justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] max-xl:pt-[20px] max-mdx:pb-[50px] max-xl:pb-[80px]'
                 style={{ backgroundColor: `${banner.backgroundColour}` }}
               >
                 <p className='text-[#E31E24] text-[14px] md:text-[16px] font-medium xl:text-[20px]'>
@@ -115,8 +115,8 @@ export default function BannerCarousel() {
                   <Image
                     src={banner.logo?.url}
                     alt={`Banner ${index + 1}`}
-                    width={120}
-                    height={150}
+                    width={320}
+                    height={350}
                     quality={100}
                     className='w-full h-auto object-cover max-w-[126px]'
                   />
@@ -126,8 +126,8 @@ export default function BannerCarousel() {
                   <Image
                     src={banner.photo?.url}
                     alt={`Banner ${index + 1}`}
-                    width={1000}
-                    height={1000}
+                    width={2000}
+                    height={1400}
                     quality={100}
                     className='w-full h-auto object-contain max-h-[604px]'
                   />
