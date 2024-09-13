@@ -1,82 +1,81 @@
 "use client";
 
-import React, { useState } from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+import React, { useState, useEffect } from "react";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 import Image from "next/image";
+import { useMediaQuery } from "react-responsive";
 
 const VerticalCarousel = ({ data }) => {
-  const [selectedImage, setSelectedImage] = useState(0);
+  const [isClient, setIsClient] = useState(false);
+
+  // Call useMediaQuery unconditionally
+  const isBelow2xl = useMediaQuery({ maxWidth: 900 });
+
+  // This effect ensures that the code runs only on the client-side
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const images = data.map((item, index) => ({
+    original: item.url,
+    thumbnail: item.url,
+    originalAlt: `Slide ${index}`,
+    thumbnailAlt: `Thumbnail ${index}`,
+  }));
+
+  // Only apply thumbnail position after the client has rendered
+  const thumbnailPosition = isClient && isBelow2xl ? "bottom" : "left";
+
+  // Render nothing on the server until the client is ready
+  if (!isClient) return null;
 
   return (
-    <div className="flex flex-col w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 mb-4">
+    <div className="flex flex-col w-full max-w-[1440px] mx-auto px-2 mb-4">
+      {/* Header */}
       <div className="flex gap-4 lg:hidden">
         <h1 className="text-3xl font-semibold">RESONA R9</h1>
         <div className="py-2 px-5 font-bold rounded-full text-redMain bg-[#FCE8E9]">
           Новинка
         </div>
       </div>
-      <div className="w-full h-auto">
-        <Carousel
-          selectedItem={selectedImage}
-          onChange={(index) => setSelectedImage(index)}
-          showThumbs={false}
-          showIndicators={false}
-          showStatus={false}
-          infiniteLoop={true}
-          useKeyboardArrows={true}
-          className="main-carousel"
-          showArrows={false}
-        >
-          {data.map((item, index) => (
-            <div key={index}>
+      {/* Main Content */}
+      <div className=" w-full overflow-auto ">
+        <ImageGallery
+          items={images}
+          showPlayButton={false}
+          showFullscreenButton={false}
+          showNav={false}
+          thumbnailPosition={thumbnailPosition}
+          showBullets={false}
+          showIndex={false}
+          renderItem={(item) => (
+            <div className="w-full h-auto mb-[30px] flex flex-row justify-center cursor-default items-center">
               <Image
-                src={item.url} 
-                alt={`Slide ${index}`}
-                className="object-contain h-96 w-full"
-                width={1440}
-                height={960}
+                src={item.original}
+                alt={item.originalAlt}
+                className="object-contain w-full   h-96 xl:px-4"
+                width={800}
+                height={800}
                 quality={100}
               />
             </div>
-          ))}
-        </Carousel>
-      </div>
-      <div className="w-full max-w-[550px] mt-4 flex justify-center h-auto">
-        <Carousel
-          selectedItem={selectedImage}
-          onChange={(index) => setSelectedImage(index)}
-          axis="horizontal"
-          showThumbs={false}
-          showIndicators={false}
-          showStatus={false}
-          infiniteLoop={true}
-          className="thumbnail-carousel"
-          centerMode={true}
-          centerSlidePercentage={20}
-          swipeable={false}
-          emulateTouch={true}
-          showArrows={false}
-        >
-          {data.map((item, index) => (
-            <div
-              key={index}
-              onClick={() => setSelectedImage(index)}
-              className={`cursor-pointer ml-2 h-[100%] rounded-xl ${
-                selectedImage === index ? "border-2 border-greenView" : "border"
-              }`}
-            >
+          )}
+
+          renderThumbInner={(item) => (
+            <div className="cursor-pointer mb-4 mr-4 lg:mr-0 overflow-hidden w-full h-auto ">
               <Image
-                src={item.url} // url ni olish
-                alt={`Thumbnail ${index}`}
-                className="object-contain h-full rounded-xl w-full max-h-[102px] max-w-[102px]"
-                width={302} // Add appropriate width and height
-                height={300}
+                src={item.thumbnail}
+                alt={item.thumbnailAlt}
+                className="object-contain w-full h-full "
+                width={250}
+                height={250}
                 quality={100}
               />
             </div>
-          ))}
-        </Carousel>
+          )}
+
+        />
       </div>
     </div>
   );
