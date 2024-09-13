@@ -108,14 +108,14 @@ export default function BannerCarousel() {
                     backgroundPosition: 'center',
                   }}
                 >
-                  <div className='max-w-[51px] absolute right-[10px] top-[10px] h-auto z-[99999] xl:right-5 mdx:max-w-[89px] mdx:right-[20px] mdl:max-w-[127px] mdx:top-[20px] xl:top-5'>
+                  <div className='max-w-[81px] absolute right-[10px] top-[10px] h-auto z-[99999] xl:right-5 mdx:max-w-[89px] mdx:right-[20px] mdl:max-w-[127px] mdx:top-[20px] xl:top-5'>
                     <Image
                       src={banner.logo?.url}
                       alt={`Banner ${index + 1}`}
                       width={320}
                       height={350}
                       quality={100}
-                      className='w-full h-auto object-cover max-w-[126px]'
+                      className='w-full h-auto object-cover '
                     />
                   </div>
 
