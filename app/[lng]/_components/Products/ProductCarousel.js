@@ -40,7 +40,7 @@ const VerticalCarousel = ({ data }) => {
         </div>
       </div>
       {/* Main Content */}
-      <div className=" w-full overflow-auto ">
+      <div className="w-full overflow-auto">
         <ImageGallery
           items={images}
           showPlayButton={false}
@@ -51,26 +51,20 @@ const VerticalCarousel = ({ data }) => {
           showIndex={false}
           renderItem={(item) => (
             <div className="w-full h-auto mb-[30px] flex flex-row justify-center cursor-default items-center">
-              <Image
+              <img
                 src={item.original}
                 alt={item.originalAlt}
-                className="object-contain w-full   h-96 xl:px-4"
-                width={800}
-                height={800}
-                quality={100}
+                className="object-contain w-full h-96 xl:px-4"
               />
             </div>
           )}
 
           renderThumbInner={(item) => (
-            <div className="cursor-pointer mb-4 mr-4 lg:mr-0 overflow-hidden w-full h-auto ">
-              <Image
+            <div className="cursor-pointer mb-4 mr-4 lg:mr-0 overflow-hidden w-full h-auto">
+              <img
                 src={item.thumbnail}
                 alt={item.thumbnailAlt}
-                className="object-contain w-full h-full "
-                width={250}
-                height={250}
-                quality={100}
+                className="object-contain w-full h-full"
               />
             </div>
           )}
