@@ -305,3 +305,20 @@ input:-webkit-autofill:active {
   /* Consistent height */
   overflow: hidden;
 }
+/* Example CSS for consistent slide styling */
+.carousel-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* Set a consistent height */
+  height: 300px;
+  /* Adjust as needed */
+  overflow: hidden;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}

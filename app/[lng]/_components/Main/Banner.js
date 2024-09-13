@@ -1,11 +1,7 @@
-'use client'
+import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
-import React, { useEffect, useRef, useState } from 'react'
 import Slider from 'react-slick'
-
-import left from '@/public/svg/arrowleftbanners.svg'
-import right from '@/public/svg/arrowrightbanners.svg'
 import { useParams } from 'next/navigation'
 
 // Компонент для отображения текста с переносами строк
@@ -23,7 +19,6 @@ const TextWithNewlines = ({ text }) => {
 }
 
 export default function BannerCarousel() {
-
   const sliderRef = useRef(null)
   const [banner, setBanners] = useState([])
   const params = useParams()
@@ -72,65 +67,67 @@ export default function BannerCarousel() {
   }
 
   return (
-    <div className='relative w-full  mx-auto overflow-hidden '>
+    <div className='relative w-full mx-auto overflow-hidden'>
       <Slider ref={sliderRef} {...settings}>
         {banner.sliders?.map((banner, index) => (
-          <div key={index} className='min-w-full '>
-            <div className='flex flex-col xl:flex-row xl:flex xl:h-[600px]'>
-              <div
-                className='text w-full pl-[16px] flex flex-col  gap-[8px]  justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] max-xl:pt-[20px] max-mdx:pb-[50px] max-xl:pb-[80px]'
-                style={{ backgroundColor: `${banner.backgroundColour}` }}
-              >
-                <p className='text-[#E31E24] text-[14px] md:text-[16px] font-medium xl:text-[20px]'>
-                  <TextWithNewlines text={banner.categoryName} />
-                </p>
+          <div key={index} className='relative min-w-full'>
+            {/* Фоновый цветовой блок */}
+            <div
+              className='absolute inset-0'
+              style={{ backgroundColor: `${banner.backgroundColour}`, zIndex: 0 }}
+            ></div>
+            {/* Контент слайда */}
+            <div className='relative z-10'>
+              <div className='flex flex-col xl:flex-row xl:h-[600px]'>
+                <div className='text w-full pl-[16px] flex flex-col gap-[8px] justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] max-xl:pt-[20px] max-mdx:pb-[50px] max-xl:pb-[80px]'>
+                  <p className='text-[#E31E24] text-[14px] md:text-[16px] font-medium xl:text-[20px]'>
+                    <TextWithNewlines text={banner.categoryName} />
+                  </p>
 
-                <h3
-                  className='text-[#252324] text-[28px] leading-[
-33.6px] mdx:text-[45px] mdx:leading-[54px] font-bold  xl:text-[70px] xl:leading-[84px] '
+                  <h3 className='text-[#252324] text-[28px] leading-[33.6px] mdx:text-[45px] mdx:leading-[54px] font-bold xl:text-[70px] xl:leading-[84px]'>
+                    <TextWithNewlines text={banner.title} />
+                  </h3>
+                  <p className='text-[#252324] text-[14px] opacity-50 md:text-[16px] xl:text-[20px]'>
+                    <TextWithNewlines text={banner.subTitle} />
+                  </p>
+                  <div className='text-[#E31E24] text-[14px] md:text-[16px] xl:text-[20px]'>
+                    {banner.tagName.split(',').map((tag, index) => (
+                      <React.Fragment key={index}>
+                        {index > 0 && <span className='mx-2'>•</span>}
+                        <span>{tag.trim()}</span>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </div>
+                <div
+                  className='text w-full relative order-[-1] xl:w-[60%] xl:order-1'
+                  style={{
+                    backgroundImage: `url(${banner.productBackground?.url})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
                 >
-                  <TextWithNewlines text={banner.title} />
-                </h3>
-                <p className='text-[#252324] text-[14px] opacity-50 md:text-[16px] xl:text-[20px]'>
-                  <TextWithNewlines text={banner.subTitle} />
-                </p>
-                <div className='text-[#E31E24] text-[14px] md:text-[16px] xl:text-[20px]'>
-                  {banner.tagName.split(',').map((tag, index) => (
-                    <React.Fragment key={index}>
-                      {index > 0 && <span className='mx-2'>•</span>}
-                      <span>{tag.trim()}</span>
-                    </React.Fragment>
-                  ))}
-                </div>
-              </div>
-              <div
-                className='text w-full relative  order-[-1] xl:w-[60%] xl:order-1  '
-                style={{
-                  backgroundImage: `url(${banner.productBackground?.url})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              >
-                <div className='max-w-[51px] absolute right-[10px] top-[10px] h-auto z-[99999] xl:right-5 mdx:max-w-[89px] mdx:right-[20px] mdl:max-w-[127px] mdx:top-[20px] xl:top-5'>
-                  <Image
-                    src={banner.logo?.url}
-                    alt={`Banner ${index + 1}`}
-                    width={320}
-                    height={350}
-                    quality={100}
-                    className='w-full h-auto object-cover max-w-[126px]'
-                  />
-                </div>
+                  <div className='max-w-[51px] absolute right-[10px] top-[10px] h-auto z-[99999] xl:right-5 mdx:max-w-[89px] mdx:right-[20px] mdl:max-w-[127px] mdx:top-[20px] xl:top-5'>
+                    <Image
+                      src={banner.logo?.url}
+                      alt={`Banner ${index + 1}`}
+                      width={320}
+                      height={350}
+                      quality={100}
+                      className='w-full h-auto object-cover max-w-[126px]'
+                    />
+                  </div>
 
-                <div className='w-full z-[9999] xl:absolute xl:bottom-0 xl:left-0'>
-                  <Image
-                    src={banner.photo?.url}
-                    alt={`Banner ${index + 1}`}
-                    width={2000}
-                    height={1400}
-                    quality={100}
-                    className='w-full h-auto object-contain max-h-[604px]'
-                  />
+                  <div className='w-full z-[9999] xl:absolute xl:bottom-0 xl:left-0'>
+                    <Image
+                      src={banner.photo?.url}
+                      alt={`Banner ${index + 1}`}
+                      width={2000}
+                      height={1400}
+                      quality={100}
+                      className='w-full h-auto object-contain max-h-[604px]'
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -142,8 +139,9 @@ export default function BannerCarousel() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full ${currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
-              } mx-1`}
+            className={`w-2 h-2 rounded-full ${
+              currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
+            } mx-1`}
           ></button>
         ))}
       </div>
