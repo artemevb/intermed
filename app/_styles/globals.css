@@ -305,20 +305,14 @@ input:-webkit-autofill:active {
   /* Consistent height */
   overflow: hidden;
 }
-.image-gallery-thumbnail {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 102px;
-  height: 102px;
-  margin: 0 auto;
-  border-radius: 0.75rem !important;
-  overflow: hidden;
-}
-
 .image-gallery-thumbnail img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px !important;
+  aspect-ratio: 1 / 1; /* Ensures a square thumbnail */
+  width: 100px; /* Consistent width */
+  height: 100px; /* Consistent height */
+}
+@media only screen and (max-width: 900px) and (-webkit-min-device-pixel-ratio: 2) {
+  .image-gallery-thumbnail img {
+    width: 100px;
+    height: 100px;
+  }
 }

@@ -40,7 +40,7 @@ const VerticalCarousel = ({ data }) => {
         </div>
       </div>
       {/* Main Content */}
-      <div className="w-full overflow-auto">
+            <div className="w-full overflow-auto">
         <ImageGallery
           items={images}
           showPlayButton={false}
