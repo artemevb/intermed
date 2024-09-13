@@ -300,27 +300,45 @@ input:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   width: 102px;
+  /* Consistent width */
   height: 102px;
+  /* Consistent height */
   overflow: hidden;
 }
 
-.carousel-slide {
+/* Add these styles specifically for Safari on iPhones */
+@media only screen and (max-width: 767px) {
+  .image-gallery-thumbnail img {
+    object-fit: cover;
+    -webkit-transform: translateZ(0); /* Prevent layout shifts on scroll */
+    -webkit-backface-visibility: hidden; /* Smooth out animations */
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Ensure the slider thumbnails display correctly */
+  .image-gallery-thumbnail {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
+.image-gallery-thumbnail {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 300px;
-  overflow: hidden;
+  align-items: center;
+  flex-shrink: 0; /* Prevent thumbnails from shrinking */
+  max-width: 100px;
 }
 
-.carousel-slide img {
+.image-gallery-thumbnail img {
   max-width: 100%;
-  height: auto;
-  object-fit: cover;
+  max-height: 100%;
 }
-.carousel-slide {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+/* Apply for Safari */
+@media not all and (min-resolution: 0.001dpcm) { 
+  @supports (-webkit-appearance:none) {
+    .image-gallery-thumbnail img {
+      transform: scale(1); /* Fix image scaling issues */
+    }
+  }
 }
-
