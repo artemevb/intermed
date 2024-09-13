@@ -1,10 +1,11 @@
+"use client"
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import Image from 'next/image'
 import Slider from 'react-slick'
 import { useParams } from 'next/navigation'
 
-// Компонент для отображения текста с переносами строк
+
 const TextWithNewlines = ({ text }) => {
   return (
     <>
@@ -67,10 +68,10 @@ export default function BannerCarousel() {
   }
 
   return (
-    <div className='relative w-full mx-auto overflow-hidden'>
+    <div className='relative w-full mx-auto overflow-hidden '>
       <Slider ref={sliderRef} {...settings}>
         {banner.sliders?.map((banner, index) => (
-          <div key={index} className='relative min-w-full'>
+          <div key={index} className='relative min-w-full '>
             {/* Фоновый цветовой блок */}
             <div
               className='absolute inset-0'
@@ -100,7 +101,7 @@ export default function BannerCarousel() {
                   </div>
                 </div>
                 <div
-                  className='text w-full relative order-[-1] xl:w-[60%] xl:order-1'
+                  className='text w-full relative order-[-1] xl:w-[60%] xl:order-1 '
                   style={{
                     backgroundImage: `url(${banner.productBackground?.url})`,
                     backgroundSize: 'cover',
@@ -123,7 +124,7 @@ export default function BannerCarousel() {
                       src={banner.photo?.url}
                       alt={`Banner ${index + 1}`}
                       width={2000}
-                      height={1400}
+                      height={1000}
                       quality={100}
                       className='w-full h-auto object-contain max-h-[604px]'
                     />

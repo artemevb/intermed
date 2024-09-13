@@ -96,7 +96,7 @@ export default function ProductCharacteristics({ data }) {
 											</p>
 										)}
 										{item.value && (
-											<ul>
+											<ul className='py-2'>
 												<li>{formatTextWithNewlines(item.value)}</li>
 											</ul>
 										)}

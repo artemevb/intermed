@@ -1,25 +1,34 @@
 'use client'
-import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Image from 'next/image'
+import Link from 'next/link'
 
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import Modal from "../Modal/Reviews_equipment"
 
 export default function ReviewsSlider() {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'equipment-reviews')
 	const [reviews, setReviews] = useState([])
+	const [selectedReview, setSelectedReview] = useState(null)
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState(null)
 
-	const truncateDescription = description => {
-		if (description.length > 327) {
-			return description.substring(0, 327) + '...'
-		}
-		return description
+	const truncateDescription = (description) => {
+		return description.length > 327 ? `${description.substring(0, 327)}...` : description
+	}
+
+	const openModal = (review) => {
+		setSelectedReview(review)
+	}
+
+	const closeModal = () => {
+		setSelectedReview(null)
 	}
 
 	useEffect(() => {
@@ -34,16 +43,19 @@ export default function ReviewsSlider() {
 				setReviews(response.data.data)
 			} catch (error) {
 				console.error('Failed to fetch reviews:', error.message)
+				setError(error.message)
+			} finally {
+				setLoading(false)
 			}
 		}
 
 		fetchReviews()
 	}, [lng])
 
-	const formatDate = dateString => {
+	const formatDate = (dateString) => {
 		const date = new Date(dateString)
 		const day = String(date.getDate()).padStart(2, '0')
-		const month = String(date.getMonth() + 1).padStart(2, '0') // getMonth is zero-based
+		const month = String(date.getMonth() + 1).padStart(2, '0')
 		const year = date.getFullYear()
 		return `${day}.${month}.${year}`
 	}
@@ -51,7 +63,6 @@ export default function ReviewsSlider() {
 	const settings = {
 		arrows: false,
 		infinite: true,
-		spaceBetween: 20,
 		speed: 500,
 		slidesToShow: 2,
 		slidesToScroll: 1,
@@ -62,24 +73,29 @@ export default function ReviewsSlider() {
 				breakpoint: 1200,
 				settings: {
 					slidesToShow: 2,
-					slidesToScroll: 1,
 				},
 			},
 			{
 				breakpoint: 1000,
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1,
 				},
 			},
 			{
 				breakpoint: 600,
 				settings: {
 					slidesToShow: 1,
-					slidesToScroll: 1,
 				},
 			},
 		],
+	}
+
+	if (loading) {
+		return <p className="text-center">{t('loading')}</p>
+	}
+
+	if (error) {
+		return <p className="text-center text-red-500">{t('error')}: {error}</p>
 	}
 
 	return (
@@ -90,16 +106,16 @@ export default function ReviewsSlider() {
 			<div className='block'>
 				{reviews.length > 1 ? (
 					<Slider {...settings}>
-						{reviews.map(card => (
+						{reviews.map((card) => (
 							<div key={card.id} className='px-3'>
 								<div className='max-h-[450px]'>
-									<div className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[370px] flex flex-col justify-between'>
-										<div className='mdx:p-8 xl:p-0'>
+									<div className='bg-white p-4 border border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[340px] flex flex-col justify-between'>
+										<div>
 											<div className='flex justify-start items-center gap-3 xl:items-start mb-4'>
 												<div className='h-[60px] w-[60px] mdx:h-[80px] mdx:w-[80px] relative xl:mr-4'>
 													<Image
-														src={card.logo?.url}
-														alt={card.title}
+														src={card.logo?.url || '/default-logo.png'}
+														alt={card.clientName}
 														quality={100}
 														layout='fill'
 														objectFit='contain'
@@ -107,23 +123,21 @@ export default function ReviewsSlider() {
 													/>
 												</div>
 												<div>
-													<h2 className='text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-1'>
+													<h2 className='text-xl font-bold mt-3 mdx:mb-2 xl:text-[24px] mb-1'>
 														{card.clientName}
 													</h2>
-													<p className='text-gray-400'>
-														{formatDate(card.createdDate)}
-													</p>
+													<p className='text-gray-400'>{formatDate(card.createdDate)}</p>
 												</div>
 											</div>
 											<p className='mb-4 mdx:text-[18px]'>
 												{truncateDescription(card.comment)}
 											</p>
 										</div>
-										<Link href={`/${lng}/reviews/${card.id}`}>
-											<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end '>
+										<button onClick={() => openModal(card)}>
+											<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end'>
 												{t('read-more')}
 											</span>
-										</Link>
+										</button>
 									</div>
 								</div>
 							</div>
@@ -132,13 +146,13 @@ export default function ReviewsSlider() {
 				) : reviews.length === 1 ? (
 					<div className='px-3 max-w-[700px]'>
 						<div className='max-h-[450px]'>
-							<div className='bg-white p-4 border-[1px] border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[370px] flex flex-col justify-between'>
-								<div className='mdx:p-8 xl:p-0'>
+							<div className='bg-white p-4 border border-gray-200 xl:h-[340px] xl:p-5 flex flex-col justify-between'>
+								<div>
 									<div className='flex justify-start items-center gap-3 xl:items-start mb-4'>
 										<div className='h-[60px] w-[60px] mdx:h-[80px] mdx:w-[80px] relative xl:mr-4'>
 											<Image
-												src={reviews[0].logo?.url}
-												alt={reviews[0].title}
+												src={reviews[0].logo?.url || '/default-logo.png'}
+												alt={reviews[0].clientName}
 												quality={100}
 												layout='fill'
 												objectFit='contain'
@@ -146,7 +160,7 @@ export default function ReviewsSlider() {
 											/>
 										</div>
 										<div>
-											<h2 className='text-xl font-bold right mt-3 mdx:mb-2 xl:text-[28px] mb-1'>
+											<h2 className='text-xl font-bold mt-3 mdx:mb-2 xl:text-[24px] mb-1'>
 												{reviews[0].clientName}
 											</h2>
 											<p className='text-gray-400'>{formatDate(reviews[0].createdDate)}</p>
@@ -156,26 +170,27 @@ export default function ReviewsSlider() {
 										{truncateDescription(reviews[0].comment)}
 									</p>
 								</div>
-								<a href={`/${lng}/reviews`}>
+								<button onClick={() => openModal(reviews[0])}>
 									<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end'>
 										{t('read-more')}
 									</span>
-								</a>
+								</button>
 							</div>
 						</div>
 					</div>
 				) : (
-					<p>{t('no-reviews')}</p>
+					<p className='text-center'>{t('no-reviews')}</p>
 				)}
 			</div>
 			<div className='mt-[60px] flex items-center justify-center'>
-				<a
+				<Link
 					href={`/${lng}/reviews`}
 					className='px-12 py-3 transition-all text-[#fff] duration-200 bg-[#E94B50] hover:bg-[#EE787C] hover:text-[#ffffff]'
 				>
 					{t('see-more')}
-				</a>
+				</Link>
 			</div>
+			{selectedReview && <Modal selectedReview={selectedReview} closeModal={closeModal} />}
 		</div>
 	)
 }
