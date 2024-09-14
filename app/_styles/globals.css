@@ -191,7 +191,6 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
   -webkit-text-fill-color: inherit !important;
-  /* Сохраняет цвет текста, который вы задали */
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -199,32 +198,25 @@ input:-webkit-autofill:active {
 .image-gallery-thumbnail.active {
   border: 2px solid red !important;
   border-radius: 10px;
-  /* Adjust this value for desired roundness */
 }
 
 /* Apply rounded corners to all thumbnails */
 .image-gallery-thumbnail img {
   border-radius: 10px;
-  /* Adjust this value for desired roundness */
 }
 
 /* Remove the default blue border on hover */
 .image-gallery-thumbnail:hover,
 .image-gallery-thumbnail:focus {
   outline: none !important;
-  /* Remove the default focus outline */
   border: 2px solid red !important;
-  /* Set red border on hover/focus */
   border-radius: 10px;
-  /* Keep rounded corners on hover/focus */
 }
 
 /* Переопределение стилей для миниатюр */
 .image-gallery-thumbnail {
   border-radius: 0.75rem !important;
-  /* Соответствует классу rounded-xl */
   overflow: hidden;
-  /* Чтобы изображение не выходило за пределы скругленных углов */
 }
 
 .image-gallery-thumbnail .image-gallery-thumbnail-image {
@@ -243,56 +235,40 @@ input:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   width: 102px;
-  /* Ensure uniform width */
   height: 102px;
-  /* Ensure uniform height */
   margin: 0 auto;
   border-radius: 0.75rem !important;
   overflow: hidden;
-  /* Ensure content doesn't overflow */
 }
 
 .image-gallery-thumbnail img {
   object-fit: cover;
-  /* Ensures thumbnails are evenly scaled */
   width: 100%;
-  /* Take up full width of the container */
   height: 100%;
-  /* Take up full height of the container */
   border-radius: 10px !important;
-  /* Apply consistent border radius */
 }
 
 .image-gallery-thumbnail:hover,
 .image-gallery-thumbnail.active {
   border: 2px solid red !important;
-  /* Keep red border on hover */
   border-radius: 10px !important;
-  /* Keep rounded corners */
 }
 
 .image-gallery-thumbnails img {
   margin: 0;
-  /* Ensure margins are consistent */
   padding: 0;
 }
 
 .image-gallery-thumbnails img {
   width: 100px;
-  /* or any size you prefer */
   height: auto;
-  /* Ensure aspect ratio is preserved */
 }
 
 .image-gallery-thumbnail img {
   width: 100%;
-  /* Keep full width */
   height: 100%;
-  /* Keep full height */
   object-fit: contain;
-  /* Ensure the entire image is visible */
   border-radius: 10px !important;
-  /* Keep rounded corners */
 }
 
 .image-gallery-thumbnail {
@@ -300,15 +276,13 @@ input:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   width: 102px;
-  /* Consistent width */
   height: 102px;
-  /* Consistent height */
   overflow: hidden;
 }
 .image-gallery-thumbnail img {
-  aspect-ratio: 1 / 1; /* Ensures a square thumbnail */
-  width: 100px; /* Consistent width */
-  height: 100px; /* Consistent height */
+  aspect-ratio: 1 / 1;
+  width: 100px;
+  height: 100px; 
 }
 @media only screen and (max-width: 900px) and (-webkit-min-device-pixel-ratio: 2) {
   .image-gallery-thumbnail img {
