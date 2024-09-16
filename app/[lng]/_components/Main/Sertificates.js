@@ -86,14 +86,15 @@ export default function Sertificates() {
 					<div>
 						<Slider {...settings} className='h-auto flex'>
 							{data?.map((item, index) => (
-								<div key={index} className='px-[10px]'>
-									<div className='px-8 border'>
+								<div key={index} className='p-[10px] '>
+									<div className='p-8 border'>
 										<Image
 											src={item.photo.url}
-											layout='fill'
+											width={700}
+											height={700}
 											quality={100}
 											alt='Intermed Sertificate'
-											className='w-full h-full object-contain'
+											className='w-full h-full'
 										/>
 									</div>
 								</div>
