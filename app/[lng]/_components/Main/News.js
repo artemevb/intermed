@@ -6,6 +6,10 @@ import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 import NewCardMain from '../News/NewCardMain'
 
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick-theme.css'
+import 'slick-carousel/slick/slick.css'
+
 export default function News() {
 	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'news')
@@ -34,26 +38,65 @@ export default function News() {
 		setIsMounted(true)
 	}, [lng])
 
+	const settings = {
+		infinite: true,
+		speed: 500,
+		slidesToShow: 4,
+		slidesToScroll: 1,
+		arrows: false,
+		autoplay: true,
+		autoplaySpeed: 2000,
+		responsive: [
+			{
+				breakpoint: 1200,
+				settings: {
+					slidesToShow: 3,
+					slidesToScroll: 1,
+					infinite: true,
+				},
+			},
+			{
+				breakpoint: 1000,
+				settings: {
+					slidesToShow: 2,
+					slidesToScroll: 1,
+					infinite: true,
+				},
+			},
+			{
+				breakpoint: 600,
+				settings: {
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					infinite: true,
+				},
+			},
+		],
+	}
+
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 '>
-			{isMounted && (
+			{isMounted && data.length > 0 && ( // Проверяем наличие данных
 				<div className='flex flex-col gap-8'>
 					<h2 className='text-3xl max-mdx:text-2xl font-semibold uppercase'>
 						{t('title')}
 					</h2>
-					<div className='w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto'>
-						{data.slice(0, 4).map((item, i) => {
-							return (
-								<a key={i} href={`/${lng}/news/${item.slug}`}>
-									<NewCardMain
-										key={i}
-										title={item.head.heading}
-										date={item.date}
-										imageSrc={item.head.photo.url}
-									/>
-								</a>
-							)
-						})}
+					<div className='w-full h-auto '>
+						<Slider {...settings} className='h-auto flex '>
+							{data?.map((item, i) => {
+								return (
+									<div className='px-[10px] xl:h-[530px] max-h-full' key={i}>
+										<a href={`/${lng}/news/${item.slug}`}>
+											<NewCardMain
+												title={item.head.heading}
+												date={item.date}
+												imageSrc={item.head.photo.url}
+											/>
+										</a>
+									</div>
+								)
+							})}
+						</Slider>
 					</div>
 					<div className='flex w-full justify-center'>
 						<a
