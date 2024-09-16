@@ -95,7 +95,7 @@ export default function CasesSlider() {
                                                     alt={card.title}
                                                     quality={100}
                                                     layout="fill"
-                                                    className="object-cover w-full h-full"
+                                                    className="object-contain w-full h-full "
                                                 />
                                             </div>
                                             <div className="mdx:mb-4 w-full xl:w-[60%]">

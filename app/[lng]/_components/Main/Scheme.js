@@ -20,7 +20,7 @@ export default function Scheme({ lng }) {
               <h2 className="text-3xl max-mdx:text-2xl 5xl:text-5xl font-bold">
                 {t('work_scheme')}
               </h2>
-              <p className="w-full max-w-[400px] text-[#808080] 5xl:text-2xl">
+              <p className="w-full max-w-[400px] xl:max-w-[427px] text-[#808080] 5xl:text-2xl">
                 {t('process_description')}
               </p>
             </div>

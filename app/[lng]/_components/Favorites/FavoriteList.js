@@ -31,7 +31,7 @@ export default function FavoriteList() {
       <div className="w-full flex justify-between items-center flex-wrap gap-4">
         <h1 className="text-3xl max-mdx:text-2xl xl:text-[38px] font-semibold uppercase">{t('favorite')}</h1>
         <button
-          className="px-7 py-3 text-sm mdl:py-4 xl:text-[16px] xl:px-[58px] bg-contactBg text-white"
+          className="px-7 py-3 text-sm mdl:py-4 xl:text-[16px] xl:px-[58px] bg-contactBg text-white hover:bg-[#EE787C]"
           onClick={handleOpenModal}
         >
           {t('send-kp')}

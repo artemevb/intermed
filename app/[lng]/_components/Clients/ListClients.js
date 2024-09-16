@@ -39,7 +39,7 @@ export default function ListClients() {
                         <a href={`/${lng}/clients/${card.slug}`}>
                             <div className="mdx:flex mdx:flex-row items-center justify-between w-full">
                                 <div className="mdx:w-[50%] h-[230px] relative mt-3">
-                                    <Image src={card.logo.url} alt={card.title} layout="fill" quality={100} objectFit="cover" className='w-full h-full mdx:pr-3' />
+                                    <Image src={card.logo.url} alt={card.title} layout="fill" quality={100} objectFit="contain" className='w-full h-full mdx:pr-3' />
                                 </div>
 
                                 <div className='mdx:mb-4 mdx:w-[50%]'>

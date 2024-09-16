@@ -101,7 +101,7 @@ export default function Footer({ lng }) {
                 href={`/${lng}/categories`}
                 className="flex gap-2 hover:gap-4 items-center transition-all duration-200"
               >
-                <p className="text-redMain font-semibold text-lg">{t('all_categories')}</p>
+                <p className="text-redMain font-bold text-lg">{t('all_categories')}</p>
                 <Image
                   src={arrowRight}
                   width={200}

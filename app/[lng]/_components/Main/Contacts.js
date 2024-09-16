@@ -78,7 +78,7 @@ export default function Contacts({ lng }) {
         </div>
 
         {/* Google Map Embed */}
-        <div className="map-container w-full h-[250px] mdx:h-[400px] mdl:h-[500px] xl:h-[500px] xl:w-[600px] 2xl:w-[650px] 3xl:w-[680px] relative max-xl:my-[25px]">
+        <div className="map-container w-full h-[330px] mdx:h-[400px] mdl:h-[500px] xl:h-[500px] xl:w-[600px] 2xl:w-[650px] 3xl:w-[680px] relative max-xl:my-[25px]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11980.576319452191!2d69.28673930863411!3d41.34922195465565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38aef35418406693%3A0xf91e0631f842852c!2sINTERMED%20Innovation!5e0!3m2!1sru!2s!4v1723049950593!5m2!1sru!2s"
             style={{ border: 0 }}

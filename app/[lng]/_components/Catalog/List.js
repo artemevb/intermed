@@ -168,7 +168,7 @@ export default function List({ data, allCategories }) {
 	]
 
 	return (
-		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col lg:gap-20 gap-5 px-2 py-24'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col lg:gap-[43px] gap-5 px-2 py-24'>
 			{categoryModal && (
 				<Category
 					handleClose={handleClose}
@@ -180,7 +180,7 @@ export default function List({ data, allCategories }) {
 			)}
 
 			<div className='w-full flex flex-col lg:flex-row lg:justify-between gap-5'>
-				<h1 className='text-3xl max-mdx:text2xl font-semibold uppercase'>
+				<h1 className='text-4xl max-mdx:text2xl font-semibold uppercase'>
 					{t('title-list')}
 				</h1>
 				<div className='z-[999] flex items-center justify-between'>

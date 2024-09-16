@@ -8,7 +8,7 @@ import CategoryItem from '../Categories/CategoryItem'
 
 export default function List() {
 	const lng = useLanguage()
-	const { t } = useTranslation(lng, 'equipments-main')
+	const { t } = useTranslation(lng, 'equipment-category')
 	const [data, setData] = useState([])
 	const [isMounted, setIsMounted] = useState(false)
 	const getAllCategories = useCallback(async () => {

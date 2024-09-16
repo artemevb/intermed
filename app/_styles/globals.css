@@ -290,3 +290,12 @@ input:-webkit-autofill:active {
     height: 100px;
   }
 }
+.banner-container {
+  min-height: 400px; /* Задаем минимальную высоту для всех баннеров на мобильных устройствах */
+}
+
+@media (min-width: 1024px) {
+  .banner-container {
+    min-height: 600px; /* Увеличиваем минимальную высоту на десктопах */
+  }
+}

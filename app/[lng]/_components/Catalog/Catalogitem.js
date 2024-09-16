@@ -67,11 +67,15 @@ export default function Catalogitem({
 	}
 
 	function truncateText(text, maxLength) {
-		if (text.length > maxLength) {
-			return text.substring(0, maxLength) + '...'
+		if (!text) {
+		  return ''; // Return an empty string if text is null or undefined
 		}
-		return text
-	}
+		if (text.length > maxLength) {
+		  return text.substring(0, maxLength) + '...';
+		}
+		return text;
+	  }
+	  
 
 	return (
 		<div className='h-[350px] mdx:h-[440px] w-full '>
@@ -106,10 +110,10 @@ export default function Catalogitem({
 						<Image
 							src={image}
 							alt={title}
-							width={1000}
-							height={1000}
+							width={700}
+							height={700}
 							quality={100}
-							className='object-contain w-full h-full max-w-[350px] max-h-[350px]'
+							className='object-contain w-full h-full max-mdx:max-h-[240px] max-w-[350px] max-h-[350px]'
 						/>
 					</a>
 				</div>

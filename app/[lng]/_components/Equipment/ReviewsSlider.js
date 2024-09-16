@@ -119,7 +119,7 @@ export default function ReviewsSlider() {
 														quality={100}
 														layout='fill'
 														objectFit='contain'
-														className='w-full h-auto'
+														className='w-full h-auto '
 													/>
 												</div>
 												<div>

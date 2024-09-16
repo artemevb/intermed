@@ -75,7 +75,7 @@ export default function NewsTitle() {
 				<div>
 					<p className="text-[16px] mdx:text-[20px]">{news.head.text}</p>
 				</div>
-				<div className="w-full xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
+				<div className="w-full max-xl:my-[25px] xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
 					<Image
 						src={news.head.photo?.url || newsPhoto} // Use fallback if no image URL
 						width={500}

@@ -29,7 +29,7 @@ export default function Banner({ lng }) {
                   {t('description')}
                 </div>
               </div>
-              <div className="grid gap-4 grid-cols-2 w-full normal-case hidden 2xl:grid">
+              <div className="hidden 2xl:grid gap-4 grid-cols-2 w-full normal-case">
                 <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
                   <div className="text-[25px] md:text-[30px] xl:text-[35px] font-bold text-redMain mb-[4px]">
                     {t('years_of_experience')}
@@ -75,6 +75,40 @@ export default function Banner({ lng }) {
                   objectFit="cover"
                   className="min-w-full min-h-full 5xl:min-w-0 "
                 />
+              </div>
+            </div>
+          </div>
+          <div className="grid 2xl:hidden gap-4 grid-cols-2 w-full normal-case px-2 mdx:px-[10px]">
+            <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
+              <div className="text-[22px] md:text-[28px] xl:text-[35px] font-bold text-redMain mb-[4px]">
+                {t('years_of_experience')}
+              </div>
+              <div className="text-[14px] md:text-[18px] text-[#808080]">
+                {t('years_of_experience_description')}
+              </div>
+            </div>
+            <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
+              <div className="text-[22px] md:text-[28px] xl:text-[35px] font-bold text-redMain mb-[4px]">
+                {t('successful_sales')}
+              </div>
+              <div className="text-[14px] md:text-[18px] text-[#808080]">
+                {t('successful_sales_description')}
+              </div>
+            </div>
+            <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
+              <div className="text-[22px] md:text-[28px] xl:text-[35px] font-bold text-redMain mb-[4px]">
+                {t('suppliers')}
+              </div>
+              <div className="text-[14px] md:text-[18px] text-[#808080]">
+                {t('suppliers_description')}
+              </div>
+            </div>
+            <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
+              <div className="text-[22px] md:text-[28px] xl:text-[35px] font-bold text-redMain mb-[4px]">
+                {t('satisfied_customers')}
+              </div>
+              <div className="text-[14px] md:text-[18px] text-[#808080]">
+                {t('satisfied_customers_description')}
               </div>
             </div>
           </div>

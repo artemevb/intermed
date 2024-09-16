@@ -14,8 +14,8 @@ export default function AboutEvent({ Data }) {
 	const closeSignUpModal = () => setIsSignUpModalOpen(false);
 
 	return (
-		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-1 px-2'>
-			<h2 className='text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto  gap-1 px-2'>
+			<h2 className='text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase xl:hidden'>
 				{t('title')}
 			</h2>
 			<div className='xl:flex xl:flex-row-reverse overflow-visible relative mb-[100px] mdx:mb-[150px] xl:mb-[180px]'>
@@ -48,6 +48,9 @@ export default function AboutEvent({ Data }) {
 					</button>
 				</div>
 				<div className='xl:w-3/4'>
+					<h2 className='text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase hidden xl:block'>
+						{t('title')}
+					</h2>
 					{Data?.abouts.map((item) => (
 						<React.Fragment key={item.id}>
 							<p className='text-[15px] mdx:text-[18px] mdl:text-[24px] mt-[30px] font-semibold'>

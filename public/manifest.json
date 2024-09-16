@@ -1,0 +1,11 @@
+{
+    "name": "intermed innovation",
+    "short_name": "imed.uz",
+    "description": "Intermed Innovation presents a wide range of medical equipment at affordable prices. We deliver medical equipment throughout Uzbekistan.",
+    "start_url": "/",
+    "background_color": "#ffffff",
+    "theme_color": "#000000",
+    "display": "standalone",
+    "orientation": "portrait"
+  }
+  

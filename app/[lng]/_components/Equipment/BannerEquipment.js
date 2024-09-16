@@ -86,7 +86,7 @@ export default function BannerCarousel() {
                     <p className="mt-2 text-[#808080] text-[15px] mdx:text-[20px]">
                         {t('subtitle-1')}<br /> {t('subtitle-2')}
                     </p>
-                    <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px] font-semibold py-[14px] mdx:py-[15.5px] px-4 max-w-[244px] mb-[25px]"
+                    <button className="mt-4 bg-[#E94B50] text-[white] text-[14px] mdx:text-[16px] font-semibold py-[14px] mdx:py-[15.5px] px-4 max-w-[244px] mb-[25px] hover:bg-[#EE787C]"
                         onClick={openAskaQuestionModal}>
                         {t('button-1')}
                     </button>

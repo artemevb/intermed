@@ -21,7 +21,6 @@ export const metadata = {
             '/favicon.ico'
         ]
     },
-    manifest: '/site.webmanifest'
 };
 
 export default function RootLayout({
@@ -33,14 +32,26 @@ export default function RootLayout({
     return (
         <html lang={lng} dir={dir(lng)}>
             <Head>
+                <link rel="manifest" href="/manifest.json" />
+                <meta property="og:title" content="Медицинское оборудование в Ташкенте — Intermed Innovation" />
+                <meta property="og:description" content="Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану." />
+                <meta property="og:image" content="https://imed.uz/og.jpg" />
+                <meta property="og:url" content="https://imed.uz/" />
+                <meta property="og:type" content="website" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Медицинское оборудование в Ташкенте — Intermed Innovation" />
+                <meta name="twitter:description" content="Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану." />
+                <meta name="twitter:image" content="https://imed.uz/og.jpg" />
+                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></link>
+                <meta name="theme-color" content="#ffffff" />
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `
-(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-MDWVM3M');
+                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                            })(window,document,'script','dataLayer','GTM-MDWVM3M');
                         `,
                     }}
                 />

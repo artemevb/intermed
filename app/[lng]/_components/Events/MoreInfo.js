@@ -1,7 +1,7 @@
 "use client";
 import { useTranslation } from '../../../i18n/client';
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
-import  React  from 'react';
+import React from 'react';
 
 export default function MoreInfo({ Data }) {
   const lng = useLanguage();
@@ -26,7 +26,7 @@ export default function MoreInfo({ Data }) {
             {t('info')}
           </h2>
         </div>
-        <div className="grid grid-cols-2 mt-[30px] gap-x-5 gap-y-5">
+        <div className="grid grid-cols-2 mt-[30px] gap-x-5 gap-y-5 2xl:ml-[15%] 3xl:ml-[25%]">
           {infoData.map((item, index) => (
             <React.Fragment key={index}>
               <div className="text-[#808080]">{item.label}</div>
