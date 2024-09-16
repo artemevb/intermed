@@ -73,7 +73,7 @@ export default function NewsTitle() {
 					</h1>
 				</div>
 				<div>
-					<p className="text-[16px] mdx:text-[20px]">{news.head.text}</p>
+					<p className="text-[16px] mdx:text-[20px] py-[15px]">{news.head.text}</p>
 				</div>
 				<div className="w-full max-xl:my-[25px] xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
 					<Image
@@ -96,7 +96,7 @@ export default function NewsTitle() {
 						)}
 						{item.text && (
 							<ol className="list-disc pl-4 mdx:pl-5">
-								<li className="text-[16px] mdx:text-[20px]">{item.text}</li>
+								<li className="text-[16px] mdx:text-[20px] py-[15px]">{item.text}</li>
 							</ol>
 						)}
 						{item.photo?.url && (

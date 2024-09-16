@@ -82,10 +82,10 @@ export default function News() {
 						{t('title')}
 					</h2>
 					<div className='w-full h-auto '>
-						<Slider {...settings} className='h-auto flex '>
+						<Slider {...settings} className='h-auto w-full '>
 							{data?.map((item, i) => {
 								return (
-									<div className='px-[10px] xl:h-[530px] max-h-full' key={i}>
+									<div className='px-[10px] xl:h-[520px] 3xl:h-[540px] max-h-full' key={i}>
 										<a href={`/${lng}/news/${item.slug}`}>
 											<NewCardMain
 												title={item.head.heading}

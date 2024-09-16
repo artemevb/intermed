@@ -15,7 +15,7 @@ export default function NewCard({ key, title, date, imageSrc }) {
   }, []);
 
   return (
-    <div className="w-full border border-[#E1E1E1] bg-white h-full flex flex-col   pb-5">
+    <div className="w-full border border-[#E1E1E1] bg-white h-full flex flex-col gap-2 justify-between">
       <Image
         src={imageSrc}
         width={500}
@@ -24,28 +24,16 @@ export default function NewCard({ key, title, date, imageSrc }) {
         alt={`News Image ${key}`}
         className="w-full h-auto object-cover"
       />
-      <div className="w-full flex flex-col gap-5 pl-4 mt-5">
+      <div className="w-full flex flex-col gap-6 pl-4 py-[25px]">
         <h3 className="text-xl max-mdx:text-lg font-semibold line-clamp-4">
           {title}
         </h3>
         {
-          isMounted && <div className="xl:absolute xl:bottom-5">
+          isMounted && <div>
             <GreenArrow title={t('more-details')} />
           </div>
         }
       </div>
-      {/* <div className="w-full flex flex-col pl-4 mt-5">
-        <h3 className="text-xl max-mdx:text-lg font-semibold line-clamp-4">
-          {title}
-        </h3>
-        {
-          isMounted && <div className="absolute bottom-5">
-            <GreenArrow title={t('more-details')} />
-          </div>
-        }
-      </div> */}
-
-
     </div >
   )
 }
