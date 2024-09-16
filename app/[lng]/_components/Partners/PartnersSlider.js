@@ -64,9 +64,10 @@ export default function PartnersSlider({ data }) {
                                     <Catalogitem
                                         new={item.new}
                                         sale={item.sale}
-                                        image={item.gallery[0]?.url}
-                                        title={item.name}
-                                        description={item.shortDescription}
+                                        // Use the first image in the gallery array
+                                        image={item.gallery?.length > 0 ? item.gallery[0].url : ''} 
+                                        title={item.name[lng]} // Use the name based on the language
+                                        description={item.shortDescription[lng]} // Use the shortDescription based on the language
                                         price={item.originalPrice}
                                         slug={item.slug}
                                         discount={item.discount}
@@ -74,10 +75,9 @@ export default function PartnersSlider({ data }) {
                                 </div>
                             ))
                         ) : (
-                            <p>No items available</p> // Вы можете отобразить сообщение или пустую строку
+                            <p>No items available</p> 
                         )}
                     </Slider>
-
                 </div>
             </div>
             <div className="flex w-full justify-center mb-[80px] mdx:mb-[100px] xl:mb-[150px]">

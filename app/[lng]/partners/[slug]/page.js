@@ -6,20 +6,7 @@ import axios from 'axios';
 export default async function PartnerPage({ params }) {
     const { slug, lng } = params;
 
-    let productData = null;
     let productsData = null;
-
-    // Получаем информацию о продукте по slug
-    try {
-        const response = await axios.get(`https://imed.uz/api/v1/product/${slug}`, {
-            headers: {
-                'Accept-Language': lng,
-            },
-        });
-        productData = response.data;
-    } catch (error) {
-        console.error('Failed to fetch product data:', error);
-    }
 
     // Получаем оборудование по slug партнера
     try {
@@ -29,14 +16,18 @@ export default async function PartnerPage({ params }) {
             },
         });
         productsData = response.data.data; // Assuming 'data' is where products are stored
+        console.log(productsData); // Add this to verify the API response
     } catch (error) {
         console.error('Failed to fetch partner products:', error);
     }
 
+    // Add a fallback in case the API returns null or empty
+    const fallbackProducts = productsData?.length ? productsData : [];
+
     return (
         <div>
             <MainPartners />
-            <PartnersSlider data={productsData} />
+            <PartnersSlider data={fallbackProducts} /> {/* Ensure data is passed even if empty */}
             <Application />
         </div>
     );
