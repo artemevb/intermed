@@ -299,3 +299,8 @@ input:-webkit-autofill:active {
     min-height: 600px; /* Увеличиваем минимальную высоту на десктопах */
   }
 }
+
+/* In your CSS or Tailwind configuration */
+.slide {
+  height: 600px; /* Set to the maximum expected height */
+}

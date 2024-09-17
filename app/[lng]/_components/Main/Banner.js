@@ -5,8 +5,11 @@ import Image from 'next/image'
 import Slider from 'react-slick'
 import { useParams } from 'next/navigation'
 
-
 const TextWithNewlines = ({ text }) => {
+  if (!text) {
+    return null
+  }
+  
   return (
     <>
       {text.split('\n').map((line, index) => (
@@ -19,10 +22,12 @@ const TextWithNewlines = ({ text }) => {
   )
 }
 
+
 export default function BannerCarousel() {
   const sliderRef = useRef(null)
   const [banner, setBanners] = useState([])
   const params = useParams()
+  const slideRefs = useRef([]) // Array of refs for slides
   const settings = {
     infinite: true,
     speed: 500,
@@ -67,18 +72,48 @@ export default function BannerCarousel() {
     sliderRef.current.slickGoTo(index)
   }
 
+  useEffect(() => {
+    if (slideRefs.current.length > 0) {
+      // Wait for all images to load
+      const images = Array.from(document.images)
+      const promises = images.map(img => {
+        if (img.complete) {
+          return Promise.resolve(img.naturalHeight !== 0)
+        }
+        return new Promise(resolve => {
+          img.addEventListener('load', () => resolve(true))
+          img.addEventListener('error', () => resolve(false))
+        })
+      })
+
+      Promise.all(promises).then(() => {
+        const heights = slideRefs.current.map(
+          slide => slide.getBoundingClientRect().height
+        )
+        const maxHeight = Math.max(...heights)
+        slideRefs.current.forEach(slide => {
+          slide.style.height = `${maxHeight}px`
+        })
+      })
+    }
+  }, [banner.sliders])
+
   return (
     <div className='relative w-full mx-auto overflow-hidden '>
       <Slider ref={sliderRef} {...settings}>
         {banner.sliders?.map((banner, index) => (
-          <div key={index} className='relative min-w-full max-slg:min-h-[530px] slg:min-h-[730px] xl:min-h-0'>
+          <div
+            key={index}
+            ref={el => (slideRefs.current[index] = el)} // Assign ref to each slide
+            className='relative min-w-full max-slg:min-h-[525px] slg:min-h-[780px] xl:min-h-0'
+          >
             <div
               className='absolute inset-0'
               style={{ backgroundColor: `${banner.backgroundColour}`, zIndex: 0 }}
             ></div>
             <div className='relative z-10'>
               <div className='flex flex-col xl:flex-row xl:h-[600px]'>
-                <div className='text w-full pl-[16px] flex flex-col gap-[8px] justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] max-xl:pt-[20px] max-mdx:pb-[50px] max-xl:pb-[80px]'>
+                <div className='text w-full pl-[16px] flex flex-col gap-[8px] justify-center xl:w-[40%] xl:gap-[24px] xl:pl-[80px] max-xl:pt-[20px] max-mdx:pb-[30px] max-xl:pb-[50px]'>
                   <p className='text-[#E31E24] text-[14px] md:text-[16px] font-medium xl:text-[20px]'>
                     <TextWithNewlines text={banner.categoryName} />
                   </p>
@@ -138,8 +173,9 @@ export default function BannerCarousel() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full ${currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
-              } mx-1`}
+            className={`w-2 h-2 rounded-full ${
+              currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
+            } mx-1`}
           ></button>
         ))}
       </div>
