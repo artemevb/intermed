@@ -40,11 +40,11 @@ export default async function Page({ params }) {
 
   return (
     <div className="w-full bg-white flex flex-col gap-[120px] mdx:gap-[150px] mdl:gap-[180px] 2xl:gap-[200px] pt-12 ">
+      {productData && <ProductInfo productData={productData.data} />}
+
       {productData && productData.data?.videos?.length > 0 && (
         <VideoReview videos={productData.data.videos} />
       )}
-
-      {productData && <ProductInfo productData={productData.data} />}
 
       {productData && productData.data?.reviews?.length > 0 && (
         <Recenzii reviews={productData.data.reviews} />
