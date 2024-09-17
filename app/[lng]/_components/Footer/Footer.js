@@ -14,15 +14,15 @@ const handleButtonClick = (buttonType) => {
   fetch(`https://imed.uz/api/v1/counter/add?button=${buttonType}`, {
     method: "POST",
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Server responded with status ${response.status}`);
-    }
-    console.log(`Button ${buttonType} clicked`);
-  })
-  .catch(e => {
-    console.error(`Error logging button click for ${buttonType}`, e);
-  });
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+      console.log(`Button ${buttonType} clicked`);
+    })
+    .catch(e => {
+      console.error(`Error logging button click for ${buttonType}`, e);
+    });
 };
 
 export default function Footer({ lng }) {
@@ -127,7 +127,7 @@ export default function Footer({ lng }) {
             <p className="w-full max-mdx:max-w-[150px] text-[#808080]">
               2024 © Intermed Innovation. {t('all_rights_reserved')}
             </p>
-            <a href="https://result-me.uz" target="_blank">
+            <a href="https://result-me.uz/api/redirect?from=aW1lZA==" target="_blank">
               <Image
                 src={resultLogo}
                 width={1000}

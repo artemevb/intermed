@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 import VerticalCarousel from "./ProductCarousel";
 import heartIcon from "@/public/svg/tools/heart-icon.svg";
-import heartIconFilled from "@/public/svg/main/fav-filled.svg"; 
+import heartIconFilled from "@/public/svg/main/fav-filled.svg";
 import SignUpForEvent from '../../_components/Modal/SendKp';
 
 export default function ProductPreview({ productData }) {
