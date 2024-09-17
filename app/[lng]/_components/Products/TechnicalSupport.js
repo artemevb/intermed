@@ -23,12 +23,16 @@ export default function TechnicalSupport({ support }) {
 			{support.map(support => (
 				<div key={support.id} className='flex items-center gap-4 pb-[30px] '>
 					<div>
-						<h2 className='text-[20px] mdx:text-[24px] font-semibold pb-[7px]'>
-							{formatTextWithNewlines(support.title)}
-						</h2>
-						<p className='text-[15px] mdx:text-[20px]'>
-							{formatTextWithNewlines(support.text)}
-						</p>
+						{support.title && (
+							<h2 className='text-[20px] mdx:text-[24px] font-semibold pb-[7px]'>
+								{formatTextWithNewlines(support.title)}
+							</h2>
+						)}
+						{support.text && (
+							<p className='text-[15px] mdx:text-[20px]'>
+								{formatTextWithNewlines(support.text)}
+							</p>
+						)}
 					</div>
 				</div>
 			))}

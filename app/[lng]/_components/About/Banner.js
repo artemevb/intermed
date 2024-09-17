@@ -79,7 +79,7 @@ export default function Banner({ lng }) {
             </div>
           </div>
           <div className="grid 2xl:hidden gap-4 grid-cols-2 w-full normal-case px-2 mdx:px-[10px]">
-            <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
+            <div className="flex flex-col justify-center items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
               <div className="text-[22px] md:text-[28px] xl:text-[35px] font-bold text-redMain mb-[4px]">
                 {t('years_of_experience')}
               </div>
@@ -87,7 +87,7 @@ export default function Banner({ lng }) {
                 {t('years_of_experience_description')}
               </div>
             </div>
-            <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
+            <div className="flex flex-col justify-center items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
               <div className="text-[22px] md:text-[28px] xl:text-[35px] font-bold text-redMain mb-[4px]">
                 {t('successful_sales')}
               </div>
@@ -95,7 +95,7 @@ export default function Banner({ lng }) {
                 {t('successful_sales_description')}
               </div>
             </div>
-            <div className="flex flex-col justify-center items-center mdx:items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
+            <div className="flex flex-col justify-center items-start p-6 mdl:py-8 border border-[#E1E1E1] bg-white text-center">
               <div className="text-[22px] md:text-[28px] xl:text-[35px] font-bold text-redMain mb-[4px]">
                 {t('suppliers')}
               </div>
