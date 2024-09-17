@@ -31,13 +31,14 @@ export default function Reviews({ reviews }) {
                         <Image
                             src={review.doctorPhoto?.url || '/fallback-image.png'}
                             alt="Doctor"
-                            width={60}
-                            height={60}
+                            width={70}
+                            height={70}
+                            quality={100}
                             className="rounded-full mr-4"
                         />
                         <div>
                             <h2 className="text-xl font-bold">
-                                {review.nameDoctor}
+                                {formatTextWithNewlines(review.nameDoctor)}
                             </h2>
                             <h3 className="text-md text-gray-400">
                                 {formatTextWithNewlines(review.position)}
@@ -47,23 +48,29 @@ export default function Reviews({ reviews }) {
                     <div className="list-disc pl-5 mb-4">
                         {review.options.map((option, idx) => (
                             <div key={idx} className="mb-4">
-                                <h4 className="text-lg font-semibold">
-                                    {formatTextWithNewlines(option.title)}
-                                </h4>
-                                <p>{formatTextWithNewlines(option.value)}</p>
+                                {option.title && (
+                                    <h4 className="text-lg font-semibold">
+                                        {formatTextWithNewlines(option.title)}
+                                    </h4>
+                                )}
+                                {option.value && (
+                                    <p>{formatTextWithNewlines(option.value)}</p>
+                                )}
                             </div>
                         ))}
                     </div>
                 </div>
             ))}
-            <div className="flex justify-center">
-                <button
-                    onClick={() => setShowAll(!showAll)}
-                    className="border text-[#252324] py-3 px-[35px] mdx:px-[50px] font-bold hover:text-[#fff] hover:bg-[#E94B50]"
-                >
-                    {showAll ? t('hide') : t('see-all')}
-                </button>
-            </div>
+           {reviews.length > 2 && (
+                <div className="flex justify-center">
+                    <button
+                        onClick={() => setShowAll(!showAll)}
+                        className="border text-[#252324] py-3 px-[35px] mdx:px-[50px] font-bold hover:text-[#fff] hover:bg-[#E94B50]"
+                    >
+                        {showAll ? t('hide') : t('see-all')}
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
