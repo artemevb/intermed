@@ -86,20 +86,25 @@ export default function Sertificates() {
 					<div>
 						<Slider {...settings} className='h-auto flex'>
 							{data?.map((item, index) => (
-								<div key={index} className='p-[10px] '>
-									<div className='p-8 border'>
-										<Image
-											src={item.photo.url}
-											width={700}
-											height={700}
-											quality={100}
-											alt='Intermed Sertificate'
-											className='w-full h-full'
-										/>
+								<div
+									key={index}
+									className='p-[10px] h-full flex items-center justify-center'
+								>
+									<div className='p-8 border h-[380px] mdx:h-[420px] flex items-center justify-center'>
+										<div className='relative h-full w-full'>
+											<Image
+												src={item.photo.url}
+												alt='Intermed Certificate'
+												fill
+												style={{ objectFit: 'contain' }}
+											/>
+										</div>
 									</div>
 								</div>
 							))}
 						</Slider>
+
+
 					</div>
 
 					<div className='w-full justify-center flex'>

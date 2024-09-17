@@ -22,8 +22,8 @@ const Modal = ({ selectedLicense, closeModal }) => {
                     </button>
                     <div className="flex flex-col items-center py-[45px] px-[50px] border mx-5 my-9 mdx:py-[35px] mdx:px-[30px] mdx:w-[50%] mdx:mx-[30px] xl:w-[70%] justify-center xl:my-[30px] max-h-[635px]">
                         <Image
-                            width={600}
-                            height={600}
+                            width={800}
+                            height={800}
                             src={selectedLicense.photo.url}
                             alt={selectedLicense.alt}
                             quality={100}
