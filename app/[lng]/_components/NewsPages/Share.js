@@ -101,7 +101,7 @@ export default function NewsTitle() {
 						<div className='flex gap-3 pb-[40px] mdl:pb-[30px] mdl:ml-3 xl:ml-9'>
 							<div className='w-[50px] h-[50px] border mdl:w-[40px] mdl:h-[40px] slg:h-[50px] slg:w-[50px] xl:hidden bg-[#E94B50]'>
 								<a
-									href='#'
+									onClick={copyLinkToClipboard}
 									className='flex items-center justify-center w-full h-full'
 								>
 									<Image

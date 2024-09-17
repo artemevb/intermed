@@ -300,7 +300,8 @@ input:-webkit-autofill:active {
   }
 }
 
-/* In your CSS or Tailwind configuration */
+/*BANNER MAIN*/
 .slide {
   height: 600px; /* Set to the maximum expected height */
 }
+

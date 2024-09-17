@@ -19,7 +19,7 @@ const TitleMain = ({Data}) => {
                         quality={100}
                         className="mr-2"
                     />
-                    <span className="text-red-500 font-medium">{Data.location.country} , {Data.location.city}</span>
+                    <span className="text-red-500 font-medium text-[14px] mdx:text-[18px] xl:text-[20px]">{Data.location.country} , {Data.location.city}</span>
                 </div>
                 <div className="relative w-full max-w-[156px] h-[90px]">
                     <Image
