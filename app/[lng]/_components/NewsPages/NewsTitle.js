@@ -34,8 +34,6 @@ export default function NewsTitle() {
 		fetchNewsWithSlug()
 	}, [lng, slug])
 
-
-
 	useEffect(() => {
 		const fetchNews = async () => {
 			try {
@@ -70,33 +68,41 @@ export default function NewsTitle() {
 			{/* Main news content */}
 			<div className="w-full 2xl:w-8/12">
 				<div className="mt-4">
-					<p className="text-gray-400 text-[16px] mdx:text-[18px] xl:text-[20px]">
-						{new Date(news.createdDate).toLocaleDateString(lng, {
-							year: 'numeric',
-							month: 'long',
-							day: 'numeric',
-						})}
-					</p>
-					<h1 className="text-[25px] text-black mb-2 mdx:text-[34px] xl:text-[40px] leading-[1.10] uppercase">
-					{formatTextWithNewlines(news.head.heading)}
-					</h1>
+					{news.createdDate && (
+						<p className="text-gray-400 text-[16px] mdx:text-[18px] xl:text-[20px]">
+							{new Date(news.createdDate).toLocaleDateString(lng, {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric',
+							})}
+						</p>
+					)}
+					{news.head?.heading && (
+						<h1 className="text-[25px] text-black mb-2 mdx:text-[34px] xl:text-[40px] leading-[1.10] uppercase">
+							{formatTextWithNewlines(news.head.heading)}
+						</h1>
+					)}
 				</div>
-				<div>
-					<p className="text-[16px] mdx:text-[20px] py-[15px]">{formatTextWithNewlines(news.head.text)}</p>
-				</div>
-				<div className="w-full max-xl:my-[25px] xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
-					<Image
-						src={news.head.photo?.url || newsPhoto} // Use fallback if no image URL
-						width={500}
-						height={500}
-						quality={100}
-						alt={`News Image`}
-						className="w-full h-auto object-cover rounded-xl"
-					/>
-				</div>
+				{news.head?.text && (
+					<div>
+						<p className="text-[16px] mdx:text-[20px] py-[15px]">{formatTextWithNewlines(news.head.text)}</p>
+					</div>
+				)}
+				{news.head?.photo?.url && (
+					<div className="w-full max-xl:my-[25px] xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
+						<Image
+							src={news.head.photo.url || newsPhoto} // Use fallback if no image URL
+							width={500}
+							height={500}
+							quality={100}
+							alt={`News Image`}
+							className="w-full h-auto object-cover rounded-xl"
+						/>
+					</div>
+				)}
 
 				{/* Rendering newOptions array */}
-				{news.newOptions.map((item, index) => (
+				{news.newOptions?.map((item, index) => (
 					<div className="mt-[60px] mb-[140px]" key={index}>
 						{item.heading && (
 							<h3 className="text-[20px] mdx:text-[27px] font-semibold mb-[16px] text-[#252324]">
@@ -129,20 +135,16 @@ export default function NewsTitle() {
 				<div className="sticky top-16">
 					<h3 className="text-[24px] font-semibold mb-4">{t('other-news')}</h3>
 					<div className="w-full grid grid-cols-1">
-						{slicedData.map((item, i) => {
-							return (
-								<a key={i} href={`/${lng}/news/${item.slug}`}>
-									<NewCard
-										key={i}
-										title={item.head.heading}
-										date={item.head.text}
-									// imageSrc={item.head.photo.url}
-									/>
-								</a>
-							)
-						})}
+						{slicedData.map((item, i) => (
+							<a key={i} href={`/${lng}/news/${item.slug}`}>
+								<NewCard
+									key={i}
+									title={item.head.heading}
+									date={item.head.text}
+								/>
+							</a>
+						))}
 					</div>
-
 				</div>
 			</div>
 		</div>

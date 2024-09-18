@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 import NewCardMain from '../News/NewCardMain'
-import Pagination from '../News/Pagination'
+import PaginationForNews from '../News/PaginationForNews'
 
 export default function NewsComp() {
     const lng = useLanguage()
@@ -16,6 +16,8 @@ export default function NewsComp() {
     const [news, setNews] = useState([]) // Состояние для новостей
     const [loading, setLoading] = useState(true) // Состояние загрузки
     const [error, setError] = useState(null) // Состояние ошибки
+    const [currentPage, setCurrentPage] = useState(1) // Состояние текущей страницы
+    const newsPerPage = 10 // Количество новостей на странице
 
     // Запрашиваем все новости при смене языка
     useEffect(() => {
@@ -42,6 +44,13 @@ export default function NewsComp() {
         fetchNews()
     }, [lng])
 
+    // Вычисляем индекс последней и первой новости на текущей странице
+    const indexOfLastNews = currentPage * newsPerPage
+    const indexOfFirstNews = indexOfLastNews - newsPerPage
+    const currentNews = news.slice(indexOfFirstNews, indexOfLastNews)
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber)
+
     if (loading) return <div>Загрузка...</div> // Индикатор загрузки
     if (error) return <div>{error}</div> // Сообщение об ошибке
 
@@ -51,7 +60,7 @@ export default function NewsComp() {
                 {t('title')}
             </h2>
             <div className='w-full grid gap-4 grid-cols-1 mdl:grid-cols-2 xl:grid-cols-4 h-auto'>
-                {news.map((item, i) => (
+                {currentNews.map((item, i) => (
                     <a key={i} href={`/${lng}/news/${item.slug}`}>
                         <NewCardMain
                             title={item.head.heading}
@@ -61,6 +70,12 @@ export default function NewsComp() {
                     </a>
                 ))}
             </div>
+            <PaginationForNews
+                newsPerPage={newsPerPage}
+                totalNews={news.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
         </div>
     )
 }
