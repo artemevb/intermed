@@ -5,8 +5,12 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import Image from "next/image";
 import { useMediaQuery } from "react-responsive";
+import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext';
 
-const VerticalCarousel = ({ data }) => {
+const VerticalCarousel = ({ images, name, new: isNew }) => {
+  const lng = useLanguage();
+  const { t } = useTranslation(lng, 'product-main')
   const [isClient, setIsClient] = useState(false);
 
   // Call useMediaQuery unconditionally
@@ -15,11 +19,12 @@ const VerticalCarousel = ({ data }) => {
   // This effect ensures that the code runs only on the client-side
   useEffect(() => {
     setIsClient(true);
+
   }, []);
 
-  const images = data.map((item, index) => ({
-    original: item.url,
-    thumbnail: item.url,
+  const galleryImages = images.map((image, index) => ({
+    original: image.url,
+    thumbnail: image.url,
     originalAlt: `Slide ${index}`,
     thumbnailAlt: `Thumbnail ${index}`,
   }));
@@ -34,15 +39,17 @@ const VerticalCarousel = ({ data }) => {
     <div className="flex flex-col w-full max-w-[1440px] mx-auto px-2 mb-4">
       {/* Header */}
       <div className="flex gap-4 lg:hidden">
-        <h1 className="text-3xl font-semibold">RESONA R9</h1>
-        <div className="py-2 px-5 font-bold rounded-full text-redMain bg-[#FCE8E9]">
-          Новинка
-        </div>
+        <h1 className="text-3xl font-semibold">{name}</h1>
+        {isNew && (
+          <div className="py-2 px-5 font-bold rounded-full text-redMain bg-[#FCE8E9] self-start">
+            {t('new')}
+          </div>
+        )}
       </div>
       {/* Main Content */}
-            <div className="w-full overflow-auto">
+      <div className="w-full overflow-auto">
         <ImageGallery
-          items={images}
+          items={galleryImages}
           showPlayButton={false}
           showFullscreenButton={false}
           showNav={false}

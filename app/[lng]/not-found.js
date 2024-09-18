@@ -25,17 +25,17 @@ export default function NotFound() {
             <div className="flex flex-col items-center mt-8 mb-[11%] xl:flex-row">
                 <div className="flex flex-col items-center">
                     <div className="flex flex-row items-end ">
-                    <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] mr-3">4</p>
-                    <div>
-                        <Image
-                            src={notfound}
-                            width={1500}
-                            height={500}
-                            alt="Not Found Image"
-                            className="h-full w-auto max-h-[216px] mdx:max-h-[299px]"
-                        />
-                    </div>
-                    <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] ml-3">4</p>
+                        <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] mr-3">4</p>
+                        <div>
+                            <Image
+                                src={notfound}
+                                width={1500}
+                                height={500}
+                                alt="Not Found Image"
+                                className="h-full w-auto max-h-[216px] mdx:max-h-[299px]"
+                            />
+                        </div>
+                        <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] ml-3">4</p>
                     </div>
                     <h3 className="text-[30px] font-bold text-[#E31E24] mdx:text-[40px]">Страница не найдена</h3>
                     <p className="max-w-[480px] w-full mx-auto text-neutral-400 text-center mt-4 mdx:text-[20px]">
@@ -50,6 +50,7 @@ export default function NotFound() {
             </div>
         </main>
     );
+
 }
 
 

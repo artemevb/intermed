@@ -61,14 +61,17 @@ export default function ProductPreview({ productData }) {
   return (
     <div className="w-full flex flex-col lg:flex-row">
       <div className="flex-1 w-full">
-        <VerticalCarousel data={productData.gallery} />
+        <VerticalCarousel images={productData.gallery} name={productData.name} new={productData.new} />
       </div>
       <div className="w-full flex-1 flex flex-col gap-5">
         <div className="flex gap-4 max-lg:hidden">
           <h1 className="text-3xl font-semibold">{productData.name}</h1>
-          <div className="py-2 px-5 font-bold rounded-full text-[#E31E24] bg-[#FCE8E9] max-h-[40px]">
-            {t('new')}
-          </div>
+          {productData.new && (
+            <div className="py-2 px-5 font-bold rounded-full text-[#E31E24] bg-[#FCE8E9] max-h-[40px]">
+              {t('new')}
+            </div>
+          )}
+
         </div>
         <p className="text-neutral-500 leading-5">
           {

@@ -48,24 +48,24 @@ const Licenses = () => {
                 {licenses?.map(item => (
                     <div
                         key={item.id}
-                        className='w-full h-auto border py-[45px] px-[50px] cursor-pointer'
+                        className='w-full h-auto border py-[45px] px-[50px] flex items-center justify-center xl:min-h-[400px] cursor-default'
                         onClick={() => openModal(item)}
                     >
                         <Image
-                        width={400}
-                        height={400}
+                            width={800}
+                            height={800}
                             src={item.photo.url}
                             alt={item.alt}
                             layout='responsive'
                             objectFit='contain'
                             quality={100}
-                            className='w-full h-full '
+                            className='w-full h-full max-mdx:max-h-[310px] max-xl:max-w-[70%]'
                         />
                     </div>
                 ))}
             </div>
 
-            <Modal selectedLicense={selectedLicense} closeModal={closeModal} />
+            {/* <Modal selectedLicense={selectedLicense} closeModal={closeModal} /> */}
         </div>
     )
 }

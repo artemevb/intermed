@@ -5,6 +5,7 @@ import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
 import Head from 'next/head'; // Подключаем next/head
+// import NotFound from './not-found'; 
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
