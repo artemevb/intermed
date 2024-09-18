@@ -40,7 +40,7 @@ export default function NewsTitle() {
 		const fetchNews = async () => {
 			try {
 				const response = await axios.get(
-					`https://imed.uz/api/v1/new/get-all?page=1`,
+					`https://imed.uz/api/v1/new/get-all`,
 					{
 						headers: { 'Accept-Language': lng },
 					}
@@ -53,6 +53,15 @@ export default function NewsTitle() {
 
 		fetchNews()
 	}, [lng])
+
+	const formatTextWithNewlines = (text) => {
+		return text.split('\n').map((line, index) => (
+			<span key={index}>
+				{line}
+				<br />
+			</span>
+		))
+	}
 
 	const slicedData = Array.isArray(news1) ? news1.slice(0, 4) : []
 	if (!news) return <div>Loading...</div> // Loading state or error handling
@@ -69,11 +78,11 @@ export default function NewsTitle() {
 						})}
 					</p>
 					<h1 className="text-[25px] text-black mb-2 mdx:text-[34px] xl:text-[40px] leading-[1.10] uppercase">
-						{news.head.heading}
+					{formatTextWithNewlines(news.head.heading)}
 					</h1>
 				</div>
 				<div>
-					<p className="text-[16px] mdx:text-[20px] py-[15px]">{news.head.text}</p>
+					<p className="text-[16px] mdx:text-[20px] py-[15px]">{formatTextWithNewlines(news.head.text)}</p>
 				</div>
 				<div className="w-full max-xl:my-[25px] xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
 					<Image
@@ -91,12 +100,12 @@ export default function NewsTitle() {
 					<div className="mt-[60px] mb-[140px]" key={index}>
 						{item.heading && (
 							<h3 className="text-[20px] mdx:text-[27px] font-semibold mb-[16px] text-[#252324]">
-								{item.heading}
+								{formatTextWithNewlines(item.heading)}
 							</h3>
 						)}
 						{item.text && (
 							<ol className="list-disc pl-4 mdx:pl-5">
-								<li className="text-[16px] mdx:text-[20px] py-[15px]">{item.text}</li>
+								<li className="text-[16px] mdx:text-[20px] py-[15px]">{formatTextWithNewlines(item.text)}</li>
 							</ol>
 						)}
 						{item.photo?.url && (

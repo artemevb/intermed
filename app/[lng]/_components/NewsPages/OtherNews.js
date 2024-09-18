@@ -13,7 +13,7 @@ export default function News() {
 		const fetchNews = async () => {
 			try {
 				const response = await axios.get(
-					`https://imed.uz/api/v1/new/get-all?page=1`,
+					`https://imed.uz/api/v1/new/get-all`,
 					{
 						headers: { 'Accept-Language': lng },
 					}

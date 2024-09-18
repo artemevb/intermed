@@ -20,7 +20,7 @@ export default function News() {
 		const fetchCategories = async () => {
 			try {
 				const response = await axios.get(
-					'https://imed.uz/api/v1/new/get-all?page=1',
+					'https://imed.uz/api/v1/new/get-all',
 					{
 						headers: {
 							'Accept-Language': lng,
@@ -90,7 +90,7 @@ export default function News() {
 											<NewCardMain
 												title={item.head.heading}
 												date={item.date}
-												imageSrc={item.head.photo.url}
+												imageSrc={item.head.photo?.url}
 											/>
 										</a>
 									</div>

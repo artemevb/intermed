@@ -62,7 +62,7 @@ export default function VideoReview({ videos }) {
                     allowFullScreen
                   ></iframe>
                 </div>
-                <div className="mt-2 text-black font-medium text-[18px] mdx:text-[24px] font-semibold">
+                <div className="mt-2 text-black text-[18px] mdx:text-[24px] font-semibold">
                   {video.title || "No title"}
                 </div>
               </div>
