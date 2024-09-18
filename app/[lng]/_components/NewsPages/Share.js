@@ -78,7 +78,7 @@ export default function NewsTitle() {
 				<div className='mx-[15px] mdl:flex mdl:flex-row-reverse mdl:items-center mdl:justify-between xl:flex-row xl:justify-center relative  mdl:py-4'>
 					<div className='mdl:items-center mdl:flex  flex justify-center content-center'>
 						<Image
-							src={news?.head.photo.url}
+							src={news?.head.photo?.url}
 							width={500}
 							height={500}
 							quality={100}
