@@ -28,7 +28,7 @@ export default function List({ data, allCategories }) {
 	const [productWithCategoryId, setProductWithCategoryId] = useState([])
 
 	// Состояния для загрузки и проверки наличия данных
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(false)
 	const [noData, setNoData] = useState(false)
 
 	// Таймер на 3 секунды для проверки загрузки
@@ -45,56 +45,58 @@ export default function List({ data, allCategories }) {
 	// Fetch products based on catalog ID
 	useEffect(() => {
 		const fetchProductWithCatalogID = async () => {
-			setLoading(true)
-			if (catalogID) {
-				try {
-					const response = await axios.get(
-						`https://imed.uz/api/v1/product?catalog-id=${catalogID}`,
-						{
-							headers: { 'Accept-Language': lng },
-						}
-					)
-					setProductWithCatalogID(response.data.data)
-				} catch (error) {
-					console.error(
-						'Failed to fetch products by catalog ID:',
-						error.message
-					)
-					setProductWithCatalogID([])
+		  if (catalogID) {
+			setLoading(true); // Start loading
+			try {
+			  const response = await axios.get(
+				`https://imed.uz/api/v1/product?catalog-id=${catalogID}`,
+				{
+				  headers: { 'Accept-Language': lng },
 				}
+			  );
+			  setProductWithCatalogID(response.data.data);
+			  setProductWithCategoryId([]); // Clear products by category when fetching by catalog
+			  setLoading(false); // End loading
+			  setNoData(false); // Reset no data state
+			} catch (error) {
+			  console.error('Failed to fetch products by catalog ID:', error.message);
+			  setProductWithCatalogID([]);
+			  setLoading(false); // End loading on error
+			  setNoData(true); // Indicate no data available
 			}
-			setLoading(false)
-		}
-
-		fetchProductWithCatalogID()
-	}, [catalogID, lng])
+		  }
+		};
+	
+		fetchProductWithCatalogID();
+	  }, [catalogID, lng]);
 
 	// Fetch products based on category ID
 	useEffect(() => {
 		const fetchProductWithCategoryID = async () => {
-			setLoading(true)
-			if (categoryID) {
-				try {
-					const response = await axios.get(
-						`https://imed.uz/api/v1/product?category-id=${categoryID}`,
-						{
-							headers: { 'Accept-Language': lng },
-						}
-					)
-					setProductWithCategoryId(response.data.data)
-				} catch (error) {
-					console.error(
-						'Failed to fetch products by category ID:',
-						error.message
-					)
-					setProductWithCategoryId([])
+		  if (categoryID) {
+			setLoading(true); // Start loading
+			try {
+			  const response = await axios.get(
+				`https://imed.uz/api/v1/product?category-id=${categoryID}`,
+				{
+				  headers: { 'Accept-Language': lng },
 				}
+			  );
+			  setProductWithCategoryId(response.data.data);
+			  setProductWithCatalogID([]); // Clear products by catalog when fetching by category
+			  setLoading(false); // End loading
+			  setNoData(false); // Reset no data state
+			} catch (error) {
+			  console.error('Failed to fetch products by category ID:', error.message);
+			  setProductWithCategoryId([]);
+			  setLoading(false); // End loading on error
+			  setNoData(true); // Indicate no data available
 			}
-			setLoading(false)
-		}
-
-		fetchProductWithCategoryID()
-	}, [categoryID, lng])
+		  }
+		};
+	
+		fetchProductWithCategoryID();
+	  }, [categoryID, lng]);
 
 	// Initialize filtered data based on the selected category
 	useEffect(() => {
@@ -147,9 +149,9 @@ export default function List({ data, allCategories }) {
 
 	// Handle catalog opening logic
 	const handleCatalogOpen = useCallback(id => {
-		setCatalogID(id)
-	}, [])
-
+		setCatalogID(id);
+		setCategoryID(0); // Reset categoryID when a new catalog is selected
+	  }, []);
 	// Toggle category modal
 	const handleClose = () => setCategoryModal(false)
 
