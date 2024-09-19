@@ -1,3 +1,7 @@
+import left from '@/public/images/arrows_pagination/left.svg'
+import right from '@/public/images/arrows_pagination/right.svg'
+import Image from 'next/image'
+
 export default function Pagination({ newsPerPage, totalNews, paginate, currentPage }) {
     const pageNumbers = []
 
@@ -20,20 +24,26 @@ export default function Pagination({ newsPerPage, totalNews, paginate, currentPa
 
     return (
         <nav>
-            <ul className="flex justify-center items-center gap-2">
+            <ul className="flex justify-center items-center content-center gap-2">
                 <li>
                     <button
                         onClick={handlePrevClick}
-                        className="px-2 py-1 text-black hover:bg-gray-200"
+                        className='flex items-center'
                     >
-                        &lt;
+                        <Image
+                            src={left}
+                            width={30}
+                            height={30}
+                            alt='Link Icon'
+                            className='w-[24px] h-[24px] object-cover slg:h-[30px] slg:w-[30px]'
+                        />
                     </button>
                 </li>
                 {pageNumbers.map((number) => (
                     <li key={number}>
                         <button
                             onClick={() => paginate(number)}
-                            className={`px-4 py-2 rounded-full transition-all ${currentPage === number
+                            className={`px-[17px] py-[9px] xl:px-[19px] xl:py-[10px] text-[16px] xl:text-[20px] rounded-full transition-all ${currentPage === number
                                 ? 'bg-red-500 text-white'
                                 : 'bg-transparent text-gray-500 '
                                 }`}
@@ -45,9 +55,15 @@ export default function Pagination({ newsPerPage, totalNews, paginate, currentPa
                 <li>
                     <button
                         onClick={handleNextClick}
-                        className="px-2 py-1 text-black "
+                        className='flex items-center'
                     >
-                        &gt;
+                        <Image
+                            src={right}
+                            width={30}
+                            height={30}
+                            alt='Link Icon'
+                            className='w-[24px] h-[24px] object-cover slg:h-[30px] slg:w-[30px]'
+                        />
                     </button>
                 </li>
             </ul>

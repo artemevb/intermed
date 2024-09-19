@@ -5,7 +5,7 @@ import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
 import Head from 'next/head'; // Подключаем next/head
-// import NotFound from './not-found'; 
+import ErrorBoundary from '@/app/[lng]/_components/ErrorBoundary';
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
@@ -67,11 +67,12 @@ export default function RootLayout({
                     ></iframe>
                 </noscript>
                 <LanguageProvider lng={lng}>
-                    <Header lng={lng} />
-                    <main className="w-full bg-white relative">{children}</main>
-                    <Footer lng={lng} />
+                    <ErrorBoundary lng={lng}>
+                        {children}
+                    </ErrorBoundary>
                 </LanguageProvider>
             </body>
         </html>
     );
 }
+

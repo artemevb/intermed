@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "@/public/images/intermed-logo.png";
 import notfound from "@/public/images/Error500.png";
-import { useTranslation } from '../i18n/client'
-import { useLanguage } from '../i18n/locales/LanguageContext'
+import { useTranslation } from '../i18n/client';
+import { useLanguage } from '../i18n/locales/LanguageContext';
 
 function Custom500() {
-    const lng = useLanguage()
+    const lng = useLanguage();
 
     return (
         <main className="h-screen w-full bg-white">
@@ -49,5 +49,8 @@ function Custom500() {
         </main>
     );
 }
+
+// Добавляем флаг, чтобы layout.js мог понять, что это страница ошибки
+Custom500.isErrorPage = true;
 
 export default Custom500;

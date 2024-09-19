@@ -20,7 +20,7 @@ const EquipmentCarousel = () => {
 
 	const getAllProducts = useCallback(async () => {
 		try {
-			const response = await axios.get('https://imed.uz/api/v1/product', {
+			const response = await axios.get('https://imed.uz/api/v1/product?=true', {
 				headers: {
 					'Accept-Language': lng,
 				},

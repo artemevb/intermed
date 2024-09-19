@@ -92,8 +92,8 @@ export default function NewsTitle() {
 					<div className="w-full max-xl:my-[25px] xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
 						<Image
 							src={news.head.photo.url || newsPhoto} // Use fallback if no image URL
-							width={500}
-							height={500}
+							width={1000}
+							height={1000}
 							quality={100}
 							alt={`News Image`}
 							className="w-full h-auto object-cover rounded-xl"
