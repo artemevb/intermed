@@ -71,31 +71,38 @@ export default function Partners({ lng }) {
 
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2'>
-			{isMounted && (
-				<div className='flex flex-col gap-10'>
-					<h2 className='text-3xl font-semibold max-mdl:text-2xl uppercase'>
-						{t('title')}
-					</h2>
-					<div>
-						<Slider {...settings} className='h-auto flex'>
-							{logos.map((item, index) => (
-								<div key={index}>
-									<div className='p-14 border h-[200px] flex justify-center items-center'>
-										<Image
-											quality={100}
-											src={item.logo.url}
-											width={500}
-											height={500}
-											alt='Intermed Sertificate'
-											className='w-full h-auto object-cover'
-										/>
-									</div>
+			<div className='flex flex-col gap-10'>
+				<h2 className='text-3xl font-semibold max-mdl:text-2xl uppercase'>
+					{t('title')}
+				</h2>
+				<div>
+					<Slider {...settings} className='h-auto flex'>
+						{logos.map((item, index) => (
+							<div key={index}>
+								<div className='p-14 border h-[200px] flex justify-center items-center'>
+									<Image
+										quality={100}
+										src={item.logo.url}
+										width={500}
+										height={500}
+										alt='Intermed Sertificate'
+										className='w-full h-auto object-cover'
+									/>
 								</div>
-							))}
-						</Slider>
-					</div>
+							</div>
+						))}
+					</Slider>
 				</div>
-			)}
+			</div>
+			<div className='flex w-full justify-center'>
+				<a
+					href={`/${lng}/news`}
+					className=' border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold'
+				>
+					{t('title-button')}
+				</a>
+			</div>
+
 		</div>
 	)
 }
