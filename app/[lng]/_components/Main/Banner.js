@@ -26,7 +26,7 @@ export default function BannerCarousel() {
   const sliderRef = useRef(null)
   const [banner, setBanners] = useState([])
   const params = useParams()
-  const slideRefs = useRef([]) 
+  const slideRefs = useRef([])
   const settings = {
     infinite: true,
     speed: 500,
@@ -100,7 +100,7 @@ export default function BannerCarousel() {
     <div className='relative w-full mx-auto overflow-hidden '>
       <Slider ref={sliderRef} {...settings}>
         {banner.sliders?.map((banner, index) => (
-          <a 
+          <a
             key={index}
             href={banner.link || "#"} // Use the banner link if available
             target="_blank"
@@ -108,7 +108,7 @@ export default function BannerCarousel() {
             className="block" // Ensure the link wraps around the entire slide
           >
             <div
-              ref={el => (slideRefs.current[index] = el)} 
+              ref={el => (slideRefs.current[index] = el)}
               className='relative min-w-full max-slg:min-h-[525px] slg:min-h-[780px] xl:min-h-0'
             >
               <div
@@ -178,9 +178,8 @@ export default function BannerCarousel() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 rounded-full ${
-              currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
-            } mx-1`}
+            className={`w-2 h-2 rounded-full ${currentSlide === index ? 'bg-red-500' : 'bg-gray-300'
+              } mx-1`}
           ></button>
         ))}
       </div>

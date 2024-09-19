@@ -161,12 +161,14 @@ export default function ProductCharacteristics({ data }) {
 						)}
 					</div>
 					<div className='flex justify-start mt-[25px]'>
-						<button
-							className='bg-[#FCE8E9] text-[#E31E24] py-4 px-[30px] font-bold hover:text-[#EE787C]'
-							onClick={() => openModal(data.files || [])}
-						>
-							{t('attached-files')}
-						</button>
+						{data.files && data.files.length > 0 && (
+							<button
+								className='bg-[#FCE8E9] text-[#E31E24] py-4 px-[30px] font-bold hover:text-[#EE787C]'
+								onClick={() => openModal(data.files || [])}
+							>
+								{t('attached-files')}
+							</button>
+						)}
 					</div>
 					<Modal
 						selectedAttachedFiles={selectedAttachedFiles}

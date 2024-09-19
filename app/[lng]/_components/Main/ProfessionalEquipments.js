@@ -31,7 +31,7 @@ const EquipmentCarousel = () => {
 			console.error('Error fetching products:', error.message);
 		}
 	}, [lng]);
-	
+
 
 	useEffect(() => {
 		getAllProducts()
@@ -57,7 +57,7 @@ const EquipmentCarousel = () => {
 		},
 		[products]
 	);
-	
+
 
 	const settings = useMemo(
 		() => ({
@@ -162,9 +162,9 @@ const EquipmentCarousel = () => {
 								</Slider>
 							) : (
 								// Центрирование одного продукта
-								<div className='flex justify-center items-center'>
+								<div className='flex justify-start items-center'>
 									{filteredData.map(item => (
-										<div key={item.id} className='max-w-[600px] p-1 xl:p-2'>
+										<div key={item.id} className='max-w-[380px] p-1 xl:p-2'>
 											<Catalogitem
 												new={item.new}
 												sale={item.sale}

@@ -85,12 +85,12 @@ export default function ProductPreview({ productData }) {
               <GreenArrow title={"Подробнее"} />
             </span>
           </Link> */}
-          <a href={`/${lng}/technical-support/${productData.slug}`}>
-            <button className="w-full max-w-[220px] leading-5 cursor-pointer text-left"
+          {/* <a href={`/${lng}/technical-support/${productData.slug}`}> */}
+            <button className="w-full max-w-[220px] leading-5 cursor-default text-left"
             >
               {t('support')} <span className="relative after:absolute after:w-full after:h-[1px] after:bg-black after:left-0 after:bottom-[-2px]">{t('technical-support')}</span>
             </button>
-          </a>
+          {/* </a> */}
           <Image
             src={productData.brand.logo.url}
             width={400}
