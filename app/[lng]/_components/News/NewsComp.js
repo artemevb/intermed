@@ -27,7 +27,7 @@ export default function NewsComp() {
 
             try {
                 const response = await axios.get(
-                    `http://213.230.91.55:8130/v1/new/get-all`,
+                    `https://imed.uz/api/v1/new/get-all`,
                     {
                         headers: { 'Accept-Language': lng },
                     }
