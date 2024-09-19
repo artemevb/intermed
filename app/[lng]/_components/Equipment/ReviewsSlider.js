@@ -108,8 +108,8 @@ export default function ReviewsSlider() {
 					<Slider {...settings}>
 						{reviews.map((card) => (
 							<div key={card.id} className='px-3'>
-								<div className='max-h-[450px]'>
-									<div className='bg-white p-4 border border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[340px] flex flex-col justify-between'>
+								<div className='max-h-[480px]'>
+									<div className='bg-white p-4 py-[15px] xl:py-[30px] border border-gray-200 mdx:p-0 xl:p-5 h-full xl:h-[340px] flex flex-col justify-between'>
 										<div>
 											<div className='flex justify-start items-center gap-3 xl:items-start mb-4'>
 												<div className='h-[60px] w-[60px] mdx:h-[80px] mdx:w-[80px] relative xl:mr-4'>
@@ -134,7 +134,7 @@ export default function ReviewsSlider() {
 											</p>
 										</div>
 										<button onClick={() => openModal(card)}>
-											<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end'>
+											<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] flex mdx:justify-end'>
 												{t('read-more')}
 											</span>
 										</button>
@@ -145,8 +145,8 @@ export default function ReviewsSlider() {
 					</Slider>
 				) : reviews.length === 1 ? (
 					<div className='px-3 max-w-[700px]'>
-						<div className='max-h-[450px]'>
-							<div className='bg-white p-4 border border-gray-200 xl:h-[340px] xl:p-5 flex flex-col justify-between'>
+						<div className='max-h-[480px]'>
+							<div className='bg-white p-4 py-[15px] xl:py-[30px] border border-gray-200 xl:h-[340px] xl:p-5 flex flex-col justify-between '>
 								<div>
 									<div className='flex justify-start items-center gap-3 xl:items-start mb-4'>
 										<div className='h-[60px] w-[60px] mdx:h-[80px] mdx:w-[80px] relative xl:mr-4'>
@@ -171,7 +171,7 @@ export default function ReviewsSlider() {
 									</p>
 								</div>
 								<button onClick={() => openModal(reviews[0])}>
-									<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] mdx:flex mdx:justify-end'>
+									<span className='text-[#E31E24] font-semibold hover:underline mdx:text-[18px] flex mdx:justify-end '>
 										{t('read-more')}
 									</span>
 								</button>

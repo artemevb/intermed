@@ -20,17 +20,18 @@ const EquipmentCarousel = () => {
 
 	const getAllProducts = useCallback(async () => {
 		try {
-			const response = await axios.get('https://imed.uz/api/v1/product?=true', {
+			const response = await axios.get('https://imed.uz/api/v1/product?popular=true', {
 				headers: {
 					'Accept-Language': lng,
 				},
-			})
-			setProducts(response.data.data)
-			setFilteredData(response.data.data) // Initialize with all products
+			});
+			setProducts(response.data.data);
+			setFilteredData(response.data.data); // Initialize with all popular products
 		} catch (error) {
-			console.error('Error fetching products:', error.message)
+			console.error('Error fetching products:', error.message);
 		}
-	}, [lng])
+	}, [lng]);
+	
 
 	useEffect(() => {
 		getAllProducts()
@@ -43,17 +44,20 @@ const EquipmentCarousel = () => {
 	// Handle category filtering
 	const handleFilter = useCallback(
 		category => {
-			setSelectedCategory(category)
+			setSelectedCategory(category);
 			if (category === 'all') {
-				setFilteredData(products)
+				setFilteredData(products);
 			} else if (category === 'new') {
-				setFilteredData(products.filter(item => item.new))
+				setFilteredData(products.filter(item => item.new));
 			} else if (category === 'sale') {
-				setFilteredData(products.filter(item => item.sale))
+				setFilteredData(products.filter(item => item.sale));
+			} else if (category === 'popular') {
+				setFilteredData(products.filter(item => item.popular));
 			}
 		},
 		[products]
-	)
+	);
+	
 
 	const settings = useMemo(
 		() => ({

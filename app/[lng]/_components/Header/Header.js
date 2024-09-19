@@ -14,7 +14,7 @@ export default function Header({ lng }) {
     },
     {
       title: t('about_company'),
-      slug: 'about',
+      slug: 'about-company',
     },
     {
       title: t('partners'),

@@ -114,7 +114,7 @@ export default function Footer({ lng }) {
             </div>
             <div className="flex-1 flex flex-col text-sm gap-4  text-[#808080]">
               <h2 className="text-lg font-semibold text-[#252324] uppercase">{t('company')}</h2>
-              <a href={`/${lng}/about`}>{t('about_company')}</a>
+              <a href={`/${lng}/about-company`}>{t('about_company')}</a>
               <a href={`/${lng}/partners`}>{t('partners')}</a>
               <a href={`/${lng}/contacts`}>{t('contacts')}</a>
               <a href={`/${lng}/news`}>{t('news')}</a>

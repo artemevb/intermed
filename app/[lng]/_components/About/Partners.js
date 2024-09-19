@@ -8,8 +8,10 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick-theme.css'
 import 'slick-carousel/slick/slick.css'
 import { useTranslation } from '../../../i18n/client'
+import { useLanguage } from '../../../i18n/locales/LanguageContext'
 
-export default function Partners({ lng }) {
+export default function Partners() {
+	const lng = useLanguage()
 	const { t } = useTranslation(lng, 'partners-main')
 	const params = useParams()
 	const [isMounted, setIsMounted] = useState(false)
@@ -96,7 +98,7 @@ export default function Partners({ lng }) {
 			</div>
 			<div className='flex w-full justify-center'>
 				<a
-					href={`/${lng}/news`}
+					href={`/${lng}/partners`}
 					className=' border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold'
 				>
 					{t('title-button')}
