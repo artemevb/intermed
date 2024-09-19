@@ -1,5 +1,6 @@
-import left from '@/public/images/arrows_pagination/left.svg'
-import right from '@/public/images/arrows_pagination/right.svg'
+"use cient"
+import left from '/public/images/arrowsforpagination/left.svg'
+import right from '/public/images/arrowsforpagination/right.svg'
 import Image from 'next/image'
 
 export default function Pagination({ newsPerPage, totalNews, paginate, currentPage }) {
