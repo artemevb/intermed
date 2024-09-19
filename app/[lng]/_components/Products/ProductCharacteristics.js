@@ -69,16 +69,19 @@ export default function ProductCharacteristics({ data }) {
 						<div className="text-container w-max">
 							<div className="w-full overflow-x-scroll flex gap-8 lg:gap-12 scrollbar-hide touch-auto">
 								{categories.map((item, index) => (
-									<button
-										key={index}
-										onClick={() => handleCategoryChange(item.category, item.dataKey)}
-										className={`z-10 w-auto text-lg transition-text font-medium ${active === item.category
-											? 'text-[#E31E24] border-b-2 border-b-[#E31E24]'
-											: 'text-neutral-400'
-											}`}
-									>
-										<h3 className='my-2 whitespace-nowrap'>{item.title}</h3>
-									</button>
+									// Check if the current category has data before rendering its tab
+									(item.category !== 'clients' || (item.category === 'clients' && data['client'] && data['client'].length > 0)) && (
+										<button
+											key={index}
+											onClick={() => handleCategoryChange(item.category, item.dataKey)}
+											className={`z-10 w-auto text-lg transition-text font-medium ${active === item.category
+												? 'text-[#E31E24] border-b-2 border-b-[#E31E24]'
+												: 'text-neutral-400'
+												}`}
+										>
+											<h3 className='my-2 whitespace-nowrap'>{item.title}</h3>
+										</button>
+									)
 								))}
 							</div>
 							<hr className="w-full border-t-1 " />
@@ -110,7 +113,7 @@ export default function ProductCharacteristics({ data }) {
 								{filtered.map((item, i) => (
 									<div key={i} className='w-full flex gap-3'>
 										<p className='w-full text-neutral-400 max-w-[100px] md:max-w-[150px] mdx:max-w-[200px] lg:max-w-[400px]'>
-										{formatTextWithNewlines(item.title)}
+											{formatTextWithNewlines(item.title)}
 										</p>
 										<div className='flex w-full flex-col'>
 											<p>{formatTextWithNewlines(item.value)}</p>
@@ -157,7 +160,6 @@ export default function ProductCharacteristics({ data }) {
 							</div>
 						)}
 					</div>
-
 					<div className='flex justify-start mt-[25px]'>
 						<button
 							className='bg-[#FCE8E9] text-[#E31E24] py-4 px-[30px] font-bold hover:text-[#EE787C]'
@@ -166,7 +168,6 @@ export default function ProductCharacteristics({ data }) {
 							{t('attached-files')}
 						</button>
 					</div>
-
 					<Modal
 						selectedAttachedFiles={selectedAttachedFiles}
 						closeModal={closeModal}

@@ -20,7 +20,7 @@ export default function Equipment() {
             <Category />
             <CasesSlider />
             <ReviewsSlider />
-            <PopularReviews />
+            {/* <PopularReviews /> */}
             <Contacts />
             <Application />
         </div>
