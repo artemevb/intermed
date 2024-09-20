@@ -13,6 +13,7 @@ export default function CategoryItem({ key, title, imageSrc, slug }) {
         <GreenArrow title={"Перейти"} />
       </Link>
       <Image
+      quality={100}
         src={imageSrc}
         width={500}
         height={500}

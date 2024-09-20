@@ -122,6 +122,7 @@ export default function Instruction() {
                   <p className="max-md:max-w-full">{description}</p>
                 </div>
                 <Image
+                quality={100}
                   src={image}
                   width={1000}
                   height={1000}
@@ -149,6 +150,7 @@ export default function Instruction() {
         </div>
         <div className="flex-1 flex-col justify-between border-b ">
           <Image
+          quality={100}
             src={filteredData.image}
             width={1000}
             height={1000}

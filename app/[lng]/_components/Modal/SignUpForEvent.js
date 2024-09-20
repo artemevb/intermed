@@ -79,6 +79,7 @@ export default function SignUpForEvent({ closeModal, eventId }) {
                                 height={100}
                                 alt="Icon"
                                 className="h-full w-full"
+                                quality={100}
                             />
                         </button>
                         <h2 className="text-xl font-semibold mb-4 mdx:text-[22px] 2xl:text-[24px] xl:max-w-[213px]">{t('sign-up-for-an-event')}</h2>

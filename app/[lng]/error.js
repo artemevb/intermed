@@ -14,6 +14,7 @@ function Custom500() {
             <div className="h-[70px] mx-auto flex justify-center w-full max-w-[1440px] 5xl:max-w-[2000px] items-center px-2 ">
                 <div className="h-auto w-[243px]">
                     <Image
+                    quality={100}
                         src={logo}
                         height={400}
                         width={400}
@@ -25,6 +26,7 @@ function Custom500() {
             <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] h-full flex justify-center items-center mx-auto px-2">
                 <div className="flex flex-col mdx:gap-8 gap-5 items-center">
                     <Image
+                    quality={100}
                         src={notfound}
                         width={1000}
                         height={1000}

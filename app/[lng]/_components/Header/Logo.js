@@ -13,6 +13,7 @@ export default function Logo() {
     <>
       <a href={`/${lng}`} className="h-[46%] mdx:h-[50%] w-auto items-center flex">
         <Image
+        quality={100}
           src={logo}
           width={300}
           height={300}

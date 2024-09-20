@@ -38,7 +38,7 @@ const Modal = ({ selectedReview, closeModal }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={closeModal} className="absolute top-2 right-2 mdl:right-4 mdl:top-4">
-          <Image src={close} alt="close" width={24} height={24} />
+          <Image quality={100} src={close} alt="close" width={24} height={24} />
         </button>
         <div className="p-4">
           <div className="flex justify-start items-center gap-4 xl:gap-1 xl:items-start mb-4">

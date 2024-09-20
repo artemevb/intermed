@@ -122,6 +122,7 @@ export default function Search({ setSearchMenu }) {
               <div className="flex items-center px-2 py-[20px] mdx:py-7  w-full relative">
                 <button onClick={closeModal}>
                   <Image
+                  quality={100}
                     src={close}
                     height={30}
                     width={30}
@@ -138,6 +139,7 @@ export default function Search({ setSearchMenu }) {
                 />
                 <button onClick={handleSearch} >
                   <Image
+                  quality={100}
                     src={searchIcon}
                     height={30}
                     width={30}
@@ -160,6 +162,7 @@ export default function Search({ setSearchMenu }) {
                   >
                     {item.photo && item.photo.url && (
                       <Image
+                      quality={100}
                         src={item.photo.url}
                         alt={item.name || item.title}
                         width={200}
@@ -197,6 +200,7 @@ export default function Search({ setSearchMenu }) {
                               width={24}
                               height={24}
                               className="object-contain"
+                              quality={100}
                             />
                           </span>
                           <span className="hidden mdx:inline-flex items-center text-[16px] xl:text-[18px]">
@@ -207,6 +211,7 @@ export default function Search({ setSearchMenu }) {
                               width={24}
                               height={24}
                               className="ml-2 object-contain"
+                              quality={100}
                             />
                           </span>
                         </button>

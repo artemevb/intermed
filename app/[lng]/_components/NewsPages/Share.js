@@ -105,6 +105,7 @@ export default function NewsTitle() {
 									className='flex items-center justify-center w-full h-full'
 								>
 									<Image
+									quality={100}
 										src={tabler}
 										width={21}
 										height={21}

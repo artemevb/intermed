@@ -24,6 +24,7 @@ export default function NotFound() {
                     <div className="h-[30px] flex justify-center w-full max-w-[1440px] items-center px-2 mdx:h-[61px]">
                         <div className="h-full flex items-center">
                             <Image
+                            quality={100}
                                 src={logo}
                                 height={400}
                                 width={400}
@@ -38,6 +39,7 @@ export default function NotFound() {
                                 <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] mr-3">4</p>
                                 <div>
                                     <Image
+                                    quality={100}
                                         src={notfound}
                                         width={1500}
                                         height={500}

@@ -22,6 +22,7 @@ export default function AboutUs({ lng }) {
             {t('reliable_supplier')}
           </h2>
           <Image
+          quality={100}
             src={Imed}
             width={1000}
             height={1000}

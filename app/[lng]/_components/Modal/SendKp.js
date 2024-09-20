@@ -103,6 +103,7 @@ export default function SignUpForEvent({ product, closeModal }) {
                             width={100}
                             height={100}
                             alt="Icon"
+                            quality={100}
                             className="h-full w-full"
                         />
                     </button>

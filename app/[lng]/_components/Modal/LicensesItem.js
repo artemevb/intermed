@@ -18,7 +18,7 @@ const Modal = ({ selectedLicense, closeModal }) => {
             <div className="bg-white max-w-[950px] w-full relative mx-4 my-4 flex flex-col overflow-y-auto max-h-full mdl:mx-[19%] no-scrollbar h-[88%] xl:h-[86%]" onClick={(e) => e.stopPropagation()}>
                 <div className="bg-white xl:flex xl:flex-row">
                     <button onClick={closeModal} className="absolute top-2 right-2 xl:top-4 xl:right-3 ">
-                        <Image src={close} alt="close" width={25} height={25} />
+                        <Image quality={100} src={close} alt="close" width={25} height={25} />
                     </button>
                     <div className="flex flex-col items-center py-[45px] px-[50px] border mx-5 my-9 mdx:py-[35px] mdx:px-[30px] mdx:w-[50%] mdx:mx-[30px] xl:w-[70%] justify-center xl:my-[30px] max-h-[635px]">
                         <Image

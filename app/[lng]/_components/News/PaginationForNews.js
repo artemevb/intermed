@@ -32,6 +32,7 @@ export default function Pagination({ newsPerPage, totalNews, paginate, currentPa
                         className='flex items-center'
                     >
                         <Image
+                        quality={100}
                             src={left}
                             width={30}
                             height={30}
@@ -59,6 +60,7 @@ export default function Pagination({ newsPerPage, totalNews, paginate, currentPa
                         className='flex items-center'
                     >
                         <Image
+                        quality={100}
                             src={right}
                             width={30}
                             height={30}

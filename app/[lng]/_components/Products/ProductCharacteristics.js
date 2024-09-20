@@ -146,6 +146,7 @@ export default function ProductCharacteristics({ data }) {
 												<button className='text-[#E31E24] mt-2 flex items-center font-bold text-[16px] mdx:text-[18px]'>
 													{t('more')}
 													<Image
+													quality={100}
 														src={arrowred}
 														width={100}
 														height={100}
