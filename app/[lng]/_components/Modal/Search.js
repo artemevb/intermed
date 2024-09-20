@@ -56,7 +56,7 @@ export default function Search({ setSearchMenu }) {
     let url = '';
     switch (item.dtoName) {
       case 'Product':
-        url = `/product/${item.slug}`;
+        url = `/products/${item.slug}`;
         break;
       case 'Category':
         url = `/categories/${item.slug}`;

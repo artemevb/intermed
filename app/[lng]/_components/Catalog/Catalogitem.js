@@ -106,7 +106,7 @@ export default function Catalogitem({
 							</div>
 						)} */}
 					</div>
-					<a href={`/${lng}/product/${slug}`}>
+					<a href={`/${lng}/products/${slug}`}>
 						<Image
 							src={image}
 							alt={title}
@@ -125,7 +125,7 @@ export default function Catalogitem({
 				</p>
 
 				<div className='flex w-full justify-between items-center flex-wrap mt-3'>
-					<a href={`/${lng}/product/${slug}`}>
+					<a href={`/${lng}/products/${slug}`}>
 						{isMounted && (
 							<div>
 								<GreenArrow title={t('more-details')} />
