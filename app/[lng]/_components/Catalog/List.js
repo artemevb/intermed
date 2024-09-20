@@ -20,9 +20,11 @@ export default function List({ data, allCategories }) {
 	const [displayAll, setDisplayAll] = useState(false)
 	const [selectedCategory, setSelectedCategory] = useState('all') // Default to 'all'
 	const [filteredData, setFilteredData] = useState([])
+
 	// IDs for filtering
 	const [categoryID, setCategoryID] = useState(0)
 	const [catalogID, setCatalogID] = useState(0)
+
 	// Data for products
 	const [productWithCatalogID, setProductWithCatalogID] = useState([])
 	const [productWithCategoryId, setProductWithCategoryId] = useState([])
@@ -30,6 +32,9 @@ export default function List({ data, allCategories }) {
 	// Состояния для загрузки и проверки наличия данных
 	const [loading, setLoading] = useState(false)
 	const [noData, setNoData] = useState(false)
+
+	// Новый стейт для фильтрованных категорий с товарами
+	const [categoriesWithProducts, setCategoriesWithProducts] = useState([]);
 
 	// Таймер на 3 секунды для проверки загрузки
 	useEffect(() => {
@@ -41,6 +46,58 @@ export default function List({ data, allCategories }) {
 
 		return () => clearTimeout(timer)
 	}, [loading])
+
+	// Fetch products and filter categories/subcategories without products
+	useEffect(() => {
+		const fetchProducts = async () => {
+			try {
+				const allCategoriesWithProducts = await Promise.all(
+					allCategories.map(async (category) => {
+						const response = await axios.get(
+							`https://imed.uz/api/v1/product?category-id=${category.id}`
+						);
+						const products = response.data.data;
+
+						// Если в категории есть товары или есть подкатегории с товарами, оставляем категорию
+						if (products.length > 0) {
+							return { ...category, products };
+						}
+
+						// Фильтруем подкатегории
+						const subcategoriesWithProducts = await Promise.all(
+							category.subcategories.map(async (subcategory) => {
+								const subcategoryResponse = await axios.get(
+									`https://imed.uz/api/v1/product?catalog-id=${subcategory.id}`
+								);
+								const subcategoryProducts = subcategoryResponse.data.data;
+
+								// Если в подкатегории есть товары, возвращаем подкатегорию
+								if (subcategoryProducts.length > 0) {
+									return { ...subcategory, products: subcategoryProducts };
+								}
+								return null;
+							})
+						);
+
+						const filteredSubcategories = subcategoriesWithProducts.filter(Boolean);
+
+						if (filteredSubcategories.length > 0) {
+							return { ...category, subcategories: filteredSubcategories };
+						}
+
+						return null;
+					})
+				);
+
+				// Оставляем только категории и подкатегории с товарами
+				setCategoriesWithProducts(allCategoriesWithProducts.filter(Boolean));
+			} catch (error) {
+				console.error('Error fetching products:', error);
+			}
+		};
+
+		fetchProducts();
+	}, [allCategories]);
 
 	// Fetch products based on catalog ID
 	useEffect(() => {
@@ -117,7 +174,8 @@ export default function List({ data, allCategories }) {
 				setFilteredData(items)
 				break
 		}
-	}, [productWithCatalogID, productWithCategoryId, selectedCategory])
+	
+    }, [productWithCatalogID, productWithCategoryId, selectedCategory])
 
 	// Handle category selection
 	const handleFilter = useCallback(
@@ -152,6 +210,7 @@ export default function List({ data, allCategories }) {
 		setCatalogID(id);
 		setCategoryID(0); // Reset categoryID when a new catalog is selected
 	  }, []);
+	
 	// Toggle category modal
 	const handleClose = () => setCategoryModal(false)
 
@@ -169,6 +228,7 @@ export default function List({ data, allCategories }) {
 		{ title: t('promotions'), slug: 'promotions' },
 	]
 
+	
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col lg:gap-[43px] gap-5 px-2 py-24'>
 			{categoryModal && (
@@ -208,8 +268,7 @@ export default function List({ data, allCategories }) {
 										className={`z-10 w-auto text-lg transition-text font-semibold ${selectedCategory === slug
 											? 'text-redMain border-b-2 border-b-redMain'
 											: 'text-neutral-400'
-											}`}
-									>
+											}`}>
 										<h3 className='my-2 whitespace-nowrap'>{title}</h3>
 									</button>
 								))}
@@ -223,7 +282,7 @@ export default function List({ data, allCategories }) {
 			<div className='w-full flex gap-10 max-lg:justify-center'>
 				<div className='w-full max-w-[350px] max-2xl:max-w-[280px] max-lg:hidden'>
 					<CatalogList
-						data={data}
+						data={categoriesWithProducts} // Используем категории с товарами
 						allCategories={allCategories}
 						onCatalogOpen={handleCatalogOpen}
 						setCategoryID={setCategoryID}
