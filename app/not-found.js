@@ -9,20 +9,19 @@ import React from 'react';
 import { useState, useEffect } from "react";
 
 export default function NotFound() {
-    const lng = useLanguage()
+    const lng = useLanguage();
     const { t } = useTranslation(lng, 'not-found');
-    if (!t) return null;
     const [isMounted, setIsMounted] = useState(false);
+    
     useEffect(() => {
         setIsMounted(true);
     }, []);
 
     return (
         <main className="w-full bg-white flex flex-col items-center mt-[50px]">
-
-            {isMounted && (
+            {isMounted && t && (
                 <div>
-                    <div className="h-[30px] flex justify-center  w-full max-w-[1440px] items-center px-2 mdx:h-[61px]">
+                    <div className="h-[30px] flex justify-center w-full max-w-[1440px] items-center px-2 mdx:h-[61px]">
                         <div className="h-full flex items-center">
                             <Image
                                 src={logo}
@@ -35,7 +34,7 @@ export default function NotFound() {
                     </div>
                     <div className="flex flex-col items-center mt-8 mb-[11%] xl:flex-row">
                         <div className="flex flex-col items-center">
-                            <div className="flex flex-row items-end ">
+                            <div className="flex flex-row items-end">
                                 <p className="text-[123px] font-bold text-[#E94B50] mt-4 mdx:text-[150px] mr-3">4</p>
                                 <div>
                                     <Image
@@ -61,11 +60,6 @@ export default function NotFound() {
                     </div>
                 </div>
             )}
-
         </main>
-
     );
-
 }
-
-
