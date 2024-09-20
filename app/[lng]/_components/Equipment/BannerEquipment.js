@@ -1,7 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Slider from "react-slick";
 import axios from "axios";
 
 import Left from "@/public/svg/arrowLeftWhite.svg";
@@ -33,21 +32,11 @@ export default function BannerCarousel() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isAskaQuestionModalOpen, setIsAskaQuestionModalOpen] = useState(false);
 
-    // Fetch data from API
-    // useEffect(() => {
-    //     axios("https://imed.uz/api/v1/complex-e", {
-    //         headers: {
-    //             "Accept-Language": lng,
-    //         },
-    //     }).then((response) => {
-    //         setEquipment(response.data.data); // Set equipment data from API
-    //     });
-    // }, [lng]);
     useEffect(() => {
         const fetchBannerEquipment = async () => {
             try {
                 const response = await axios.get(
-                    `https://imed.uz/api/v1/complex-e`,
+                    "https://imed.uz/api/v1/complex-e",
                     {
                         headers: { 'Accept-Language': lng },
                     }
@@ -61,16 +50,6 @@ export default function BannerCarousel() {
 
         fetchBannerEquipment();
     }, [lng]);
-
-
-
-    const nextSlide = () => {
-        sliderRef.current.slickNext();
-    };
-
-    const prevSlide = () => {
-        sliderRef.current.slickPrev();
-    };
 
     const openAskaQuestionModal = () => setIsAskaQuestionModalOpen(true);
     const closeAskaQuestionModal = () => setIsAskaQuestionModalOpen(false);
@@ -92,9 +71,9 @@ export default function BannerCarousel() {
                     </button>
                 </div>
 
-
                 <div className="xl:w-[50%] relative w-full h-auto">
-                    <Slider ref={sliderRef} {...settings}>
+                    {/* Slider is commented out, replace with a static image */}
+                    {/* <Slider ref={sliderRef} {...settings}>
                         {equipment.map((item, index) => (
                             <div key={index} className="w-full flex justify-center items-center overflow-hidden ">
                                 <Image
@@ -102,53 +81,25 @@ export default function BannerCarousel() {
                                     alt={`Banner ${index + 1}`}
                                     width={2000}
                                     height={1000}
-                                    quality={100} // Заменяем layout на fill для полного заполнения
+                                    quality={100} 
                                     layout="responsive"
-                                    className="w-full h-full min-h-[485px] mdx:min-h-[606px] object-cover max-h-[640px] 4xl:max-h-[800px]" // Растягиваем по высоте и ширине
+                                    className="w-full h-full min-h-[485px] mdx:min-h-[606px] object-cover max-h-[640px] 4xl:max-h-[800px]"
                                 />
                             </div>
-
                         ))}
-                    </Slider>
-
-                    <div className="absolute bottom-0 flex flex-row  ml-[10px] mdx:ml-[20px] mdl:ml-[30px] mb-[30px] xl:mb-[35px]">
-                        <div className="text-[#ffff] lh text-[25px] max-w-[160px] md:max-w-[180px] mdx:max-w-[300px] mdl:max-w-[370px] md:text-[30px] mdx:text-[35px] mdl:text-[35px] xl:text-[30px] xl:max-w-[400px] 2xl:max-w-[400px] 3xl:text-[40px] break-words whitespace-normal">
-                            {equipment[currentSlide]?.name}
-                        </div>
-                    </div>
-                    <div className="absolute bottom-0 flex flex-row items-center  right-[5%] mb-[30px] xl:mb-[35px]">
-                        <div className="flex flex-row ml-auto transition-all duration-500">
-                            <button
-                                onClick={prevSlide}
-                                className="right-2 transform p-1 opacity-70 hover:opacity-100 z-10 w-[45px] md:w-[50px] mdx:w-[60px] mdl:w-[70px] 3xl:w-[80px]"
-                            >
-                                <Image
-                                    src={Left}
-                                    width={50}
-                                    height={50}
-                                    className="w-full h-auto"
-                                />
-                            </button>
-                            <button
-                                onClick={nextSlide}
-                                className="right-2 transform p-1 opacity-70 hover:opacity-100 z-10 w-[45px] md:w-[50px] mdx:w-[60px] mdl:w-[70px] 3xl:w-[80px]"
-                            >
-                                <Image
-                                    src={Right}
-                                    width={50}
-                                    height={50}
-                                    className="w-full h-auto"
-                                />
-                            </button>
-                        </div>
-                    </div>
-
-
-
+                    </Slider> */}
+                    {equipment.length > 0 && (
+                        <Image
+                            src={equipment[0].photo.url} // Display the first image as a static image
+                            alt="Banner"
+                            width={2000}
+                            height={1000}
+                            quality={100}
+                            layout="responsive"
+                            className="w-full h-full min-h-[485px] mdx:min-h-[606px] object-cover max-h-[640px] 4xl:max-h-[800px]"
+                        />
+                    )}
                 </div>
-
-
-
             </div>
             {isAskaQuestionModalOpen && <AskaQuestion closeModal={closeAskaQuestionModal} />}
         </div>

@@ -19,7 +19,7 @@ export default function Equipment() {
             <EquipmentScheme />
             <Category />
             <CasesSlider />
-            <ReviewsSlider />
+            {/* <ReviewsSlider /> */}
             {/* <PopularReviews /> */}
             <Contacts />
             <Application />
