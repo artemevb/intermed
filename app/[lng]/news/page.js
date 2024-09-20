@@ -6,8 +6,8 @@ import Application from "../_components/Main/Application";
 export default async function News() {
  
   return (
-    <div>
-      <Events />
+    <div className="pt-24">
+      {/* <Events /> */}
       <NewsComp />
       <Application />
     </div>
