@@ -47,7 +47,7 @@ const AccordionContent = ({ children }) => (
 );
 
 // Main CatalogList Component
-export default function CatalogList({ allCategories,  setCategoryID, setCatalogID, lng }) {
+export default function CatalogList({ allCategories, setCategoryID, setCatalogID, lng }) {
   const params = useParams();
   const [openSection, setOpenSection] = useState(null);
   const [selectedCatalogId, setSelectedCatalogId] = useState(null);
@@ -114,19 +114,21 @@ export default function CatalogList({ allCategories,  setCategoryID, setCatalogI
           {catalogs.length > 0 && (
             <AccordionContent>
               <div className="flex flex-col gap-5 text-lg font-semibold text-[#252324] w-full">
-                {catalogs.map(catalogItem => (
-                  <div
-                    key={catalogItem.id}
-                    className={`cursor-pointer ${
-                      selectedCatalogId === catalogItem.id
-                        ? 'text-red-500'
-                        : 'text-black'
-                    }`}
-                    onClick={() => handleCatalogClick(catalogItem.id)}
-                  >
-                    {catalogItem.name}
-                  </div>
-                ))}
+                {catalogs
+                  .sort((a, b) => a.id - b.id) // Sort catalogs by id in ascending order
+                  .map(catalogItem => (
+                    <div
+                      key={catalogItem.id}
+                      className={`cursor-pointer ${selectedCatalogId === catalogItem.id
+                          ? 'text-red-500'
+                          : 'text-black'
+                        }`}
+                      onClick={() => handleCatalogClick(catalogItem.id)}
+                    >
+                      {catalogItem.name}
+                    </div>
+                  ))}
+
               </div>
             </AccordionContent>
           )}

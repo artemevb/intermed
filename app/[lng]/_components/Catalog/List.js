@@ -29,14 +29,14 @@ export default function List({ data, allCategories }) {
 	const [productWithCatalogID, setProductWithCatalogID] = useState([])
 	const [productWithCategoryId, setProductWithCategoryId] = useState([])
 
-	// Состояния для загрузки и проверки наличия данных
-	const [loading, setLoading] = useState(false)
+	// Loading and no data states
+	const [loading, setLoading] = useState(true)
 	const [noData, setNoData] = useState(false)
 
-	// Новый стейт для фильтрованных категорий с товарами
+	// State for categories with products
 	const [categoriesWithProducts, setCategoriesWithProducts] = useState([]);
 
-	// Таймер на 3 секунды для проверки загрузки
+	// Timer to check loading state
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			if (loading) {
@@ -50,6 +50,7 @@ export default function List({ data, allCategories }) {
 	// Fetch products and filter categories/subcategories without products
 	useEffect(() => {
 		const fetchProducts = async () => {
+			setLoading(true)
 			try {
 				const allCategoriesWithProducts = await Promise.all(
 					allCategories.map(async (category) => {
@@ -58,12 +59,10 @@ export default function List({ data, allCategories }) {
 						);
 						const products = response.data.data;
 
-						// Если в категории есть товары или есть подкатегории с товарами, оставляем категорию
 						if (products.length > 0) {
 							return { ...category, products };
 						}
 
-						// Фильтруем подкатегории
 						const subcategoriesWithProducts = await Promise.all(
 							category.subcategories.map(async (subcategory) => {
 								const subcategoryResponse = await axios.get(
@@ -71,7 +70,6 @@ export default function List({ data, allCategories }) {
 								);
 								const subcategoryProducts = subcategoryResponse.data.data;
 
-								// Если в подкатегории есть товары, возвращаем подкатегорию
 								if (subcategoryProducts.length > 0) {
 									return { ...subcategory, products: subcategoryProducts };
 								}
@@ -89,10 +87,11 @@ export default function List({ data, allCategories }) {
 					})
 				);
 
-				// Оставляем только категории и подкатегории с товарами
 				setCategoriesWithProducts(allCategoriesWithProducts.filter(Boolean));
 			} catch (error) {
 				console.error('Error fetching products:', error);
+			} finally {
+				setLoading(false)
 			}
 		};
 
@@ -102,58 +101,58 @@ export default function List({ data, allCategories }) {
 	// Fetch products based on catalog ID
 	useEffect(() => {
 		const fetchProductWithCatalogID = async () => {
-		  if (catalogID) {
-			setLoading(true); // Start loading
-			try {
-			  const response = await axios.get(
-				`https://imed.uz/api/v1/product?catalog-id=${catalogID}`,
-				{
-				  headers: { 'Accept-Language': lng },
+			if (catalogID) {
+				setLoading(true);
+				try {
+					const response = await axios.get(
+						`https://imed.uz/api/v1/product?catalog-id=${catalogID}`,
+						{
+							headers: { 'Accept-Language': lng },
+						}
+					);
+					setProductWithCatalogID(response.data.data);
+					setProductWithCategoryId([]);
+					setNoData(false);
+				} catch (error) {
+					console.error('Failed to fetch products by catalog ID:', error.message);
+					setProductWithCatalogID([]);
+					setNoData(true);
+				} finally {
+					setLoading(false);
 				}
-			  );
-			  setProductWithCatalogID(response.data.data);
-			  setProductWithCategoryId([]); // Clear products by category when fetching by catalog
-			  setLoading(false); // End loading
-			  setNoData(false); // Reset no data state
-			} catch (error) {
-			  console.error('Failed to fetch products by catalog ID:', error.message);
-			  setProductWithCatalogID([]);
-			  setLoading(false); // End loading on error
-			  setNoData(true); // Indicate no data available
 			}
-		  }
 		};
-	
+
 		fetchProductWithCatalogID();
-	  }, [catalogID, lng]);
+	}, [catalogID, lng]);
 
 	// Fetch products based on category ID
 	useEffect(() => {
 		const fetchProductWithCategoryID = async () => {
-		  if (categoryID) {
-			setLoading(true); // Start loading
-			try {
-			  const response = await axios.get(
-				`https://imed.uz/api/v1/product?category-id=${categoryID}`,
-				{
-				  headers: { 'Accept-Language': lng },
+			if (categoryID) {
+				setLoading(true);
+				try {
+					const response = await axios.get(
+						`https://imed.uz/api/v1/product?category-id=${categoryID}`,
+						{
+							headers: { 'Accept-Language': lng },
+						}
+					);
+					setProductWithCategoryId(response.data.data);
+					setProductWithCatalogID([]);
+					setNoData(false);
+				} catch (error) {
+					console.error('Failed to fetch products by category ID:', error.message);
+					setProductWithCategoryId([]);
+					setNoData(true);
+				} finally {
+					setLoading(false);
 				}
-			  );
-			  setProductWithCategoryId(response.data.data);
-			  setProductWithCatalogID([]); // Clear products by catalog when fetching by category
-			  setLoading(false); // End loading
-			  setNoData(false); // Reset no data state
-			} catch (error) {
-			  console.error('Failed to fetch products by category ID:', error.message);
-			  setProductWithCategoryId([]);
-			  setLoading(false); // End loading on error
-			  setNoData(true); // Indicate no data available
 			}
-		  }
 		};
-	
+
 		fetchProductWithCategoryID();
-	  }, [categoryID, lng]);
+	}, [categoryID, lng]);
 
 	// Initialize filtered data based on the selected category
 	useEffect(() => {
@@ -174,8 +173,7 @@ export default function List({ data, allCategories }) {
 				setFilteredData(items)
 				break
 		}
-	
-    }, [productWithCatalogID, productWithCategoryId, selectedCategory])
+	}, [productWithCatalogID, productWithCategoryId, selectedCategory])
 
 	// Handle category selection
 	const handleFilter = useCallback(
@@ -208,18 +206,14 @@ export default function List({ data, allCategories }) {
 	// Handle catalog opening logic
 	const handleCatalogOpen = useCallback(id => {
 		setCatalogID(id);
-		setCategoryID(0); // Reset categoryID when a new catalog is selected
-	  }, []);
-	
+		setCategoryID(0);
+	}, []);
+
 	// Toggle category modal
 	const handleClose = () => setCategoryModal(false)
 
-	// Load more items
-	const handleLoadMore = () => setDisplayAll(true)
-
 	// Get filtered data for rendering
-	const getFilteredData = () =>
-		displayAll ? filteredData : filteredData.slice(0, 10)
+	const getFilteredData = () => filteredData // Remove pagination logic
 
 	// Category definitions for filtering
 	const categories = [
@@ -228,7 +222,6 @@ export default function List({ data, allCategories }) {
 		{ title: t('promotions'), slug: 'promotions' },
 	]
 
-	
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col lg:gap-[43px] gap-5 px-2 py-24'>
 			{categoryModal && (
@@ -266,9 +259,10 @@ export default function List({ data, allCategories }) {
 										onClick={() => handleFilter(slug)}
 										key={slug}
 										className={`z-10 w-auto text-lg transition-text font-semibold ${selectedCategory === slug
-											? 'text-redMain border-b-2 border-b-redMain'
-											: 'text-neutral-400'
-											}`}>
+												? 'text-redMain border-b-2 border-b-redMain'
+												: 'text-neutral-400'
+											}`}
+									>
 										<h3 className='my-2 whitespace-nowrap'>{title}</h3>
 									</button>
 								))}
@@ -282,7 +276,7 @@ export default function List({ data, allCategories }) {
 			<div className='w-full flex gap-10 max-lg:justify-center'>
 				<div className='w-full max-w-[350px] max-2xl:max-w-[280px] max-lg:hidden'>
 					<CatalogList
-						data={categoriesWithProducts} // Используем категории с товарами
+						data={categoriesWithProducts}
 						allCategories={allCategories}
 						onCatalogOpen={handleCatalogOpen}
 						setCategoryID={setCategoryID}
@@ -291,7 +285,6 @@ export default function List({ data, allCategories }) {
 				</div>
 				<div>
 					<div className='w-full grid grid-cols-2 3xl:grid-cols-3 gap-3 mdx:gap-4'>
-						{/* Проверяем статус загрузки */}
 						{loading ? (
 							<div className='w-full flex flex-col items-center justify-center lg:mb-[-300px] lg:ml-[350%]'>
 								<DNA
@@ -332,16 +325,6 @@ export default function List({ data, allCategories }) {
 							))
 						)}
 					</div>
-					{!displayAll && filteredData.length > 10 && (
-						<div className='flex justify-center mt-[50px] mdx:mt-[70px]'>
-							<button
-								className='border p-3 text-[14px] mdx:text-[16px] px-[50px] hover:bg-[#F9D2D3] font-bold'
-								onClick={handleLoadMore}
-							>
-								{t('load')}
-							</button>
-						</div>
-					)}
 				</div>
 			</div>
 		</div>
