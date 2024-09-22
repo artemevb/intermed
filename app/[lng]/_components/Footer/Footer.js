@@ -39,7 +39,7 @@ export default function Footer({ lng }) {
                   width={1000}
                   height={1000}
                   quality={100}
-                  alt="Mrj Logo Big"
+                  alt="Imed Logo Big"
                   className="w-48 "
                 />
               </a>
