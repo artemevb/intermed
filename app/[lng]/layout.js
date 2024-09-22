@@ -14,27 +14,31 @@ export async function generateStaticParams() {
 
 // Используем функцию generateMetadata для добавления мета-тегов
 export function generateMetadata({ params: { lng } }) {
+    const title = "Медицинское оборудование в Ташкенте — Intermed Innovation";
+    const description =
+        "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.";
+
+    const imageUrl = '/og.jpg'; // Используем относительный путь
+
     return {
         title: {
             template: "%s",
-            default: "Медицинское оборудование в Ташкенте — Intermed Innovation",
+            default: title,
         },
-        description:
-            "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
+        description: description,
         icons: {
             icon: "/favicon.ico",
             apple: "/apple-touch-icon.png",
         },
         manifest: "/manifest.json",
         openGraph: {
-            title: "Медицинское оборудование в Ташкенте — Intermed Innovation",
-            description:
-                "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
-            url: "https://imed.uz/",
+            title: title,
+            description: description,
+            url: "/", // Относительный путь
             siteName: "Intermed Innovation",
             images: [
                 {
-                    url: "https://imed.uz/og.jpg",
+                    url: imageUrl,
                     width: 800,
                     height: 600,
                 },
@@ -44,14 +48,14 @@ export function generateMetadata({ params: { lng } }) {
         },
         twitter: {
             card: "summary_large_image",
-            title: "Медицинское оборудование в Ташкенте — Intermed Innovation",
-            description:
-                "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
-            images: ["https://imed.uz/og.jpg"],
+            title: title,
+            description: description,
+            images: [imageUrl],
         },
         themeColor: "#ffffff",
     };
 }
+
 
 export default function RootLayout({
     children,
