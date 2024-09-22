@@ -4,48 +4,66 @@ import Header from './_components/Header/Header';
 import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
-import Head from 'next/head'; // Подключаем next/head
+// Удаляем импорт Head из 'next/head'
 import ErrorBoundary from '@/app/[lng]/_components/ErrorBoundary';
+import Script from 'next/script'; // Подключаем next/script для скриптов
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
-export const metadata = {
-    title: {
-        template: "%s",
-        default: "Медицинское оборудование в Ташкенте — Intermed Innovation"
-    },
-    description: "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
-    icons: {
-        icon: [
-            '/favicon.ico'
-        ]
-    },
-};
+// Используем функцию generateMetadata для добавления мета-тегов
+export function generateMetadata({ params: { lng } }) {
+    return {
+        title: {
+            template: "%s",
+            default: "Медицинское оборудование в Ташкенте — Intermed Innovation",
+        },
+        description:
+            "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
+        icons: {
+            icon: "/favicon.ico",
+            apple: "/apple-touch-icon.png",
+        },
+        manifest: "/manifest.json",
+        openGraph: {
+            title: "Медицинское оборудование в Ташкенте — Intermed Innovation",
+            description:
+                "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
+            url: "https://imed.uz/",
+            siteName: "Intermed Innovation",
+            images: [
+                {
+                    url: "https://imed.uz/og.jpg",
+                    width: 800,
+                    height: 600,
+                },
+            ],
+            locale: lng,
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "Медицинское оборудование в Ташкенте — Intermed Innovation",
+            description:
+                "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
+            images: ["https://imed.uz/og.jpg"],
+        },
+        themeColor: "#ffffff",
+    };
+}
 
 export default function RootLayout({
     children,
-    params: {
-        lng
-    }
+    params: { lng },
 }) {
     return (
         <html lang={lng} dir={dir(lng)}>
-            <Head>
-                <link rel="manifest" href="/manifest.json" />
-                <meta property="og:title" content="Медицинское оборудование в Ташкенте — Intermed Innovation" />
-                <meta property="og:description" content="Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану." />
-                <meta property="og:image" content="https://imed.uz/og.jpg" />
-                <meta property="og:url" content="https://imed.uz/" />
-                <meta property="og:type" content="website" />
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Медицинское оборудование в Ташкенте — Intermed Innovation" />
-                <meta name="twitter:description" content="Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану." />
-                <meta name="twitter:image" content="https://imed.uz/og.jpg" />
-                <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></link>
-                <meta name="theme-color" content="#ffffff" />
-                <script
+            <body>
+                {/* Google Tag Manager */}
+                <Script
+                    id="gtm-script"
+                    strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `
                             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -56,8 +74,6 @@ export default function RootLayout({
                         `,
                     }}
                 />
-            </Head>
-            <body>
                 <noscript>
                     <iframe
                         src="https://www.googletagmanager.com/ns.html?id=GTM-MDWVM3M"
@@ -75,4 +91,3 @@ export default function RootLayout({
         </html>
     );
 }
-
