@@ -34,7 +34,7 @@ export function generateMetadata({ params: { lng } }) {
             siteName: "Intermed Innovation",
             images: [
                 {
-                    url: "https://imed.uz/og.jpg",
+                    url: "https://imed.uz/intermed-logo.png",
                     width: 800,
                     height: 600,
                 },
@@ -47,7 +47,7 @@ export function generateMetadata({ params: { lng } }) {
             title: "Медицинское оборудование в Ташкенте — Intermed Innovation",
             description:
                 "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
-            images: ["https://imed.uz/og.jpg"],
+            images: ["https://imed.uz/intermed-logo.png"],
         },
         themeColor: "#ffffff",
     };
