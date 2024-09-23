@@ -4,50 +4,37 @@ import Header from './_components/Header/Header';
 import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
+// Удаляем импорт Head из 'next/head'
 import ErrorBoundary from '@/app/[lng]/_components/ErrorBoundary';
-import Script from 'next/script';
-import { headers } from 'next/headers'; // Импортируем headers для доступа к заголовкам
+import Script from 'next/script'; // Подключаем next/script для скриптов
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
+// Используем функцию generateMetadata для добавления мета-тегов
 export function generateMetadata({ params: { lng } }) {
-    const title = "Медицинское оборудование в Ташкенте — Intermed Innovation";
-    const description =
-        "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.";
-
-    // Получаем хост из заголовков
-    const headersList = headers();
-    const host = headersList.get('host');
-
-    // Определяем протокол
-    const protocol = host.includes('localhost') ? 'http' : 'https';
-
-    // Формируем базовый URL
-    const baseUrl = `${protocol}://${host}`;
-
-    const imageUrl = `${baseUrl}/og.jpg`; // Абсолютный URL изображения
-
     return {
         title: {
             template: "%s",
-            default: title,
+            default: "Медицинское оборудование в Ташкенте — Intermed Innovation",
         },
-        description: description,
+        description:
+            "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
         icons: {
             icon: "/favicon.ico",
             apple: "/apple-touch-icon.png",
         },
         manifest: "/manifest.json",
         openGraph: {
-            title: title,
-            description: description,
-            url: `${baseUrl}${lng !== fallbackLng ? `/${lng}` : ''}`, // Абсолютный URL страницы
+            title: "Медицинское оборудование в Ташкенте — Intermed Innovation",
+            description:
+                "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
+            url: "https://imed.uz/",
             siteName: "Intermed Innovation",
             images: [
                 {
-                    url: imageUrl,
+                    url: "https://imed.uz/og.jpg",
                     width: 800,
                     height: 600,
                 },
@@ -57,9 +44,10 @@ export function generateMetadata({ params: { lng } }) {
         },
         twitter: {
             card: "summary_large_image",
-            title: title,
-            description: description,
-            images: [imageUrl],
+            title: "Медицинское оборудование в Ташкенте — Intermed Innovation",
+            description:
+                "Компания Intermed Innovation представляет широкий ассортимент медицинского оборудования по доступным ценам. Осуществляем доставку медоборудования по всему Узбекистану.",
+            images: ["https://imed.uz/og.jpg"],
         },
         themeColor: "#ffffff",
     };
