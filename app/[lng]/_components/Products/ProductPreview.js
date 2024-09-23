@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import Image from "next/image";
-import { useTranslation } from '../../../i18n/client'
+import { useTranslation } from '../../../i18n/client';
 import { useState, useEffect } from "react";
 import { useLanguage } from '../../../i18n/locales/LanguageContext';
 import VerticalCarousel from "./ProductCarousel";
@@ -11,7 +11,7 @@ import Head from 'next/head';
 
 export default function ProductPreview({ productData }) {
   const lng = useLanguage();
-  const { t } = useTranslation(lng, 'product-main')
+  const { t } = useTranslation(lng, 'product-main');
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -29,8 +29,8 @@ export default function ProductPreview({ productData }) {
         {line}
         <br />
       </span>
-    ))
-  }
+    ));
+  };
 
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -100,7 +100,7 @@ export default function ProductPreview({ productData }) {
               src={productData.brand.logo.url}
               width={400}
               height={400}
-              alt="Mindray"
+              alt={productData.brand.name}
               quality={100}
               className="w-[150px]"
             />
@@ -124,7 +124,8 @@ export default function ProductPreview({ productData }) {
             </button>
           </div>
         </div>
-        {isModalOpen && <SignUpForEvent closeModal={handleCloseModal} />}
+        {/* Передаем productData в качестве пропса product */}
+        {isModalOpen && <SignUpForEvent product={productData} closeModal={handleCloseModal} />}
       </div>
     </>
   );

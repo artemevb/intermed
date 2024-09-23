@@ -7,7 +7,7 @@ export default async function News() {
  
   return (
     <div className="pt-24">
-      {/* <Events /> */}
+      <Events />
       <NewsComp />
       <Application />
     </div>

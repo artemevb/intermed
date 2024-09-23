@@ -14,10 +14,11 @@ export default function SignUpForEvent({ product, closeModal }) {
         name: "",
         phone: "",
         email: "",
+        city: "", // Добавлено поле city
         proposal: "",
     });
 
-    const [isSubmitted, setIsSubmitted] = useState(false); // New state for submission tracking
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -31,34 +32,27 @@ export default function SignUpForEvent({ product, closeModal }) {
         const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
         return storedFavorites.map((item) => ({
             name: item.title,
-            link: `https://imed.uz/api/v1/product/${item.slug}`,
+            link: `https://imed.uz/products/${item.slug}`,
         }));
     };
 
     const handleSendClick = async (e) => {
-        e.preventDefault(); // Prevent form from reloading the page
-        const productLinks = prepareProductLinks();
+        e.preventDefault();
+        const productLinks = product ? [
+            {
+                name: product.name,
+                link: `https://imed.uz/products/${product.slug}`,
+            },
+        ] : prepareProductLinks();
 
-        const requestBody = !product
-            ? {
-                name: form.name,
-                phone: form.phone,
-                mail: form.email,
-                message: form.proposal,
-                productLink: productLinks,
-            }
-            : {
-                name: form.name,
-                phone: form.phone,
-                mail: form.email,
-                message: form.proposal,
-                productLink: [
-                    {
-                        name: product.name,
-                        link: `https://imed.uz/api/v1/product/${product.slug}`,
-                    },
-                ],
-            };
+        const requestBody = {
+            name: form.name,
+            phone: form.phone,
+            mail: form.email,
+            city: form.city, // Добавляем city в запрос
+            message: form.proposal,
+            productLink: productLinks,
+        };
 
         try {
             const response = await fetch("https://imed.uz/api/v1/commercial-offer", {
@@ -74,9 +68,10 @@ export default function SignUpForEvent({ product, closeModal }) {
                     name: "",
                     phone: "",
                     email: "",
+                    city: "",
                     proposal: "",
                 });
-                setIsSubmitted(true); // Show modal after successful submission
+                setIsSubmitted(true);
             } else {
                 console.error("Error sending commercial offer");
             }
@@ -86,8 +81,8 @@ export default function SignUpForEvent({ product, closeModal }) {
     };
 
     const closeQuestionSentModal = () => {
-        setIsSubmitted(false); // Function to close the QuestionSent modal
-        closeModal(false); // Close the parent modal
+        setIsSubmitted(false);
+        closeModal(false);
     };
 
     return (
@@ -127,7 +122,7 @@ export default function SignUpForEvent({ product, closeModal }) {
                             />
                             <label
                                 htmlFor="name"
-                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.name ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.name ? "hidden" : ""} peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
                             >
                                 {t("fio")}
                                 <span className="text-red-500">*</span>
@@ -146,7 +141,7 @@ export default function SignUpForEvent({ product, closeModal }) {
                             />
                             <label
                                 htmlFor="phone"
-                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.phone ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.phone ? "hidden" : ""} peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
                             >
                                 {t("phone-number")}
                                 <span className="text-red-500">*</span>
@@ -164,9 +159,26 @@ export default function SignUpForEvent({ product, closeModal }) {
                             />
                             <label
                                 htmlFor="email"
-                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.email ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.email ? "hidden" : ""} peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
                             >
                                 E-mail
+                            </label>
+                        </div>
+                        <div className="relative mb-4">
+                            <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                value={form.city}
+                                onChange={handleChange}
+                                className="block w-full py-3 bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#E31E24] peer"
+                                placeholder=" "
+                            />
+                            <label
+                                htmlFor="city"
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.city ? "hidden" : ""} peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                            >
+                                {t("city")}
                             </label>
                         </div>
                         <div className="relative mb-4">
@@ -181,7 +193,7 @@ export default function SignUpForEvent({ product, closeModal }) {
                             />
                             <label
                                 htmlFor="proposal"
-                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.proposal ? "hidden" : ""} peer-focus:opacity-0 peer-placeholder-shown:top-1/2 peer-placeholder-shown:transform peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
+                                className={`absolute left-0 top-3 text-gray-500 transition-all duration-200 ease-in-out ${form.proposal ? "hidden" : ""} peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-3 peer-focus:-translate-y-1/2 peer-focus:text-[#E31E24]`}
                             >
                                 {t("your-proposal")}
                             </label>
