@@ -1,19 +1,12 @@
-// app/[lng]/products/[slug]/page.js
-
+// pages/products/[slug]/page.js
 import axios from 'axios';
-import Application from '../../_components/Main/Application';
-import ProductInfo from '../../_components/Products/ProductInfo';
-import Recenzii from '../../_components/Products/Recenzii';
-import Similar from '../../_components/Products/Similar';
-import VideoReview from '../../_components/Products/VideoReview';
+import ProductPageContent from '../ProductPageContent';
 
-// Функция для генерации мета-тегов на основе данных продукта
 export async function generateMetadata({ params }) {
   const { slug, lng } = params;
 
   let productData = null;
 
-  // Получение данных о продукте
   try {
     const response = await axios.get(`https://imed.uz/api/v1/product/${slug}`, {
       headers: {
@@ -32,8 +25,6 @@ export async function generateMetadata({ params }) {
 
   if (productData) {
     const availability = productData.active ? 'instock' : 'outofstock';
-
-    // Используем URL изображения продукта или уменьшенную версию
     const imageUrl = productData.gallery[0]?.url || '/default-image.jpg';
 
     return {
@@ -47,8 +38,8 @@ export async function generateMetadata({ params }) {
           {
             url: imageUrl,
             alt: productData.name,
-            width: 60,  // Укажите желаемую ширину
-            height: 60, // Укажите желаемую высоту
+            width: 60,
+            height: 60,
           },
         ],
         type: 'website',
@@ -68,13 +59,11 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  // Резервный вариант
   return {
     title: 'Продукт не найден',
     description: 'Продукт не найден или произошла ошибка.',
   };
 }
-
 
 export default async function Page({ params }) {
   const { slug, lng } = params;
@@ -82,7 +71,6 @@ export default async function Page({ params }) {
   let productData = null;
   let similarProducts = [];
 
-  // ЗАПРОС НА ПОЛУЧЕНИЕ ПРОДУКТА ПО SLUG
   try {
     const response = await axios.get(`https://imed.uz/api/v1/product/${slug}`, {
       headers: {
@@ -95,7 +83,6 @@ export default async function Page({ params }) {
     console.error('Не удалось получить данные о продукте:', error);
   }
 
-  // ЗАПРОС НА ПОЛУЧЕНИЕ ПОХОЖИХ ПРОДУКТОВ
   try {
     const response = await axios.get(`https://imed.uz/api/v1/product/${slug}?similar=true`, {
       headers: {
@@ -108,7 +95,6 @@ export default async function Page({ params }) {
     console.error('Не удалось получить похожие продукты:', error);
   }
 
-  // Если данные о продукте не получены, можно вернуть страницу 404 или сообщение об ошибке
   if (!productData) {
     return (
       <div>
@@ -119,20 +105,6 @@ export default async function Page({ params }) {
   }
 
   return (
-    <div className="w-full bg-white flex flex-col gap-[120px] mdx:gap-[150px] mdl:gap-[180px] 2xl:gap-[200px] pt-12 ">
-      {productData && <ProductInfo productData={productData.data} />}
-
-      {productData && productData.data?.videos?.length > 0 && (
-        <VideoReview videos={productData.data.videos} />
-      )}
-
-      {productData && productData.data?.reviews?.length > 0 && (
-        <Recenzii reviews={productData.data.reviews} />
-      )}
-
-      {similarProducts.length > 0 && <Similar similarProducts={similarProducts} />}
-
-      <Application />
-    </div>
+    <ProductPageContent productData={productData.data} similarProducts={similarProducts} />
   );
 }
