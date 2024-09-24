@@ -1,3 +1,5 @@
+// app/[lng]/products/[slug]/page.js
+
 import axios from 'axios';
 import Application from '../../_components/Main/Application';
 import ProductInfo from '../../_components/Products/ProductInfo';
@@ -11,7 +13,7 @@ export async function generateMetadata({ params }) {
 
   let productData = null;
 
-  // Fetch product data
+  // Получение данных о продукте
   try {
     const response = await axios.get(`https://imed.uz/api/v1/product/${slug}`, {
       headers: {
@@ -21,47 +23,55 @@ export async function generateMetadata({ params }) {
 
     productData = response.data.data;
   } catch (error) {
-    console.error('Failed to fetch product data:', error);
+    console.error('Не удалось получить данные о продукте:', error);
     return {
-      title: 'Product not found',
-      description: 'Product not found or an error occurred.',
+      title: 'Продукт не найден',
+      description: 'Продукт не найден или произошла ошибка.',
     };
   }
 
-  // Ensure productData exists before accessing its properties
+  // Убедимся, что productData существует перед доступом к его свойствам
   if (productData) {
-    // Define the availability based on 'active' status
+    // Определяем доступность на основе статуса 'active'
     const availability = productData.active ? 'instock' : 'outofstock';
 
     return {
-      title: `${productData.name} — Buy the device in Tashkent`,
-      description: productData.shortDescription || 'Description not available',
+      title: `${productData.name} — Купить в Ташкенте`,
+      description: productData.shortDescription || 'Описание недоступно',
       openGraph: {
-        title: `${productData.name} — Buy the device in Tashkent`,
-        description: productData.shortDescription || 'Description not available',
-        url: `https://imed.uz/products/${productData.slug}`,
+        title: `${productData.name} — Купить в Ташкенте`,
+        description: productData.shortDescription || 'Описание недоступно',
+        url: `https://imed.uz/${lng}/products/${productData.slug}`,
         images: [
           {
             url: productData.gallery[0]?.url || '/default-image.jpg',
             alt: productData.name,
           },
         ],
-        type: 'website',
+        type: 'website', // Изменили тип на 'website'
         siteName: 'Intermed Innovation',
-        // Add the availability meta tag
-        availability: availability, // Correctly defined availability here
       },
-      keywords: `${productData.name}`,
+      twitter: {
+        card: 'summary_large_image',
+        title: `${productData.name} — Купить в Ташкенте`,
+        description: productData.shortDescription || 'Описание недоступно',
+        images: [productData.gallery[0]?.url || '/default-image.jpg'],
+      },
+      keywords: productData.name,
+      // Добавляем пользовательские метатеги через 'other'
+      other: {
+        'product:availability': availability,
+        'og:type': 'product', // Добавляем тип 'product' вручную
+      },
     };
   }
 
-  // Fallback in case productData is null
+  // Резервный вариант в случае отсутствия данных о продукте
   return {
-    title: 'Product not found',
-    description: 'Product not found or an error occurred.',
+    title: 'Продукт не найден',
+    description: 'Продукт не найден или произошла ошибка.',
   };
 }
-
 
 export default async function Page({ params }) {
   const { slug, lng } = params;
@@ -93,6 +103,16 @@ export default async function Page({ params }) {
     similarProducts = response.data?.data || [];
   } catch (error) {
     console.error('Не удалось получить похожие продукты:', error);
+  }
+
+  // Если данные о продукте не получены, можно вернуть страницу 404 или сообщение об ошибке
+  if (!productData) {
+    return (
+      <div>
+        <h1>Продукт не найден</h1>
+        <p>Извините, запрошенный продукт не найден.</p>
+      </div>
+    );
   }
 
   return (
