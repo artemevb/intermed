@@ -7,6 +7,7 @@ import { useTranslation } from '../../../i18n/client';
 import searchIcon from "@/public/svg/tools/search-icon-red-for-search.svg";
 import close from "@/public/svg/close.svg";
 import arrow from "@/public/svg/tools/arrow-red-right.svg";
+import Link from 'next/link';
 
 export default function Search({ setSearchMenu }) {
   const lng = useLanguage();
@@ -155,7 +156,7 @@ export default function Search({ setSearchMenu }) {
                   </p>
                 )}
                 {results.map((item) => (
-                  <a
+                  <Link
                     key={item.id}
                     href={getLink(item, lng)}
                     className="bg-white border-b border-[#E1E1E1] flex gap-4 w-full"
@@ -191,7 +192,7 @@ export default function Search({ setSearchMenu }) {
                           )}
                         </div>
                       </div>
-                      <a href={getLink(item, lng)} className="self-center ml-auto">
+                      <Link href={getLink(item, lng)} className="self-center ml-auto">
                         <button className="text-[#E31E24] px-4 py-2 font-extrabold flex items-center">
                           <span className="mdx:hidden">
                             <Image
@@ -215,9 +216,9 @@ export default function Search({ setSearchMenu }) {
                             />
                           </span>
                         </button>
-                      </a>
+                      </Link>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
 
