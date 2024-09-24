@@ -62,9 +62,6 @@ export default function Search({ setSearchMenu }) {
       case 'Category':
         url = `/categories/catalog/${item.slug}`;
         break;
-      // case 'Catalog':
-      //   url = `/categories/catalog/${item.slug}`;
-      //   break;
       case 'New':
         url = `/news/${item.slug}`;
         break;
@@ -89,8 +86,6 @@ export default function Search({ setSearchMenu }) {
         return 'News';
       case 'Partner':
         return 'Partner';
-      // case 'Catalog':
-      //   return 'Catalog';
       default:
         return '';
     }
@@ -158,7 +153,8 @@ export default function Search({ setSearchMenu }) {
                 {results.map((item) => (
                   <Link
                     key={item.id}
-                    href={getLink(item, lng)}
+                    href={getLink(item)}
+                    onClick={closeModal} // Add this line
                     className="bg-white border-b border-[#E1E1E1] flex gap-4 w-full"
                   >
                     {item.photo && item.photo.url && (
@@ -192,7 +188,7 @@ export default function Search({ setSearchMenu }) {
                           )}
                         </div>
                       </div>
-                      <Link href={getLink(item, lng)} className="self-center ml-auto">
+                      <div className="self-center ml-auto">
                         <button className="text-[#E31E24] px-4 py-2 font-extrabold flex items-center">
                           <span className="mdx:hidden">
                             <Image
@@ -216,12 +212,11 @@ export default function Search({ setSearchMenu }) {
                             />
                           </span>
                         </button>
-                      </Link>
+                      </div>
                     </div>
                   </Link>
                 ))}
               </div>
-
             </div>
           </div>
         </div>
