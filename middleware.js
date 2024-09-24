@@ -5,21 +5,11 @@ import { fallbackLng, languages, cookieName } from './app/i18n/settings'
 acceptLanguage.languages(languages)
 
 export const config = {
-  matcher: [
-    '/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)'
-  ],
+  // matcher: '/:lng*'
+  matcher: ['/((?!api|_next/static|_next/image|assets|favicon.ico|sw.js|site.webmanifest).*)']
 }
 
 export function middleware(req) {
-  const { pathname } = req.nextUrl;
-
-  // Исключаем статические файлы и продукты из обработки middleware
-  const isPublicFile = /\.(.*)$/.test(pathname);
-  const isProductRoute = pathname.startsWith('/products');
-  if (isPublicFile || isProductRoute) {
-    return NextResponse.next();
-  }
-
   let lng
   if (req.cookies.has(cookieName)) {
     lng = acceptLanguage.get(req.cookies.get(cookieName).value)
@@ -31,19 +21,17 @@ export function middleware(req) {
     lng = fallbackLng
   }
 
-  // Перенаправляем, если путь не содержит поддерживаемый языковой префикс
+  // Redirect if lng in path is not supported
   if (
-    !languages.some((loc) => pathname.startsWith(`/${loc}`)) &&
-    !pathname.startsWith('/_next')
+    !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
+    !req.nextUrl.pathname.startsWith('/_next')
   ) {
-    return NextResponse.redirect(new URL(`/${lng}${pathname}`, req.url))
+    return NextResponse.redirect(new URL(`/${lng}${req.nextUrl.pathname}`, req.url))
   }
 
   if (req.headers.has('referer')) {
     const refererUrl = new URL(req.headers.get('referer'))
-    const lngInReferer = languages.find((l) =>
-      refererUrl.pathname.startsWith(`/${l}`)
-    )
+    const lngInReferer = languages.find((l) => refererUrl.pathname.startsWith(`/${l}`))
     const response = NextResponse.next()
     if (lngInReferer) {
       response.cookies.set(cookieName, lngInReferer)
