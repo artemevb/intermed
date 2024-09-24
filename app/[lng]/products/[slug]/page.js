@@ -30,10 +30,11 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  // Убедимся, что productData существует перед доступом к его свойствам
   if (productData) {
-    // Определяем доступность на основе статуса 'active'
     const availability = productData.active ? 'instock' : 'outofstock';
+
+    // Используем URL изображения продукта или уменьшенную версию
+    const imageUrl = productData.gallery[0]?.url || '/default-image.jpg';
 
     return {
       title: `${productData.name} — Купить в Ташкенте`,
@@ -44,34 +45,36 @@ export async function generateMetadata({ params }) {
         url: `https://imed.uz/${lng}/products/${productData.slug}`,
         images: [
           {
-            url: productData.gallery[0]?.url || '/default-image.jpg',
+            url: imageUrl,
             alt: productData.name,
+            width: 60,  // Укажите желаемую ширину
+            height: 60, // Укажите желаемую высоту
           },
         ],
-        type: 'website', // Изменили тип на 'website'
+        type: 'website',
         siteName: 'Intermed Innovation',
       },
       twitter: {
-        card: 'summary_large_image',
+        card: 'summary',
         title: `${productData.name} — Купить в Ташкенте`,
         description: productData.shortDescription || 'Описание недоступно',
-        images: [productData.gallery[0]?.url || '/default-image.jpg'],
+        images: [imageUrl],
       },
       keywords: productData.name,
-      // Добавляем пользовательские метатеги через 'other'
       other: {
         'product:availability': availability,
-        'og:type': 'product', // Добавляем тип 'product' вручную
+        'og:type': 'product',
       },
     };
   }
 
-  // Резервный вариант в случае отсутствия данных о продукте
+  // Резервный вариант
   return {
     title: 'Продукт не найден',
     description: 'Продукт не найден или произошла ошибка.',
   };
 }
+
 
 export default async function Page({ params }) {
   const { slug, lng } = params;
