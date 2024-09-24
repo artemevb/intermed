@@ -125,7 +125,7 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
                         }`}
                       onClick={() => handleCatalogClick(catalogItem.id)}
                     >
-                      {catalogItem.name}
+                      ggg
                     </div>
                   ))}
 

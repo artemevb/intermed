@@ -11,12 +11,13 @@ export const config = {
 }
 
 export function middleware(req) {
-  const { pathname } = req.nextUrl
+  const { pathname } = req.nextUrl;
 
-  // Исключаем статические файлы из обработки middleware
-  const isPublicFile = /\.(.*)$/.test(pathname)
-  if (isPublicFile) {
-    return NextResponse.next()
+  // Исключаем статические файлы и продукты из обработки middleware
+  const isPublicFile = /\.(.*)$/.test(pathname);
+  const isProductRoute = pathname.startsWith('/products');
+  if (isPublicFile || isProductRoute) {
+    return NextResponse.next();
   }
 
   let lng

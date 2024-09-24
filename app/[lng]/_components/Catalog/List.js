@@ -222,6 +222,8 @@ export default function List({ data, allCategories }) {
 		{ title: t('promotions'), slug: 'promotions' },
 	]
 
+	console.log("Category List", allCategories)
+
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col lg:gap-[43px] gap-5 px-2 py-24'>
 			{categoryModal && (

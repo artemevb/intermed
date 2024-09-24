@@ -73,7 +73,7 @@ export default function Events() {
 	
 
 	return (
-		<section className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-1 px-2'>
+		<section className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto flex flex-col gap-1 px-2 mb-[120px]'>
 			<a href={`/${lng}/events/`}>
 				<h2 className='text-3xl max-mdx:text-2xl font-bold flex items-center mt-[40px] uppercase'>
 					{t('title')}

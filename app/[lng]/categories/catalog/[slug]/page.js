@@ -27,6 +27,10 @@ export default async function Page({ params, searchParams }) {
 		.then(res => res.data.data)
 		.catch(() => [])
 
+
+		const filteredAllCategories = allCategories.filter((i) => i.active)
+		
+
 	return (
 		<div className='w-full bg-white flex flex-col'>
 			<List
