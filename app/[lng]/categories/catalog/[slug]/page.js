@@ -2,10 +2,9 @@ import axios from 'axios'
 import List from '../../../_components/Catalog/List'
 import Application from '../../../_components/Main/Application'
 
-// Server component for fetching data and rendering the page
 export default async function Page({ params, searchParams }) {
-	const { slug, lng } = params
-	const catalogID = searchParams?.catalogId || null
+	const { slug, lng } = params;
+	const catalogID = searchParams?.catalogId || null;
 
 	// Fetch all categories
 	const allCategories = await axios
@@ -14,8 +13,11 @@ export default async function Page({ params, searchParams }) {
 				'Accept-Language': lng,
 			},
 		})
-		.then(res => res.data.data)
-		.catch(() => [])
+		.then((res) => res.data.data)
+		.catch(() => []);
+
+	// **Отфильтруем категории, у которых active: true**
+	const activeCategories = allCategories.filter((category) => category.active);
 
 	// Fetch specific category by slug
 	const data = await axios
@@ -24,21 +26,18 @@ export default async function Page({ params, searchParams }) {
 				'Accept-Language': lng,
 			},
 		})
-		.then(res => res.data.data)
-		.catch(() => [])
-
-
-		const filteredAllCategories = allCategories.filter((i) => i.active)
-		
+		.then((res) => res.data.data)
+		.catch(() => []);
 
 	return (
-		<div className='w-full bg-white flex flex-col'>
+		<div className="w-full bg-white flex flex-col">
 			<List
 				Data={data}
-				allCategories={allCategories}
+				allCategories={activeCategories} // Передаем только активные категории
 				selectedCatalogId={catalogID}
 			/>
 			<Application />
 		</div>
-	)
+	);
 }
+

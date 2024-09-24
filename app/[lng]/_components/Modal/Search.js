@@ -123,7 +123,7 @@ export default function Search({ setSearchMenu }) {
               <div className="flex items-center px-2 py-[20px] mdx:py-7  w-full relative">
                 <button onClick={closeModal}>
                   <Image
-                  quality={100}
+                    quality={100}
                     src={close}
                     height={30}
                     width={30}
@@ -140,7 +140,7 @@ export default function Search({ setSearchMenu }) {
                 />
                 <button onClick={handleSearch} >
                   <Image
-                  quality={100}
+                    quality={100}
                     src={searchIcon}
                     height={30}
                     width={30}
@@ -163,7 +163,7 @@ export default function Search({ setSearchMenu }) {
                   >
                     {item.photo && item.photo.url && (
                       <Image
-                      quality={100}
+                        quality={100}
                         src={item.photo.url}
                         alt={item.name || item.title}
                         width={200}

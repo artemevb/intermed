@@ -7,7 +7,6 @@ import VerticalCarousel from "./ProductCarousel";
 import heartIcon from "@/public/svg/tools/heart-icon.svg";
 import heartIconFilled from "@/public/svg/main/fav-filled.svg";
 import SignUpForEvent from '../../_components/Modal/SendKp';
-// import Head from 'next/head';
 
 export default function ProductPreview({ productData }) {
   const lng = useLanguage();
@@ -60,21 +59,6 @@ export default function ProductPreview({ productData }) {
 
   return (
     <>
-      {/* <Head>
-
-        <title>{`${productData.name} — Купить в Ташкенте`}</title>
-        <meta name="description" content={productData.shortDescription} />
-        <meta name="keywords" content={productData.name} />
-
-
-        <meta property="og:title" content={`${productData.name} — Купить в Ташкенте`} />
-        <meta property="og:description" content={productData.shortDescription} />
-        <meta property="og:image" content={productData.gallery[0]?.url || '/default-image.jpg'} />
-        <meta property="og:url" content={`https://imed.uz/products/${productData.slug}`} />
-        <meta property="og:type" content="product" />
-        <meta property="og:availability" content="instock" />
-      </Head> */}
-
       <div className="w-full flex flex-col lg:flex-row">
         <div className="flex-1 w-full">
           <VerticalCarousel images={productData.gallery} name={productData.name} new={productData.new} />
