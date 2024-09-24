@@ -30,7 +30,6 @@ export default function RootLayout({
     return (
         <html lang={lng} dir={dir(lng)}>
             <body>
-                {/* Google Tag Manager */}
                 <Script
                     id="gtm-script"
                     strategy="afterInteractive"

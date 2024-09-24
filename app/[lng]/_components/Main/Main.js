@@ -1,5 +1,8 @@
-"use client"
-import Banner from "./Banner";
+// Main.js
+"use client"; // Объявляем, что это клиентский компонент
+
+import React from 'react';
+import Banner from './Banner';
 import Equipments from "./Equipments";
 import Scheme from "./Scheme";
 import FullEquipment from "./FullEquipment";
@@ -11,16 +14,16 @@ import News from "./News";
 import Sertificates from "./Sertificates";
 import Contacts from "./Contacts";
 
-export default function Main() {
+export default function Main({ banners }) { // Принимаем баннеры через пропсы
 
   const closeModal = () => {
-
+    // Реализация функции закрытия модального окна
   };
 
   return (
     <div className="w-full bg-white flex flex-col gap-28 xl:gap-36">
       <div className="flex w-full flex-col gap-12 lg:gap-[130px]">
-        <Banner />
+        <Banner banners={banners} /> {/* Передаём баннеры в BannerCarousel */}
         <ProfessionalEquipments />
       </div>
       <Equipments />

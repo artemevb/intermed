@@ -60,11 +60,11 @@ export default function Search({ setSearchMenu }) {
         url = `/products/${item.slug}`;
         break;
       case 'Category':
-        url = `/categories/${item.slug}`;
+        url = `/categories/catalog/${item.slug}`;
         break;
-      case 'Catalog':
-        url = `/categories/`;
-        break;
+      // case 'Catalog':
+      //   url = `/categories/catalog/${item.slug}`;
+      //   break;
       case 'New':
         url = `/news/${item.slug}`;
         break;
@@ -89,8 +89,8 @@ export default function Search({ setSearchMenu }) {
         return 'News';
       case 'Partner':
         return 'Partner';
-      case 'Catalog':
-        return 'Catalog';
+      // case 'Catalog':
+      //   return 'Catalog';
       default:
         return '';
     }
