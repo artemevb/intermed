@@ -13,7 +13,7 @@ export default function ContAddress() {
     const data = [
         {
             title: "Intermed Innovation",
-            address: "Tashkent, Chinobod Street 10A",
+            address: "Chinobod Street 10A",
             country: "Uzbekistan",
             schedule: "09:00 - 18:00",
             email: "info@imed.uz",

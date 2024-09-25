@@ -32,7 +32,7 @@ export default function BannerCarousel({ banners }) { // Принимаем ба
     speed: 1300,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 7000,
     dots: false,
     arrows: false,
@@ -144,8 +144,9 @@ export default function BannerCarousel({ banners }) { // Принимаем ба
                         width={2000}
                         height={1000}
                         quality={100}
-                        className="w-full h-auto object-contain max-h-[604px]"
+                        className="w-full h-auto object-cover mdx:object-contain max-h-[604px] min-h-[300px] mt-auto"
                       />
+
                     </div>
                   </div>
                 </div>
