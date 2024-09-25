@@ -42,12 +42,12 @@ export default function Sertificates() {
 
 	const settings = {
 		infinite: true,
-		speed: 500,
+		speed: 1500,
 		slidesToShow: 4,
 		slidesToScroll: 1,
 		arrows: false,
 		autoplay: true,
-		autoplaySpeed: 2000,
+		autoplaySpeed: 3000,
 		responsive: [
 			{
 				breakpoint: 1200,

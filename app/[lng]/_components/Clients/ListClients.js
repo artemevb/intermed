@@ -31,7 +31,7 @@ export default function ListClients() {
     }, [lng]);
 
     return (
-        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 mb-[110px] mdx:mb-[130px] xl:mb-[180px]">
+        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2 flex flex-col gap-8 mb-[110px] mdx:mb-[130px] xl:mb-[150px]">
             <h1 className="font-semibold text-[25px] mdx:text-[30px] lg:text-[35px] xl:text-[40px] uppercase mt-[60px]">{t('cases')}</h1>
             <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
                 {clients.map(card => (

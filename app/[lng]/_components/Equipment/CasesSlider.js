@@ -42,11 +42,11 @@ export default function CasesSlider() {
         arrows: false,
         infinite: true,
         spaceBetween: 20,
-        speed: 500,
+        speed: 1500,
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: 3500,
         responsive: [
             {
                 breakpoint: 1200,

@@ -17,11 +17,11 @@ export default function PartnersSlider({ data }) {
     const settings = {
         arrows: false,
         infinite: true,
-        speed: 500,
+        speed: 1500,
         slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         responsive: [
             {
                 breakpoint: 1200,

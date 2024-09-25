@@ -39,7 +39,7 @@ export default function Events() {
 
 	const settings = {
 		infinite: true,
-		speed: 500,
+		speed: 1500,
 		arrows: false,
 		slidesToShow: 2,
 		slidesToScroll: 1,

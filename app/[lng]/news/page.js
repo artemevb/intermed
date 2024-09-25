@@ -4,9 +4,9 @@ import Application from "../_components/Main/Application";
 
 
 export default async function News() {
- 
+
   return (
-    <div className="pt-24">
+    <div >
       <Events />
       <NewsComp />
       <Application />

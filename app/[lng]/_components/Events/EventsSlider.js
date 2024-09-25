@@ -21,7 +21,7 @@ export default function EventsSlider({data}) {
   const settings = {
     arrows: false,
     infinite: true,
-    speed: 500,
+    speed: 1500,
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,

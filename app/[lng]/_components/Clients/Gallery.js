@@ -14,8 +14,8 @@ const Gallery = ({ Gallery }) => {
 		setVisibleCount(Gallery.length)
 	}
 	return (
-		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 py-6 bg-white mb-[120px] mdl:mb-[150px]'>
-			<h2 className='text-[20px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold mb-6 mt-[120px] uppercase'>
+		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 py-6 bg-white mb-[120px] mdl:mb-[130px]'>
+			<h2 className='text-[20px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] font-semibold mb-6 xl:mt-[30px] uppercase'>
 				{t('gallery')}
 			</h2>
 			<div className='grid grid-cols-1 gap-6 mdl:grid-cols-2 mdl:gap-3 xl:grid-cols-3'>

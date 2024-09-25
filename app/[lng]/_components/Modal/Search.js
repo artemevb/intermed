@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export default function Search({ setSearchMenu }) {
   const lng = useLanguage();
-  const { t } = useTranslation(lng, 'search')
+  const { t } = useTranslation(lng, 'search');
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
@@ -103,6 +103,24 @@ export default function Search({ setSearchMenu }) {
     };
   }, [isOpen]);
 
+  // Добавление обработчика для клавиши Escape
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+
+    // Очистка обработчика при размонтировании или закрытии модального окна
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen]);
+
   const closeModal = () => {
     setIsOpen(false);
     setSearchMenu(false); // Синхронизируем с состоянием родительского компонента
@@ -111,9 +129,15 @@ export default function Search({ setSearchMenu }) {
   return (
     <>
       {isOpen && (
-        <div className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[9999]">
-          <div className="h-[80%] w-full bg-white mdx:pt-2 ">
-            <hr className=' absolute mt-[62px] mdx:mt-[90px] w-[150%] border-[#E1E1E1]' />
+        <div
+          className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[9999]"
+          onClick={closeModal} // Закрытие при клике на фон
+        >
+          <div
+            className="h-[80%] w-full bg-white mdx:pt-2"
+            onClick={(e) => e.stopPropagation()} // Предотвращение закрытия при клике внутри модального окна
+          >
+            <hr className='absolute mt-[62px] mdx:mt-[90px] w-[150%] border-[#E1E1E1]' />
             <div className="h-[100%] w-full max-w-[1400px] mx-auto flex flex-col gap-8 ">
               <div className="flex items-center px-2 py-[20px] mdx:py-7  w-full relative">
                 <button onClick={closeModal}>
@@ -154,7 +178,7 @@ export default function Search({ setSearchMenu }) {
                   <Link
                     key={item.id}
                     href={getLink(item)}
-                    onClick={closeModal} // Add this line
+                    onClick={closeModal} // Закрытие при клике на ссылку
                     className="bg-white border-b border-[#E1E1E1] flex gap-4 w-full"
                   >
                     {item.photo && item.photo.url && (

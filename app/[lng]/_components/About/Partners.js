@@ -37,12 +37,12 @@ export default function Partners() {
 
 	const settings = {
 		infinite: true,
-		speed: 500,
+		speed: 1500,
 		arrows: false,
 		slidesToShow: 4,
 		slidesToScroll: 1,
 		autoplay: true,
-		autoplaySpeed: 2000,
+		autoplaySpeed: 3000,
 		responsive: [
 			{
 				breakpoint: 1200,
@@ -96,7 +96,7 @@ export default function Partners() {
 					</Slider>
 				</div>
 			</div>
-			<div className='flex w-full justify-center'>
+			<div className='flex w-full justify-center mt-[30px]'>
 				<a
 					href={`/${lng}/partners`}
 					className=' border border-neutral-300 px-12 py-3 transition-all duration-200 hover:bg-[#E94B50] hover:text-[#ffffff] font-bold'

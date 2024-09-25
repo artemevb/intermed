@@ -1,5 +1,4 @@
 'use client'
-
 import axios from 'axios'
 import Link from 'next/link'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -17,6 +16,7 @@ const EquipmentCarousel = () => {
 	const [selectedCategory, setSelectedCategory] = useState('all')
 	const [products, setProducts] = useState([])
 	const [isMounted, setIsMounted] = useState(false)
+	const [autoplay, setAutoplay] = useState(true) // Переместил внутрь компонента
 
 	const getAllProducts = useCallback(async () => {
 		try {
@@ -26,22 +26,26 @@ const EquipmentCarousel = () => {
 				},
 			});
 			setProducts(response.data.data);
-			setFilteredData(response.data.data); // Initialize with all popular products
+			setFilteredData(response.data.data); // Инициализируем всеми популярными продуктами
 		} catch (error) {
 			console.error('Error fetching products:', error.message);
 		}
 	}, [lng]);
 
-
 	useEffect(() => {
 		getAllProducts()
-	}, [lng, getAllProducts]) // Only triggers when `lng` changes
+	}, [lng, getAllProducts]) // Триггерится только при изменении `lng`
 
 	useEffect(() => {
 		setIsMounted(true)
 	}, [])
 
-	// Handle category filtering
+	// Функция для отключения автопроигрывания
+	const disableAutoplay = useCallback(() => {
+		setAutoplay(false)
+	}, [])
+
+	// Обработчик фильтрации категорий
 	const handleFilter = useCallback(
 		category => {
 			setSelectedCategory(category);
@@ -58,16 +62,15 @@ const EquipmentCarousel = () => {
 		[products]
 	);
 
-
 	const settings = useMemo(
 		() => ({
 			arrows: false,
 			infinite: true,
-			speed: 500,
+			speed: 1500,
 			slidesToShow: 4,
 			slidesToScroll: 1,
-			autoplay: true,
-			autoplaySpeed: 2000,
+			autoplay: autoplay, // Используем состояние autoplay
+			autoplaySpeed: 4000,
 			responsive: [
 				{
 					breakpoint: 1200,
@@ -94,8 +97,16 @@ const EquipmentCarousel = () => {
 					},
 				},
 			],
+			// Отключаем autoplay при взаимодействии пользователя
+			onSwipe: disableAutoplay,
+			onLazyLoad: disableAutoplay, // Дополнительный обработчик
+			onEdge: disableAutoplay, // Дополнительный обработчик при достижении края
+			onInit: () => { }, // Можно добавить, если необходимо
+			onReInit: () => { }, // Можно добавить, если необходимо
+			onMouseEnter: disableAutoplay, // Останавливаем при наведении мыши
+			// onMouseLeave: () => setAutoplay(true), // Если хотите возобновить autoplay при уходе мыши
 		}),
-		[]
+		[autoplay, disableAutoplay]
 	)
 
 	const categories = useMemo(

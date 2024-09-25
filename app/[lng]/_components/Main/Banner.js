@@ -29,7 +29,7 @@ export default function BannerCarousel({ banners }) { // Принимаем ба
 
   const settings = {
     infinite: true,
-    speed: 500,
+    speed: 1300,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,

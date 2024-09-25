@@ -19,11 +19,11 @@ export default function BannerCarousel() {
 
     const settings = {
         infinite: true,
-        speed: 500,
+        speed: 1500,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 7000,
+        autoplaySpeed: 4000,
         dots: true,
         arrows: false,
         beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
