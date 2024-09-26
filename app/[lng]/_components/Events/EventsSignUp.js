@@ -22,9 +22,17 @@ const russianMonths = {
   'декабря': 11,
 }
 
-// Function to parse Russian date strings like "18 июля" into JavaScript Date objects
-const parseRussianDate = (dateStr) => {
+// Function to parse Russian date strings like "18 июля" or "18.07.2024" into JavaScript Date objects
+const parseDate = (dateStr) => {
   if (!dateStr) return null
+
+  // Check if the date format is in dd.mm.yyyy
+  if (dateStr.includes('.')) {
+    const [day, month, year] = dateStr.split('.').map(Number)
+    return new Date(year, month - 1, day) // Months are 0-based in JS
+  }
+
+  // Parse Russian format: "18 июля"
   const [dayStr, monthStr] = dateStr.trim().split(' ')
   const day = parseInt(dayStr, 10)
   const month = russianMonths[monthStr.toLowerCase()]
@@ -61,7 +69,7 @@ export default function EventSignUp({
   const closeSignUpModal = () => setIsSignUpModalOpen(false)
 
   // Parse the dateTo prop
-  const eventEndDate = parseRussianDate(dateTo)
+  const eventEndDate = parseDate(dateTo)
   
   // Get today's date without the time component
   const today = new Date()
@@ -95,7 +103,7 @@ export default function EventSignUp({
             </div>
           ) : (
             <p className='text-red-500 font-semibold mt-[20px] flex justify-center text-[20px]'>
-              Мероприятие завершено
+              {t('end')}
             </p>
           )}
         </div>
