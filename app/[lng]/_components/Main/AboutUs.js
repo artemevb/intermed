@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from '../../../i18n/client'
-import Imed from "@/public/images/main/intermed-about.png";
+import Imed from "@/public/images/aboutUs/imed.png";
 import { useState, useEffect } from "react";
 
 export default function AboutUs({ lng }) {
@@ -22,7 +22,7 @@ export default function AboutUs({ lng }) {
             {t('reliable_supplier')}
           </h2>
           <Image
-          quality={100}
+            quality={100}
             src={Imed}
             width={1000}
             height={1000}

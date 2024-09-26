@@ -12,16 +12,16 @@ export default function ContAddress() {
     const { t } = useTranslation(lng, 'map-representatives');
     const data = [
         {
-            title: "Intermed Innovation",
-            address: "Chinobod Street 10A",
-            country: "Uzbekistan",
+            title: "MRJ Trade",
+            address: "Dubai, Deira, Baniyas road, Twin Towers, 20",
+            country: "United Arab Emirates",
             schedule: "09:00 - 18:00",
-            email: "info@imed.uz",
-            phones: ["+998781504747", "+998781504707"],
-            imageSrc: intermed2,
-            link: "/contacts/intermed-innovation-uzbekistan",
-            isExternal: false,
-            isClickable: false,
+            email: "info@mrjtrade.ae",
+            phones: ["+9710524979914"],
+            imageSrc: Mrj,
+            link: "http://mrj-trade.com/",
+            isExternal: true,
+            isClickable: true,
         },
         {
             title: "Alnair Medical",
@@ -47,18 +47,7 @@ export default function ContAddress() {
             isExternal: false,
             isClickable: false,
         },
-        {
-            title: "MRJ Trade",
-            address: "Dubai, Deira, Baniyas road, Twin Towers, 20",
-            country: "United Arab Emirates",
-            schedule: "09:00 - 18:00",
-            email: "info@mrjtrade.ae",
-            phones: ["+9710524979914"],
-            imageSrc: Mrj,
-            link: "http://mrj-trade.com/",
-            isExternal: true,
-            isClickable: true,
-        },
+
     ];
 
     return (

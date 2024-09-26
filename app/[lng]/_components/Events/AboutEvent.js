@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import SignUpForEvent from '../../_components/Modal/SignUpForEvent';
 import { useTranslation } from '../../../i18n/client';
@@ -9,6 +9,42 @@ export default function AboutEvent({ Data }) {
 	const lng = useLanguage();
 	const { t } = useTranslation(lng, 'event-about');
 	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+	const [isEventOver, setIsEventOver] = useState(false);
+
+	// Mapping Russian months to their corresponding number
+	const monthMap = {
+		'января': 0,
+		'февраля': 1,
+		'марта': 2,
+		'апреля': 3,
+		'мая': 4,
+		'июня': 5,
+		'июля': 6,
+		'августа': 7,
+		'сентября': 8,
+		'октября': 9,
+		'ноября': 10,
+		'декабря': 11,
+	};
+
+	// Function to parse the date string "25 июля"
+	const parseDate = (dateString) => {
+		const [day, monthString] = dateString.split(' ');
+		const month = monthMap[monthString.toLowerCase()];
+		const year = new Date().getFullYear(); // Assume the current year if it's not provided
+
+		return new Date(year, month, day);
+	};
+
+	useEffect(() => {
+		// Check if the event has passed
+		const currentDate = new Date();
+		const eventEndDate = parseDate(Data?.dateTo);
+
+		if (eventEndDate < currentDate) {
+			setIsEventOver(true);
+		}
+	}, [Data?.dateTo]);
 
 	const openSignUpModal = () => setIsSignUpModalOpen(true);
 	const closeSignUpModal = () => setIsSignUpModalOpen(false);
@@ -40,12 +76,21 @@ export default function AboutEvent({ Data }) {
 							{Data?.address}
 						</p>
 					</div>
-					<button
-						className='mt-4 w-full mdx:max-w-[296px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white xl:max-w-[100%]'
-						onClick={openSignUpModal}
-					>
-						{t('sign-up')}
-					</button>
+					{isEventOver ? (
+						<button
+							className='mt-4 w-full mdx:max-w-[296px] bg-gray-400 py-3 px-4 text-white xl:max-w-[100%] cursor-not-allowed'
+							disabled
+						>
+							{t('event-ended')} {/* Text when event is over */}
+						</button>
+					) : (
+						<button
+							className='mt-4 w-full mdx:max-w-[296px] bg-[#E94B50] hover:bg-[#EE787C] py-3 px-4 text-white xl:max-w-[100%]'
+							onClick={openSignUpModal}
+						>
+							{t('sign-up')} {/* Text for sign up when event is ongoing */}
+						</button>
+					)}
 				</div>
 				<div className='xl:w-3/4'>
 					<h2 className='text-[24px] mdx:text-[30px] mdl:text-[35px] lg:text-[36px] xl:text-[38px] font-semibold mb-4 xl:mb-[30px] uppercase hidden xl:block'>
@@ -62,7 +107,7 @@ export default function AboutEvent({ Data }) {
 						</React.Fragment>
 					))}
 					<h3 className='text-[20px] mdx:text-[27px] font-semibold mb-[16px] text-[#252324] mt-[30px]'>
-						Контакты
+					{t('сontacts')}
 					</h3>
 					<p className='text-[15px] mdx:text-[18px] mdl:text-[20px] mt-[10px]'>
 						{Data?.phoneNum}

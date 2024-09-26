@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import imed from "@/public/images/main/intermed-about.png";
+import imed from "@/public/images/aboutUs/imed.png";
 import { useState, useEffect } from "react";
 import { useTranslation } from '../../../i18n/client'
 
@@ -17,9 +17,9 @@ export default function Banner({ lng }) {
   return (
     <div>
       {isMounted && (
-        <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex flex-col 2xl:flex-row mx-auto h-auto items-center xl:h-[812px] 5xl:h-[812px] ">
+        <div className="w-full  flex flex-col 2xl:flex-row mx-auto h-auto items-center xl:h-[812px] 5xl:h-[812px] ">
           <div className="flex-1 h-full flex justify-center px-2 5xl:mr-0 5xl:flex-none 5xl:w-[60%] xl:mr-[20px] 3xl:mr-[40px] 4xl:mr-[100px]">
-            <div className="w-full flex flex-col gap-8 justify-between h-full 5xl:mr-[200px]">
+            <div className="w-full flex flex-col gap-8 justify-between h-full 3xl:ml-[4%] 4xl:ml-[25%] 5xl:ml-[18%] 5xl:mr-[200px] ">
               <div className="2xl:mt-9 mt-6 lh text-black text-[24px] mdx:text-[35px] xl:text-[40px] font-medium 2xl:w-[650px] 5xl:w-[87%]">
                 <h1 className="text-redMain text-[24px] font-semibold mdx:text-[35px] xl:text-[40px] uppercase tracking-tight">
                   {t('intermed_innovation')}
@@ -66,14 +66,14 @@ export default function Banner({ lng }) {
             </div>
           </div>
           <div className="w-full h-full flex relative 2xl:w-[45%] 5xl:w-[40%]">
-            <div className="w-full flex justify-center">
-              <div className="w-full h-full bottom-0 left-0 py-[25px] mdx:py-[35px] 2xl:py-[0px]">
+            <div className="w-full flex justify-center relative  py-[30px] mdl:pb-[130px] xl:pb-0">
+              <div className="w-full h-full bottom-0 left-0 py-[25px] mdx:py-[35px] 2xl:py-[0px] min-h-[300px] relative">
                 <Image
                   src={imed}
-                  quality={100}
                   alt="Medical Equipment"
-                  objectFit="cover"
-                  className="min-w-full min-h-full 5xl:min-w-0 "
+                  fill
+                  style={{ objectFit: "cover" }}
+                  className="min-w-full min-h-full 5xl:min-w-0 mdl:min-h-[400px]"
                 />
               </div>
             </div>

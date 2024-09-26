@@ -3,5 +3,7 @@
     "date": "Date",
     "time": "Time",
     "adress": "Aadress",
-    "sign-up": "Sign up"
+    "sign-up": "Sign up",
+    "event-ended": "The event is over",
+    "contacts":"Contacts"
 }

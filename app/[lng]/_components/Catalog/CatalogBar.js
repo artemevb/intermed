@@ -1,114 +1,128 @@
-"use client";
+'use client';
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import Image from 'next/image';
 import { Transition } from '@headlessui/react';
 import upGreen from '@/public/svg/arrow-up-green.svg';
 import downGray from '@/public/svg/arrow-down-gray.svg';
-import { useParams } from 'next/navigation';
-
-// Accordion Item Component
-const AccordionItem = ({ title, isOpen, onClick, children, hasChildren }) => (
-  <div className="border-t border-b border-solid">
-    <summary
-      onClick={onClick}
-      className={`flex gap-5 py-7 ${isOpen ? 'text-redMain' : 'text-black'} font-semibold text-xl max-md:max-w-full cursor-pointer`}
-    >
-      <span className="flex-auto">{title}</span>
-      {hasChildren && (
-        <Image
-          src={isOpen ? upGreen : downGray}
-          alt="Arrow icon"
-          priority
-          width={20}
-          height={20}
-          quality={100}
-        />
-      )}
-    </summary>
-    {hasChildren && (
-      <Transition
-        show={isOpen}
-        enter="transition-all duration-500 ease-in-out"
-        enterFrom="max-h-0 opacity-0"
-        enterTo="max-h-screen opacity-100"
-        leave="transition-all duration-500 ease-in-out"
-        leaveFrom="max-h-screen opacity-100"
-        leaveTo="max-h-0 opacity-0"
-      >
-        <div className="overflow-hidden">{children}</div>
-      </Transition>
-    )}
-  </div>
-);
+import { useRouter, usePathname } from 'next/navigation';
+import AccordionItem from './AccordionItem'; // Вынесено в отдельный файл
 
 // Accordion Content Component
 const AccordionContent = ({ children }) => (
-  <div className="pb-5 px-4">{children}</div>
+  <div className="pb-5 px-4">
+    {children}
+  </div>
 );
 
 // Main CatalogList Component
-export default function CatalogList({ allCategories, setCategoryID, setCatalogID, lng }) {
-  const params = useParams();
+export default function CatalogList({
+  allCategories,
+  setCategoryID,
+  setCatalogID,
+  lng,
+  handleClose,
+  currentCategoryId,
+}) {
+  const router = useRouter();
+  const pathname = usePathname();
   const [openSection, setOpenSection] = useState(null);
   const [selectedCatalogId, setSelectedCatalogId] = useState(null);
-
+  // Инициализация открытой секции на основе выбранной категории или URL
   useEffect(() => {
-    const slug = params.slug;
-
-    // If slug is provided and matches a category, open the corresponding section
-    if (slug && allCategories) {
-      const matchedCategory = allCategories.find(category => category.slug === slug);
-      if (matchedCategory) {
-        setOpenSection(matchedCategory.id);
-        setCategoryID(matchedCategory.id);
+    if (currentCategoryId) {
+      setOpenSection(currentCategoryId);
+      setCategoryID(currentCategoryId);
+    } else {
+      const slug = pathname.split('/').pop(); // Предполагается, что slug в конце URL
+      if (slug && allCategories) {
+        const matchedCategory = allCategories.find(
+          (category) => category.slug === slug
+        );
+        if (matchedCategory) {
+          setOpenSection(matchedCategory.id);
+          setCategoryID(matchedCategory.id);
+        }
       }
     }
-  }, [params.slug, allCategories, setCategoryID]);
+  }, [currentCategoryId, pathname, allCategories, setCategoryID]);
 
-  const updateUrl = useCallback((slug) => {
-    const newUrl = `/${params.lng}/categories/catalog/${slug}`;
-    window.history.pushState({}, '', newUrl); // Update URL without reloading the page
-  }, [lng, params.lng]);
+  // Обновление URL
+  const updateUrl = useCallback(
+    (slug) => {
+      if (!lng) {
+        console.error('Language is undefined');
+        return;
+      }
+      const newUrl = `/${lng}/categories/catalog/${slug}`;
+      router.push(newUrl);
+    },
+    [router, lng]
+  );
 
+  // Проверка мобильного экрана
+  const isMobileView = () =>
+    typeof window !== 'undefined' && window.innerWidth < 1024;
+
+  // Переключение секций категорий
   const toggleSection = useCallback(
     (id, slug, hasChildren) => {
       const newOpenSection = openSection === id ? null : id;
       setOpenSection(newOpenSection);
-
+  
       if (newOpenSection) {
         setCategoryID(newOpenSection);
       } else {
         setSelectedCatalogId(null);
         setCatalogID(null);
       }
-
-      // Always update the URL with the slug, regardless of children
-      updateUrl(slug);
+  
+      // Проверяем, что `lng` и `slug` не undefined
+      if (!lng || !slug) {
+        console.error("Missing language or slug:", { lng, slug });
+        return;
+      }
+  
+      // Обновление URL с помощью Next.js Router
+      const newUrl = `/${lng}/categories/catalog/${slug}`;
+      router.push(newUrl); // Меняем URL при переключении категории
+  
+      // Условие для закрытия модального окна
+      if (!hasChildren && isMobileView()) {
+        handleClose(); // Close the modal immediately if there are no subcategories
+      }
     },
-    [openSection, setCategoryID, setCatalogID, updateUrl]
+    [openSection, setCategoryID, setCatalogID, handleClose, router, lng]
   );
-
+  
+  // Обработка клика по каталогу (subcategory)
   const handleCatalogClick = useCallback(
     (catalogId) => {
       setSelectedCatalogId(catalogId);
       setCatalogID(catalogId);
-
-      // Update URL with the slug when clicking on a catalog item
+  
+      // Закрытие модального окна на мобильных устройствах при выборе подкаталога
+      if (isMobileView()) {
+        handleClose(); // Close the modal after selecting a subcategory
+      }
     },
-    [setCatalogID]
+    [setCatalogID, handleClose]
   );
+  
 
+  // Рендеринг категорий
   const renderedCategories = useMemo(() => {
     if (!allCategories) {
       return <p>Loading categories...</p>;
     }
 
-    // Отфильтровываем неактивные категории
+    // Фильтрация активных категорий
     const activeCategories = allCategories.filter((category) => category.active);
 
     return activeCategories.map(({ id, name, catalogs, slug }) => {
-      // Отфильтровываем неактивные подкаталоги
-      const activeCatalogs = catalogs.filter((catalog) => catalog.active !== false);
+      // Фильтрация активных подкаталогов
+      const activeCatalogs = catalogs.filter(
+        (catalog) => catalog.active !== false
+      );
 
       return (
         <div key={id} className="w-full">
@@ -143,7 +157,6 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
       );
     });
   }, [allCategories, openSection, selectedCatalogId, toggleSection, handleCatalogClick]);
-
 
   return (
     <section className="w-full">

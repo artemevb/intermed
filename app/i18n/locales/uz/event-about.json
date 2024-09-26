@@ -3,5 +3,7 @@
     "date":"Sana",
     "time":"Vaqt",
     "adress":"Manzil",
-    "sign-up": "Ro'yxatdan o'tish"
+    "sign-up": "Ro'yxatdan o'tish",
+    "event-ended": "Tadbir tugadi",
+    "contacts":"Kontaktlar"
 }
