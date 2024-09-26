@@ -16,11 +16,10 @@ export default function EventsPages({ Data }) {
     // Проверка, что lng определён
     if (!lng) {
         console.error('Language is undefined');
-        return null; // Или можно вернуть сообщение об ошибке
+        return null; // Возвращаем null, если язык не определён
     }
 
     const { t } = useTranslation(lng, 'events-pages');
-    const [isMounted, setIsMounted] = useState(false);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCity, setSelectedCity] = useState("Все");
@@ -29,12 +28,6 @@ export default function EventsPages({ Data }) {
     const containerRef = useRef(null);
 
     useEffect(() => {
-        setIsMounted(true);
-    }, []);
-
-    useEffect(() => {
-        if (!isMounted) return;
-
         const container = containerRef.current;
         if (container) {
             const handleWheel = (event) => {
@@ -50,7 +43,7 @@ export default function EventsPages({ Data }) {
                 }
             };
         }
-    }, [isMounted]);
+    }, []); // Пустой массив зависимостей, чтобы этот эффект выполнялся только при монтировании
 
     // Извлекаем уникальные адреса из Data для опций фильтрации
     const uniqueCities = Array.from(new Set(
@@ -80,55 +73,53 @@ export default function EventsPages({ Data }) {
 
     return (
         <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-2">
-            {isMounted && (
-                <div className="flex flex-col gap-8 mb-[120px] overflow-hidden mx-auto w-full">
-                    <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase mt-[40px]">{t('title')}</h2>
+            <div className="flex flex-col gap-8 mb-[120px] overflow-hidden mx-auto w-full">
+                <h2 className="text-3xl max-mdx:text-2xl font-semibold uppercase mt-[40px]">{t('title')}</h2>
 
-                    {/* Блок с городами */}
-                    {cities.length > 0 && (
-                        <div
-                            ref={containerRef}
-                            className="flex gap-4 overflow-x-auto no-scrollbar"
-                        >
-                            {cities.map((city) => (
-                                <button
-                                    key={city}
-                                    onClick={() => {
-                                        setSelectedCity(city);
-                                        setCurrentPage(1);
-                                    }}
-                                    className={`px-4 py-2 rounded-full transition-colors duration-200 ${selectedCity === city
-                                            ? "bg-[#E31E24] text-white"
-                                            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                        }`}
-                                >
-                                    {city}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-
-                    {/* Блок с событиями */}
-                    <div className="w-full grid gap-4 grid-cols-1 xl:grid-cols-2 h-auto">
-                        {currentItems.map((item, i) => (
-                            <Link key={i} href={`/${lng}/events/${item.slug}`} className="mb-5">
-                                {item.photo?.url && (
-                                    <EventCard
-                                        title={item.name}
-                                        imageSrc={item.photo.url}
-                                        slug={item.slug}
-                                    />
-                                )}
-                            </Link>
+                {/* Блок с городами */}
+                {cities.length > 0 && (
+                    <div
+                        ref={containerRef}
+                        className="flex gap-4 overflow-x-auto no-scrollbar"
+                    >
+                        {cities.map((city) => (
+                            <button
+                                key={city}
+                                onClick={() => {
+                                    setSelectedCity(city);
+                                    setCurrentPage(1);
+                                }}
+                                className={`px-4 py-2 rounded-full transition-colors duration-200 ${selectedCity === city
+                                        ? "bg-[#E31E24] text-white"
+                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                    }`}
+                            >
+                                {city}
+                            </button>
                         ))}
                     </div>
+                )}
 
-                    {/* Пагинация */}
-                    <div className="flex w-full justify-center">
-                        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
-                    </div>
+                {/* Блок с событиями */}
+                <div className="w-full grid gap-4 grid-cols-1 xl:grid-cols-2 h-auto">
+                    {currentItems.map((item, i) => (
+                        <Link key={i} href={`/${lng}/events/${item.slug}`} className="mb-5">
+                            {item.photo?.url && (
+                                <EventCard
+                                    title={item.name}
+                                    imageSrc={item.photo.url}
+                                    slug={item.slug}
+                                />
+                            )}
+                        </Link>
+                    ))}
                 </div>
-            )}
+
+                {/* Пагинация */}
+                <div className="flex w-full justify-center">
+                    <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
+                </div>
+            </div>
         </div>
     );
 }
