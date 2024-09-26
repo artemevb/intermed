@@ -5,6 +5,7 @@ import { Transition } from '@headlessui/react';
 import upGreen from '@/public/svg/arrow-up-green.svg';
 import downGray from '@/public/svg/arrow-down-gray.svg';
 import { useParams } from 'next/navigation';
+
 // Accordion Item Component
 const AccordionItem = ({ title, isOpen, onClick, children, hasChildren }) => (
   <div className="border-t border-b border-solid">
@@ -44,24 +45,33 @@ const AccordionContent = ({ children }) => (
   <div className="pb-5 px-4">{children}</div>
 );
 
-
-export default function CatalogList({ allCategories, setCategoryID, setCatalogID, lng }) {
+export default function CatalogList({ allCategories, setCategoryID, setCatalogID, lng, shouldCloseModal = () => {} }) {
   const params = useParams();
   const [openSection, setOpenSection] = useState(null);
   const [selectedCatalogId, setSelectedCatalogId] = useState(null);
 
-  useEffect(() => {
-    const slug = params.slug;
+  // Чтение slug из URL
+  const slug = params.slug;
 
-    // If slug is provided and matches a category, open the corresponding section
-    if (slug && allCategories) {
-      const matchedCategory = allCategories.find(category => category.slug === slug);
-      if (matchedCategory) {
-        setOpenSection(matchedCategory.id);
-        setCategoryID(matchedCategory.id);
-      }
+  // Чтение сохраненного состояния из localStorage при загрузке компонента
+  useEffect(() => {
+    const savedCategoryId = localStorage.getItem('openCategoryId');
+    if (savedCategoryId) {
+      setOpenSection(Number(savedCategoryId)); // Восстанавливаем состояние открытой категории
     }
-  }, [params.slug, allCategories, setCategoryID]);
+  }, []);
+
+  // Сохраняем выбранную категорию в localStorage
+  const saveCategoryToLocalStorage = (categoryId) => {
+    localStorage.setItem('openCategoryId', categoryId);
+  };
+
+  useEffect(() => {
+    const slugId = slug?.split('-')[0];
+    if (slugId) {
+      setCategoryID(slugId);
+    }
+  }, [slug, setCategoryID]);
 
   const updateUrl = useCallback((slug) => {
     const newUrl = `/${params.lng}/categories/catalog/${slug}`;
@@ -75,15 +85,19 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
 
       if (newOpenSection) {
         setCategoryID(newOpenSection);
+        saveCategoryToLocalStorage(newOpenSection); // Сохраняем выбранную категорию в localStorage
+
+        if (!hasChildren) {
+          shouldCloseModal(true); // Close modal if category has no subcategories
+        }
       } else {
         setSelectedCatalogId(null);
         setCatalogID(null);
       }
 
-      // Always update the URL with the slug, regardless of children
       updateUrl(slug);
     },
-    [openSection, setCategoryID, setCatalogID, updateUrl]
+    [openSection, setCategoryID, setCatalogID, updateUrl, shouldCloseModal]
   );
 
   const handleCatalogClick = useCallback(
@@ -91,9 +105,10 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
       setSelectedCatalogId(catalogId);
       setCatalogID(catalogId);
 
-      // Update URL with the slug when clicking on a catalog item
+      // Close the modal for subcategories
+      shouldCloseModal(true);
     },
-    [setCatalogID]
+    [setCatalogID, shouldCloseModal]
   );
 
   const renderedCategories = useMemo(() => {
@@ -101,18 +116,16 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
       return <p>Loading categories...</p>;
     }
 
-    // Отфильтровываем неактивные категории
     const activeCategories = allCategories.filter((category) => category.active);
 
     return activeCategories.map(({ id, name, catalogs, slug }) => {
-      // Отфильтровываем неактивные подкаталоги
       const activeCatalogs = catalogs.filter((catalog) => catalog.active !== false);
 
       return (
         <div key={id} className="w-full">
           <AccordionItem
             title={name}
-            isOpen={openSection === id}
+            isOpen={openSection === id} // Проверяем, соответствует ли категория открытой
             onClick={() => toggleSection(id, slug, activeCatalogs.length > 0)}
             hasChildren={activeCatalogs.length > 0}
           >
@@ -141,7 +154,6 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
       );
     });
   }, [allCategories, openSection, selectedCatalogId, toggleSection, handleCatalogClick]);
-
 
   return (
     <section className="w-full">

@@ -13,16 +13,14 @@ export default function Category({
 	lng,
 }) {
 	const { t } = useTranslation(lng, 'modal-category');
-	const modalRef = useRef(null); // Реф для модального окна
+	const modalRef = useRef(null);
 
-	// Функция для проверки кликов вне модального окна
 	const handleClickOutside = (event) => {
 		if (modalRef.current && !modalRef.current.contains(event.target)) {
 			handleClose(); // Закрыть модальное окно
 		}
 	};
 
-	// Добавляем и удаляем обработчик кликов
 	useEffect(() => {
 		document.addEventListener('mousedown', handleClickOutside);
 		return () => {
@@ -30,11 +28,18 @@ export default function Category({
 		};
 	}, []);
 
+	// Function to close modal when a subcategory is clicked
+	const shouldCloseModal = (isSubcategory) => {
+		if (isSubcategory) {
+			handleClose(); // Закрываем окно, если выбрана субкатегория
+		}
+	};
+
 	return (
 		<div className='fixed lg:hidden h-screen w-full inset-0 z-[9999] bg-modalBg flex justify-center items-center max-mdx:px-2 px-12 py-12'>
 			<div
 				className='w-full h-full overflow-y-scroll no-scrollbar bg-white relative px-6 pt-8'
-				ref={modalRef} // Привязываем реф к модальному окну
+				ref={modalRef} 
 			>
 				<button
 					onClick={handleClose}
@@ -58,6 +63,7 @@ export default function Category({
 					setCategoryID={setCategoryID}
 					setCatalogID={setCatalogID}
 					lng={lng}
+					shouldCloseModal={shouldCloseModal} // Pass callback for closing modal
 				/>
 			</div>
 		</div>

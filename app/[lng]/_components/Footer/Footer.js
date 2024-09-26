@@ -1,5 +1,5 @@
-"use client"
-import Link from 'next/link'
+"use client";
+import Link from 'next/link';
 import logoBig from "@/public/images/intermed-logo.png";
 import telegram from "@/public/svg/tools/telegram.svg";
 import facebook from "@/public/svg/tools/facebook.svg";
@@ -7,7 +7,7 @@ import instagram from "@/public/svg/tools/instagram.svg";
 import youtube from "@/public/svg/tools/youtube.svg";
 import arrowRight from "@/public/svg/arrow-right-red.svg";
 import resultLogo from "@/public/images/footer/result-logo.png";
-import { useTranslation } from '../../../i18n/client'
+import { useTranslation } from '../../../i18n/client';
 import Image from "next/image";
 
 const handleButtonClick = (buttonType) => {
@@ -26,7 +26,29 @@ const handleButtonClick = (buttonType) => {
 };
 
 export default function Footer({ lng }) {
-  const { t } = useTranslation(lng, 'footer-main')
+  const { t } = useTranslation(lng, 'footer-main');
+
+  // Function to save slug to localStorage
+  const saveSlugToLocalStorage = (slug) => {
+    if (slug) {
+      const parts = slug.split('-');
+      if (parts.length > 0) {
+        localStorage.setItem('openCategoryId', parts[0]);
+        console.log(`Saved openCategoryId: ${parts[0]}`);
+      }
+    }
+  };
+
+  // Handler to extract slug from href and save it
+  const handleCategoryClick = (href) => {
+    // Assuming the slug is the part after '/catalog/'
+    const catalogIndex = href.indexOf('/catalog/');
+    if (catalogIndex !== -1) {
+      const slug = href.substring(catalogIndex + '/catalog/'.length);
+      saveSlugToLocalStorage(slug);
+    }
+  };
+
   return (
     <div className="bg-snowy w-full px-2 pt-12">
       <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] flex flex-col gap-12 mx-auto">
@@ -90,13 +112,36 @@ export default function Footer({ lng }) {
           <div className="lg:w-1/2 w-full flex max-mdx:gap-5">
             <div className="flex-1 flex flex-col text-sm gap-4 text-[#808080] lg:pr-7">
               <h2 className="text-lg font-semibold text-[#252324] uppercase">{t('catalog')}</h2>
-              <a href={`/${lng}/categories/catalog/`}>
+
+              {/* Updated Links with onClick Handlers */}
+              <a
+                href={`/${lng}/categories/catalog/3-uzi-qurilmalari`}
+                onClick={() => handleCategoryClick(`/${lng}/categories/catalog/3-uzi-qurilmalari`)}
+              >
                 {t('uzd_equipment')}
               </a>
 
-              <a href={`/${lng}/categories/catalog/`}>{t('life_support')}</a>
-              <a href={`/${lng}/categories/catalog/`}>{t('lab_equipment')}</a>
-              <a href={`/${lng}/categories/catalog/`}>{t('reagents_consumables')}</a>
+              <a
+                href={`/${lng}/categories/catalog/4-hayotiy-taminot-bemorni-kuzatish`}
+                onClick={() => handleCategoryClick(`/${lng}/categories/catalog/4-hayotiy-taminot-bemorni-kuzatish`)}
+              >
+                {t('life_support')}
+              </a>
+
+              <a
+                href={`/${lng}/categories/catalog/18-laboratoriya-qurilmasi`} // Assuming a slug is needed
+                onClick={() => handleCategoryClick(`/${lng}/categories/catalog/18-laboratoriya-qurilmasi`)}
+              >
+                {t('lab_equipment')}
+              </a>
+
+              <a
+                href={`/${lng}/categories/catalog/5-reagentlar-va-sarf-materiallari`} // Assuming a slug is needed
+                onClick={() => handleCategoryClick(`/${lng}/categories/catalog/5-reagentlar-va-sarf-materiallari`)}
+              >
+                {t('reagents_consumables')}
+              </a>
+
               <a
                 href={`/${lng}/categories`}
                 className="flex gap-2 hover:gap-4 items-center transition-all duration-200"
