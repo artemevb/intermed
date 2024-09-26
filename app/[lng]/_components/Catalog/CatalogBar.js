@@ -1,3 +1,50 @@
+"use client";
+import { useState, useEffect, useMemo, useCallback } from 'react';
+import Image from 'next/image';
+import { Transition } from '@headlessui/react';
+import upGreen from '@/public/svg/arrow-up-green.svg';
+import downGray from '@/public/svg/arrow-down-gray.svg';
+import { useParams } from 'next/navigation';
+// Accordion Item Component
+const AccordionItem = ({ title, isOpen, onClick, children, hasChildren }) => (
+  <div className="border-t border-b border-solid">
+    <summary
+      onClick={onClick}
+      className={`flex gap-5 py-7 ${isOpen ? 'text-redMain' : 'text-black'} font-semibold text-xl max-md:max-w-full cursor-pointer`}
+    >
+      <span className="flex-auto">{title}</span>
+      {hasChildren && (
+        <Image
+          src={isOpen ? upGreen : downGray}
+          alt="Arrow icon"
+          priority
+          width={20}
+          height={20}
+          quality={100}
+        />
+      )}
+    </summary>
+    {hasChildren && (
+      <Transition
+        show={isOpen}
+        enter="transition-all duration-500 ease-in-out"
+        enterFrom="max-h-0 opacity-0"
+        enterTo="max-h-screen opacity-100"
+        leave="transition-all duration-500 ease-in-out"
+        leaveFrom="max-h-screen opacity-100"
+        leaveTo="max-h-0 opacity-0"
+      >
+        <div className="overflow-hidden">{children}</div>
+      </Transition>
+    )}
+  </div>
+);
+
+const AccordionContent = ({ children }) => (
+  <div className="pb-5 px-4">{children}</div>
+);
+
+
 export default function CatalogList({ allCategories, setCategoryID, setCatalogID, lng }) {
   const params = useParams();
   const [openSection, setOpenSection] = useState(null);
@@ -78,8 +125,8 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
                       <div
                         key={catalogItem.id}
                         className={`cursor-pointer ${selectedCatalogId === catalogItem.id
-                            ? 'text-red-500'
-                            : 'text-black'
+                          ? 'text-red-500'
+                          : 'text-black'
                           }`}
                         onClick={() => handleCatalogClick(catalogItem.id)}
                       >
