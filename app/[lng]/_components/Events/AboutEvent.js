@@ -23,6 +23,7 @@ const russianMonths = {
 
 // Function to parse Russian date strings like "25 июля" or "25.07.2024" into JavaScript Date objects
 const parseDate = (dateStr) => {
+	
 	if (!dateStr) {
 		console.error('Date string is undefined or empty:', dateStr);
 		return null; // Return null if dateStr is undefined or invalid

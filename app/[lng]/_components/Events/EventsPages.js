@@ -11,16 +11,7 @@ import PropTypes from 'prop-types';
 
 export default function EventsPages({ Data }) {
     const lng = useLanguage();
-    console.log('Current language:', lng); // Для отладки
-
-    // Проверка, что lng определён
-    if (!lng) {
-        console.error('Language is undefined');
-        return null; // Возвращаем null, если язык не определён
-    }
-
     const { t } = useTranslation(lng, 'events-pages');
-
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCity, setSelectedCity] = useState("Все");
     const itemsPerPage = 12;
