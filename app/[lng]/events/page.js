@@ -12,6 +12,7 @@ export default async function page({ params }) {
 		const response = await axios.get(`https://imed.uz/api/v1/event/get-all`, {
 			headers: {
 				'Accept-Language': lng,
+				'Cache-Control': 'no-cache'
 			},
 		})
 
@@ -20,7 +21,7 @@ export default async function page({ params }) {
 		console.error('Failed to fetch product data:', error)
 	}
 
-	
+
 
 	return (
 		<div>

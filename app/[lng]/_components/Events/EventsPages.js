@@ -78,11 +78,14 @@ export default function EventsPages({ Data }) {
                     <div className="w-full grid gap-4 grid-cols-1 xl:grid-cols-2 h-auto">
                         {currentItems.map((item, i) => (
                             <a key={i} href={`/${lng}/events/${item.slug}`} className="mb-5">
-                                <EventCard
-                                    title={item.name}
-                                    imageSrc={item.photo.url}
-                                    slug={item.slug}
-                                />
+                                {item.photo?.url && (
+                                    <EventCard
+                                        title={item.name}
+                                        imageSrc={item.photo.url}
+                                        slug={item.slug}
+                                    />
+                                )}
+
                             </a>
                         ))}
                     </div>

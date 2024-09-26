@@ -43,4 +43,6 @@ const AccordionItem = memo(({ title, isOpen, onClick, children, hasChildren }) =
   </div>
 ));
 
+AccordionItem.displayName = 'AccordionItem';
+
 export default AccordionItem;

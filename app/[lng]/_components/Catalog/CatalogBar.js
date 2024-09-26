@@ -27,6 +27,7 @@ export default function CatalogList({
   const pathname = usePathname();
   const [openSection, setOpenSection] = useState(null);
   const [selectedCatalogId, setSelectedCatalogId] = useState(null);
+
   // Инициализация открытой секции на основе выбранной категории или URL
   useEffect(() => {
     if (currentCategoryId) {
