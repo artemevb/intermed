@@ -170,7 +170,7 @@ export default function AboutEvent({ Data }) {
 					{(Data?.phoneNum || Data?.email) && (
 						<>
 							<h3 className='text-[20px] mdx:text-[27px] font-semibold mb-4 text-[#252324] mt-[30px]'>
-								{t('сontacts')}
+								{t('contacts')}
 							</h3>
 							<p className='text-[15px] mdx:text-[18px] mdl:text-[20px] mt-[10px]'>
 								{Data?.phoneNum}

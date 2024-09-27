@@ -36,7 +36,7 @@ export default function Category({
 	};
 
 	return (
-		<div className='fixed lg:hidden h-screen w-full inset-0 z-[9999] bg-modalBg flex justify-center items-center max-mdx:px-2 px-12 py-12'>
+		<div className='fixed lg:hidden h-screen w-full inset-0 z-[9999] bg-modalBg flex justify-center items-center max-mdx:px-2 px-12 pt-12 pb-[90px]'>
 			<div
 				className='w-full h-full overflow-y-scroll no-scrollbar bg-white relative px-6 pt-8'
 				ref={modalRef} 
