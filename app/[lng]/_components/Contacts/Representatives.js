@@ -47,7 +47,6 @@ export default function ContAddress() {
             isExternal: false,
             isClickable: false,
         },
-
     ];
 
     return (
@@ -55,14 +54,15 @@ export default function ContAddress() {
             <div className="mx-[10px]">
                 <h2 className="mt-[120px] text-3xl font-semibold uppercase mdx:mt-[170px] mb-8">{t('title')}</h2>
 
-                <div className="grid gap-6 slg:grid-cols-2 xl:grid-cols-3 w-full">
+                {/* Add items-stretch to ensure grid items stretch to full height */}
+                <div className="grid gap-6 slg:grid-cols-2 xl:grid-cols-3 w-full items-stretch">
                     {data.map((item, i) => {
                         const isMrjTrade = item.title === "MRJ Trade";
                         const CardContent = (
-                            <div className="bg-white rounded-3xl shdwcustom overflow-hidden">
-                                <div className="">
-                                    <div className="p-4 mx-auto flex items-center">
-                                        <div className="w-full slg:max-w-[443px] h-[234px] bg-[#F4F7FE] rounded-2xl flex items-center justify-center 5xl:max-w-full">
+                            <div className="bg-white rounded-3xl shdwcustom overflow-hidden flex flex-col h-full">
+                                <div className="flex-1 flex flex-col">
+                                    <div className="p-4  flex items-center">
+                                        <div className="w-full  h-[234px] bg-[#F4F7FE] rounded-2xl flex items-center justify-center 5xl:max-w-full">
                                             <Image
                                                 className="h-auto w-[80%] slg:w-full object-contain max-h-[60px]"
                                                 src={item.imageSrc}
@@ -73,36 +73,42 @@ export default function ContAddress() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="p-8">
-                                        {/* Conditional Class for Title */}
-                                        <div className={`tracking-wide text-[22px] mdx:text-[24px] xl:text-[30px] ${isMrjTrade ? 'text-[#088133]' : 'text-redMain'} font-semibold`}>
-                                            {item.title}
-                                        </div>
-                                        <div></div>
+                                    <div className="p-8 flex-1 flex flex-col justify-between">
+                                        {/* Title Section */}
+                                        <div>
+                                            <div className={`tracking-wide text-[22px] mdx:text-[24px] xl:text-[30px] ${isMrjTrade ? 'text-[#088133]' : 'text-redMain'} font-semibold`}>
+                                                {item.title}
+                                            </div>
 
-                                        <p className="block mt-1 border-b-2 pb-5 text-lg leading-tight font-medium text-black text-[15px] mdx:text-[18px] xl:text-[20px]">{item.address}</p>
-
-                                        <div className="flex flex-row items-end mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
-                                            <p className="text-[#BABABA]">Country:</p>
-                                            <p className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]">{item.country}</p>
+                                            <p className="block mt-1 border-b-2 pb-5 text-lg leading-tight font-medium text-black text-[15px] mdx:text-[18px] xl:text-[20px]">
+                                                {item.address}
+                                            </p>
                                         </div>
 
-                                        <div className="flex flex-row items-end mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
-                                            <p className="text-[#BABABA]">Schedule:</p>
-                                            <p className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]"> {item.schedule}</p>
-                                        </div>
+                                        {/* Info Section */}
+                                        <div className="mt-4">
+                                            <div className="flex flex-row items-end mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
+                                                <p className="text-[#BABABA]">Country:</p>
+                                                <p className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]">{item.country}</p>
+                                            </div>
 
-                                        <div className="flex flex-row items-end mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
-                                            <p className="text-[#BABABA]">E-mail:</p>
-                                            <p className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]"> {item.email}</p>
-                                        </div>
+                                            <div className="flex flex-row items-end mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
+                                                <p className="text-[#BABABA]">Schedule:</p>
+                                                <p className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]"> {item.schedule}</p>
+                                            </div>
 
-                                        <div className="flex flex-row items-start mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
-                                            <p className="text-[#BABABA]">Phone:</p>
-                                            <div className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]">
-                                                {item.phones.map((phone, index) => (
-                                                    <p key={index}>{phone}</p>
-                                                ))}
+                                            <div className="flex flex-row items-end mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
+                                                <p className="text-[#BABABA]">E-mail:</p>
+                                                <p className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]"> {item.email}</p>
+                                            </div>
+
+                                            <div className="flex flex-row items-start mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px] justify-between">
+                                                <p className="text-[#BABABA]">Phone:</p>
+                                                <div className="mt-2 text-gray-500 text-[16px] mdx:text-[18px] xl:text-[20px]">
+                                                    {item.phones.map((phone, index) => (
+                                                        <p key={index}>{phone}</p>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -117,21 +123,21 @@ export default function ContAddress() {
                                         href={item.link}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="block cursor-pointer"
+                                        className="block cursor-pointer h-full"
                                     >
                                         {CardContent}
                                     </a>
                                 );
                             } else {
                                 return (
-                                    <Link key={i} href={item.link} className="block cursor-pointer">
+                                    <Link key={i} href={item.link} className="block cursor-pointer h-full">
                                         {CardContent}
                                     </Link>
                                 );
                             }
                         } else {
                             return (
-                                <div key={i} className="block">
+                                <div key={i} className="block h-full">
                                     {CardContent}
                                 </div>
                             );

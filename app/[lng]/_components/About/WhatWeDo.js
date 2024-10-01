@@ -25,7 +25,7 @@ export default function WhatWeDo() {
                         <div className="my-[25px] xl:flex xl:flex-row">
                             <div className="xl:block xl:pr-[40px] 2xl:pr-[60px] w-full xl:max-w-[720px] 5xl:max-w-[900px]">
                                 <Image
-                                quality={100}
+                                    quality={100}
                                     src={imed}
                                     alt="Medical Equipment"
                                     objectFit="contain"
