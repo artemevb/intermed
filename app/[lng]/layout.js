@@ -12,29 +12,45 @@ export async function generateStaticParams() {
 
 // Глобальные метаданные для всего приложения
 export function generateMetadata({ params: { lng } }) {
+    const defaultTitle = 'Intermed Innovation — Медицинское оборудование в Ташкенте';
+    const defaultDescription = 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.';
+    const defaultUrl = `https://imed.uz/${lng}`;
+    const defaultImage = '/og.jpg';
+
     return {
-        title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
-        description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
+        title: {
+            template: `%s | ${defaultTitle}`,
+            default: defaultTitle,
+        },
+        description: defaultDescription,
         openGraph: {
-            title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
-            description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
-            url: `https://imed.uz/${lng}`,
+            title: defaultTitle,
+            description: defaultDescription,
+            url: defaultUrl,
             type: 'website',
             locale: lng,
             images: [
                 {
-                    url: '/og.jpg',
+                    url: defaultImage,
                     width: 1200,
                     height: 630,
                     alt: 'Intermed Innovation - Медицинское оборудование',
                 },
             ],
+            site_name: 'Intermed Innovation',
         },
         twitter: {
             card: 'summary_large_image',
-            title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
-            description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
-            images: ['/og.jpg'],
+            title: defaultTitle,
+            description: defaultDescription,
+            images: [defaultImage],
+        },
+        alternates: {
+            canonical: defaultUrl,
+            languages: languages.reduce((acc, language) => {
+                acc[language] = `https://imed.uz/${language}`;
+                return acc;
+            }, {}),
         },
         robots: {
             index: true,
@@ -90,6 +106,7 @@ export default function RootLayout({
                         height="0"
                         width="0"
                         style={{ display: 'none', visibility: 'hidden' }}
+                        title="Google Tag Manager"
                     ></iframe>
                 </noscript>
 
@@ -119,7 +136,7 @@ export default function RootLayout({
                         <img
                             src="https://mc.yandex.ru/watch/98441120"
                             style={{ position: 'absolute', left: '-9999px' }}
-                            alt=""
+                            alt="Yandex Metrika"
                         />
                     </div>
                 </noscript>
