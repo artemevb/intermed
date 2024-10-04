@@ -15,7 +15,7 @@ export function generateMetadata({ params: { lng } }) {
     const defaultTitle = 'Intermed Innovation — Медицинское оборудование в Ташкенте';
     const defaultDescription = 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.';
     const defaultUrl = `https://imed.uz/${lng}`;
-    const defaultImage = '/og.jpg';
+    const defaultImage = 'https://imed.uz/og.jpg'; // Абсолютный путь к изображению
 
     return {
         title: {
@@ -31,7 +31,7 @@ export function generateMetadata({ params: { lng } }) {
             locale: lng,
             images: [
                 {
-                    url: defaultImage,
+                    url: defaultImage, // Используем абсолютный URL
                     width: 1200,
                     height: 630,
                     alt: 'Intermed Innovation - Медицинское оборудование',
@@ -43,7 +43,7 @@ export function generateMetadata({ params: { lng } }) {
             card: 'summary_large_image',
             title: defaultTitle,
             description: defaultDescription,
-            images: [defaultImage],
+            images: [defaultImage], // Абсолютный URL
         },
         alternates: {
             canonical: defaultUrl,
@@ -66,13 +66,14 @@ export function generateMetadata({ params: { lng } }) {
             },
         },
         icons: {
-            icon: "/favicon.ico",
-            apple: "/apple-touch-icon.png",
+            icon: "https://imed.uz/favicon.ico",
+            apple: "https://imed.uz/apple-touch-icon.png",
         },
-        manifest: "/manifest.json",
+        manifest: "https://imed.uz/manifest.json",
         themeColor: "#ffffff",
     };
 }
+
 
 export default function RootLayout({
     children,
