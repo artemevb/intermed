@@ -1,10 +1,10 @@
-// layout.js
+
 import "@/app/_styles/globals.css";
 import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
 import ErrorBoundary from '@/app/[lng]/_components/ErrorBoundary';
-import Script from 'next/script'; // Подключаем next/script для скриптов
+import Script from 'next/script';
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
@@ -15,7 +15,7 @@ export function generateMetadata({ params: { lng } }) {
     const defaultTitle = 'Intermed Innovation — Медицинское оборудование в Ташкенте';
     const defaultDescription = 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.';
     const defaultUrl = `https://imed.uz/${lng}`;
-    const defaultImage = 'https://imed.uz/og.jpg'; // Абсолютный путь к изображению
+    const defaultImage = 'https://imed.uz/og.jpg';
 
     return {
         title: {
@@ -31,7 +31,7 @@ export function generateMetadata({ params: { lng } }) {
             locale: lng,
             images: [
                 {
-                    url: defaultImage, // Используем абсолютный URL
+                    url: defaultImage,
                     width: 1200,
                     height: 630,
                     alt: 'Intermed Innovation - Медицинское оборудование',
@@ -43,7 +43,7 @@ export function generateMetadata({ params: { lng } }) {
             card: 'summary_large_image',
             title: defaultTitle,
             description: defaultDescription,
-            images: [defaultImage], // Абсолютный URL
+            images: [defaultImage],
         },
         alternates: {
             canonical: defaultUrl,
