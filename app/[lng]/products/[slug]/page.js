@@ -1,10 +1,21 @@
-// pages/products/[slug]/page.js
 import axios from 'axios';
 import ProductPageContent from '../ProductPageContent';
+import en from '../../../i18n/locales/en/product-page.json';
+import ru from '../../../i18n/locales/ru/product-page.json';
+import uz from '../../../i18n/locales/uz/product-page.json';
+
+const translations = {
+  en,
+  ru,
+  uz,
+};
+
 
 export async function generateMetadata({ params }) {
   const { slug, lng } = params;
 
+  const t = translations[lng] || translations['ru'];
+  
   let productData = null;
 
   try {
@@ -28,10 +39,10 @@ export async function generateMetadata({ params }) {
     const imageUrl = productData.gallery[0]?.url || '/default-image.jpg';
 
     return {
-      title: `${productData.name} — Купить в Ташкенте`,
+      title: `${productData.name} — ${t.buy}`,
       description: productData.shortDescription || 'Описание недоступно',
       openGraph: {
-        title: `${productData.name} — Купить в Ташкенте`,
+        title: `${productData.name} — ${t.buy}`,
         description: productData.shortDescription || 'Описание недоступно',
         url: `https://imed.uz/${lng}/products/${productData.slug}`,
         images: [
@@ -47,7 +58,7 @@ export async function generateMetadata({ params }) {
       },
       twitter: {
         card: 'summary',
-        title: `${productData.name} — Купить в Ташкенте`,
+        title: `${productData.name} — ${t.buy}`,
         description: productData.shortDescription || 'Описание недоступно',
         images: [imageUrl],
       },

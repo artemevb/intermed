@@ -1,3 +1,4 @@
+// layout.js
 import "@/app/_styles/globals.css";
 import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
@@ -9,9 +10,45 @@ export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
-// Убираем метаданные, которые могут конфликтовать с метаданными страницы
+// Глобальные метаданные для всего приложения
 export function generateMetadata({ params: { lng } }) {
     return {
+        title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
+        description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
+        openGraph: {
+            title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
+            description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
+            url: `https://imed.uz/${lng}`,
+            type: 'website',
+            locale: lng,
+            images: [
+                {
+                    url: '/og.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: 'Intermed Innovation - Медицинское оборудование',
+                },
+            ],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
+            description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
+            images: ['/og.jpg'],
+        },
+        robots: {
+            index: true,
+            follow: true,
+            nocache: false,
+            googleBot: {
+                index: true,
+                follow: true,
+                noimageindex: false,
+                'max-video-preview': -1,
+                'max-image-preview': 'large',
+                'max-snippet': -1,
+            },
+        },
         icons: {
             icon: "/favicon.ico",
             apple: "/apple-touch-icon.png",
@@ -27,6 +64,11 @@ export default function RootLayout({
 }) {
     return (
         <html lang={lng} dir={dir(lng)}>
+            <head>
+                {/* Подключение robots.txt и sitemap.xml */}
+                <link rel="robots" href="/robots.txt" />
+                <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+            </head>
             <body>
                 {/* Google Tag Manager */}
                 <Script
