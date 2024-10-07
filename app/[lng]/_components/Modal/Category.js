@@ -9,7 +9,6 @@ export default function Category({
 	allCategories,
 	setCategoryID,
 	setCatalogID,
-	handleCatalogOpen,
 	lng,
 }) {
 	const { t } = useTranslation(lng, 'modal-category');
@@ -59,7 +58,6 @@ export default function Category({
 				</h2>
 				<CatalogList
 					allCategories={allCategories}
-					onCatalogOpen={handleCatalogOpen}
 					setCategoryID={setCategoryID}
 					setCatalogID={setCatalogID}
 					lng={lng}

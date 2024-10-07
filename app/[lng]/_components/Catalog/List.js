@@ -5,14 +5,14 @@ import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from '../../../i18n/client'
 import { useLanguage } from '../../../i18n/locales/LanguageContext'
 import Category from '../Modal/Category'
-import CatalogList from './CatalogBar'
+import CatalogList from './CatalogBar' // Убедитесь, что импорт правильный
 import CatalogItem from './Catalogitem'
 import Dropdown from './DropDown'
 import search_red from "@/public/svg/tools/search-icon-red.svg";
 import Image from 'next/image'
 import { DNA } from "react-loader-spinner";
 
-export default function List({ data, allCategories }) {
+export default function List({ data, allCategories, selectedCatalogId }) {
     const lng = useLanguage()
     const { t } = useTranslation(lng, 'list-catalog')
 
@@ -34,6 +34,23 @@ export default function List({ data, allCategories }) {
 
     // Categories with products state
     const [categoriesWithProducts, setCategoriesWithProducts] = useState([]);
+
+    // Инициализация catalogID на основе пропса
+    useEffect(() => {
+        if (selectedCatalogId) {
+            setCatalogID(selectedCatalogId);
+            // Установка categoryID на основе выбранной субкатегории
+            const category = allCategories.find(cat => 
+              cat.catalogs.some(catalog => catalog.id === selectedCatalogId)
+            );
+            if (category) {
+                setCategoryID(category.id);
+            }
+        } else if (selectedCatalogId === null && data.length > 0) {
+            // Если selectedCatalogId === null и есть категория, установить categoryID
+            setCategoryID(data[0].id);
+        }
+    }, [selectedCatalogId, allCategories, data]);
 
     // Fetch products and filter categories/subcategories without products
     useEffect(() => {
@@ -127,16 +144,8 @@ export default function List({ data, allCategories }) {
                 } finally {
                     setLoading(false);
                 }
-            }
-        };
-
-        fetchProductWithCatalogID();
-    }, [catalogID, lng]);
-
-    // Fetch products by category ID
-    useEffect(() => {
-        const fetchProductWithCategoryID = async () => {
-            if (categoryID) {
+            } else if (categoryID) {
+                // Если catalogID не установлен, fetch products by category ID
                 setLoading(true);
                 try {
                     const response = await axios.get(
@@ -156,10 +165,10 @@ export default function List({ data, allCategories }) {
             }
         };
 
-        fetchProductWithCategoryID();
-    }, [categoryID, lng]);
+        fetchProductWithCatalogID();
+    }, [catalogID, categoryID, lng]);
 
-    // Initialize filtered data based on selected category
+    // Инициализация отфильтрованных данных на основе выбранной категории фильтра
     useEffect(() => {
         const items =
             productWithCatalogID.length > 0
@@ -184,7 +193,7 @@ export default function List({ data, allCategories }) {
         setFilteredData(filteredItems)
     }, [productWithCatalogID, productWithCategoryId, selectedCategory])
 
-    // Handle category selection
+    // Обработка выбора фильтра
     const handleFilter = useCallback(
         categorySlug => {
             setSelectedCategory(categorySlug)
@@ -215,19 +224,19 @@ export default function List({ data, allCategories }) {
         [productWithCatalogID, productWithCategoryId]
     )
 
-    // Handle catalog open
+    // Обработка открытия каталога (используется CatalogList)
     const handleCatalogOpen = useCallback(id => {
         setCatalogID(id);
         setCategoryID(0);
     }, []);
 
-    // Close category modal
+    // Закрытие модального окна категории
     const handleClose = () => setCategoryModal(false)
 
-    // Get filtered data for display
+    // Получение отфильтрованных данных для отображения
     const getFilteredData = () => filteredData
 
-    // Define categories for filtering
+    // Определение категорий для фильтрации
     const categories = [
         { title: t('allProducts'), slug: 'all' },
         { title: t('newProducts'), slug: 'new' },
@@ -290,11 +299,11 @@ export default function List({ data, allCategories }) {
             <div className='w-full flex gap-10 max-lg:justify-center'>
                 <div className='w-full max-w-[350px] max-2xl:max-w-[280px] max-lg:hidden'>
                     <CatalogList
-                        data={categoriesWithProducts}
                         allCategories={allCategories}
-                        onCatalogOpen={handleCatalogOpen}
                         setCategoryID={setCategoryID}
                         setCatalogID={setCatalogID}
+                        lng={lng}
+                        shouldCloseModal={handleClose}
                     />
                 </div>
                 <div>
@@ -320,7 +329,7 @@ export default function List({ data, allCategories }) {
                                     src={search_red}
                                     width={60}
                                     height={60}
-                                    alt="The Wild Oasis logo"
+                                    alt="No results"
                                     quality={100}
                                     className='w-[40px] h-[40px] lg:w-[60px] lg:h-[60px]'
                                 />

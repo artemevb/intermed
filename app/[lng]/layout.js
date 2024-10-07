@@ -1,91 +1,76 @@
+// app/layout.js
 
 import "@/app/_styles/globals.css";
 import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
 import ErrorBoundary from '@/app/[lng]/_components/ErrorBoundary';
-import Script from 'next/script';
+import Script from 'next/script'; // Подключаем next/script для скриптов
+import Head from 'next/head'; // Импортируем Head для вставки JSON-LD
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
-// Глобальные метаданные для всего приложения
+// Убираем метаданные, которые могут конфликтовать с метаданными страницы
 export function generateMetadata({ params: { lng } }) {
-    const defaultTitle = 'Intermed Innovation — Медицинское оборудование в Ташкенте';
-    const defaultDescription = 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.';
-    const defaultUrl = `https://imed.uz/${lng}`;
-    const defaultImage = 'https://imed.uz/og.jpg';
-
     return {
-        title: {
-            template: `%s | ${defaultTitle}`,
-            default: defaultTitle,
-        },
-        description: defaultDescription,
-        openGraph: {
-            title: defaultTitle,
-            description: defaultDescription,
-            url: defaultUrl,
-            type: 'website',
-            locale: lng,
-            images: [
-                {
-                    url: defaultImage,
-                    width: 1200,
-                    height: 630,
-                    alt: 'Intermed Innovation - Медицинское оборудование',
-                },
-            ],
-            site_name: 'Intermed Innovation',
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: defaultTitle,
-            description: defaultDescription,
-            images: [defaultImage],
-        },
-        alternates: {
-            canonical: defaultUrl,
-            languages: languages.reduce((acc, language) => {
-                acc[language] = `https://imed.uz/${language}`;
-                return acc;
-            }, {}),
-        },
-        robots: {
-            index: true,
-            follow: true,
-            nocache: false,
-            googleBot: {
-                index: true,
-                follow: true,
-                noimageindex: false,
-                'max-video-preview': -1,
-                'max-image-preview': 'large',
-                'max-snippet': -1,
-            },
-        },
         icons: {
-            icon: "https://imed.uz/favicon.ico",
-            apple: "https://imed.uz/apple-touch-icon.png",
+            icon: "/favicon.ico",
+            apple: "/apple-touch-icon.png",
         },
-        manifest: "https://imed.uz/manifest.json",
+        manifest: "/manifest.json",
         themeColor: "#ffffff",
     };
 }
-
 
 export default function RootLayout({
     children,
     params: { lng },
 }) {
+    // Структурированные данные Organization
+    const organizationStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Intermed Innovation",
+        "url": "https://imed.uz",
+        "logo": "https://imed.uz/logo.png", // Замените на актуальный URL вашего логотипа
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+998781504747", // Замените на актуальный номер телефона
+            "contactType": "customer service",
+            "areaServed": "UZ",
+            "availableLanguage": ["Uzbek", "Russian", "English"]
+        },
+        "sameAs": [
+            "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D", // Замените на актуальные ссылки на соцсети
+            "https://www.facebook.com/intermed.mindray",
+            "https://t.me/intermedtrade",
+            "https://www.youtube.com/@intermedinnovation9644"
+        ],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Chinobod ko'chasi 10a, Тоshkent, Toshkent", // Замените на актуальный адрес
+            "addressLocality": "Ташкент",
+            "postalCode": "100000",
+            "addressCountry": "UZ"
+        },
+        "founder": "Имя Основателя", // Замените на имя основателя, если применимо
+        "foundingDate": "2020-01-01", // Замените на дату основания
+        "description": "Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану."
+    };
+
     return (
         <html lang={lng} dir={dir(lng)}>
-            <head>
-                {/* Подключение robots.txt и sitemap.xml */}
-                <link rel="robots" href="/robots.txt" />
-                <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-            </head>
+            <Head>
+                {/* Структурированные данные Organization */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(organizationStructuredData),
+                    }}
+                />
+            </Head>
             <body>
                 {/* Google Tag Manager */}
                 <Script

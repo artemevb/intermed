@@ -4,14 +4,17 @@ import Image from 'next/image';
 import { Transition } from '@headlessui/react';
 import upGreen from '@/public/svg/arrow-up-green.svg';
 import downGray from '@/public/svg/arrow-down-gray.svg';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import { useTranslation } from '../../../i18n/client';
 
-// Accordion Item Component
+// Компонент элемента аккордеона
 const AccordionItem = ({ title, isOpen, onClick, children, hasChildren }) => (
   <div className="border-t border-b border-solid">
     <summary
       onClick={onClick}
-      className={`flex gap-5 py-7 ${isOpen ? 'text-redMain' : 'text-black'} font-semibold text-xl max-md:max-w-full cursor-pointer`}
+      className={`flex gap-5 py-7 ${
+        isOpen ? 'text-redMain' : 'text-black'
+      } font-semibold text-xl max-md:max-w-full cursor-pointer`}
     >
       <span className="flex-auto">{title}</span>
       {hasChildren && (
@@ -45,72 +48,108 @@ const AccordionContent = ({ children }) => (
   <div className="pb-5 px-4">{children}</div>
 );
 
-export default function CatalogList({ allCategories, setCategoryID, setCatalogID, lng, shouldCloseModal = () => {} }) {
+export default function CatalogList({
+  allCategories,
+  setCategoryID,
+  setCatalogID,
+  lng,
+  shouldCloseModal = () => {},
+}) {
   const params = useParams();
+  const router = useRouter();
+  const { t } = useTranslation(lng, 'list-catalog');
   const [openSection, setOpenSection] = useState(null);
-  const [selectedCatalogId, setSelectedCatalogId] = useState(null);
+  const [selectedCatalogKey, setSelectedCatalogKey] = useState(null);
 
-  // Чтение slug из URL
-  const slug = params.slug;
+  // Чтение slug из URL (ожидается массив)
+  const slugArray = Array.isArray(params.slug) ? params.slug : [params.slug];
+  const categorySlug = slugArray[0] || null;
+  const subcategorySlug = slugArray[1] || null;
 
-  // Чтение сохраненного состояния из localStorage при загрузке компонента
+  // Инициализация состояния при загрузке компонента
   useEffect(() => {
-    const savedCategoryId = localStorage.getItem('openCategoryId');
-    if (savedCategoryId) {
-      setOpenSection(Number(savedCategoryId)); // Восстанавливаем состояние открытой категории
+    if (categorySlug) {
+      const categoryId = Number(categorySlug.split('-')[0]);
+      setOpenSection(categoryId);
+      setCategoryID(categoryId);
+  
+      if (subcategorySlug) {
+        if (subcategorySlug === 'all') {
+          setSelectedCatalogKey(`${categoryId}-all`);
+          setCatalogID(null);
+        } else {
+          const subcategoryId = Number(subcategorySlug.split('-')[0]);
+          setSelectedCatalogKey(`${categoryId}-${subcategoryId}`);
+          setCatalogID(subcategoryId);
+        }
+      } else {
+        // Если нет subcategorySlug, считаем, что выбрана "Все продукты"
+        setSelectedCatalogKey(`${categoryId}-all`);
+        setCatalogID(null);
+      }
+    } else {
+      // Сбрасываем состояние, если categorySlug отсутствует
+      setOpenSection(null);
+      setCategoryID(null);
+      setSelectedCatalogKey(null);
+      setCatalogID(null);
     }
-  }, []);
+  }, [categorySlug, subcategorySlug, setCategoryID, setCatalogID]);
+  
 
-  // Сохраняем выбранную категорию в localStorage
-  const saveCategoryToLocalStorage = (categoryId) => {
-    localStorage.setItem('openCategoryId', categoryId);
-  };
+  // Функция для обновления URL
+  const updateUrl = useCallback(
+    (categorySlug, subcategorySlug = null) => {
+      let newUrl = `/${lng}/categories/catalog/${categorySlug}`;
+      if (subcategorySlug) {
+        newUrl += `/${subcategorySlug}`;
+      }
+      router.push(newUrl);
+    },
+    [lng, router]
+  );
 
-  useEffect(() => {
-    const slugId = slug?.split('-')[0];
-    if (slugId) {
-      setCategoryID(slugId);
-    }
-  }, [slug, setCategoryID]);
-
-  const updateUrl = useCallback((slug) => {
-    const newUrl = `/${params.lng}/categories/catalog/${slug}`;
-    window.history.pushState({}, '', newUrl); // Update URL without reloading the page
-  }, [lng, params.lng]);
-
+  // Функция для переключения секции аккордеона
   const toggleSection = useCallback(
     (id, slug, hasChildren) => {
       const newOpenSection = openSection === id ? null : id;
       setOpenSection(newOpenSection);
 
       if (newOpenSection) {
-        setCategoryID(newOpenSection);
-        saveCategoryToLocalStorage(newOpenSection); // Сохраняем выбранную категорию в localStorage
+        setCategoryID(id);
 
         if (!hasChildren) {
-          shouldCloseModal(true); // Close modal if category has no subcategories
+          updateUrl(slug);
+          shouldCloseModal(true);
         }
       } else {
-        setSelectedCatalogId(null);
+        // При закрытии категории сбрасываем selectedCatalogKey
+        setSelectedCatalogKey(null);
         setCatalogID(null);
       }
-
-      updateUrl(slug);
     },
     [openSection, setCategoryID, setCatalogID, updateUrl, shouldCloseModal]
   );
 
+  // Функция для обработки клика по подкатегории
   const handleCatalogClick = useCallback(
-    (catalogId) => {
-      setSelectedCatalogId(catalogId);
-      setCatalogID(catalogId);
-
-      // Close the modal for subcategories
+    (catalogId, catalogSlug, categoryId, categorySlug) => {
+      if (catalogId === 0) {
+        // Выбрана подкатегория "Все продукты"
+        setSelectedCatalogKey(`${categoryId}-all`);
+        setCatalogID(null);
+        updateUrl(categorySlug); // Не включаем subcategorySlug в URL
+      } else {
+        setSelectedCatalogKey(`${categoryId}-${catalogId}`);
+        setCatalogID(catalogId);
+        updateUrl(categorySlug, catalogSlug);
+      }
       shouldCloseModal(true);
     },
-    [setCatalogID, shouldCloseModal]
+    [setCatalogID, shouldCloseModal, updateUrl]
   );
 
+  // Рендеринг категорий и подкатегорий
   const renderedCategories = useMemo(() => {
     if (!allCategories) {
       return <p>Loading categories...</p>;
@@ -119,33 +158,58 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
     const activeCategories = allCategories.filter((category) => category.active);
 
     return activeCategories.map(({ id, name, catalogs, slug }) => {
-      const activeCatalogs = catalogs.filter((catalog) => catalog.active !== false);
+      const activeCatalogs = catalogs.filter(
+        (catalog) => catalog.active !== false
+      );
+
+      // Добавляем подкатегорию "Все продукты"
+      const catalogsWithAll =
+        activeCatalogs.length > 0
+          ? [
+              { id: 0, slug: 'all', name: t('allProducts'), active: true },
+              ...activeCatalogs,
+            ]
+          : activeCatalogs;
 
       return (
         <div key={id} className="w-full">
           <AccordionItem
             title={name}
-            isOpen={openSection === id} // Проверяем, соответствует ли категория открытой
+            isOpen={openSection === id}
             onClick={() => toggleSection(id, slug, activeCatalogs.length > 0)}
             hasChildren={activeCatalogs.length > 0}
           >
             {activeCatalogs.length > 0 && (
               <AccordionContent>
                 <div className="flex flex-col gap-5 text-lg font-semibold text-[#252324] w-full">
-                  {activeCatalogs
+                  {catalogsWithAll
                     .sort((a, b) => a.id - b.id)
-                    .map((catalogItem) => (
-                      <div
-                        key={catalogItem.id}
-                        className={`cursor-pointer ${selectedCatalogId === catalogItem.id
-                          ? 'text-red-500'
-                          : 'text-black'
+                    .map((catalogItem) => {
+                      const catalogKey =
+                        catalogItem.id === 0
+                          ? `${id}-all`
+                          : `${id}-${catalogItem.id}`;
+                      return (
+                        <div
+                          key={catalogItem.id || catalogItem.slug}
+                          className={`cursor-pointer ${
+                            selectedCatalogKey === catalogKey
+                              ? 'text-red-500'
+                              : 'text-black'
                           }`}
-                        onClick={() => handleCatalogClick(catalogItem.id)}
-                      >
-                        {catalogItem.name}
-                      </div>
-                    ))}
+                          onClick={() =>
+                            handleCatalogClick(
+                              catalogItem.id,
+                              catalogItem.slug,
+                              id,
+                              slug
+                            )
+                          }
+                        >
+                          {catalogItem.name}
+                        </div>
+                      );
+                    })}
                 </div>
               </AccordionContent>
             )}
@@ -153,7 +217,14 @@ export default function CatalogList({ allCategories, setCategoryID, setCatalogID
         </div>
       );
     });
-  }, [allCategories, openSection, selectedCatalogId, toggleSection, handleCatalogClick]);
+  }, [
+    allCategories,
+    openSection,
+    selectedCatalogKey,
+    toggleSection,
+    handleCatalogClick,
+    t,
+  ]);
 
   return (
     <section className="w-full">
