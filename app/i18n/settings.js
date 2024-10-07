@@ -1,9 +1,11 @@
-export const fallbackLng = 'ru';
-export const languages = [fallbackLng, 'en', 'uz'];
-export const defaultNS = 'translation';
-export const cookieName = 'i18next';
+// app/i18n/settings.js
 
-export function getOptions(lng = fallbackLng, ns = defaultNS) {
+const fallbackLng = 'ru';
+const languages = [fallbackLng, 'en', 'uz'];
+const defaultNS = 'translation';
+const cookieName = 'i18next';
+
+function getOptions(lng = fallbackLng, ns = defaultNS) {
   return {
     supportedLngs: languages,
     fallbackLng,
@@ -13,3 +15,11 @@ export function getOptions(lng = fallbackLng, ns = defaultNS) {
     ns,
   };
 }
+
+module.exports = {
+  fallbackLng,
+  languages,
+  defaultNS,
+  cookieName,
+  getOptions,
+};
