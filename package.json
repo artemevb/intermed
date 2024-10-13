@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "sleep 5 && mv ./public/sitemap-0.xml ./public/sitemap.xml",
+    "postbuild": "sleep 5 && mv ./sitemap-0.xml ./sitemap.xml",
     "start": "next start",
     "lint": "next lint"
   },
