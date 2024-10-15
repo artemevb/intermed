@@ -103,9 +103,9 @@ export default function BannerCarousel({ banners }) { // Принимаем ба
                       <TextWithNewlines text={banner.categoryName} />
                     </p>
 
-                    <h1 className="text-[#252324] text-[28px] leading-[33.6px] mdx:text-[45px] mdx:leading-[54px] font-bold xl:text-[70px] xl:leading-[84px]">
+                    <div className="text-[#252324] text-[28px] leading-[33.6px] mdx:text-[45px] mdx:leading-[54px] font-bold xl:text-[70px] xl:leading-[84px]">
                       <TextWithNewlines text={banner.title} />
-                    </h1>
+                    </div>
                     <p className="text-[#252324] text-[14px] opacity-50 md:text-[16px] xl:text-[20px] border-b border-[#EBEBEB] pb-[13px]">
                       <TextWithNewlines text={banner.subTitle} />
                     </p>

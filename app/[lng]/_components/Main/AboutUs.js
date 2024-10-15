@@ -30,10 +30,10 @@ export default function AboutUs({ lng }) {
             className="w-full xl:w-[450px] 2xl:w-[720px]  object-cover xl:h-full "
           />
           <div className="h-full xl:w-[66%] flex flex-col justify-between 5xl:w-[54%]">
-            <h2 className="text-4xl 5xl:text-5xl font-semibold w-full max-5xl:max-w-[591px]  max-xl:hidden lh">
+            <h1 className="text-4xl 5xl:text-5xl font-semibold w-full max-5xl:max-w-[591px]  max-xl:hidden lh">
               <span className="text-redMain">{t('intermed_innovation')}</span><br />
               {t('reliable_supplier')}
-            </h2>
+            </h1>
             <p className="text-[#808080] w-full 2xl:max-w-[550px] mb-[30px] xl:mb-0 5xl:text-2xl 5xl:max-w-[750px]">
               {t('description')}
             </p>
