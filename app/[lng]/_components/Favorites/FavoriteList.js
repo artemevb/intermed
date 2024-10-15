@@ -29,7 +29,7 @@ export default function FavoriteList() {
   return (
     <div className="w-full max-w-[1440px] 5xl:max-w-[2000px] px-2 flex flex-col gap-12 mx-auto">
       <div className="w-full flex justify-between items-center flex-wrap gap-4">
-        <h1 className="text-3xl max-mdx:text-2xl xl:text-[38px] font-semibold uppercase">{t('favorite')}</h1>
+        <h2 className="text-3xl max-mdx:text-2xl xl:text-[38px] font-semibold uppercase">{t('favorite')}</h2>
         <button
           className="px-7 py-3 text-sm mdl:py-4 xl:text-[16px] xl:px-[58px] bg-contactBg text-white hover:bg-[#EE787C]"
           onClick={handleOpenModal}

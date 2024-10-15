@@ -21,9 +21,9 @@ export default function Banner({ lng }) {
           <div className="flex-1 h-full flex justify-center px-2 5xl:mr-0 5xl:flex-none 5xl:w-[60%] xl:mr-[20px] 3xl:mr-[40px] 4xl:mr-[100px]">
             <div className="w-full flex flex-col gap-8 justify-between h-full 3xl:ml-[4%] 4xl:ml-[25%] 5xl:ml-[18%] 5xl:mr-[200px] ">
               <div className="2xl:mt-9 mt-6 lh text-black text-[24px] mdx:text-[35px] xl:text-[40px] font-medium 2xl:w-[650px] 5xl:w-[87%]">
-                <h1 className="text-redMain text-[24px] font-semibold mdx:text-[35px] xl:text-[40px] uppercase tracking-tight">
+                <div className="text-redMain text-[24px] font-semibold mdx:text-[35px] xl:text-[40px] uppercase tracking-tight">
                   {t('intermed_innovation')}
-                </h1>
+                </div>
                 <span className="font-semibold">{t('reliable_supplier')}</span>
                 <div className="text-[24px] mt-[14px] text-blacklighttxt mdx:text-[18px] xl:text-[20px] 2xl:text-[22px] normal-case 5xl:mt-[40px]">
                   {t('description')}

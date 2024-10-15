@@ -58,10 +58,10 @@ export default function BannerCarousel() {
         <div className="relative w-full mx-auto overflow-hidden ">
             <div key={equipment.id} className="flex flex-col xl:flex-row bg-white overflow-hidden">
                 <div className="xl:w-[50%] flex flex-col justify-center p-4 text-white 3xl:pl-[4%] 4xl:pl-[13%]">
-                    <h1 className="text-[25px] uppercase mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">
+                    <h3 className="text-[25px] uppercase mdx:text-[35px] mdl:text-[40px] font-semibold text-[#E31E24]">
                         {t('title-1')}<br />
                         <span className="text-black uppercase"> {t('title-2')}</span>
-                    </h1>
+                    </h3>
                     <p className="mt-2 text-[#808080] text-[15px] mdx:text-[20px]">
                         {t('subtitle-1')}<br /> {t('subtitle-2')}
                     </p>

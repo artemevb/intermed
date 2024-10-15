@@ -202,9 +202,9 @@ export default function Search({ setSearchMenu }) {
                           </p>
                         )}
                         <div>
-                          <h1 className="text-2xl font-semibold">
+                          <div className="text-2xl font-semibold">
                             {item.dtoName === 'Partner' ? `${t('products')} ${item.name}` : item.name}
-                          </h1>
+                          </div>
                           {item.dtoName === 'Partner' && (
                             <p className="text-sm text-gray-400 mt-1">
                               {`${t('partner')} `}

@@ -30,9 +30,9 @@ export default function Scheme({ lng }) {
                   1
                 </div>
                 <div className="max-xl:pl-8 max-xl:pb-12 xl:pt-6 xl:pr-8 flex flex-col gap-2">
-                  <h1 className="text-2xl 5xl:text-3xl text-redMain font-semibold">
+                  <div className="text-2xl 5xl:text-3xl text-redMain font-semibold">
                     {t('equipment_selection')}
-                  </h1>
+                  </div>
                   <p className="max-xl:max-w-[600px] 5xl:text-xl">
                     {t('consult_experts')}
                   </p>
@@ -43,9 +43,9 @@ export default function Scheme({ lng }) {
                   2
                 </div>
                 <div className="max-xl:pl-8 max-xl:pb-12 xl:pt-6 xl:pr-8 flex flex-col gap-2">
-                  <h1 className="text-2xl 5xl:text-3xl text-redMain font-semibold">
+                  <div className="text-2xl 5xl:text-3xl text-redMain font-semibold">
                     {t('order_processing')}
-                  </h1>
+                  </div>
                   <p className="max-xl:max-w-[600px] 5xl:text-xl">
                     {t('prepare_documents')}
                   </p>
@@ -56,9 +56,9 @@ export default function Scheme({ lng }) {
                   3
                 </div>
                 <div className="max-xl:pl-8 max-xl:pb-12 xl:pt-6 xl:pr-8 flex flex-col gap-2">
-                  <h1 className="text-2xl 5xl:text-3xl text-redMain font-semibold">
+                  <div className="text-2xl 5xl:text-3xl text-redMain font-semibold">
                     {t('delivery_installation')}
-                  </h1>
+                  </div>
                   <p className="max-xl:max-w-[600px] 5xl:text-xl">
                     {t('prompt_delivery')}
                   </p>
@@ -69,9 +69,9 @@ export default function Scheme({ lng }) {
                   4
                 </div>
                 <div className="max-xl:pl-8 max-xl:pb-12 xl:pt-6 xl:pr-8 flex flex-col gap-2">
-                  <h1 className="text-2xl 5xl:text-3xl text-redMain font-semibold">
+                  <div className="text-2xl 5xl:text-3xl text-redMain font-semibold">
                     {t('training_support')}
-                  </h1>
+                  </div>
                   <p className="max-xl:max-w-[600px] 5xl:text-xl">
                     {t('training_and_support')}
                   </p>

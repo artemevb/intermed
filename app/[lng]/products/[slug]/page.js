@@ -109,7 +109,7 @@ export default async function Page({ params }) {
   if (!productData) {
     return (
       <div>
-        <h1>Продукт не найден</h1>
+        <h2>Продукт не найден</h2>
         <p>Извините, запрошенный продукт не найден.</p>
       </div>
     );

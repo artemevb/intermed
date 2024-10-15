@@ -35,9 +35,9 @@ export default function Scheme() {
                                 1
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
-                                <h1 className="text-2xl text-redMain font-semibold">
+                                <h2 className="text-2xl text-redMain font-semibold">
                                     {t('consultation')}
-                                </h1>
+                                </h2>
                                 <p className="max-w-[600px]">
                                     {t('meeting_with_client')}
                                 </p>
@@ -48,9 +48,9 @@ export default function Scheme() {
                                 2
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
-                                <h1 className="text-2xl text-redMain font-semibold">
+                                <h2 className="text-2xl text-redMain font-semibold">
                                     {t('design_planning')}
-                                </h1>
+                                </h2>
                                 <p className="max-w-[600px]">
                                     {t('equipment_plan_development')}
                                 </p>
@@ -61,9 +61,9 @@ export default function Scheme() {
                                 3
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
-                                <h1 className="text-2xl text-redMain font-semibold">
+                                <h3 className="text-2xl text-redMain font-semibold">
                                     {t('equipment_supply')}
-                                </h1>
+                                </h3>
                                 <p className="max-w-[600px]">
                                     {t('purchase_delivery')}
                                 </p>
@@ -74,9 +74,9 @@ export default function Scheme() {
                                 4
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
-                                <h1 className="text-2xl text-redMain font-semibold">
+                                <h2 className="text-2xl text-redMain font-semibold">
                                     {t('installation_training')}
-                                </h1>
+                                </h2>
                                 <p className="max-w-[600px]">
                                     {t('equipment_installation')}
                                 </p>
@@ -87,9 +87,9 @@ export default function Scheme() {
                                 5
                             </div>
                             <div className="pl-8 pb-12 flex flex-col gap-2">
-                                <h1 className="text-2xl text-redMain font-semibold">
+                                <h3 className="text-2xl text-redMain font-semibold">
                                     {t('maintenance_support')}
-                                </h1>
+                                </h3>
                                 <p className="max-w-[600px]">
                                     {t('technical_support')}
                                 </p>

@@ -26,9 +26,9 @@ export default function Title() {
                             className='w-full h-auto object-contain' />
                     </div>
                     <div className='xl:w-[50%] xl:ml-[62px] xl:mt-[20px]'>
-                        <h1 className="font-semibold text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] mb-4 uppercase hidden xl:block text-[#252324]" >
+                        <h2 className="font-semibold text-[25px] mdx:text-[30px] mdl:text-[35px] xl:text-[40px] mb-4 uppercase hidden xl:block text-[#252324]" >
                             {t('innovation_health')}
-                        </h1>
+                        </h2>
                         <p className="text-[#808080] text-[15px] mdx:text-[20px]">
                             {t('clinic_equipment_intro')}<br /><br />
                             {t('clinic_equipment_details')}
