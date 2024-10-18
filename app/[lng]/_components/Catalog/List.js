@@ -264,11 +264,11 @@ export default function List({ data, allCategories, selectedCatalogId }) {
                 <div className='z-[999] flex items-center justify-between'>
                     <button
                         onClick={() => setCategoryModal(true)}
-                        className='px-4 py-3 justify-center backdrop-opacity-10 flex items-center lg:hidden w-1/2 border border-gray-300'
+                        className='text-[14px] md:text-[16px] mdx:px-4 py-3 justify-center backdrop-opacity-10 flex items-center lg:hidden w-1/2 border border-gray-300'
                     >
                         {t('categories')}
                         <ChevronDownIcon
-                            className='w-5 h-5 ml-2 -mr-1'
+                            className='w-5 h-5 ml-[2px] md:ml-2 -mr-1'
                             aria-hidden='true'
                         />
                     </button>

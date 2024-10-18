@@ -38,12 +38,12 @@ export default function Dropdown({ handleFilter }) {
       <Menu as="div" className="relative w-full lg:hidden">
         <div>
           <Menu.Button
-            className="inline-flex justify-center items-center w-full px-4 py-3 font-medium text-black bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent"
+            className="text-[14px] md:text-[16px] inline-flex justify-center items-center w-full mdx:px-4 py-3 font-medium text-black bg-white border border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent"
             onClick={openModal}
           >
             {selectedFilter === 'all' ? t('allProducts') : selectedFilter === 'new' ? t('newProducts') : t('promotions')}
 
-            <ChevronDownIcon className="w-5 h-5 ml-2 -mr-1" aria-hidden="true" />
+            <ChevronDownIcon className="w-5 h-5 ml-[2px] md:ml-2 -mr-1" aria-hidden="true" />
           </Menu.Button>
         </div>
       </Menu>

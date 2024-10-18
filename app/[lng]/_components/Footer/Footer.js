@@ -144,7 +144,7 @@ export default function Footer({ lng }) {
 
               <a
                 href={`/${lng}/categories`}
-                className="flex gap-2 hover:gap-4 items-center transition-all duration-200"
+                className="flex gap-2 hover:gap-4 items-center transition-all duration-200 whitespace-nowrap"
               >
                 <p className="text-redMain font-bold text-lg">{t('all_categories')}</p>
                 <Image
@@ -156,6 +156,7 @@ export default function Footer({ lng }) {
                   className="w-4 h-4"
                 />
               </a>
+
             </div>
             <div className="flex-1 flex flex-col text-sm gap-4  text-[#808080]">
               <h2 className="text-lg font-semibold text-[#252324] uppercase">{t('company')}</h2>
