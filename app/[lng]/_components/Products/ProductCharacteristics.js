@@ -48,14 +48,17 @@ export default function ProductCharacteristics({ data }) {
 	}
 
 	// Helper function to handle newlines and replace them with <br />
-	const formatTextWithNewlines = (text) => {
-		return text.split('\n').map((line, index) => (
-			<span key={index}>
-				{line}
-				<br />
-			</span>
-		))
-	}
+// Helper function to handle newlines and replace them with <br />
+const formatTextWithNewlines = (text) => {
+    if (!text) return null; // Проверка на null или undefined
+    return text.split('\n').map((line, index) => (
+        <span key={index}>
+            {line}
+            <br />
+        </span>
+    ));
+}
+
 
 	useEffect(() => {
 		setIsMounted(true)
