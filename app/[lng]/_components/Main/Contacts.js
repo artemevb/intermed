@@ -86,6 +86,7 @@ export default function Contacts({ lng }) {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             className="w-full h-full"
+            title="Location Map of INTERMED Innovation"
           ></iframe>
         </div>
       </div>

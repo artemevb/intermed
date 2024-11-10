@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import imed from "@/public/images/main/scheme-im.png";
+import imed from "@/public/images/main/scheme-im.webp";
 import { useTranslation } from '../../../i18n/client'
 import { useState, useEffect } from "react";
 import { useLanguage } from '../../../i18n/locales/LanguageContext';

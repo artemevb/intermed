@@ -1,6 +1,5 @@
 "use client";
 
-import newsPhoto from "@/public/images/events/events1.png";
 import EventCard from "../Events/EventCard";
 import Pagination from "../News/Pagination";
 import Link from "next/link";

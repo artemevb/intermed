@@ -5,7 +5,7 @@ import { Transition } from "@headlessui/react";
 import { useState } from "react";
 import upGreen from "@/public/svg/arrow-up-green.svg";
 import downGray from "@/public/svg/arrow-down-gray.svg";
-import schemeImage from "@/public/images/main/scheme-image.png";
+import schemeImage from "@/public/images/main/scheme-image.webp";
 
 const AccordionItem = ({ title, isOpen, onClick, children }) => {
   return (

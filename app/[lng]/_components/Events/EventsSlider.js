@@ -4,10 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
-import eventImage1 from "@/public/images/news/events/1.png";
-import eventImage2 from "@/public/images/news/events/2.png";
-import eventImage3 from "@/public/images/news/events/3.png";
-import eventImage4 from "@/public/images/news/events/4.png";
+
 
 import EventCard from "../../_components/Events/EventCard";
 

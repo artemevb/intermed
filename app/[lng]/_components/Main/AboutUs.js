@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useTranslation } from '../../../i18n/client'
-import Imed from "@/public/images/aboutUs/imed.png";
+import Imed from "@/public/images/aboutUs/imed.webp";
 import { useState, useEffect } from "react";
 
 export default function AboutUs({ lng }) {

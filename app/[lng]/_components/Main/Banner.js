@@ -159,6 +159,7 @@ export default function BannerCarousel({ banners }) { // Принимаем ба
         {banners?.sliders?.map((_, index) => (
           <button
             key={index}
+            alt={`slide ${index + 1}`}
             onClick={() => goToSlide(index)}
             className={`w-2 h-2 rounded-full ${currentSlide === index ? 'bg-red-500' : 'bg-gray-300'} mx-1`}
           ></button>
