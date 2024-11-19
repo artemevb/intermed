@@ -16,15 +16,16 @@ export default function NewCard({ key, title, date, imageSrc }) {
 
   return (
     <div className="w-full border border-[#E1E1E1] bg-white h-full flex flex-col gap-2 justify-between">
-      <Image
-        src={imageSrc}
-        width={500}
-        height={500}
-        quality={100}
-        alt={`News Image ${key}`}
-        className="w-full h-auto object-cover"
-      />
-      <div className="w-full flex flex-col gap-6 pl-4 py-[25px]">
+      <div className="relative w-full h-0 pb-[90%] mb-4">
+        <Image
+          src={imageSrc}
+          alt={title}
+          layout="fill"
+          objectFit="cover"
+          priority={false}
+        />
+      </div>
+      <div className="w-full flex flex-col gap-4 pl-4 py-[15px]">
         <h3 className="text-xl max-mdx:text-lg font-semibold line-clamp-4">
           {title}
         </h3>
