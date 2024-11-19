@@ -3,14 +3,14 @@ import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
 import ErrorBoundary from '@/app/[lng]/_components/ErrorBoundary';
-import Script from 'next/script'; // Подключаем next/script для скриптов
-import Head from 'next/head'; // Импортируем Head для вставки JSON-LD
+import Script from 'next/script'; // Import next/script for managing scripts
+import Head from 'next/head'; // Import Head for inserting JSON-LD and other head elements
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
-// Убираем метаданные, которые могут конфликтовать с метаданными страницы
+// Remove metadata that may conflict with page metadata
 export function generateMetadata({ params: { lng } }) {
     return {
         icons: {
@@ -26,42 +26,42 @@ export default function RootLayout({
     children,
     params: { lng },
 }) {
-    // Структурированные данные Organization
+    // Structured data for Organization
     const organizationStructuredData = {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Intermed Innovation",
         "url": "https://imed.uz",
-        "logo": "https://imed.uz/logo.png", // Замените на актуальный URL вашего логотипа
+        "logo": "https://imed.uz/logo.png", // Replace with your actual logo URL
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+998781504747", // Замените на актуальный номер телефона
+            "telephone": "+998781504747", // Replace with your actual phone number
             "contactType": "customer service",
             "areaServed": "UZ",
             "availableLanguage": ["Uzbek", "Russian", "English"]
         },
         "sameAs": [
-            "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D", // Замените на актуальные ссылки на соцсети
+            "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D", // Replace with your actual social links
             "https://www.facebook.com/intermed.mindray",
             "https://t.me/intermedtrade",
             "https://www.youtube.com/@intermedinnovation9644"
         ],
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Chinobod ko'chasi 10a, Тоshkent, Toshkent", // Замените на актуальный адрес
+            "streetAddress": "Chinobod ko'chasi 10a, Тоshkent, Toshkent", // Replace with your actual address
             "addressLocality": "Ташкент",
             "postalCode": "100000",
             "addressCountry": "UZ"
         },
-        "founder": "Имя Основателя", // Замените на имя основателя, если применимо
-        "foundingDate": "2020-01-01", // Замените на дату основания
+        "founder": "Имя Основателя", // Replace with the founder's name, if applicable
+        "foundingDate": "2020-01-01", // Replace with the founding date
         "description": "Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану."
     };
 
     return (
         <html lang={lng} dir={dir(lng)}>
             <Head>
-                {/* Структурированные данные Organization */}
+                {/* Structured data for Organization */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -157,6 +157,23 @@ export default function RootLayout({
                     </div>
                 </noscript>
 
+                {/* Google Analytics gtag.js Integration */}
+                {/* Load the gtag.js script */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-XNHBKVPHZX"
+                    strategy="afterInteractive"
+                />
+                {/* Initialize gtag */}
+                <Script id="gtag-init" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'G-XNHBKVPHZX');
+                    `}
+                </Script>
+
                 <LanguageProvider lng={lng}>
                     <ErrorBoundary lng={lng}>
                         {children}
@@ -166,4 +183,3 @@ export default function RootLayout({
         </html>
     );
 }
-
