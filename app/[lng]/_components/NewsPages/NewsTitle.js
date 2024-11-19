@@ -110,7 +110,7 @@ export default function NewsTitle() {
 							</h3>
 						)}
 						{item.text && (
-							<ol className="list-disc pl-4 mdx:pl-5">
+							<ol className="pl-4 mdx:pl-5">
 								<li className="text-[16px] mdx:text-[20px] py-[15px]">{formatTextWithNewlines(item.text)}</li>
 							</ol>
 						)}
