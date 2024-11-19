@@ -26,9 +26,9 @@ export default function Main({ banners }) { // Принимаем баннеры
 
   return (
     <div className="w-full bg-white flex flex-col gap-28 xl:gap-36">
-      <h1 className='hidden'>{t('title')}</h1>{/* медицинская техника в Ташкенте или Узбекистане, сделано для seo */}
+      <h1 className="visually-hidden">{t('title')}</h1> {/* медицинская техника в Ташкенте или Узбекистане, сделано для seo */}
       <div className="flex w-full flex-col gap-12 lg:gap-[130px]">
-        <Banner banners={banners} /> 
+        <Banner banners={banners} />
         <ProfessionalEquipments />
       </div>
       <Equipments />
