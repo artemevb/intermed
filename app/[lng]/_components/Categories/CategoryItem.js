@@ -20,7 +20,7 @@ export default function CategoryItem({ key, title, imageSrc, slug }) {
   }, []);
 
   return (
-    <a 
+    <a
       href={`/${lng}/categories/catalog/${slug}`}
       onClick={() => saveSlugToLocalStorage(slug)} // Сохранение slug при клике
     >

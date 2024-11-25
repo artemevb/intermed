@@ -61,7 +61,7 @@ export default function Reviews({ reviews }) {
                     </div>
                 </div>
             ))}
-           {reviews.length > 2 && (
+            {reviews.length > 2 && (
                 <div className="flex justify-center">
                     <button
                         onClick={() => setShowAll(!showAll)}

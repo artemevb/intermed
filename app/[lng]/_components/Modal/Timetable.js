@@ -33,7 +33,7 @@ export default function Timetable({
 						width={100}
 						height={100}
 						quality={100}
-						alt='Icon'
+						alt='close icon'
 						className='h-full w-full'
 					/>
 				</button>

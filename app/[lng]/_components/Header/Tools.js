@@ -82,7 +82,7 @@ export default function Tools({ navOptions }) {
   }
 
 
-  
+
   const handleButtonClick = (buttonType) => {
     fetch(`https://imed.uz/api/v1/counter/add?button=${buttonType}`, {
       method: "POST",
@@ -111,7 +111,7 @@ export default function Tools({ navOptions }) {
         className="rounded-full px-2 py-1"
       >
         <Image
-        quality={100}
+          quality={100}
           src={searchIcon}
           height={30}
           width={30}
@@ -122,7 +122,7 @@ export default function Tools({ navOptions }) {
       <a href={`/${i18n.language}/favorites`} className="flex items-center justify-center">
         <button className="rounded-full max-mdx:px-1 max-mdx:py-1">
           <Image
-          quality={100}
+            quality={100}
             src={heartIcon}
             height={50}
             width={50}
@@ -133,7 +133,7 @@ export default function Tools({ navOptions }) {
       </a>
       <a href="tel:+998781504747" className="rounded-full max-mdx:px-1 max-mdx:py-1" onClick={handleClick}>
         <Image
-        quality={100}
+          quality={100}
           src={phoneIcon}
           height={50}
           width={50}
@@ -173,7 +173,7 @@ export default function Tools({ navOptions }) {
 
       <button onClick={handleOpenMenu} className="2xl:hidden max-mdx:px-1">
         <Image
-        quality={100}
+          quality={100}
           src={burgerMenu}
           height={50}
           width={50}

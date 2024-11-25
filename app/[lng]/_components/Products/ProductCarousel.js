@@ -13,10 +13,8 @@ const VerticalCarousel = ({ images, name, new: isNew }) => {
   const { t } = useTranslation(lng, 'product-main')
   const [isClient, setIsClient] = useState(false);
 
-  // Call useMediaQuery unconditionally
   const isBelow2xl = useMediaQuery({ maxWidth: 900 });
 
-  // This effect ensures that the code runs only on the client-side
   useEffect(() => {
     setIsClient(true);
 
@@ -29,15 +27,13 @@ const VerticalCarousel = ({ images, name, new: isNew }) => {
     thumbnailAlt: `Thumbnail ${index}`,
   }));
 
-  // Only apply thumbnail position after the client has rendered
   const thumbnailPosition = isClient && isBelow2xl ? "bottom" : "left";
 
-  // Render nothing on the server until the client is ready
   if (!isClient) return null;
 
   return (
     <div className="flex flex-col w-full max-w-[1440px] mx-auto px-2 mb-4">
-      {/* Header */}
+
       <div className="flex gap-4 lg:hidden">
         <h1 className="text-3xl font-semibold">{name}</h1>
         {isNew && (
@@ -46,7 +42,7 @@ const VerticalCarousel = ({ images, name, new: isNew }) => {
           </div>
         )}
       </div>
-      {/* Main Content */}
+
       <div className="w-full overflow-auto">
         <ImageGallery
           items={galleryImages}

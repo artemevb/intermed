@@ -102,7 +102,7 @@ export default function ProductPreview({ productData }) {
                 width={100}
                 height={100}
                 quality={100}
-                alt="Heart Icon"
+                alt={isFavorite ? "Marked as favorite" : "Not marked as favorite"}
                 className="w-5 h-5"
               />
             </button>

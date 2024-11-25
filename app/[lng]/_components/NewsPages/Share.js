@@ -105,11 +105,11 @@ export default function NewsTitle() {
 									className='flex items-center justify-center w-full h-full'
 								>
 									<Image
-									quality={100}
+										quality={100}
 										src={tabler}
 										width={21}
 										height={21}
-										alt='Link Icon'
+										alt='Link copy Icon'
 										className='w-[21px] h-[21px] object-cover slg:h-[24px] slg:w-[24px]'
 									/>
 								</a>

@@ -93,7 +93,7 @@ export default function Sertificates() {
 									<div className='p-8 border h-[380px] mdx:h-[420px] flex items-center justify-center'>
 										<div className='relative h-full w-full'>
 											<Image
-											quality={100}
+												quality={100}
 												src={item.photo.url}
 												alt='Intermed Certificate'
 												fill

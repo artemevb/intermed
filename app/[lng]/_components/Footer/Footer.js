@@ -73,7 +73,7 @@ export default function Footer({ lng }) {
                   width={200}
                   height={200}
                   quality={100}
-                  alt="Telegram"
+                  alt="Telegram links"
                   className="w-10 h-10"
                 />
               </a>
@@ -83,7 +83,7 @@ export default function Footer({ lng }) {
                   width={200}
                   height={200}
                   quality={100}
-                  alt="Facebook"
+                  alt="Facebook links"
                   className="w-10 h-10"
                 />
               </a>
@@ -93,7 +93,7 @@ export default function Footer({ lng }) {
                   width={200}
                   height={200}
                   quality={100}
-                  alt="Instagram"
+                  alt="Instagram links"
                   className="w-10 h-10"
                 />
               </a>
@@ -103,7 +103,7 @@ export default function Footer({ lng }) {
                   width={200}
                   height={200}
                   quality={100}
-                  alt="YouTube"
+                  alt="YouTube links"
                   className="w-10 h-10"
                 />
               </a>
@@ -179,7 +179,7 @@ export default function Footer({ lng }) {
                 width={1000}
                 height={1000}
                 quality={100}
-                alt="Result Logo"
+                alt="Result Logo links"
                 className="h-auto w-[110px] xl:w-[130px]"
               />
             </a>

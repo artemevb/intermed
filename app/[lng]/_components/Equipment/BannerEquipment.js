@@ -14,7 +14,6 @@ export default function BannerCarousel() {
     const lng = useLanguage();
     const { t } = useTranslation(lng, 'banner-equipment');
     const [equipment, setEquipment] = useState([]);
-    console.log('equipment:', equipment); // Store fetched data
     const sliderRef = useRef(null);
 
     const settings = {
@@ -90,8 +89,8 @@ export default function BannerCarousel() {
                     </Slider> */}
                     {equipment.length > 0 && (
                         <Image
-                            src={equipment[0].photo.url} // Display the first image as a static image
-                            alt="Banner"
+                            src={equipment[0].photo.url} 
+                            alt="Banner equipments"
                             width={2000}
                             height={1000}
                             quality={100}

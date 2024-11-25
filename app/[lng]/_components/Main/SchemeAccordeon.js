@@ -12,9 +12,8 @@ const AccordionItem = ({ title, isOpen, onClick, children }) => {
     <div className="border-t border-b border-solid border-neutral-200">
       <summary
         onClick={onClick}
-        className={`flex gap-5 py-7 ${
-          isOpen ? "text-greenView" : "text-neutral-400"
-        } font-bold text-2xl max-md:flex-wrap max-md:max-w-full cursor-pointer`}
+        className={`flex gap-5 py-7 ${isOpen ? "text-greenView" : "text-neutral-400"
+          } font-bold text-2xl max-md:flex-wrap max-md:max-w-full cursor-pointer`}
       >
         <span className="flex-auto">{title}</span>
         {isOpen ? (
@@ -97,7 +96,7 @@ export default function Instruction() {
   };
 
   const toggleSectionAccordeon = (section) => {
-    if (openSectionAccordeon ==  section) {
+    if (openSectionAccordeon == section) {
       setOpenSectionAccordeon("");
     } else {
       setOpenSectionAccordeon(section);
@@ -122,7 +121,7 @@ export default function Instruction() {
                   <p className="max-md:max-w-full">{description}</p>
                 </div>
                 <Image
-                quality={100}
+                  quality={100}
                   src={image}
                   width={1000}
                   height={1000}
@@ -139,9 +138,8 @@ export default function Instruction() {
           {data.map((item, i) => (
             <button
               key={i}
-              className={`border-t border-b h-full py-8 flex items-center justify-start ${
-                openSection === item.key ? "text-greenView  border-r-4 border-r-green-800" : "text-neutral-400 border-r"
-              }`}
+              className={`border-t border-b h-full py-8 flex items-center justify-start ${openSection === item.key ? "text-greenView  border-r-4 border-r-green-800" : "text-neutral-400 border-r"
+                }`}
               onClick={() => toggleSection(item.key)}
             >
               <p className="text-2xl font-semibold">{item.title}</p>
@@ -150,7 +148,7 @@ export default function Instruction() {
         </div>
         <div className="flex-1 flex-col justify-between border-b ">
           <Image
-          quality={100}
+            quality={100}
             src={filteredData.image}
             width={1000}
             height={1000}

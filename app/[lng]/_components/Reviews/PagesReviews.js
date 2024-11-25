@@ -19,7 +19,7 @@ export default function Reviews() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [selectedReviews, setSelectedReviews] = useState(null);
-  const [reviews , setReviews] = useState([])
+  const [reviews, setReviews] = useState([])
   const openModal = (Reviews) => {
     setSelectedReviews(Reviews);
   };
@@ -30,33 +30,33 @@ export default function Reviews() {
 
   useEffect(() => {
     const fetchReviews = async () => {
-        try {
-            const response = await axios.get(`https://imed.uz/api/v1/review/get-all?page=${currentPage}`, {
-                headers: { 'Accept-Language': lng },
-            });
-            setReviews(response.data.data);
-        } catch (error) {
-            console.error('Failed to fetch reviews:', error.message);
-        }
+      try {
+        const response = await axios.get(`https://imed.uz/api/v1/review/get-all?page=${currentPage}`, {
+          headers: { 'Accept-Language': lng },
+        });
+        setReviews(response.data.data);
+      } catch (error) {
+        console.error('Failed to fetch reviews:', error.message);
+      }
     };
 
     fetchReviews();
-}, [lng]);
+  }, [lng]);
 
 
 
-// SANALATNI OLISH UCHUN 24.07.2024 kabi 
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const day = String(date.getDate()).padStart(2, '0');
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth is zero-based
-  const year = date.getFullYear();
-  return `${day}.${month}.${year}`;
-};
+  // SANALATNI OLISH UCHUN 24.07.2024 kabi 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // getMonth is zero-based
+    const year = date.getFullYear();
+    return `${day}.${month}.${year}`;
+  };
 
- 
 
-  const itemsPerPage = 6; 
+
+  const itemsPerPage = 6;
 
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -87,7 +87,7 @@ const formatDate = (dateString) => {
                     <div>
                       <h2 className="text-[18px] font-semibold right mt-3 mdx:text-[20px]">{item.clientName}</h2>
                       <p className="text-gray-400 text-[14px] mdx:text-[18px]">
-                      {formatDate(item.createdDate)}
+                        {formatDate(item.createdDate)}
                       </p>
                     </div>
                   </div>

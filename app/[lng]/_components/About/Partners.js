@@ -87,7 +87,7 @@ export default function Partners() {
 										src={item.logo.url}
 										width={500}
 										height={500}
-										alt='Intermed Sertificate'
+										alt='Logo partner'
 										className='w-full h-auto object-cover'
 									/>
 								</div>

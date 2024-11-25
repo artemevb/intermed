@@ -5,7 +5,7 @@ import backet from "@/public/svg/arrow-right-blck.svg"
 function Logo() {
   return (
 
-      <Image priority src={backet} width={28} height={28} alt="The Wild Oasis logo" quality={100} />
+      <Image priority src={backet} width={28} height={28} alt="Arrow right" quality={100} />
 
   )
 }

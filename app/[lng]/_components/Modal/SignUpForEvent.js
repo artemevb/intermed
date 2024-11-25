@@ -77,7 +77,7 @@ export default function SignUpForEvent({ closeModal, eventId }) {
                                 src={close}
                                 width={100}
                                 height={100}
-                                alt="Icon"
+                                alt="close icon"
                                 className="h-full w-full"
                                 quality={100}
                             />

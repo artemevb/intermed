@@ -27,7 +27,7 @@ export default function PartnerPage() {
 		fetchPartnerInfo()
 	}, [slug, lng])
 
-	if (!partner) return <p>Loading...</p> 
+	if (!partner) return <p>Loading...</p>
 
 	return (
 		<div className='w-full max-w-[1440px] 5xl:max-w-[2000px] mx-auto px-4 py-10'>

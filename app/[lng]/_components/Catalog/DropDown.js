@@ -59,7 +59,7 @@ export default function Dropdown({ handleFilter }) {
                   width={500}
                   height={500}
                   quality={100}
-                  alt={`Close`}
+                  alt={`Close icon`}
                   className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
                 /></button>
             </div>
@@ -68,42 +68,45 @@ export default function Dropdown({ handleFilter }) {
                 className={`pt-3 text-[18px] mdx:text-[18px] font-bold flex items-center ${selectedFilter === 'all' ? 'text-red-600' : 'text-gray-900'}`}
                 onClick={() => handleFilterChange('all')}
               >
-                {selectedFilter === 'all' ? <span className="mr-2">                <Image
-                  src={RadioButton}
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt={`Close`}
-                  className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
-                /></span> : <span className="mr-2"><Image
-                  src={EllipseButton}
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt={`Close`}
-                  className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
-                /></span>}
+                {selectedFilter === 'all' ? <span className="mr-2">
+                  <Image
+                    src={RadioButton}
+                    width={500}
+                    height={500}
+                    quality={100}
+                    alt={`RadioButton icon`}
+                    className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
+                  /></span> : <span className="mr-2">
+                  <Image
+                    src={EllipseButton}
+                    width={500}
+                    height={500}
+                    quality={100}
+                    alt={`EllipseButton icon`}
+                    className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
+                  /></span>}
                 {t('allProducts')}
               </button>
               <button
                 className={`pt-3 text-[18px] mdx:text-[18px] flex items-center ${selectedFilter === 'promotions' ? 'text-red-600' : 'text-gray-900'}`}
                 onClick={() => handleFilterChange('promotions')}
               >
-                {selectedFilter === 'promotions' ? <span className="mr-2"><Image
-                  src={RadioButton}
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt={`Close`}
-                  className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
-                /></span> : <span className="mr-2"><Image
-                  src={EllipseButton}
-                  width={500}
-                  height={500}
-                  quality={100}
-                  alt={`Close`}
-                  className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
-                /></span>}
+                {selectedFilter === 'promotions' ? <span className="mr-2">
+                  <Image
+                    src={RadioButton}
+                    width={500}
+                    height={500}
+                    quality={100}
+                    alt={`RadioButton icon`}
+                    className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
+                  /></span> : <span className="mr-2"><Image
+                    src={EllipseButton}
+                    width={500}
+                    height={500}
+                    quality={100}
+                    alt={`Close`}
+                    className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
+                  /></span>}
                 {t('promotions')}
               </button>
               <button
@@ -122,7 +125,7 @@ export default function Dropdown({ handleFilter }) {
                   width={500}
                   height={500}
                   quality={100}
-                  alt={`Close`}
+                  alt={`EllipseButton icon`}
                   className="w-full h-auto max-w-[100px] max-h-[100px] mdx:max-w-[140px]  mdx:max-h-[140px] rounded-2xl "
                 /></span>}
                 {t('newProducts')}

@@ -12,7 +12,7 @@ const TitleMain = ({ Data }) => {
                 <div className="flex items-center bg-red-100 rounded-md py-3 px-5">
                     <Image
                         src={location}
-                        alt="location"
+                        alt="location red logo"
                         width={20}
                         height={20}
                         quality={100}

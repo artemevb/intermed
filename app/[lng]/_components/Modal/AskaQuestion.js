@@ -29,7 +29,7 @@ export default function AskaQuestionModal({ closeModal }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
+
         try {
             const response = await axios.post('https://imed.uz/api/v1/application', {
                 name: form.name,
@@ -37,7 +37,7 @@ export default function AskaQuestionModal({ closeModal }) {
                 mail: form.email,
                 message: form.question,
             });
-    
+
             // If submission is successful, set the form as submitted
             if (response.status === 200) {
                 setIsSubmitted(true);
@@ -67,7 +67,7 @@ export default function AskaQuestionModal({ closeModal }) {
                             width={100}
                             height={100}
                             quality={100}
-                            alt="Icon"
+                            alt="close Icon"
                             className="h-full w-full"
                         />
                     </button>

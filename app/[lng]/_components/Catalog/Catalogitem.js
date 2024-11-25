@@ -68,14 +68,14 @@ export default function Catalogitem({
 
 	function truncateText(text, maxLength) {
 		if (!text) {
-		  return ''; // Return an empty string if text is null or undefined
+			return ''; // Return an empty string if text is null or undefined
 		}
 		if (text.length > maxLength) {
-		  return text.substring(0, maxLength) + '...';
+			return text.substring(0, maxLength) + '...';
 		}
 		return text;
-	  }
-	  
+	}
+
 
 	return (
 		<div className='h-[350px] mdx:h-[440px] w-full '>

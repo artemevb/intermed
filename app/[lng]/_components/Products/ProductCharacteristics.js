@@ -22,10 +22,10 @@ export default function ProductCharacteristics({ data }) {
             title: t('characteristics'),
             dataKey: 'characteristics',
         },
-        { 
-            category: 'clients', 
-            title: t('client'), 
-            dataKey: 'client' 
+        {
+            category: 'clients',
+            title: t('client'),
+            dataKey: 'client'
         },
     ]
 
@@ -96,11 +96,10 @@ export default function ProductCharacteristics({ data }) {
                                         <button
                                             key={index}
                                             onClick={() => handleCategoryChange(item.category, item.dataKey)}
-                                            className={`z-10 w-auto text-lg transition-text font-medium ${
-                                                active === item.category
+                                            className={`z-10 w-auto text-lg transition-text font-medium ${active === item.category
                                                     ? 'text-[#E31E24] border-b-2 border-b-[#E31E24]'
                                                     : 'text-neutral-400'
-                                            }`}
+                                                }`}
                                         >
                                             <h3 className='my-2 whitespace-nowrap'>{item.title}</h3>
                                         </button>

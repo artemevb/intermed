@@ -27,7 +27,7 @@ export default function WhatWeDo() {
                                 <Image
                                     quality={100}
                                     src={imed}
-                                    alt="Medical Equipment"
+                                    alt="Logog Imed"
                                     objectFit="contain"
                                     className="w-full h-full xl:w-[720px] xl:h-[631px]"
                                 />

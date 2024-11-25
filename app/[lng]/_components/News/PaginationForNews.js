@@ -32,11 +32,11 @@ export default function Pagination({ newsPerPage, totalNews, paginate, currentPa
                         className='flex items-center'
                     >
                         <Image
-                        quality={100}
+                            quality={100}
                             src={left}
                             width={30}
                             height={30}
-                            alt='Link Icon'
+                            alt='left Icon'
                             className='w-[24px] h-[24px] object-cover slg:h-[30px] slg:w-[30px]'
                         />
                     </button>
@@ -60,11 +60,11 @@ export default function Pagination({ newsPerPage, totalNews, paginate, currentPa
                         className='flex items-center'
                     >
                         <Image
-                        quality={100}
+                            quality={100}
                             src={right}
                             width={30}
                             height={30}
-                            alt='Link Icon'
+                            alt='right Icon'
                             className='w-[24px] h-[24px] object-cover slg:h-[30px] slg:w-[30px]'
                         />
                     </button>
