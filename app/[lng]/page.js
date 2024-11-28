@@ -2,9 +2,8 @@ import React from 'react';
 import Main from "@/app/[lng]/_components/Main/Main";
 import axios from 'axios';
 import { languages } from '../i18n/settings';
-import { dir } from 'i18next';
 
-// Функция для генерации мета-тегов для главной страницы
+// Функция для генерации мета-данных для главной страницы
 export async function generateMetadata({ params }) {
   const { lng } = params;
 
@@ -22,30 +21,34 @@ export async function generateMetadata({ params }) {
     console.error('Ошибка при получении баннеров:', error);
   }
 
-  // Предположим, что первый баннер содержит изображение для Open Graph
-  const ogImageUrl = banners.length > 0 ? banners[0].imageUrl : 'https://imed.uz/og.jpg';
+  const ogImageUrl = 'https://imed.uz/og.jpg';
+
+  const title = 'Intermed Innovation — Медицинское оборудование в Ташкенте';
+  const description = 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.';
 
   return {
-    title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
-    description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
+    title,
+    description,
     openGraph: {
-      title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
-      description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
+      title,
+      description,
       url: `https://imed.uz/${lng}/`,
       images: [
         {
           url: ogImageUrl,
-          alt: 'Intermed Innovation Logo',
-          width: 600,
-          height: 400,
+          alt: 'Intermed Innovation Logo', 
+          width: 1200,
+          height: 630,
         },
       ],
       locale: lng,
+      site_name: 'Intermed Innovation',
     },
     twitter: {
-      title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
-      description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
+      title,
+      description,
       images: [ogImageUrl],
+      cardType: 'summary_large_image',
     },
     alternates: {
       canonical: `https://imed.uz/${lng}/`,
@@ -54,9 +57,15 @@ export async function generateMetadata({ params }) {
         return acc;
       }, {}),
     },
+    meta: [
+      { name: 'keywords', content: 'медицинское оборудование, Ташкент, доставка медицинского оборудования, Intermed Innovation' },
+      { name: 'robots', content: 'index, follow' },
+      { name: 'author', content: 'Intermed Innovation' },
+    ],
   };
 }
 
+// Основная страница
 export default async function Page({ params }) {
   const { lng } = params;
   const banners = await getBanners(lng);
@@ -68,6 +77,7 @@ export default async function Page({ params }) {
   );
 }
 
+// Функция для получения баннеров
 async function getBanners(language) {
   try {
     const response = await axios.get('https://imed.uz/api/v1/banner', {
