@@ -17,11 +17,6 @@ export async function generateMetadata({ params: { lng } }) {
             url: `https://imed.uz/${lng}/`,
             locale: lng,
         },
-        twitter: {
-            title: 'Intermed Innovation — Медицинское оборудование в Ташкенте',
-            description: 'Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану.',
-            images: ['https://imed.uz/og.jpg'], // Это можно удалить, если нужно.
-        },
         alternates: {
             canonical: `https://imed.uz/${lng}/`,
             languages: languages.reduce((acc, language) => {
