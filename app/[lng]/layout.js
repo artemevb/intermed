@@ -39,16 +39,16 @@ export default function RootLayout({
                 <meta name="robots" content="index, follow" />
                 <link rel="canonical" href={`https://imed.uz/${lng}/`} />
                 {/* Заголовок, описание и изображения оставляем в <Head> */}
-                <meta name="description" content="Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану." />
+                {/* <meta name="description" content="Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану." />
                 <meta property="og:title" content="Intermed Innovation — Медицинское оборудование в Ташкенте" />
                 <meta property="og:description" content="Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану." />
-                <meta property="og:image" content="https://imed.uz/og.jpg" />
+                <meta property="og:image" content="https://imed.uz/og.jpg" /> */}
                 <meta property="og:url" content={`https://imed.uz/${lng}/`} />
                 <meta property="og:locale" content={lng} />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Intermed Innovation — Медицинское оборудование в Ташкенте" />
+                {/* <meta name="twitter:title" content="Intermed Innovation — Медицинское оборудование в Ташкенте" />
                 <meta name="twitter:description" content="Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану." />
-                <meta name="twitter:image" content="https://imed.uz/og.jpg" />
+                <meta name="twitter:image" content="https://imed.uz/og.jpg" /> */}
 
                 {/* JSON-LD Structured Data for Organization */}
                 <script
