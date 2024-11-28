@@ -18,21 +18,24 @@ export default function NewsTitle() {
 
 	useEffect(() => {
 		const fetchNewsWithSlug = async () => {
-			try {
-				const response = await axios.get(
-					`https://imed.uz/api/v1/new/get/${slug}`,
-					{
-						headers: { 'Accept-Language': lng },
-					}
-				)
-				setNews(response.data.data)
-			} catch (error) {
-				console.error('Failed to fetch news:', error.message)
-				setNews(null) // Reset state if fetching fails
-			}
-		}
-		fetchNewsWithSlug()
-	}, [lng, slug])
+		  try {
+			const response = await axios.get(
+			  `https://imed.uz/api/v1/new/get/${slug}`,
+			  {
+				headers: { 'Accept-Language': lng },
+			  }
+			);
+	  
+			setNews(response.data.data);
+		  } catch (error) {
+			console.error('Failed to fetch news:', error.message);
+			setNews(null); 
+		  }
+		};
+	  
+		fetchNewsWithSlug();
+	  }, [lng, slug]);
+	  
 
 	useEffect(() => {
 		const fetchNews = async () => {
@@ -62,7 +65,7 @@ export default function NewsTitle() {
 	}
 
 	const slicedData = Array.isArray(news1) ? news1.slice(0, 4) : []
-	if (!news) return <div>Loading...</div> // Loading state or error handling
+	if (!news) return <div>Loading...</div> 
 	return (
 		<div className="w-full max-w-[1440px] mx-auto flex gap-6 px-4">
 			{/* Main news content */}
@@ -91,7 +94,7 @@ export default function NewsTitle() {
 				{news.head?.photo?.url && (
 					<div className="w-full max-xl:my-[25px] xl:mt-7 xl:mb-[80px] flex flex-row justify-center">
 						<Image
-							src={news.head.photo.url || newsPhoto} // Use fallback if no image URL
+							src={news.head.photo.url || newsPhoto}
 							width={1000}
 							height={1000}
 							quality={100}
@@ -117,7 +120,7 @@ export default function NewsTitle() {
 						{item.photo?.url && (
 							<div className="mt-[30px] mb-[10px] flex flex-row justify-center">
 								<Image
-									src={item.photo.url} // Use item photo if available
+									src={item.photo.url}
 									width={500}
 									height={500}
 									quality={100}

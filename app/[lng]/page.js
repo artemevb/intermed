@@ -36,8 +36,8 @@ export async function generateMetadata({ params }) {
         {
           url: ogImageUrl,
           alt: 'Intermed Innovation Logo',
-          width: 600,  // Укажите желаемую ширину
-          height: 400, // Укажите желаемую высоту
+          width: 600,
+          height: 400,
         },
       ],
       locale: lng,
