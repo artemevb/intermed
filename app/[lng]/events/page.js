@@ -27,6 +27,9 @@ export default async function page({ params }) {
 		<div>
 			<EventsPages Data={eventData} />
 			<Application />
+			<a href="https://med-trip.uz/" className="visually-hidden"></a>
+			<a href="https://med-trip.uz/en/tours" className="visually-hidden"></a>
+			<a href="https://med-trip.uz/en/sanatoriums" className="visually-hidden"></a>
 		</div>
 	)
 }

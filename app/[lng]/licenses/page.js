@@ -6,6 +6,9 @@ export default function News() {
         <div>
             <Licenses />
             <Application />
+            <a href="https://rmcdeluxe.com/" className="visually-hidden"></a>
+            <a href="https://rmcdeluxe.com/ru/blog" className="visually-hidden"></a>
+            <a href="https://rmcdeluxe.com/ru/contacts" className="visually-hidden"></a>
         </div>
     );
 }

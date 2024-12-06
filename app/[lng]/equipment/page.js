@@ -13,7 +13,7 @@ import PopularReviews from "../_components/Equipment/PopularReviews";
 export default function Equipment() {
     return (
         <div className="w-full bg-white flex flex-col gap-32">
-            <Banner/>
+            <Banner />
             <Title />
             <Advantages />
             <EquipmentScheme />
@@ -23,6 +23,9 @@ export default function Equipment() {
             {/* <PopularReviews /> */}
             <Contacts />
             <Application />
+            <a href="https://europol.uz/" className="visually-hidden"></a>
+            <a href="https://europol.uz/about" className="visually-hidden"></a>
+            <a href="https://europol.uz/projects" className="visually-hidden"></a>
         </div>
     );
 }

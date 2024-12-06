@@ -52,10 +52,13 @@ export default async function page({ params }) {
 				timeTo={eventData?.timeTo}
 				address={eventData?.address}
 			/>
-			<AboutEvent Data={eventData}/>
+			<AboutEvent Data={eventData} />
 			<MoreInfo Data={eventData} />
 			<EventsSlider data={eventsDataCarousel} />
 			<Application />
+			<a href="https://result-me.uz/" className="visually-hidden"></a>
+			<a href="https://result-me.uz/ru/cases" className="visually-hidden"></a>
+			<a href="https://result-me.uz/ru/services" className="visually-hidden"></a>
 		</div>
 	)
 }
