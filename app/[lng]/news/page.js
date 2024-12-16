@@ -100,7 +100,7 @@ export default function NewsPage() {
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        key="jsonld-news-article"
+        id="json-ld-news"
       />
 
       <main className="w-full bg-white flex flex-col gap-32 mx-auto px-4 sm:px-6 lg:px-8">

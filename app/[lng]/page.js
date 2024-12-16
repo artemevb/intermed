@@ -107,6 +107,7 @@ export default async function Page({ params }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdData) }}
+        id="json-ld-Main-page"
       />
       <Main banners={banners} />
     </div>

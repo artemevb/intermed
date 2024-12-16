@@ -95,7 +95,7 @@ export default function PartnersPage() {
             <Script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-                key="jsonld-organization-partners"
+                id="json-ld-partners"
             />
 
             <main className="w-full bg-white flex flex-col gap-23">

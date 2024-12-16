@@ -160,7 +160,7 @@ export default async function Page({ params, searchParams }) {
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        key="jsonld-catalog"
+        id="json-ld-unique-id" 
       />
 
       <div className="w-full bg-white flex flex-col">

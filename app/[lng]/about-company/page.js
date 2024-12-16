@@ -98,7 +98,7 @@ export default function About() {
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        key="jsonld-organization-about"
+        id="json-ld-about-company" 
       />
 
       <main className="w-full bg-white flex flex-col gap-32 mx-auto">

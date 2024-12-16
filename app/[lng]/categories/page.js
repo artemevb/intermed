@@ -94,7 +94,7 @@ export default async function Home() {
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        key="jsonld-organization"
+        id="json-ld-categories-page"
       />
 
       <div className="w-full bg-white flex flex-col gap-44 pt-[40px] mdx:pt-[60px]">
