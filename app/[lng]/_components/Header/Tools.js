@@ -105,10 +105,10 @@ export default function Tools({ navOptions }) {
 
   return (
     <div className="h-full items-center flex mdx:gap-[16px] px-1 py-4">
-      {searchMenu && <Search setSearchMenu={setSearchMenu} />} {/* Передача функции setSearchMenu */}
+      {searchMenu && <Search setSearchMenu={setSearchMenu} />}
       <button
         onClick={() => setSearchMenu((prev) => !prev)}
-        className="rounded-full px-2 py-1"
+        className="rounded-full px-2 py-1 "
       >
         <Image
           quality={100}
@@ -116,7 +116,7 @@ export default function Tools({ navOptions }) {
           height={30}
           width={30}
           alt="Search Icon"
-          className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
+          className="w-[30px] h-[30px] xl:hover:w-[33px] xl:hover:h-[33px] transition-all duration-150 max-mdx:w-[25px] max-mdx:h-[25px]"
         />
       </button>
       <a href={`/${i18n.language}/favorites`} className="flex items-center justify-center">
@@ -127,7 +127,7 @@ export default function Tools({ navOptions }) {
             height={50}
             width={50}
             alt={`Tools Item HeartIcon : Favorites`}
-            className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
+            className="w-[30px] h-[30px] xl:hover:w-[33px] xl:hover:h-[33px] transition-all duration-150 max-mdx:w-[25px] max-mdx:h-[25px]"
           />
         </button>
       </a>
@@ -138,7 +138,7 @@ export default function Tools({ navOptions }) {
           height={50}
           width={50}
           alt={`Tools Item PhoneIcon : Call`}
-          className="w-[30px] h-[30px] max-mdx:w-[25px] max-mdx:h-[25px]"
+          className="w-[30px] h-[30px] xl:hover:w-[33px] xl:hover:h-[33px] transition-all duration-150 max-mdx:w-[25px] max-mdx:h-[25px]"
         />
       </a>
       <div ref={menuRef} className="mdx:relative xl:flex xl:items-center xl:text-left hidden z-[9999]">
@@ -159,10 +159,10 @@ export default function Tools({ navOptions }) {
           </svg>
         </button>
         {languageMenu && (
-          <div className="absolute top-full mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
-            <ul className="py-1">
+          <div className="absolute top-full mt-2 bg-white shadow-lg ml-2 ">
+            <ul >
               {languages.map((lng) => (
-                <li key={lng} className="px-4 py-2 hover:bg-gray-100 cursor-pointer z-[999]" onClick={() => handleLanguageChange(lng)}>
+                <li key={lng} className="px-4 py-2 hover:bg-gray-100 cursor-pointer z-[999] transition-all duration-150" onClick={() => handleLanguageChange(lng)}>
                   {lng.toUpperCase()}
                 </li>
               ))}

@@ -279,7 +279,7 @@ export default function List({ data, allCategories, selectedCatalogId }) {
                                     <button
                                         onClick={() => handleFilter(slug)}
                                         key={slug}
-                                        className={`z-10 w-auto text-lg transition-text font-semibold ${selectedCategory === slug
+                                        className={`z-10 transition-all duration-150 w-auto text-lg transition-text font-semibold ${selectedCategory === slug
                                             ? 'text-redMain border-b-2 border-b-redMain'
                                             : 'text-neutral-400'
                                             }`}

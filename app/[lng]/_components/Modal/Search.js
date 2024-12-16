@@ -131,7 +131,7 @@ export default function Search({ setSearchMenu }) {
       {isOpen && (
         <div
           className="fixed h-screen w-full bg-modalBg left-0 top-[70px] mdx:top-[90px] z-[9999]"
-          onClick={closeModal} // Закрытие при клике на фон
+          onClick={closeModal} 
         >
           <div
             className="h-[80%] w-full bg-white mdx:pt-2"

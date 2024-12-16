@@ -20,7 +20,7 @@ export default function EventCard({ title, imageSrc, slug }) {
               quality={100}
               layout="fill"
               objectFit="cover"
-              className="object-cover w-full h-full" // Убедитесь, что тут нет класса rounded
+              className="object-cover w-full h-full"
             />
           </div>
           <div className="bg-white pt-2 flex flex-col col-span-2">

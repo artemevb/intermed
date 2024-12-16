@@ -1,20 +1,137 @@
-import WhyChooseUs from "../_components/About/WhyChooseUs"
-import WhatWeDo from "../_components/About/WhatWeDo"
-import Partners from "../_components/About/Partners"
+// app/[lng]/about/page.js
+
+import React from 'react';
+import Script from 'next/script';
+import WhyChooseUs from "../_components/About/WhyChooseUs";
+import WhatWeDo from "../_components/About/WhatWeDo";
+import Partners from "../_components/About/Partners";
 import Banner from "../_components/About/Banner";
-import Certificates from "../_components/Main/Sertificates"
+import Certificates from "../_components/Main/Sertificates";
 import Application from "../_components/Main/Application";
 
+/**
+ * Функция для генерации метаданных страницы "О компании"
+ * @param {Object} param0 - Параметры функции
+ * @param {Object} param0.params - Параметры маршрута, включая язык
+ * @returns {Object} - Объект с метаданными
+ */
+export async function generateMetadata({ params }) {
+  const { lng } = params;
 
-export default function Home() {
+  return {
+    title: 'INTERMED INNOVATION: Поставщик высокотехнологичного медицинского оборудования в Узбекистане',
+    description: 'INTERMED INNOVATION - Лидер в поставках медицинского оборудования в Узбекистане. Узнайте больше о нашей компании, опыте и широком ассортименте продукции.',
+    openGraph: {
+      title: 'INTERMED INNOVATION: Поставщик высокотехнологичного медицинского оборудования в Узбекистане',
+      description: 'INTERMED INNOVATION - Лидер в поставках медицинского оборудования в Узбекистане. Узнайте больше о нашей компании, опыте и широком ассортименте продукции.',
+      url: `https://imed.uz/${lng}/about-company`,
+      images: [
+        {
+          url: 'https://imed.uz/og.jpg',
+          alt: 'Intermed Innovation - О компании',
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: lng,
+      site_name: 'Intermed Innovation',
+    },
+    twitter: {
+      title: 'INTERMED INNOVATION: Поставщик высокотехнологичного медицинского оборудования в Узбекистане',
+      description: 'INTERMED INNOVATION - Лидер в поставках медицинского оборудования в Узбекистане. Узнайте больше о нашей компании, опыте и широком ассортименте продукции.',
+      images: ['https://imed.uz/og.jpg'],
+      cardType: 'summary_large_image',
+    },
+    alternates: {
+      canonical: `https://imed.uz/${lng}/about-company`,
+      languages: {
+        ru: `https://imed.uz/ru/about-company`,
+        uz: `https://imed.uz/uz/about-company`,
+        en: `https://imed.uz/en/about-company`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    keywords: 'о компании, Intermed Innovation, медицинское оборудование, Ташкент, миссия, видение, ценности',
+    author: 'Intermed Innovation',
+  };
+}
+
+/**
+ * Компонент страницы "О компании"
+ * @returns {JSX.Element} - Разметка страницы
+ */
+export default function About() {
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Intermed Innovation",
+    "url": "https://imed.uz",
+    "logo": "https://imed.uz/og.jpg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+998781504747",
+      "contactType": "Customer Service",
+      "areaServed": "UZ"
+    },
+    "sameAs": [
+      "https://www.youtube.com/@intermedinnovation9644",
+      "https://t.me/intermedtrade",
+      "https://www.facebook.com/intermed.mindray",
+      "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "г. Ташкент, Юнусабадский р-он, ул. Чинобод 10А",
+      "addressLocality": "Ташкент",
+      "postalCode": "100000",
+      "addressCountry": "UZ"
+    },
+    "description": "INTERMED INNOVATION - Лидер в поставках медицинского оборудования в Узбекистане. Узнайте больше о нашей компании, опыте и широком ассортименте продукции.",
+  };
+
   return (
-    <main className="w-full bg-white flex flex-col gap-32  mx-auto">
-      <div ><Banner /></div>
-      <div ><WhatWeDo /></div>
-      <div ><WhyChooseUs /></div>
-      <div ><Certificates /></div>
-      <div ><Partners /></div>
-      <div><Application /></div>
-    </main>
+    <>
+      <Script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        key="jsonld-organization-about"
+      />
+
+      <main className="w-full bg-white flex flex-col gap-32 mx-auto">
+        <div><Banner /></div>
+        <div><WhatWeDo /></div>
+        <div><WhyChooseUs /></div>
+        <div><Certificates /></div>
+        <div><Partners /></div>
+        <section aria-label="Контактная информация" className="sr-only">
+          <h2>Контактная информация</h2>
+          <p>INTERMED INNOVATION — это динамично развивающаяся компания, специализирующаяся на поставках современного и высокотехнологичного медицинского оборудования в Узбекистане. С момента основания нашей компании, мы стремимся предоставить медицинским учреждениям качественные решения, которые помогают улучшить диагностику, лечение и реабилитацию пациентов. Наша миссия — стать ведущим поставщиком медицинского оборудования в стране, предоставляя инновационные решения, которые помогают улучшить качество медицинских услуг и, в конечном итоге, улучшить здоровье пациентов.
+
+            Опыт
+
+            С многолетним опытом работы на рынке медицинского оборудования, мы зарекомендовали себя как надежный партнер для более чем 2000 медицинских учреждений по всей стране. Наша команда состоит из профессионалов, которые постоянно совершенствуют свои знания и навыки, чтобы обеспечить нашим клиентам высший уровень сервиса. Мы гордимся тем, что наша продукция и услуги помогли многочисленным медицинским учреждениям улучшить свои возможности и качество ухода за пациентами.
+
+            Предоставляемые услуги
+
+            Мы предлагаем широкий спектр услуг, включая поставку медицинского оборудования, его установку, обслуживание и ремонт. Наш ассортимент включает оборудование для диагностики, лечения, реанимации, стоматологии и других областей медицины. Сотрудничая с ведущими мировыми производителями, мы гарантируем, что наши клиенты получают только самые современные и качественные продукты. Наша команда экспертов готова помочь выбрать наиболее подходящее оборудование для ваших нужд, обеспечить его своевременную поставку и предоставить необходимую техническую поддержку.
+
+            Приверженность качеству
+
+            Качество, надежность и безопасность — это наши основные принципы работы. Мы тщательно выбираем производителей и проводим строгий контроль качества для каждого оборудования, которое поставляем. Кроме того, мы предлагаем всесторонние программы обучения для медицинского персонала, чтобы они могли максимально эффективно использовать оборудование. Наша команда технических экспертов обеспечивает своевременный ремонт и обслуживание оборудования, чтобы минимизировать простои и обеспечить непрерывную работу медицинских учреждений.
+
+            Миссия и видение
+
+            Наша миссия — стать ведущим поставщиком медицинского оборудования в Узбекистане, предоставляя инновационные решения, которые помогают улучшить качество медицинских услуг и, в конечном итоге, улучшить здоровье пациентов. Мы стремимся к постоянному развитию и инновациям, чтобы соответствовать потребностям современной медицины. Наша цель — обеспечить доступность высокотехнологичного медицинского оборудования для всех медицинских учреждений в Узбекистане, независимо от их местоположения и размера.
+
+            Выбирая INTERMED INNOVATION, вы выбираете надежного партнера, который поможет вам в достижении ваших медицинских целей. Закажите оборудование у нас сегодня и откройте новые возможности для вашего медицинского учреждения! Мы предлагаем конкурентные цены и гибкие варианты оплаты, включая рассрочку и лизинг. Свяжитесь с нами сейчас, чтобы узнать больше о наших продуктах и услугах.</p>
+        </section>
+        <div><Application /></div>
+      </main>
+    </>
   );
 }
+

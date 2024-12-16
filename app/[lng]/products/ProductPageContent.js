@@ -4,16 +4,10 @@ import Recenzii from '../_components/Products/Recenzii';
 import Similar from '../_components/Products/Similar';
 import VideoReview from '../_components/Products/VideoReview';
 import Application from '../_components/Main/Application';
-import YandexMetrikaEvent from './YandexMetrikaEvent';
 
 const ProductPageContent = ({ productData, similarProducts }) => {
   return (
     <div className="w-full bg-white flex flex-col gap-[120px] mdx:gap-[150px] mdl:gap-[180px] 2xl:gap-[200px] pt-12 ">
-      {/* Отправка события просмотров продукта */}
-      <YandexMetrikaEvent
-        productId={productData.id}
-        productName={productData.name}
-      />
 
       <ProductInfo productData={productData} />
 
