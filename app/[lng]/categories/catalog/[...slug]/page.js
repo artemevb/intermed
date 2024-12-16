@@ -55,7 +55,7 @@ export async function generateMetadata({ params, searchParams }) {
     openGraph: {
       title: title,
       description: description,
-      url: `https://imed.uz/${lng}/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
+      url: `https://imed.uz/${lng}/categories/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
       images: [
         {
           url: ogImageUrl,
@@ -74,11 +74,11 @@ export async function generateMetadata({ params, searchParams }) {
       cardType: 'summary_large_image',
     },
     alternates: {
-      canonical: `https://imed.uz/${lng}/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
+      canonical: `https://imed.uz/${lng}/categories/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
       languages: {
-        ru: `https://imed.uz/ru/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
-        uz: `https://imed.uz/uz/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
-        en: `https://imed.uz/en/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
+        ru: `https://imed.uz/ru/categories/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
+        uz: `https://imed.uz/uz/categories/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
+        en: `https://imed.uz/en/categories/catalog/${categorySlug || ''}/${subcategorySlug || ''}`,
       },
     },
     robots: {

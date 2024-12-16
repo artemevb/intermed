@@ -1,7 +1,7 @@
 // app/[lng]/news/page.js
 
 import React from 'react';
-import Script from 'next/script'; // Для добавления JSON-LD
+import Script from 'next/script';
 import Events from "../_components/News/Events";
 import NewsComp from "../_components/News/NewsComp";
 import Application from "../_components/Main/Application";
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
       url: `https://imed.uz/${lng}/news`,
       images: [
         {
-          url: 'https://imed.uz/news-og.jpg',
+          url: 'https://imed.uz/og.jpg',
           alt: 'Новости компании Intermed Innovation',
           width: 1200,
           height: 630,
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       title: 'Новости | INTERMED INNOVATION',
       description: 'Читайте последние новости компании Intermed Innovation, а также актуальные события в области медицинского оборудования и технологий.',
-      images: ['https://imed.uz/news-og.jpg'],
+      images: ['https://imed.uz/og.jpg'],
       cardType: 'summary_large_image',
     },
     alternates: {
