@@ -1,5 +1,2 @@
 User-agent: *
-Disallow: /private/
-Disallow: /temp/
-Allow: /public/
-Sitemap: https://imed.uz/sitemap.xml
+Disallow:
