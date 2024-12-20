@@ -3,16 +3,64 @@ import { dir } from 'i18next';
 import { languages } from '../i18n/settings';
 import { LanguageProvider } from '../i18n/locales/LanguageContext';
 import ErrorBoundary from '@/app/[lng]/_components/ErrorBoundary';
-import Script from 'next/script'; // Import next/script for managing scripts
-import Head from 'next/head'; // Import Head for inserting JSON-LD and other head elements
+import Script from 'next/script';
+import Head from 'next/head';
 
 export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
-// Remove metadata that may conflict with page metadata
+// Переносим сюда SEO оптимизацию из page.js
 export function generateMetadata({ params: { lng } }) {
+    const metadata = {
+        title: 'Купить медицинское оборудование в Ташкенте - широкий выбор УЗИ аппаратов и МРТ',
+        description: 'Поставка медицинского оборудования в Ташкенте от ведущего поставщика. Купить УЗИ аппараты, МРТ, стоматологическое оборудование и многое другое по выгодным ценам. Гарантия качества, оперативная доставка и сервисное обслуживание.',
+        keywords: 'медицинское оборудование, Ташкент, доставка медицинского оборудования, Intermed Innovation',
+        ogImageUrl: 'https://imed.uz/og.jpg',
+    };
+
     return {
+        title: metadata.title,
+        description: metadata.description,
+        keywords: metadata.keywords,
+        openGraph: {
+            title: metadata.title,
+            description: metadata.description,
+            url: `https://imed.uz`,
+            images: [
+                {
+                    url: metadata.ogImageUrl,
+                    alt: 'Intermed Innovation Logo',
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+            locale: lng,
+            site_name: 'Intermed Innovation',
+        },
+        twitter: {
+            title: metadata.title,
+            description: metadata.description,
+            images: [metadata.ogImageUrl],
+            cardType: 'summary_large_image',
+        },
+        alternates: {
+            canonical: `https://imed.uz`,
+            languages: languages.reduce((acc, language) => {
+                acc[language] = `https://imed.uz/${language}/`;
+                return acc;
+            }, {}),
+        },
+        robots: {
+            index: true,
+            follow: true,
+        },
+        metadataBase: new URL('https://imed.uz'),
+        meta: [
+            { name: 'keywords', content: metadata.keywords },
+            { name: 'robots', content: 'index, follow' },
+            { name: 'author', content: 'Intermed Innovation' },
+        ],
         icons: {
             icon: "/favicon.ico",
             apple: "/apple-touch-icon.png",
@@ -26,35 +74,33 @@ export default function RootLayout({
     children,
     params: { lng },
 }) {
-    // Structured data for Organization
     const organizationStructuredData = {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Intermed Innovation",
         "url": "https://imed.uz",
-        "logo": "https://imed.uz/logo.png", // Replace with your actual logo URL
+        "logo": "https://imed.uz/logo.png",
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+998781504747", // Replace with your actual phone number
+            "telephone": "+998781504747",
             "contactType": "customer service",
             "areaServed": "UZ",
             "availableLanguage": ["Uzbek", "Russian", "English"]
         },
         "sameAs": [
-            "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D", // Replace with your actual social links
+            "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D", 
             "https://www.facebook.com/intermed.mindray",
             "https://t.me/intermedtrade",
             "https://www.youtube.com/@intermedinnovation9644"
         ],
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Chinobod ko'chasi 10a, Тоshkent, Toshkent", // Replace with your actual address
+            "streetAddress": "Chinobod ko'chasi 10a, Тоshkent, Toshkent",
             "addressLocality": "Ташкент",
             "postalCode": "100000",
             "addressCountry": "UZ"
         },
-        "founder": "Имя Основателя", // Replace with the founder's name, if applicable
-        "foundingDate": "2020-01-01", // Replace with the founding date
+        "foundingDate": "2020-01-01",
         "description": "Intermed Innovation предлагает широкий ассортимент медицинского оборудования по доступным ценам с доставкой по всему Узбекистану."
     };
 
@@ -103,8 +149,7 @@ export default function RootLayout({
                             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; 
                             m[i].l=1*new Date(); 
                             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} 
-                            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-                            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
+                            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
                             
                             ym(98441120, "init", {
                                 clickmap:true,
@@ -134,8 +179,7 @@ export default function RootLayout({
                             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; 
                             m[i].l=1*new Date(); 
                             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} 
-                            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-                            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
+                            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
                             
                             ym(98707553, "init", {
                                 clickmap:true,
@@ -158,12 +202,10 @@ export default function RootLayout({
                 </noscript>
 
                 {/* Google Analytics gtag.js Integration */}
-                {/* Load the gtag.js script */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-XNHBKVPHZX"
                     strategy="afterInteractive"
                 />
-                {/* Initialize gtag */}
                 <Script id="gtag-init" strategy="afterInteractive">
                     {`
                         window.dataLayer = window.dataLayer || [];

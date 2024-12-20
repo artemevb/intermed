@@ -6,7 +6,7 @@ import './_styles/globals.css';
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru"> {/* Вы можете динамически устанавливать язык */}
+    <html lang="ru"> 
       <body>
         <LanguageProvider>
           {children}

@@ -10,12 +10,10 @@ const translations = {
   uz,
 };
 
-
 export async function generateMetadata({ params }) {
   const { slug, lng } = params;
-
   const t = translations[lng] || translations['ru'];
-  
+
   let productData = null;
 
   try {
@@ -25,30 +23,36 @@ export async function generateMetadata({ params }) {
       },
     });
 
-    productData = response.data.data;
+    productData = response.data;
   } catch (error) {
     console.error('Не удалось получить данные о продукте:', error);
     return {
       title: 'Продукт не найден',
       description: 'Продукт не найден или произошла ошибка.',
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
-  if (productData) {
-    const availability = productData.active ? 'instock' : 'outofstock';
-    const imageUrl = productData.gallery[0]?.url || '/default-image.jpg';
+  if (productData && productData.data) {
+    const data = productData.data;
+    const availability = data.active ? 'instock' : 'outofstock';
+    const imageUrl = data.gallery[0]?.url || '/default-image.jpg';
+    const pageUrl = `https://imed.uz/${lng}/products/${data.slug}`;
 
     return {
-      title: `${productData.name} — ${t.buy}`,
-      description: productData.shortDescription || 'Описание недоступно',
+      title: `${data.name} — ${t.buy}`,
+      description: data.shortDescription || 'Описание недоступно',
       openGraph: {
-        title: `${productData.name} — ${t.buy}`,
-        description: productData.shortDescription || 'Описание недоступно',
-        url: `https://imed.uz/${lng}/products/${productData.slug}`,
+        title: `${data.name} — ${t.buy}`,
+        description: data.shortDescription || 'Описание недоступно',
+        url: pageUrl,
         images: [
           {
             url: imageUrl,
-            alt: productData.name,
+            alt: data.name,
             width: 60,
             height: 60,
           },
@@ -58,14 +62,21 @@ export async function generateMetadata({ params }) {
       },
       twitter: {
         card: 'summary',
-        title: `${productData.name} — ${t.buy}`,
-        description: productData.shortDescription || 'Описание недоступно',
+        title: `${data.name} — ${t.buy}`,
+        description: data.shortDescription || 'Описание недоступно',
         images: [imageUrl],
       },
-      keywords: productData.name,
+      keywords: data.name,
       other: {
         'product:availability': availability,
         'og:type': 'product',
+      },
+      alternates: {
+        canonical: pageUrl,
+      },
+      robots: {
+        index: true,
+        follow: true,
       },
     };
   }
@@ -73,6 +84,10 @@ export async function generateMetadata({ params }) {
   return {
     title: 'Продукт не найден',
     description: 'Продукт не найден или произошла ошибка.',
+    robots: {
+      index: false,
+      follow: false,
+    },
   };
 }
 
@@ -88,7 +103,6 @@ export default async function Page({ params }) {
         'Accept-Language': lng,
       },
     });
-
     productData = response.data;
   } catch (error) {
     console.error('Не удалось получить данные о продукте:', error);
@@ -100,7 +114,6 @@ export default async function Page({ params }) {
         'Accept-Language': lng,
       },
     });
-
     similarProducts = response.data?.data || [];
   } catch (error) {
     console.error('Не удалось получить похожие продукты:', error);

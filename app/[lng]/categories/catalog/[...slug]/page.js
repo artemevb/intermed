@@ -106,10 +106,10 @@ const jsonLd = {
     "price": "по запросу"
   },
   "sameAs": [
-    "https://www.youtube.com/@intermedinnovation9644",
-    "https://t.me/intermedtrade",
+    "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D",
     "https://www.facebook.com/intermed.mindray",
-    "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D"
+    "https://t.me/intermedtrade",
+    "https://www.youtube.com/@intermedinnovation9644"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -160,7 +160,7 @@ export default async function Page({ params, searchParams }) {
       <Script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        id="json-ld-unique-id" 
+        id="json-ld-unique-id"
       />
 
       <div className="w-full bg-white flex flex-col">
