@@ -10,12 +10,14 @@ export async function generateStaticParams() {
     return languages.map((lng) => ({ lng }));
 }
 
-// Переносим сюда SEO оптимизацию из page.js
+// Обновлённая SEO-оптимизация на основе семантического ядра
 export function generateMetadata({ params: { lng } }) {
     const metadata = {
-        title: 'Купить медицинское оборудование в Ташкенте - широкий выбор УЗИ аппаратов и МРТ',
-        description: 'Поставка медицинского оборудования в Ташкенте от ведущего поставщика. Купить УЗИ аппараты, МРТ, стоматологическое оборудование и многое другое по выгодным ценам. Гарантия качества, оперативная доставка и сервисное обслуживание.',
-        keywords: 'медицинское оборудование, Ташкент, доставка медицинского оборудования, Intermed Innovation',
+        title: 'Купить медицинское оборудование в Ташкенте – УЗИ, МРТ, эндоскопы, рентген и стоматология',
+        description:
+            'Поставщик медицинского оборудования в Ташкенте: широкий выбор УЗИ аппаратов, эндоскопов, рентген аппаратов, портативных и стационарных систем, а также стоматологической техники. Конкурентные цены, оперативная доставка и сервисное обслуживание. Узнайте цены на УЗИ аппараты и другие устройства в Ташкенте.',
+        keywords:
+            'медицинское оборудование, Ташкент, узи аппарат, эндоскоп, рентген аппарат, медтехника Ташкент, мед оборудование, узи аппарат цена в ташкенте, портативный узи аппарат, купить узи аппарат, стоматологическое оборудование, ультразвуковые аппараты, операционный стол',
         ogImageUrl: 'https://imed.uz/og.jpg',
     };
 
@@ -26,7 +28,7 @@ export function generateMetadata({ params: { lng } }) {
         openGraph: {
             title: metadata.title,
             description: metadata.description,
-            url: `https://imed.uz`,
+            url: 'https://imed.uz',
             images: [
                 {
                     url: metadata.ogImageUrl,
@@ -45,7 +47,7 @@ export function generateMetadata({ params: { lng } }) {
             cardType: 'summary_large_image',
         },
         alternates: {
-            canonical: `https://imed.uz`,
+            canonical: 'https://imed.uz',
             languages: languages.reduce((acc, language) => {
                 acc[language] = `https://imed.uz/${language}/`;
                 return acc;
@@ -62,18 +64,15 @@ export function generateMetadata({ params: { lng } }) {
             { name: 'author', content: 'Intermed Innovation' },
         ],
         icons: {
-            icon: "/favicon.ico",
-            apple: "/apple-touch-icon.png",
+            icon: '/favicon.ico',
+            apple: '/apple-touch-icon.png',
         },
-        manifest: "/manifest.json",
-        themeColor: "#ffffff",
+        manifest: '/manifest.json',
+        themeColor: '#ffffff',
     };
 }
 
-export default function RootLayout({
-    children,
-    params: { lng },
-}) {
+export default function RootLayout({ children, params: { lng } }) {
     const organizationStructuredData = {
         "@context": "https://schema.org",
         "@type": "Organization",
@@ -88,14 +87,14 @@ export default function RootLayout({
             "availableLanguage": ["Uzbek", "Russian", "English"]
         },
         "sameAs": [
-            "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D", 
+            "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D",
             "https://www.facebook.com/intermed.mindray",
             "https://t.me/intermedtrade",
             "https://www.youtube.com/@intermedinnovation9644"
         ],
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Chinobod ko'chasi 10a, Тоshkent, Toshkent",
+            "streetAddress": "Chinobod ko'chasi 10a, Тошкент, Toshкент",
             "addressLocality": "Ташкент",
             "postalCode": "100000",
             "addressCountry": "UZ"
@@ -107,7 +106,6 @@ export default function RootLayout({
     return (
         <html lang={lng} dir={dir(lng)}>
             <Head>
-                {/* Structured data for Organization */}
                 <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{
@@ -122,12 +120,12 @@ export default function RootLayout({
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `
-                            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-                            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                            })(window,document,'script','dataLayer','GTM-MDWVM3M');
-                        `,
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','GTM-MDWVM3M');
+            `,
                     }}
                 />
                 <noscript>
@@ -140,24 +138,24 @@ export default function RootLayout({
                     ></iframe>
                 </noscript>
 
-                {/* Yandex.Metrika (First Counter) */}
+                {/* Yandex.Metrika (Первый счётчик) */}
                 <Script
                     id="yandex-metrika"
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `
-                            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; 
-                            m[i].l=1*new Date(); 
-                            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} 
-                            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
-                            
-                            ym(98441120, "init", {
-                                clickmap:true,
-                                trackLinks:true,
-                                accurateTrackBounce:true,
-                                webvisor:true
-                            });
-                        `,
+              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; 
+              m[i].l=1*new Date(); 
+              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} 
+              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
+              
+              ym(98441120, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                webvisor:true
+              });
+            `,
                     }}
                 />
                 <noscript>
@@ -170,25 +168,25 @@ export default function RootLayout({
                     </div>
                 </noscript>
 
-                {/* Yandex.Metrika (Second Counter) */}
+                {/* Yandex.Metrika (Второй счётчик) */}
                 <Script
                     id="yandex-metrika-second"
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
                         __html: `
-                            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; 
-                            m[i].l=1*new Date(); 
-                            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} 
-                            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
-                            
-                            ym(98707553, "init", {
-                                clickmap:true,
-                                trackLinks:true,
-                                accurateTrackBounce:true,
-                                webvisor:true,
-                                ecommerce:"dataLayer"
-                            });
-                        `,
+              (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; 
+              m[i].l=1*new Date(); 
+              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }} 
+              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); 
+              
+              ym(98707553, "init", {
+                clickmap:true,
+                trackLinks:true,
+                accurateTrackBounce:true,
+                webvisor:true,
+                ecommerce:"dataLayer"
+              });
+            `,
                     }}
                 />
                 <noscript>
@@ -201,19 +199,19 @@ export default function RootLayout({
                     </div>
                 </noscript>
 
-                {/* Google Analytics gtag.js Integration */}
+                {/* Google Analytics (gtag.js) */}
                 <Script
                     src="https://www.googletagmanager.com/gtag/js?id=G-XNHBKVPHZX"
                     strategy="afterInteractive"
                 />
                 <Script id="gtag-init" strategy="afterInteractive">
                     {`
-                        window.dataLayer = window.dataLayer || [];
-                        function gtag(){dataLayer.push(arguments);}
-                        gtag('js', new Date());
-
-                        gtag('config', 'G-XNHBKVPHZX');
-                    `}
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+  
+            gtag('config', 'G-XNHBKVPHZX');
+          `}
                 </Script>
 
                 <LanguageProvider lng={lng}>
