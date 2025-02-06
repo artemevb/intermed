@@ -100,7 +100,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Медицинское оборудование Intermed Innovation",
-  "description": "Каталог медицинского оборудования: УЗИ аппараты, МРТ, стоматологическое оборудование, лабораторное оборудование, реагенты и расходные материалы. Высокое качество техники от ведущих производителей с доставкой по Ташкенту.",
+  "description":
+    "Каталог медицинского оборудования: УЗИ аппараты, МРТ, стоматологическое оборудование, лабораторное оборудование, реагенты и расходные материалы. Высокое качество техники от ведущих производителей с доставкой по Ташкенту.",
   "url": "https://imed.uz",
   "logo": "https://imed.uz/og.jpg",
   "image": "https://imed.uz/og.jpg",
@@ -108,7 +109,10 @@ const jsonLd = {
   "brand": "Intermed Innovation",
   "offers": {
     "@type": "Offer",
-    "priceCurrency": "UZS"
+    "priceCurrency": "UZS",
+    "price": "0",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
   },
   "sameAs": [
     "https://www.instagram.com/intermed.mindray/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D",
@@ -122,7 +126,7 @@ const jsonLd = {
     "addressLocality": "Ташкент",
     "postalCode": "100000",
     "addressCountry": "UZ"
-  },
+  }
 };
 
 export default async function Page({ params, searchParams }) {
